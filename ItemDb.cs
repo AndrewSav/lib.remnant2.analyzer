@@ -21,7 +21,7 @@ internal class ItemDb
             {
                 lock (Lock)
                 {
-                    _instance ??= [..JArray.Parse(ReadResourceFile("r2wip.db.json")).Select(ConvertItem)];
+                    _instance ??= [..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json")).Select(ConvertItem)];
                 }
             }
             return _instance;
