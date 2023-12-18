@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="lib.remnant2.saves">
+      <HintPath>..\lib.remnant2.saves\lib.remnant2.saves\bin\Debug\net8.0\lib.remnant2.saves.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
