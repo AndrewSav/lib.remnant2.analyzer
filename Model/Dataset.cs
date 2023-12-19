@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-
-namespace lib.remnant2.analyzer.Model;
+﻿namespace lib.remnant2.analyzer.Model;
 
 public class Dataset
 {

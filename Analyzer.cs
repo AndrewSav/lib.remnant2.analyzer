@@ -170,7 +170,7 @@ public partial class Analyzer
     {
         UObject main = navigator.GetObject("/Game/Maps/Main.Main:PersistentLevel")!;
 
-        UObject campaignMeta = navigator.FindActors("Quest_Campaign", main)!.Single().Archive.Objects[0];
+        UObject campaignMeta = navigator.FindActors("Quest_Campaign", main).Single().Archive.Objects[0];
         int campaignId = campaignMeta.Properties!["ID"].Get<int>();
         UObject? campaignObject = navigator.GetObject($"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
 
@@ -184,8 +184,8 @@ public partial class Analyzer
 
         List<string> questInventory = GetInventory(campaignInventory);
 
-        List<Actor> zoneActors = navigator.GetActors("ZoneActor", campaignObject)!;
-        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)!
+        List<Actor> zoneActors = navigator.GetActors("ZoneActor", campaignObject);
+        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
         RolledWorld rolledWorld = new()
@@ -203,14 +203,14 @@ public partial class Analyzer
     {
         UObject main = navigator.GetObject("/Game/Maps/Main.Main:PersistentLevel")!;
 
-        UObject adventureMeta = navigator.FindActors("Quest_AdventureMode", main)!.Single().Archive.Objects[0];
+        UObject adventureMeta = navigator.FindActors("Quest_AdventureMode", main).Single().Archive.Objects[0];
         int? adventureId = adventureMeta.Properties!["ID"].Get<int>();
         UObject? adventureObject = navigator.GetObject($"/Game/Quest_{adventureId}_Container.Quest_Container:PersistentLevel");
         int quest = navigator.GetComponent("Quest", adventureMeta)!.Properties!["QuestID"].Get<int>();
         PropertyBag adventureInventory = navigator.GetComponent("RemnantPlayerInventory", adventureMeta)!.Properties!;
         List<string> questInventory = GetInventory(adventureInventory);
-        List<Actor> zoneActorsAdventure = navigator.GetActors("ZoneActor", adventureObject)!;
-        List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)!
+        List<Actor> zoneActorsAdventure = navigator.GetActors("ZoneActor", adventureObject);
+        List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
         RolledWorld rolledWorld = new()
@@ -540,7 +540,7 @@ public partial class Analyzer
                 // Part 3 : Drop Type : World Drop
                 List<LootItem> worldDrops = l.WorldDrops
                     .Where(x => x != "Bloodmoon" && ItemDb.HasItem(x))
-                    .Select(drop => ItemDb.GetItemById(drop)).ToList();
+                    .Select(ItemDb.GetItemById).ToList();
 
                 foreach (string s in l.WorldDrops.Where(x => x != "Bloodmoon" && !ItemDb.HasItem(x)))
                 {
@@ -585,7 +585,7 @@ public partial class Analyzer
                             List<string> mm = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
 
-                            bool check(string cur)
+                            bool Check(string cur)
                             {
                                 string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
 
@@ -593,24 +593,24 @@ public partial class Analyzer
                                        world.QuestInventory.Contains(itemProfileId);
                             }
 
-                            (bool, int) term(int index) // term => word ',' term | word
+                            (bool, int) Term(int index) // term => word ',' term | word
                             {
-                                bool left = check(mm[index++]);
+                                bool left = Check(mm[index++]);
                                 if (index >= mm.Count || mm[index++] != ",") return (left, index);
-                                (bool right, index) = term(index);
+                                (bool right, index) = Term(index);
                                 return (left && right, index);
                             }
 
-                            (bool, int) expr(int index) // expr => term '|' expr | term
+                            (bool, int) Expr(int index) // expr => term '|' expr | term
                             {
-                                (bool left, index) = term(index);
+                                (bool left, index) = Term(index);
                                 if (index >= mm.Count || mm[index++] != "|") return (left, index);
-                                (bool right, index) = expr(index);
+                                (bool right, index) = Expr(index);
                                 return (left || right, index);
                             }
 
 
-                            (bool res, _) = expr(0);
+                            (bool res, _) = Expr(0);
 
                             if (!res)
                             {
