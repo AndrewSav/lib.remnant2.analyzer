@@ -1,16 +1,18 @@
-﻿namespace lib.remnant2.analyzer.Model;
+﻿using System.Diagnostics;
+
+namespace lib.remnant2.analyzer.Model;
 
 public class Location
 {
-    public string Name;
-    public List<string> WorldStones;
-    public List<string> Connections;
+    public required string Name;
+    public required List<string> WorldStones;
+    public required List<string> Connections;
     public bool TraitBook;
     public bool Simulacrum;
-    public List<string> WorldDrops;
-    public List<string> DropReferences;
-    public string Category;
-    public List<LootGroup> LootGroups;
+    public required List<string> WorldDrops;
+    public required List<string> DropReferences;
+    public required string Category;
+    public required List<LootGroup> LootGroups;
 
     public bool Bloodmoon
     {
@@ -24,23 +26,16 @@ public class Location
     {
         get
         {
-            switch (Category)
+            return Category switch
             {
-                case "Nerud":
-                    return "N'Erud";
-                case "Labyrinth":
-                    return "Labyrinth";
-                case "Fae":
-                    return "Losomn";
-                case "Jungle":
-                    return "Yaesha";
-                case "RootEarth":
-                    return "Root Earth";
-                case "Ward 13":
-                    return "Ward 13";
-            }
-
-            return null;
+                "Nerud" => "N'Erud",
+                "Labyrinth" => "Labyrinth",
+                "Fae" => "Losomn",
+                "Jungle" => "Yaesha",
+                "RootEarth" => "Root Earth",
+                "Ward 13" => "Ward 13",
+                _ => throw new UnreachableException($"Unexpected category '{Category}'")
+            };
         }
     }
 
@@ -94,6 +89,7 @@ public class Location
         Connections = [],
         WorldDrops = [],
         DropReferences = [],
-        Category = "Ward 13"
+        Category = "Ward 13",
+        LootGroups = []
     };
 }

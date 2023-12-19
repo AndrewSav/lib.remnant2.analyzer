@@ -3,13 +3,14 @@
 // Represents data in profile.sav that correspond to a single character
 public class Profile
 {
-    public List<string> Inventory;
-    public List<string> Traits;
-    public List<Dictionary<string,string>> MissingItems;
-    public List<Dictionary<string, string>> HasMatsItems;
+    public required List<string> Inventory;
+    public required List<string> Traits;
+    public required List<Dictionary<string,string>> MissingItems;
+    public required List<Dictionary<string, string>> HasMatsItems;
     public bool HasWormhole;
     public bool HasFortuneHunter;
-
+    public required string Archetype;
+    public required string SecondaryArchetype;
     
     // Pass a missing item, if it can be obtained right away, return the material name
     // otherwise return null

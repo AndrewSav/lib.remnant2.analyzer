@@ -7,10 +7,10 @@ using lib.remnant2.analyzer.Model;
 
 namespace lib.remnant2.analyzer;
 
-public class Analyzer
+public partial class Analyzer
 {
-    public static string[] InventoryTypes =
-    {
+    public static string[] InventoryTypes =>
+    [
         "amulet",
         "armor",
         "mod",
@@ -19,7 +19,7 @@ public class Analyzer
         "ring",
         "weapon",
         "engram"
-    };
+    ];
 
     public static Dataset Analyze()
     {
@@ -56,8 +56,16 @@ public class Analyzer
             // Saw more than one returned but then overwritten immediately
             //var debug = profile.GetProperties("Items", inventoryComponent).Select(profile.Lookup).ToList();
 
+            //var bla = profile.GetProperties("Archetype").Select( x=> profile.Lookup(x));
+            //var bla = profile.GetProperty("Archetype", character)?.Get<string>();
+            Regex rArchetype = RegexArchetype();
+            string archetype = rArchetype.Match(profile.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
+            string secondaryArchetype = rArchetype.Match(profile.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
+            
 
-            List<PropertyBag> itemObjects = profile.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
+
+
+            List <PropertyBag> itemObjects = profile.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
 
@@ -102,7 +110,9 @@ public class Analyzer
                 HasFortuneHunter = inventory.Contains(
                     "/Game/World_Base/Items/Archetypes/Explorer/Skills/FortuneHunter/Skill_FortuneHunter.Skill_FortuneHunter_C"),
                 HasWormhole = inventory.Contains(
-                    "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C")
+                    "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C"),
+                Archetype = archetype,
+                SecondaryArchetype = secondaryArchetype
             };
 
             string savePath = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
@@ -178,12 +188,14 @@ public class Analyzer
         List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)!
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
-        RolledWorld rolledWorld = new();
+        RolledWorld rolledWorld = new()
+        {
+            QuestInventory = questInventory
+        };
         rolledWorld.Zones =
         [
             GetZone(zoneActors, world1, labyrinth, events, rolledWorld), GetZone(zoneActors, labyrinth, labyrinth, events, rolledWorld), GetZone(zoneActors, world2, labyrinth, events, rolledWorld), GetZone(zoneActors, world3, labyrinth, events, rolledWorld), GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld)
         ];
-        rolledWorld.QuestInventory = questInventory;
         return rolledWorld;
     }
 
@@ -201,12 +213,14 @@ public class Analyzer
         List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)!
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
-        RolledWorld rolledWorld = new();
+        RolledWorld rolledWorld = new()
+        {
+            QuestInventory = questInventory
+        };
         rolledWorld.Zones =
         [
             GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld),
         ];
-        rolledWorld.QuestInventory = questInventory;
         return rolledWorld;
     }
 
@@ -278,10 +292,6 @@ public class Analyzer
             seen.Add(label);
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
-            Location l = new();
-            l.Name = label;
-            l.DropReferences = [];
-            l.WorldDrops = [];
 
             List<string> waypoints = [];
             List<string> connectsTo = [];
@@ -343,9 +353,6 @@ public class Analyzer
                 }
             }
 
-            l.WorldStones = waypoints;
-            l.Category = category;
-
             string cat = category;
 
             IEnumerable<string> GetConnectsTo(List<string> connections)
@@ -362,7 +369,17 @@ public class Analyzer
                 }
             }
 
-            l.Connections = GetConnectsTo(connectsTo).ToList();
+            Location l = new()
+            {
+                Name = label,
+                DropReferences = [],
+                WorldDrops = [],
+                WorldStones = waypoints,
+                Category = category,
+                Connections = GetConnectsTo(connectsTo).ToList(),
+                LootGroups = []
+            };
+            
 
             foreach (Actor e in new List<Actor>(events).Where(x =>
                          x.GetFirstObjectProperties()!["ID"].Get<int>() == questId))
@@ -372,17 +389,17 @@ public class Analyzer
                 string ev = e.ToString()!;
                 if (ev.EndsWith("_C"))
                 {
-                    ev = ev.Substring(0, ev.Length - 2);
+                    ev = ev[..^2];
                 }
 
                 if (ev.EndsWith("_V2"))
                 {
-                    ev = ev.Substring(0, ev.Length - 3);
+                    ev = ev[..^3];
                 }
 
                 if (ev.EndsWith("_OneShot"))
                 {
-                    ev = ev.Substring(0, ev.Length - 8);
+                    ev = ev[..^8];
                 }
 
                 if (ev.StartsWith("Quest_Story"))
@@ -404,12 +421,12 @@ public class Analyzer
                 string ev = e.ToString()!;
                 if (ev.EndsWith("_C"))
                 {
-                    ev = ev.Substring(0, ev.Length - "_C".Length);
+                    ev = ev[..^"_C".Length];
                 }
 
                 if (ev.EndsWith("_V2"))
                 {
-                    ev = ev.Substring(0, ev.Length - "_V2".Length);
+                    ev = ev[..^"_V2".Length];
                 }
 
                 if (ev.StartsWith("Quest_Event_Trait"))
@@ -426,7 +443,7 @@ public class Analyzer
 
                 if (ev.StartsWith("Quest_Event_"))
                 {
-                    l.WorldDrops.Add(ev.Substring("Quest_Event_".Length));
+                    l.WorldDrops.Add(ev["Quest_Event_".Length..]);
                     continue;
                 }
 
@@ -479,7 +496,7 @@ public class Analyzer
                 LootGroup lg = new()
                 {
                     Type = "Location",
-                    Items = ItemDb.GetItemsByReference("Location", l.Name)
+                    Items = ItemDb.GetItemsByReference("Location", l.Name),
                 };
                 if (lg.Items.Count > 0)
                 {
@@ -497,14 +514,14 @@ public class Analyzer
                     Dictionary<string,string>? ev = ItemDb.Db.SingleOrDefault(x =>
                         x["Id"].Equals(dropReference, StringComparison.InvariantCultureIgnoreCase));
 
-                    //if (ev == null)
-                    //{
-                    //    Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG No drops for {dropReference}");
-                    //    continue;
-                    //}
+                    if (ev == null)
+                    {
+                        // Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG No drops for {dropReference}");
+                        continue;
+                    }
 
                     string type = ev["Subtype"];
-                    string name = null;
+                    string? name = null;
                     if (type == "overworld POI" || type == "boss" || type == "miniboss" || type == "injectable")
                     {
                         name = ev["Name"];
@@ -565,7 +582,7 @@ public class Analyzer
                     {
                         if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
                         {
-                            List<string> mm = Regex.Matches(prerequisite, @"([^|,]+)|(\|)|(,)")
+                            List<string> mm = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
 
                             bool check(string cur)
@@ -610,4 +627,9 @@ public class Analyzer
             }
         }
     }
+
+    [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
+    private static partial Regex RegexArchetype();
+    [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
+    private static partial Regex RegexPrerequisite();
 }

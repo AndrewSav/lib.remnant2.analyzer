@@ -3,8 +3,8 @@
 // Represents data in a single save_N.sav
 public class SaveSlot
 {
-    public RolledWorld Campaign;
+    public required RolledWorld Campaign;
     public RolledWorld? Adventure;
-    public List<string> QuestCompletedLog;
+    public required List<string> QuestCompletedLog;
     public bool HasTree;
 }

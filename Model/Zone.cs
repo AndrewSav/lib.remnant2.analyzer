@@ -2,7 +2,7 @@
 
 public class Zone(RolledWorld parent)
 {
-    public List<Location> Locations;
+    public required List<Location> Locations;
     public string Name
     {
         get

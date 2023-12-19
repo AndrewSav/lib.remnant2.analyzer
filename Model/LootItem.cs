@@ -2,23 +2,24 @@
 
 namespace lib.remnant2.analyzer.Model;
 
-public class LootItem
+public partial class LootItem
 {
-    public Dictionary<string,string> Item;
+    public required Dictionary<string,string> Item;
 
     public string Name
     {
         get
         {
             string id = Item["Id"];
-            return !Item.ContainsKey("Name")
-                ? string.Join(' ',
-                    Regex.Split(id.Replace("Consumable_", "").Substring(id.IndexOf("_") + 1), @"(?<!^)(?=[A-Z])"))
-                : Item["Name"];
+            return !Item.TryGetValue("Name", out string? value) ? string.Join(' ',
+                    RegexSplitAtCapitals().Split(id.Replace("Consumable_", "")[(id.IndexOf('_') + 1)..]))
+                : value;
 
         }
     }
 
     public string Type => Item["Type"].Replace("engram", "archetype");
 
+    [GeneratedRegex(@"(?<!^)(?=[A-Z])")]
+    private static partial Regex RegexSplitAtCapitals();
 }

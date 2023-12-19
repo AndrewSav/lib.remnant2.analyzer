@@ -8,8 +8,8 @@ public class Character
         Campaign,
         Adventure
     }
-    public SaveSlot Save;
-    public Profile Profile;
+    public required SaveSlot Save;
+    public required Profile Profile;
     public int Index;
     public WorldSlot ActiveWorldSlot;
 }

@@ -7,6 +7,7 @@ public class Utils
     private static readonly Guid SavedGamesGuid = new("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
 
     [DllImport("shell32.dll")]
+#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
     private static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags,
         IntPtr hToken,
         out IntPtr pszPath);
@@ -36,17 +37,8 @@ public class Utils
         return possiblePaths[0];
     }
 
-    public static string GetShortenedAssetPath(string path)
-    {
-        path = path[(path.LastIndexOfAny("/.".ToCharArray()) + 1)..];
-        if (path.EndsWith("_C")) path = path[..^2];
-        if (path.EndsWith("_UI")) path = path[..^2];
-        path = path.Replace("_", " ").Trim();
-        return $"'{path}'";
-    }
-
     public static string Capitalize(string word)
     {
-        return word.Substring(0, 1).ToUpper() + word.Substring(1).ToLower();
+        return word[..1].ToUpper() + word[1..].ToLower();
     }
 }
