@@ -4,6 +4,7 @@ using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Navigation;
 using lib.remnant2.analyzer.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace lib.remnant2.analyzer;
 
@@ -21,14 +22,47 @@ public partial class Analyzer
         "engram"
     ];
 
-    public static Dataset Analyze()
+    public static string GetProfileString(string? folderPath = null)
+    {
+        string folder = folderPath ?? Utils.GetSteamSavePath();
+        string profilePath = Path.Combine(folder, "profile.sav");
+
+        List<string> result = [];
+
+        SaveFile profileSf = ReadWithRetry(profilePath);
+        ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Properties.Single(x => x.Key == "Characters").Value.Value!;
+        for (int index = 0; index < ap.Items.Count; index++)
+        {
+            object? item = ap.Items[index];
+            ObjectProperty ch = (ObjectProperty)item!;
+            if (ch.ClassName == null) continue;
+            UObject character = ch.Object!;
+
+            var archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value.ToStringValue();
+            var secondaryArchPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
+
+            Regex rArchetype = RegexArchetype();
+            string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
+            string secondaryArchetype = rArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
+
+            StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
+            SaveData st = (SaveData)cd.Value!;
+
+            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $"({st.Objects.Count})");
+
+        }
+
+        return string.Join(", ", result);
+    }
+
+    public static Dataset Analyze(string? folderPath = null)
     {
         Dataset result = new()
         {
             Characters = []
         };
 
-        string folder = Utils.GetSteamSavePath();
+        string folder = folderPath ?? Utils.GetSteamSavePath();
         string profilePath = Path.Combine(folder, "profile.sav");
 
         SaveFile profileSf = ReadWithRetry(profilePath);
@@ -36,6 +70,7 @@ public partial class Analyzer
         Navigator profile = new(profileSf);
         result.ActiveCharacterIndex = profile.GetProperty("ActiveCharacterIndex")!.Get<int>();
         ArrayProperty ap = profile.GetProperty("Characters")!.Get<ArrayProperty>();
+        
 
         for (int index = 0; index < ap.Items.Count; index++)
         {
@@ -53,17 +88,9 @@ public partial class Analyzer
                 continue;
             }
 
-            // Saw more than one returned but then overwritten immediately
-            //var debug = profile.GetProperties("Items", inventoryComponent).Select(profile.Lookup).ToList();
-
-            //var bla = profile.GetProperties("Archetype").Select( x=> profile.Lookup(x));
-            //var bla = profile.GetProperty("Archetype", character)?.Get<string>();
             Regex rArchetype = RegexArchetype();
             string archetype = rArchetype.Match(profile.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
             string secondaryArchetype = rArchetype.Match(profile.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
-            
-
-
 
             List <PropertyBag> itemObjects = profile.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
