@@ -30,4 +30,8 @@ public class Profile
         .ToList();
 
     public int AcquiredItems => FilteredInventory.Count + FilteredTraits.Count;
+    // To display ever-increasing identification number for a character in RSG
+    // We are using this instead of AcquiredItems so that we could load dozens of 
+    // backed up saves relatively fast
+    public required int CharacterDataCount;
 }

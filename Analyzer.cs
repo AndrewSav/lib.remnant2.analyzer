@@ -4,7 +4,6 @@ using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Navigation;
 using lib.remnant2.analyzer.Model;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace lib.remnant2.analyzer;
 
@@ -22,7 +21,7 @@ public partial class Analyzer
         "engram"
     ];
 
-    public static string GetProfileString(string? folderPath = null)
+    public static string[] GetProfileStrings(string? folderPath = null)
     {
         string folder = folderPath ?? Utils.GetSteamSavePath();
         string profilePath = Path.Combine(folder, "profile.sav");
@@ -49,10 +48,14 @@ public partial class Analyzer
             SaveData st = (SaveData)cd.Value!;
 
             result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $"({st.Objects.Count})");
-
+            
         }
+        return result.ToArray();
+    }
 
-        return string.Join(", ", result);
+    public static string GetProfileStringCombined(string? folderPath = null)
+    {
+        return string.Join(", ", GetProfileStrings(folderPath));
     }
 
     public static Dataset Analyze(string? folderPath = null)
@@ -128,6 +131,10 @@ public partial class Analyzer
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
 
 
+            StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
+            SaveData st = (SaveData)cd.Value!;
+
+
             Profile p = new()
             {
                 Inventory = inventory,
@@ -139,7 +146,8 @@ public partial class Analyzer
                 HasWormhole = inventory.Contains(
                     "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C"),
                 Archetype = archetype,
-                SecondaryArchetype = secondaryArchetype
+                SecondaryArchetype = secondaryArchetype,
+                CharacterDataCount = st.Objects.Count
             };
 
             string savePath = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
