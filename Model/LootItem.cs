@@ -5,8 +5,9 @@ namespace lib.remnant2.analyzer.Model;
 public partial class LootItem
 {
     public required Dictionary<string,string> Item;
+    public bool NoPrerequisite = false;
 
-    public string Name
+    public virtual string Name
     {
         get
         {

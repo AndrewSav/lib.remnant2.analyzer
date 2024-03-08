@@ -58,6 +58,10 @@ public partial class Analyzer
         return string.Join(", ", GetProfileStrings(folderPath));
     }
 
+    public static void Export(string targetFolder, string? folderPath = null)
+    {
+    }
+
     public static Dataset Analyze(string? folderPath = null)
     {
         Dataset result = new()
@@ -606,7 +610,7 @@ public partial class Analyzer
             }
         }
 
-        //Remove items that cannot be obtained because no prerequisite
+        //Mark items that cannot be obtained because no prerequisite
         foreach (Zone zz in world.AllZones)
         {
             foreach (Location l in zz.Locations)
@@ -657,14 +661,9 @@ public partial class Analyzer
 
                             if (!res)
                             {
-                                lg.Items.Remove(i);
+                                i.NoPrerequisite = true;
                             }
                         }
-                    }
-
-                    if (lg.Items.Count == 0)
-                    {
-                        l.LootGroups.Remove(lg);
                     }
                 }
             }
