@@ -12,4 +12,10 @@ public class Character
     public required Profile Profile;
     public int Index;
     public WorldSlot ActiveWorldSlot;
+
+    // Profile string for RSG Analyzer dropdown
+    public override string ToString()
+    {
+        return Profile.ProfileString;
+    }
 }

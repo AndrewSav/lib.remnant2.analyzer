@@ -19,6 +19,7 @@ public partial class LootItem
     }
 
     public string Type => Item["Type"].Replace("engram", "archetype");
+    public string ItemNotes => Item.ContainsKey("Note") ? Item["Note"] : string.Empty;
 
     [GeneratedRegex(@"(?<!^)(?=[A-Z])")]
     private static partial Regex RegexSplitAtCapitals();

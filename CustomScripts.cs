@@ -123,5 +123,6 @@ internal static class CustomScripts
         },
         //Weapon_Anguish
         //Ring_BandOfTheFanatic - it is not possible to get it unless you *already* have the ritualist set
+        //Amulet_ParticipationMedal
     };
 }

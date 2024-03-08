@@ -34,4 +34,7 @@ public class Profile
     // We are using this instead of AcquiredItems so that we could load dozens of 
     // backed up saves relatively fast
     public required int CharacterDataCount;
+
+    // Profile string for RSG Analyzer dropdown
+    public string ProfileString => Archetype + (string.IsNullOrEmpty(SecondaryArchetype) ? "" : $", {SecondaryArchetype}") + $" ({CharacterDataCount})";
 }

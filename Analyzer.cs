@@ -47,7 +47,7 @@ public partial class Analyzer
             StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
             SaveData st = (SaveData)cd.Value!;
 
-            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $"({st.Objects.Count})");
+            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({st.Objects.Count})");
             
         }
         return result.ToArray();
