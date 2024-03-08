@@ -615,7 +615,15 @@ public partial class Analyzer
                 {
                     foreach (LootItem i in new List<LootItem>(lg.Items))
                     {
-                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
+                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite)
+                            // temporary ignore new prerequisite types
+                            // TODO: process new prerequisite types properly
+                            && !prerequisite.StartsWith("AccountAward")
+                            && !prerequisite.StartsWith("Engram")
+                            && !prerequisite.StartsWith("Material_AwardTrait"
+                                )
+
+                            )
                         {
                             List<string> mm = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
