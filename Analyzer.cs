@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace lib.remnant2.analyzer;
 
@@ -54,7 +55,7 @@ public partial class Analyzer
             result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({st.Objects.Count})");
             
         }
-        return result.ToArray();
+        return [.. result];
     }
 
     public static string GetProfileStringCombined(string? folderPath = null)
@@ -208,8 +209,8 @@ public partial class Analyzer
 
             IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
             IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId"));
-            List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].ToLowerInvariant() == x.ToLowerInvariant()))
-                .Select(x => pdb.Single(y => y["ProfileId"].ToLowerInvariant() == x.ToLowerInvariant())["Id"]).ToList();
+            List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+                .Select(x => pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"]).ToList();
 
             List<Dictionary<string, string>> hasMatsItems = mats.Where(x => invNames.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
@@ -287,11 +288,11 @@ public partial class Analyzer
 
     private static RolledWorld GetCampaign(Navigator navigator)
     {
-        UObject main = navigator.GetObject("/Game/Maps/Main.Main:PersistentLevel")!;
+        UObject main = navigator.GetObjects("PersistenceContainer").Single(x=>x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
 
         UObject campaignMeta = navigator.FindActors("Quest_Campaign", main).Single().Archive.Objects[0];
         int campaignId = campaignMeta.Properties!["ID"].Get<int>();
-        UObject? campaignObject = navigator.GetObject($"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
+        UObject? campaignObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
 
         int world1 = navigator.GetComponent("World1", campaignMeta)!.Properties!["QuestID"].Get<int>();
         int world2 = navigator.GetComponent("World2", campaignMeta)!.Properties!["QuestID"].Get<int>();
@@ -313,18 +314,22 @@ public partial class Analyzer
         };
         rolledWorld.Zones =
         [
-            GetZone(zoneActors, world1, labyrinth, events, rolledWorld), GetZone(zoneActors, labyrinth, labyrinth, events, rolledWorld), GetZone(zoneActors, world2, labyrinth, events, rolledWorld), GetZone(zoneActors, world3, labyrinth, events, rolledWorld), GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld)
+            GetZone(zoneActors, world1, labyrinth, events, rolledWorld ,navigator), 
+            GetZone(zoneActors, labyrinth, labyrinth, events, rolledWorld, navigator), 
+            GetZone(zoneActors, world2, labyrinth, events, rolledWorld, navigator), 
+            GetZone(zoneActors, world3, labyrinth, events, rolledWorld, navigator), 
+            GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld, navigator)
         ];
         return rolledWorld;
     }
 
     private static RolledWorld GetAdventure(Navigator navigator)
     {
-        UObject main = navigator.GetObject("/Game/Maps/Main.Main:PersistentLevel")!;
+        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
 
         UObject adventureMeta = navigator.FindActors("Quest_AdventureMode", main).Single().Archive.Objects[0];
         int? adventureId = adventureMeta.Properties!["ID"].Get<int>();
-        UObject? adventureObject = navigator.GetObject($"/Game/Quest_{adventureId}_Container.Quest_Container:PersistentLevel");
+        UObject? adventureObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{adventureId}_Container.Quest_Container:PersistentLevel");
         int quest = navigator.GetComponent("Quest", adventureMeta)!.Properties!["QuestID"].Get<int>();
         PropertyBag adventureInventory = navigator.GetComponent("RemnantPlayerInventory", adventureMeta)!.Properties!;
         List<string> questInventory = GetInventory(adventureInventory);
@@ -338,7 +343,7 @@ public partial class Analyzer
         };
         rolledWorld.Zones =
         [
-            GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld),
+            GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld, navigator),
         ];
         return rolledWorld;
     }
@@ -373,7 +378,7 @@ public partial class Analyzer
         return result;
     }
 
-    private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent)
+    private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent,Navigator navigator)
     {
         List<Location> result = [];
         List<Actor> actors = zoneActors.Where(x =>
@@ -506,6 +511,8 @@ public partial class Analyzer
                 // Story, Boss, Miniboss, SideD
                 events.Remove(e);
                 string ev = e.ToString()!;
+                var qs = navigator.GetProperty("QuestState", e);
+
                 if (ev.EndsWith("_C"))
                 {
                     ev = ev[..^2];
@@ -526,7 +533,7 @@ public partial class Analyzer
                     continue;
                 }
 
-                l.DropReferences.Add(ev);
+                l.DropReferences.Add(new(){Name=ev,Related = GetRelated(navigator,e),IsDeleted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
             }
 
             foreach (Actor e in new List<Actor>(events)
@@ -548,25 +555,30 @@ public partial class Analyzer
                     ev = ev[..^"_V2".Length];
                 }
 
+                var cmp = navigator.GetComponent("Loot", e);
+                var ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
+
                 if (ev.StartsWith("Quest_Event_Trait"))
                 {
                     l.TraitBook = true;
+                    l.TraitBookDeleted = ds != null && ds.Get<byte>() == 1;
                     continue;
                 }
 
                 if (ev.Contains("Simulacrum"))
                 {
                     l.Simulacrum = true;
+                    l.SimulacrumDeleted = ds != null && ds.Get<byte>() == 1;
                     continue;
                 }
 
                 if (ev.StartsWith("Quest_Event_"))
                 {
-                    l.WorldDrops.Add(ev["Quest_Event_".Length..]);
+                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsDeleted = ds != null && ds.Get<byte>() == 1 });
                     continue;
                 }
 
-                l.DropReferences.Add(ev);
+                l.DropReferences.Add(new(){Name = ev, Related = GetRelated(navigator, e), IsDeleted = ds != null && ds.Get<byte>()==1});
 
             }
 
@@ -577,6 +589,17 @@ public partial class Analyzer
 
     }
 
+    private static List<string> GetRelated(Navigator navigator, Actor e)
+    {
+        return navigator.GetProperties("SpawnEntry", e)
+            .Select(x => navigator.GetProperty("ActorBP", x))
+            .Where(x => !string.IsNullOrEmpty(x?.ToStringValue()))
+            .Select(x => x!.ToStringValue()!.Split('.')[^1])
+            .Where(x => !x.StartsWith("Char_"))
+            .Where(x => !x.StartsWith("BP_"))
+            .Where(x => !x.StartsWith("Consumable_"))
+            .ToList();
+    }
 
     private static SaveFile ReadWithRetry(string profilePath)
     {
@@ -623,15 +646,16 @@ public partial class Analyzer
                 }
 
                 // Part 2 : Drop Type : Event
-                foreach (string dropReference in l.DropReferences)
+                foreach (DropReference dropReference in l.DropReferences)
                 {
 
                     // This reference injects Nimue into one of the two locations she appears in:
                     // Beatific Palace, as such it's not very useful to us, because
                     // it's the very same Nimue as in Nimue's retreat, so we are skipping it
-                    if (dropReference == "Quest_Injectable_GoldenHall_Nimue") continue;
+                    if (dropReference.Name == "Quest_Injectable_GoldenHall_Nimue") continue;
+                    
                     Dictionary<string,string>? ev = ItemDb.Db.SingleOrDefault(x =>
-                        x["Id"].Equals(dropReference, StringComparison.InvariantCultureIgnoreCase));
+                        x["Id"].Equals(dropReference.Name, StringComparison.InvariantCultureIgnoreCase));
 
                     if (ev == null)
                     {
@@ -648,8 +672,8 @@ public partial class Analyzer
 
                     lg = new LootGroup
                     {
-                        Items = ItemDb.GetItemsByReference("Event", dropReference),
-                        EventDropReference = dropReference,
+                        Items = ItemDb.GetItemsByReference("Event", dropReference).Where(x => x.Type != "challenge").ToList(),
+                        EventDropReference = dropReference.Name,
                         Type = type,
                         Name = name
                     };
@@ -658,12 +682,12 @@ public partial class Analyzer
 
                 // Part 3 : Drop Type : World Drop
                 List<LootItem> worldDrops = l.WorldDrops
-                    .Where(x => x != "Bloodmoon" && ItemDb.HasItem(x))
+                    .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
                     .Select(ItemDb.GetItemById).ToList();
 
-                foreach (string s in l.WorldDrops.Where(x => x != "Bloodmoon" && !ItemDb.HasItem(x)))
+                foreach (DropReference s in l.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
                 {
-                    Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG {s} not in Database (world drop {l.Name})");
+                    Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG {s.Name} not in Database (world drop {l.Name})");
                 }
 
                 if (worldDrops.Count > 0)
@@ -741,7 +765,7 @@ public partial class Analyzer
 
                             if (!res)
                             {
-                                i.NoPrerequisite = true;
+                                i.IsPrerequisiteMissing = true;
                             }
                         }
                     }

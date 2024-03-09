@@ -8,9 +8,11 @@ public class Location
     public required List<string> WorldStones;
     public required List<string> Connections;
     public bool TraitBook;
+    public bool TraitBookDeleted;
     public bool Simulacrum;
-    public required List<string> WorldDrops;
-    public required List<string> DropReferences;
+    public bool SimulacrumDeleted;
+    public required List<DropReference> WorldDrops;
+    public required List<DropReference> DropReferences;
     public required string Category;
     public required List<LootGroup> LootGroups;
 
@@ -18,7 +20,7 @@ public class Location
     {
         get
         {
-            return WorldDrops.Any(x => x == "Bloodmoon");
+            return WorldDrops.Any(x => x.Name == "Bloodmoon");
         }
     }
 
@@ -59,7 +61,7 @@ public class Location
                 result.Add("Nimue");
             }
 
-            if (DropReferences.Any(x => x == "Quest_OverworldPOI_TheCustodian"))
+            if (DropReferences.Any(x => x.Name == "Quest_OverworldPOI_TheCustodian"))
             {
                 result.Add("Drzyr Replicator");
             }

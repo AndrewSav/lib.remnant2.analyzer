@@ -81,6 +81,17 @@ internal class ItemDb
 
     }
 
+    public static LootItem GetItemById(DropReference dr)
+    {
+        return new LootItem
+        {
+            Item = Db.Single(x =>
+                x["Id"] == dr.Name || x.ContainsKey("EventId") && x["EventId"] == dr.Name),
+            IsDeleted = dr.IsDeleted
+            
+        };
+    }
+
     public static bool HasItem(string id)
     {
         return Db.Any(x =>
@@ -94,4 +105,10 @@ internal class ItemDb
                         && x["DropType"] == dropType).Select(x => new LootItem { Item = x }).ToList();
     }
 
+    public static List<LootItem> GetItemsByReference(string dropType, DropReference dropReference)
+    {
+        return Db.Where(x => x.ContainsKey("DropReference"))
+            .Where(x => x["DropReference"] == dropReference.Name
+                        && x["DropType"] == dropType).Select(x => new LootItem { Item = x, IsDeleted = dropReference.IsDeleted}).ToList();
+    }
 }

@@ -5,7 +5,8 @@ namespace lib.remnant2.analyzer.Model;
 public partial class LootItem
 {
     public required Dictionary<string,string> Item;
-    public bool NoPrerequisite = false;
+    public bool IsPrerequisiteMissing = false;
+    public bool IsDeleted = false;
 
     public virtual string Name
     {
