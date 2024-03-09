@@ -23,10 +23,10 @@ public class Profile
 
     public List<string> FilteredInventory => Inventory.Where(x => ItemDb.Db
             .Where(y => Analyzer.InventoryTypes.Contains(y["Type"]))
-            .Select(y => y.GetValueOrDefault("ProfileId")).Contains(x))
+            .Select(y => y.GetValueOrDefault("ProfileId")?.ToLowerInvariant()).Contains(x.ToLowerInvariant()))
         .ToList();
     public List<string> FilteredTraits => Traits.Where(x => ItemDb.Db
-            .Select(y => y.GetValueOrDefault("ProfileId")).Contains(x))
+            .Select(y => y.GetValueOrDefault("ProfileId")?.ToLowerInvariant()).Contains(x.ToLowerInvariant()))
         .ToList();
 
     public int AcquiredItems => FilteredInventory.Count + FilteredTraits.Count;

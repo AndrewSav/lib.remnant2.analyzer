@@ -200,16 +200,16 @@ public partial class Analyzer
 
             List<Dictionary<string, string>> inventoryDbItems = ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
 
-            List<Dictionary<string, string>> missingItems = inventoryDbItems.Where(x => !items.Contains(x["ProfileId"])).ToList();
-            List<Dictionary<string, string>> missingTraits = traitsDb.Where(x => !traits.Contains(x["ProfileId"])).ToList();
+            List<Dictionary<string, string>> missingItems = inventoryDbItems.Where(x => !items.Select(y=>y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
+            List<Dictionary<string, string>> missingTraits = traitsDb.Where(x => !traits.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
 
             missingItems = missingItems.Union(missingTraits).ToList();
 
 
             IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
             IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId"));
-            List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"] == x))
-                .Select(x => pdb.Single(y => y["ProfileId"] == x)["Id"]).ToList();
+            List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].ToLowerInvariant() == x.ToLowerInvariant()))
+                .Select(x => pdb.Single(y => y["ProfileId"].ToLowerInvariant() == x.ToLowerInvariant())["Id"]).ToList();
 
             List<Dictionary<string, string>> hasMatsItems = mats.Where(x => invNames.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
@@ -716,8 +716,8 @@ public partial class Analyzer
                             {
                                 string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
 
-                                return world.CanGetItem(cur) || p.Inventory.Contains(itemProfileId) ||
-                                       world.QuestInventory.Contains(itemProfileId);
+                                return world.CanGetItem(cur) || p.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) ||
+                                       world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
                             }
 
                             (bool, int) Term(int index) // term => word ',' term | word
