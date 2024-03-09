@@ -4,6 +4,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Remnant 2 save analyzer library</Title>
+    <Description>Remnant 2 save analyzer library</Description>
+    <Copyright>© Andrew Savinykh 2023-2024</Copyright>
+    <PackageProjectUrl>https://github.com/AndrewSav/lib.remnant2.analyzer</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/AndrewSav/lib.remnant2.analyzer</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,13 +23,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="lib.remnant2.saves" Version="0.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="lib.remnant2.saves">
-      <HintPath>..\lib.remnant2.saves\lib.remnant2.saves\bin\Debug\net8.0\lib.remnant2.saves.dll</HintPath>
-    </Reference>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

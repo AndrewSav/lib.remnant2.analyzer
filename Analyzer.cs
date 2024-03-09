@@ -5,10 +5,8 @@ using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Navigation;
 using lib.remnant2.analyzer.Model;
 using Newtonsoft.Json;
-using System.IO;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
-using System.Xml.Linq;
 
 namespace lib.remnant2.analyzer;
 
