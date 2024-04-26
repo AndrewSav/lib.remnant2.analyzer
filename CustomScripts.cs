@@ -7,21 +7,21 @@ internal static class CustomScripts
     public static Dictionary<string, Func<JArray, List<string>, bool>> Scripts = new()
     {
         {
-            "Amulet_GoldenRibbon", (db, inventory) =>
+            "Amulet_GoldenRibbon", (_, _) =>
             {
-                // if in in Gilded Chambers or Council Chamber
+                // if in Gilded Chambers or Council Chamber
                 return true; 
             }
         },
         {
-            "Amulet_SilverRibbon", (db, inventory) =>
+            "Amulet_SilverRibbon", (_, _) =>
             {
-                // If in in Shattered Gallery or The Great Hall
+                // If in Shattered Gallery or The Great Hall
                 return true;
             }
         },
         {
-            "Engram_Archon", (db, inventory) =>
+            "Engram_Archon", (_, _) =>
             {
                 // In Campaign
                 // Has or can get:
@@ -46,21 +46,21 @@ internal static class CustomScripts
             }
         },
         {
-            "Ring_BisectedRing", (db, inventory) =>
+            "Ring_BisectedRing", (_, _) =>
             {
                 // Same as archon
                 return true;
             }
         },
         {
-            "Amulet_GunfireSecurityLanyard", (db, inventory) =>
+            "Amulet_GunfireSecurityLanyard", (_, _) =>
             {
                 // Same as archon
                 return true;
             }
         },
         {
-            "Relic_Consumable_QuiltedHeart", (db, inventory) =>
+            "Relic_Consumable_QuiltedHeart", (_, _) =>
             {
                 // Should have 6 of the 12 following quests in the quest completed log
 
@@ -81,7 +81,7 @@ internal static class CustomScripts
             }
         },
         {
-            "Relic_Consumable_RipenedHeart", (db, inventory) =>
+            "Relic_Consumable_RipenedHeart", (_, _) =>
             {
                 // Has The Widow's Court location (for Thaen seed)
                 // Or should already have planted the seed
@@ -89,7 +89,7 @@ internal static class CustomScripts
             }
         },
         {
-            "Relic_Consumable_VoidHeart", (db, inventory) =>
+            "Relic_Consumable_VoidHeart", (_, _) =>
             {
                 // Has Sentinel's Keep location
                 // I wonder if we should inject Alepsis-Taura location in this case?
@@ -97,14 +97,14 @@ internal static class CustomScripts
             }
         },
         {
-            "Ring_DowngradedRing", (db, inventory) =>
+            "Ring_DowngradedRing", (_, _) =>
             {
                 // Has Sentinel's Keep location
                 return true;
             }
         },
         {
-            "Weapon_CrescentMoon", (db, inventory) =>
+            "Weapon_CrescentMoon", (_, _) =>
             {
                 // Has Losomn (+ the dream catcher per-requisite)
                 // I wonder if we should inject it into either Beatific Palace or Nimue's retreat
@@ -115,7 +115,7 @@ internal static class CustomScripts
             // Armor_Gloves_CrimsonGuard
             // Armor_Head_CrimsonGuard
             // Armor_Legs_CrimsonGuard
-            "Armor_Body_CrimsonGuard", (db, inventory) =>
+            "Armor_Body_CrimsonGuard", (_, _) =>
             {
                 // Has Gilded Chambers in Losomn OTK
                 return true;

@@ -23,6 +23,6 @@ public partial class LootItem
     public string Type => Item["Type"].Replace("engram", "archetype");
     public string ItemNotes => Item.TryGetValue("Note", out string? value) ? value : string.Empty;
 
-    [GeneratedRegex(@"(?<!^)(?=[A-Z])")]
+    [GeneratedRegex("(?<!^)(?=[A-Z])")]
     private static partial Regex RegexSplitAtCapitals();
 }

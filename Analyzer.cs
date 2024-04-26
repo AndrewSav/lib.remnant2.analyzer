@@ -40,8 +40,8 @@ public partial class Analyzer
             if (ch.ClassName == null) continue;
             UObject character = ch.Object!;
 
-            var archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value.ToStringValue();
-            var secondaryArchPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
+            string? archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value.ToStringValue();
+            string? secondaryArchPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
 
             Regex rArchetype = RegexArchetype();
             string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
@@ -63,12 +63,12 @@ public partial class Analyzer
 
     public class IgnorePropertiesResolver(IEnumerable<string> propNamesToIgnore) : DefaultContractResolver
     {
-        private readonly HashSet<string> ignoreProps = new(propNamesToIgnore);
+        private readonly HashSet<string> _ignoreProps = [..propNamesToIgnore];
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
-            if (ignoreProps.Contains(property.PropertyName!))
+            if (_ignoreProps.Contains(property.PropertyName!))
             {
                 property.ShouldSerialize = _ => false;
                 return property;
@@ -509,7 +509,7 @@ public partial class Analyzer
                 // Story, Boss, Miniboss, SideD
                 events.Remove(e);
                 string ev = e.ToString()!;
-                var qs = navigator.GetProperty("QuestState", e);
+                Property? qs = navigator.GetProperty("QuestState", e);
 
                 if (ev.EndsWith("_C"))
                 {
@@ -553,8 +553,8 @@ public partial class Analyzer
                     ev = ev[..^"_V2".Length];
                 }
 
-                var cmp = navigator.GetComponent("Loot", e);
-                var ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
+                Component? cmp = navigator.GetComponent("Loot", e);
+                Property? ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
 
                 if (ev.StartsWith("Quest_Event_Trait"))
                 {
