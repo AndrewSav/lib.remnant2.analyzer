@@ -21,7 +21,10 @@ internal class ItemDb
             {
                 lock (Lock)
                 {
-                    _instance ??= [..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json")).Select(ConvertItem)];
+                    _instance ??= [..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json"))
+                        .Select(ConvertItem)
+                        .Where( x=> !x.ContainsKey("Disabled") || !x["Disabled"].Equals("true", StringComparison.InvariantCultureIgnoreCase))
+                    ];
                 }
             }
             return _instance;

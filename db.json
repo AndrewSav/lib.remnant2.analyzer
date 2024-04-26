@@ -710,6 +710,94 @@
     "Note": "Random Losomn Drop"
   },
   {
+    "Id": "Amulet_BeadsOfTheValorous",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/BeadsOfTheValorous/Amulet_BeadsOfTheValorous.Amulet_BeadsOfTheValorous_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Name": "Beads of the Valorous",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_CervineKeepsake",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/CervineKeepsake/Amulet_CervineKeepsake.Amulet_CervineKeepsake_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_EchoOfTheForest",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/EchoOfTheForest/Amulet_EchoOfTheForest.Amulet_EchoOfTheForest_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Name": "Echo of the Forest",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_FragrantThorn",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/FragrantThorn/Amulet_FragrantThorn.Amulet_FragrantThorn_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_MagnifyingGlass",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/MagnifyingGlass/Amulet_MagnifyingGlass.Amulet_MagnifyingGlass_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_MoonStone",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/MoonStone/Amulet_MoonStone.Amulet_MoonStone_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_ProfaneSoulStone",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ProfaneSoulStone/Amulet_ProfaneSoulStone.Amulet_ProfaneSoulStone_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_ReedOfTheVaunnt",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ReedOfTheVaunnt/Amulet_ReedOfTheVaunnt.Amulet_ReedOfTheVaunnt_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Name": "Reed of the Vaunnt",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_SoulStone",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/SoulStone/Amulet_SoulStone.Amulet_SoulStone_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_StoneshapersChisel",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/StoneshapersChisel/Amulet_StoneshapersChisel.Amulet_StoneshapersChisel_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Name": "Stoneshaper's Chisel",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_WornDogTags",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/WornDogTags/Amulet_WornDogTags.Amulet_WornDogTags_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Amulet_ZeroDivide",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ZeroDivide/Amulet_ZeroDivide.Amulet_ZeroDivide_C",
+    "Type": "amulet",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
     "Id": "Armor_Body_Challenger",
     "ProfileId": "/Game/World_Base/Items/Armor/Archetype_Starting/Challenger/Armor_Body_Challenger.Armor_Body_Challenger_C",
     "Type": "armor",
@@ -1767,6 +1855,110 @@
     "CustomScript": true
   },
   {
+    "Id": "Armor_Body_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Armor/Armor_Body_Invoker.Armor_Body_Invoker_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Disciple Mantle",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Gloves_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Armor/Armor_Gloves_Invoker.Armor_Gloves_Invoker_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Disciple Vambraces",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Armor/Armor_Head_Invoker.Armor_Head_Invoker_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Disciple Headpiece",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Legs_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Armor/Armor_Legs_Invoker.Armor_Legs_Invoker_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Disciple Greaves",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Body_Army",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/MilitaryUniform/Armor_Body_Army.Armor_Body_Army_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Battle Shirt",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Gloves_Army",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/MilitaryUniform/Armor_Gloves_Army.Armor_Gloves_Army_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Battle Gloves",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_Army",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/MilitaryUniform/Armor_Head_Army.Armor_Head_Army_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Battle Helmet",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Legs_Army",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/MilitaryUniform/Armor_Legs_Army.Armor_Legs_Army_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Battle Slacks",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_Survivor",
+    "ProfileId": "/Game/World_Base/Items/Armor/Survivor/Armor_Head_Survivor.Armor_Head_Survivor_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Survivor Mask",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_BloodlessCrown",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/BloodlessCrown/Armor_Head_BloodlessCrown.Armor_Head_BloodlessCrown_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Bloodless Crown",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_MudtoothsHat",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/MudtoothsHat/Armor_Head_MudtoothsHat.Armor_Head_MudtoothsHat_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Mudtooth's Hat",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_TopHat",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/TopHat/Armor_Head_TopHat.Armor_Head_TopHat_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "Dandy Topper",
+    "Disabled": true
+  },
+  {
+    "Id": "Armor_Head_TrueCrimsonCrown",
+    "ProfileId": "/Game/World_DLC2/Items/Armor/TrueCrimsonCrown/Armor_Head_TrueCrimsonCrown.Armor_Head_TrueCrimsonCrown_C",
+    "Type": "armor",
+    "World": "World_DLC2",
+    "Name": "True Crimson Crown",
+    "Disabled": true
+  },
+  {
     "Id": "Mod_ConcussiveShot",
     "ProfileId": "/Game/World_Base/Items/Mods/ConcussiveShot/Mod_ConcussiveShot.Mod_ConcussiveShot_C",
     "Type": "mod",
@@ -2043,7 +2235,7 @@
     "Id": "Mod_CreepingMist",
     "ProfileId": "/Game/World_DLC1/Items/Mods/Mod_CreepingMist/Mod_CreepingMist.Mod_CreepingMist_C",
     "Type": "mod",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Material": "Material_HexWreath",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Witch",
@@ -2053,7 +2245,7 @@
     "Id": "Mod_KnightGuard",
     "ProfileId": "/Game/World_DLC1/Items/Mods/Mod_KnightGuard/Mod_KnightGuard.Mod_KnightGuard_C",
     "Type": "mod",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Material": "Material_CrematedSoulAsh",
     "DropType": "Location",
     "DropReference": "Walk of Remembrance",
@@ -2064,12 +2256,33 @@
     "Id": "Mod_RingOfSpears",
     "ProfileId": "/Game/World_DLC1/Items/Mods/Mod_RingOfSpears/Mod_RingOfSpears.Mod_RingOfSpears_C",
     "Type": "mod",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Ring Of Spears",
     "Material": "Material_WretchedSkull",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Impaler",
     "Note": "Crafted from Wretched Skull droped by Bruin, Blade of The King in Glistering Cloister location on Losomn"
+  },
+  {
+    "Id": "Mod_AbrasiveRounds",
+    "ProfileId": "/Game/World_DLC2/Items/Mods/AbrasiveRounds/Mod_AbrasiveRounds.Mod_AbrasiveRounds_C",
+    "Type": "mod",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Mod_FlyingBombTrap",
+    "ProfileId": "/Game/World_DLC2/Items/Mods/FlyingBombTrap/Mod_FlyingBombTrap.Mod_FlyingBombTrap_C",
+    "Type": "mod",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Mod_Heatwave",
+    "ProfileId": "/Game/World_DLC2/Items/Mods/Heatwave/Mod_Heatwave.Mod_Heatwave_C",
+    "Type": "mod",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "MetaGem_Dervish",
@@ -2516,7 +2729,7 @@
     "Id": "MetaGem_Dreadful",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/Dreadful/MetaGem_Dreadful.MetaGem_Dreadful_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Dire Fiend",
     "Subtype": "Ranged",
     "DropType": "Location",
@@ -2527,7 +2740,7 @@
     "Id": "MetaGem_FetidWounds",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/FetidWounds/MetaGem_FetidWounds.MetaGem_FetidWounds_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Subtype": "Ranged",
     "DropType": "Vendor",
     "DropReference": "Dwell",
@@ -2537,7 +2750,7 @@
     "Id": "MetaGem_Maelstrom",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/Maelstrom/MetaGem_Maelstrom.MetaGem_Maelstrom_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Mangled Atoner",
     "Subtype": "Ranged",
     "DropType": "Location",
@@ -2548,7 +2761,7 @@
     "Id": "MetaGem_Prophecy",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/Prophecy/MetaGem_Prophecy.MetaGem_Prophecy_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Wraithliege",
     "Subtype": "Ranged",
     "DropType": "Event",
@@ -2559,7 +2772,7 @@
     "Id": "MetaGem_Sleeper",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/Sleeper/MetaGem_Sleeper.MetaGem_Sleeper_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Gorecarver and Thunderpiercer",
     "Subtype": "Ranged",
     "DropType": "Event",
@@ -2570,7 +2783,7 @@
     "Id": "MetaGem_Executor",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Melee/Executor/MetaGem_Executor.MetaGem_Executor_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Little Gorge",
     "Subtype": "Melee",
     "DropType": "Location",
@@ -2581,7 +2794,7 @@
     "Id": "MetaGem_Guts",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Melee/Guts/MetaGem_Guts.MetaGem_Guts_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Aberration": "Cursed Wretch",
     "Subtype": "Melee",
     "DropType": "Event",
@@ -2592,11 +2805,67 @@
     "Id": "MetaGem_TaintedBlade",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Melee/TaintedBlade/MetaGem_TaintedBlade.MetaGem_TaintedBlade_C",
     "Type": "mutator",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Subtype": "Melee",
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Note": "Buy from Dwell at Ward 13"
+  },
+  {
+    "Id": "MetaGem_BattleMage",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Melee/BattleMage/MetaGem_BattleMage.MetaGem_BattleMage_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_Gladiator",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Melee/Gladiator/MetaGem_Gladiator.MetaGem_Gladiator_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_FarSighted",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/FarSighted/MetaGem_FarSighted.MetaGem_FarSighted_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_NearSighted",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/NearSighted/MetaGem_NearSighted.MetaGem_NearSighted_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_PressurePoint",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/PressurePoint/MetaGem_PressurePoint.MetaGem_PressurePoint_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_SearingWounds",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/SearingWounds/MetaGem_SearingWounds.MetaGem_SearingWounds_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_Spellweaver",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/Spellweaver/MetaGem_Spellweaver.MetaGem_Spellweaver_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "MetaGem_ThousandCuts",
+    "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/ThousandCuts/MetaGem_ThousandCuts.MetaGem_ThousandCuts_C",
+    "Type": "mutator",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Relic_Consumable_BloomingHeart",
@@ -2795,7 +3064,7 @@
     "Id": "Relic_Consumable_BrokenHeart",
     "ProfileId": "/Game/World_DLC1/Items/Relics/BrokenHeart/Relic_Consumable_BrokenHeart.Relic_Consumable_BrokenHeart_C",
     "Type": "relic",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast location on Losomn OTK. Talk to One True King and agree to kill Nimue. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and chose option to kill her"
@@ -2804,10 +3073,24 @@
     "Id": "Relic_Consumable_PaperHeart",
     "ProfileId": "/Game/World_DLC1/Items/Relics/PaperHeart/Relic_Consumable_PaperHeart.Relic_Consumable_PaperHeart_C",
     "Type": "relic",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
     "Note": "Found in Chamber of the Faithless location on Losomn OTK. Find Misplaced Memoir quest item in Forlorn Coast location. Examine the item and interact with it to get the Bookbound Medallion quest item. Use it to open the locked door, the item is behind it"
+  },
+  {
+    "Id": "Relic_Consumable_BloodlessHeart",
+    "ProfileId": "/Game/World_DLC2/Items/Relics/BloodlessHeart/Relic_Consumable_BloodlessHeart.Relic_Consumable_BloodlessHeart_C",
+    "Type": "relic",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Relic_Consumable_ProfaneHeart",
+    "ProfileId": "/Game/World_DLC2/Items/Relics/ProfaneHeart/Relic_Consumable_ProfaneHeart.Relic_Consumable_ProfaneHeart_C",
+    "Type": "relic",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Ring_RingOfTheAdmiral",
@@ -4168,7 +4451,7 @@
     "Id": "Ring_ATaeriiBooster",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/AtaeriiBooster/Ring_ATaeriiBooster.Ring_ATaeriiBooster_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "A'taerii Booster",
     "DropType": "World",
     "DropReference": "World_Nerud",
@@ -4178,7 +4461,7 @@
     "Id": "Ring_AtonementFold",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/AtonementFold/Ring_AtonementFold.Ring_AtonementFold_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Vendor",
     "DropReference": "Leywise",
     "Note": "Buy from Leywise in Forlorn Coast location on Losomn OTK. Leywise can be found besides a cooking pot, looking extremely worried and occupied. He denies the player when he is being interacted on, until you try a few more times. After telling him, 'I want something crafted', he will explain that he does not do that because he is a Royal Scribe. After this, we can tell him that we want to buy something. Laywise will offer us the item."
@@ -4187,7 +4470,7 @@
     "Id": "Ring_BandOfTheFanatic",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BandOfTheFanatic/Ring_BandOfTheFanatic.Ring_BandOfTheFanatic_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Band of the Fanatic",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -4199,7 +4482,7 @@
     "Id": "Ring_BitterMemento",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BitterMemento/Ring_BitterMemento.Ring_BitterMemento_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "The Tormented Asylum",
     "Prerequisite": "Quest_Item_GardenMaze_MausoleumMedallionKey",
@@ -4209,7 +4492,7 @@
     "Id": "Ring_BrawlersPride",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BrawlersPride/Ring_BrawlersPride.Ring_BrawlersPride_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Brawler's Pride",
     "DropType": "World",
     "DropReference": "World_Jungle",
@@ -4219,7 +4502,7 @@
     "Id": "Ring_BridgeWardensCrest",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BridgeWardensCrest/Ring_BridgeWardensCrest.Ring_BridgeWardensCrest_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Bridge Warden's Crest",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -4229,7 +4512,7 @@
     "Id": "Ring_BurdenOfTheDeparted",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BurdenOfTheDeparted/Ring_BurdenOfTheDeparted.Ring_BurdenOfTheDeparted_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Burden of the Departed",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
@@ -4240,7 +4523,7 @@
     "Id": "Ring_BurdenOfTheSciolist",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/BurdenOfTheSciolist/Ring_BurdenOfTheSciolist.Ring_BurdenOfTheSciolist_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Burden of the Sciolist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -4250,7 +4533,7 @@
     "Id": "Ring_CrimsonDreamstone",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/CrimsonDreamstone/Ring_CrimsonDreamstone.Ring_CrimsonDreamstone_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_BurningCity_DLC",
     "Note": "Found in Ethereal Manor event that spawns in an outdoor location on Losomn. Once you approach the Dran that says \"Wake up\" and you get teleported to the Ethereal Manor location, drink Liquid Escape. You will respawn in theConsecrated Throne area and will see the item near by"
@@ -4259,7 +4542,7 @@
     "Id": "Ring_DigestedHogLure",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/DigestedHogLure/Ring_DigestedHogLure.Ring_DigestedHogLure_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast loaction on Losomn OTK. Frow the Drowned Wen Worldstone go straight ahead on the first intersection to the anchor statue. Kill all the pigs nearby to get the item"
@@ -4268,7 +4551,7 @@
     "Id": "Ring_DriedClayRing",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/DriedClayRing/Ring_DriedClayRing.Ring_DriedClayRing_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Fae",
     "Note": "Random Losomn Drop"
@@ -4277,7 +4560,7 @@
     "Id": "Ring_ElevatedRing",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/ElevatedRing/Ring_ElevatedRing.Ring_ElevatedRing_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast location on Losomn OTK. On the other side of the broken bridge that starts from the Mournful Promenade Worldstone access the lift to go down, the item will be at the bottom of the ride"
@@ -4286,7 +4569,7 @@
     "Id": "Ring_JewelOfTheBeholden",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/JewelOfTheBeholden/Ring_JewelOfTheBeholden.Ring_JewelOfTheBeholden_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast location on Losomn OTK. Talk to One True King before talking to Nimue and kill him. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and get the item"
@@ -4295,7 +4578,7 @@
     "Id": "Ring_LightHouseKeepersRing",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/LightHouseKeepersRing/Ring_LightHouseKeepersRing.Ring_LightHouseKeepersRing_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Lighthouse Keeper's Ring",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Lighthouse",
@@ -4305,7 +4588,7 @@
     "Id": "Ring_OfferingStone",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/Offering_Stone/Ring_OfferingStone.Ring_OfferingStone_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Fae",
     "Note": "Random Losomn Drop"
@@ -4314,7 +4597,7 @@
     "Id": "Ring_PainlessObsidian",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/PainlessObsidian/Ring_PainlessObsidian.Ring_PainlessObsidian_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Fae",
     "Note": "Random Losomn Drop"
@@ -4323,7 +4606,7 @@
     "Id": "Ring_PowerComplex",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/PowerComplex/Ring_PowerComplex.Ring_PowerComplex_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Nerud",
     "Note": "Random N'Erud drop"
@@ -4332,7 +4615,7 @@
     "Id": "Ring_RedRingOfDeath",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/RedRingofDeath/Ring_RedRingOfDeath.Ring_RedRingOfDeath_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Red Ring of Death",
     "DropType": "World",
     "DropReference": "World_Fae",
@@ -4342,7 +4625,7 @@
     "Id": "Ring_RingOfInfiniteDamage",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/RingOfInfiniteDamage/Ring_RingOfInfiniteDamage.Ring_RingOfInfiniteDamage_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Ring of Infinite Damage",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -4352,7 +4635,7 @@
     "Id": "Ring_RingOfTheCastaway",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/RingOfTheCastaway/Ring_RingOfTheCastaway.Ring_RingOfTheCastaway_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Ring of the Castaway",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_DLC",
@@ -4362,7 +4645,7 @@
     "Id": "Ring_RingOfTheVain",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/RingOfTheVain/Ring_RingOfTheVain.Ring_RingOfTheVain_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Ring of the Vain",
     "DropType": "World",
     "DropReference": "World_Fae",
@@ -4372,7 +4655,7 @@
     "Id": "Ring_ShadowOfMisery",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/ShadowOfMisery/Ring_ShadowOfMisery.Ring_ShadowOfMisery_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Shadow of Misery",
     "DropType": "World",
     "DropReference": "World_Fae",
@@ -4382,7 +4665,7 @@
     "Id": "Ring_ShaedStone",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/ShaedStone/Ring_ShaedStone.Ring_ShaedStone_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Halls_DLC",
     "Note": "Found in an indoor (light) location on Losomn. There will be an area with the mirror floor. Look at the mirror and search for a golden vase that appears only in the mirror. Should where there vase should be and the item drops"
@@ -4391,7 +4674,7 @@
     "Id": "Ring_SoulShard",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/SoulShard/Ring_SoulShard.Ring_SoulShard_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Jungle",
     "Note": "Random Yaesha Drop"
@@ -4400,7 +4683,7 @@
     "Id": "Ring_WhiteGlassBead",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/WhiteGlassBead/Ring_WhiteGlassBead.Ring_WhiteGlassBead_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Quest_Item_OTK_FeastmasterLeftovers",
@@ -4410,10 +4693,189 @@
     "Id": "Ring_WoodRing",
     "ProfileId": "/Game/World_DLC1/Items/Trinkets/Rings/WoodRing/Ring_WoodRing.Ring_WoodRing_C",
     "Type": "ring",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "World",
     "DropReference": "World_Fae",
     "Note": "Random Losomn Drop"
+  },
+  {
+    "Id": "Ring_BlackSpinel",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/BlackSpinel/Ring_BlackSpinel.Ring_BlackSpinel_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_BloodlessKingsVow",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/BloodlessKingsVow/Ring_BloodlessKingsVow.Ring_BloodlessKingsVow_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Bloodless King's Vow",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_BurdenOfTheMason",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/BurdenOfTheMason/Ring_BurdenOfTheMason.Ring_BurdenOfTheMason_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Burden of the Mason",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_BurdenOfTheMesmer",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/BurdenOfTheMesmer/Ring_BurdenOfTheMesmer.Ring_BurdenOfTheMesmer_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Burden of the Mesmer",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_ClosedLoop",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/ClosedLoop/Ring_ClosedLoop.Ring_ClosedLoop_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_ConjurersCircle",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/ConjurersCircle/Ring_ConjurersCircle.Ring_ConjurersCircle_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Conjurer's Circle",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_DarkSeaArmadaCrest",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/DarkSeaArmadaCrest/Ring_DarkSeaArmadaCrest.Ring_DarkSeaArmadaCrest_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_FeatheryBinding",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/FeatheryBinding/Ring_FeatheryBinding.Ring_FeatheryBinding_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_FloodlitDiamond",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/FloodlitDiamond/Ring_FloodlitDiamond.Ring_FloodlitDiamond_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_GulSignet",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/GulSignet/Ring_GulSignet.Ring_GulSignet_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_KolketEyelet",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/KolketEyelet/Ring_KolketEyelet.Ring_KolketEyelet_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_LeakingGemstone",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/LeakingGemstone/Ring_LeakingGemstone.Ring_LeakingGemstone_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_MarkOfTheDestroyer",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/MarkOfTheDestroyer/Ring_MarkOfTheDestroyer.Ring_MarkOfTheDestroyer_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Mark of the Destroyer",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_MatriarchsRing",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/MatriarchsRing/Ring_MatriarchsRing.Ring_MatriarchsRing_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Matriarch's Ring",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_PanWarBand",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/PanWarBand/Ring_PanWarBand.Ring_PanWarBand_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_RallyBand",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/RallyBand/Ring_RallyBand.Ring_RallyBand_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_RavagersBargain",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/RavagersBargain/Ring_RavagersBargain.Ring_RavagersBargain_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Ravager's Bargain",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_RingOfOrdnance",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/RingOfOrdnance/Ring_RingOfOrdnance.Ring_RingOfOrdnance_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Ring of Ordnance",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_RingOfSpirits",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/RingOfSpirits/Ring_RingOfSpirits.Ring_RingOfSpirits_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Ring of Spirits",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_SealedResinLoop",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/SealedResinLoop/Ring_SealedResinLoop.Ring_SealedResinLoop_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_SoulFeast",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/SoulFeast/Ring_SoulFeast.Ring_SoulFeast_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_TearOfLydusa",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/TearOfLydusa/Ring_TearOfLydusa.Ring_TearOfLydusa_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Tear of Lydusa",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_ThalosEyelet",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/ThalosEyelet/Ring_ThalosEyelet.Ring_ThalosEyelet_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Ring_TokenOfFavor",
+    "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/TokenOfFavor/Ring_TokenOfFavor.Ring_TokenOfFavor_C",
+    "Type": "ring",
+    "World": "World_DLC2",
+    "Name": "Token of Favor",
+    "Disabled": true
   },
   {
     "Id": "Trait_AmmoReserves",
@@ -4707,7 +5169,7 @@
     "Id": "Trait_Affliction",
     "ProfileId": "/Game/World_DLC1/Items/Traits/Affliction/Trait_Affliction.Trait_Affliction_C",
     "Type": "trait",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Progression",
     "Note": "Reach Ritualist level 10 to unlock this trait for use in any build",
     "Undetectable": true
@@ -4716,10 +5178,38 @@
     "Id": "Trait_DarkPact",
     "ProfileId": "/Game/World_DLC1/Items/Traits/DarkPact/Trait_DarkPact.Trait_DarkPact_C",
     "Type": "trait",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in the Forlorn Coast location on Losomn OTK. You need to shoot three bells after which the trait is awared. The first bell in near the Drawned Wen worldstone. The second bell is in the courtyard right before the Palace of the One True King, where there is a big guy with an Axe along with a lot of hogs. To find the third bell, in Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs. Once you transition outside hug the right  wall till you see the bell"
+  },
+  {
+    "Id": "Trait_Chakra",
+    "ProfileId": "/Game/World_Base/Items/Traits/Core/Chakra/Trait_Chakra.Trait_Chakra_C",
+    "Type": "trait",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Trait_Leech",
+    "ProfileId": "/Game/World_Base/Items/Traits/Core/Leech/Trait_Leech.Trait_Leech_C",
+    "Type": "trait",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Trait_Gifted",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/PerksAndTraits/Trait_Gifted.Trait_Gifted_C",
+    "Type": "trait",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Trait_Resolute",
+    "ProfileId": "/Game/World_DLC2/Items/Traits/Resolute/Trait_Resolute.Trait_Resolute_C",
+    "Type": "trait",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Weapon_CubeGun",
@@ -5669,7 +6159,7 @@
     "Id": "Weapon_Anguish",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Anguish/Weapon_Anguish.Weapon_Anguish_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Subtype": "Hand Gun",
     "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a locatio with the material.",
     "CustomScript": true
@@ -5678,7 +6168,7 @@
     "Id": "Weapon_Sparkfire",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Buster/Weapon_Sparkfire.Weapon_Sparkfire_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Sparkfire Shotgun",
     "Subtype": "Long Gun",
     "DropType": "Event",
@@ -5689,7 +6179,7 @@
     "Id": "Weapon_RitualistScythe",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Melee/Scythe/Scythe_Ritualist/Weapon_RitualistScythe.Weapon_RitualistScythe_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_SideD_SewerChamber",
@@ -5699,7 +6189,7 @@
     "Id": "Weapon_Scythe",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Melee/Scythe/Scythe/Weapon_Scythe.Weapon_Scythe_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Steel Scythe",
     "Subtype": "Melee Weapon",
     "DropType": "Vendor",
@@ -5710,7 +6200,7 @@
     "Id": "Weapon_AbyssalHook",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Melee/Special/AbyssalHook/Weapon_AbyssalHook.Weapon_AbyssalHook_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Subtype": "Melee Weapon",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -5720,7 +6210,7 @@
     "Id": "Weapon_Wrathbringer",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Melee/Special/Wrathbringer/Weapon_Wrathbringer.Weapon_Wrathbringer_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Material": "Material_TormentorsPommel",
     "Subtype": "Melee Weapon",
     "DropType": "Event",
@@ -5731,12 +6221,97 @@
     "Id": "Weapon_Monarch",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Monarch/Blueprints/Weapon_Monarch.Weapon_Monarch_C",
     "Type": "weapon",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Material": "Material_AgonySpike",
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
     "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn OTK defore destroying his weapon even once"
+  },
+  {
+    "Id": "Weapon_CorruptedSavior",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/Corrupted_Savior/Weapon_CorruptedSavior.Weapon_CorruptedSavior_C",
+    "Type": "weapon",
+    "World": "World_Base",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_CorruptedCubeGun",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedCubeGun/Weapon_CorruptedCubeGun.Weapon_CorruptedCubeGun_C",
+    "Type": "weapon",
+    "World": "World_Base",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_CorruptedNebula",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedNebula/Weapon_CorruptedNebula.Weapon_CorruptedNebula_C",
+    "Type": "weapon",
+    "World": "World_Base",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_CorruptedSorrow",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedSorrow/Weapon_CorruptedSorrow.Weapon_CorruptedSorrow_C",
+    "Type": "weapon",
+    "World": "World_Base",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_CorruptedTwistedArbalest",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedTwistedArbalest/Weapon_CorruptedTwistedArbalest.Weapon_CorruptedTwistedArbalest_C",
+    "Type": "weapon",
+    "World": "World_Base",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_BasicShovel",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/BasicShovel/Weapon_BasicShovel.Weapon_BasicShovel_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Name": "Shovel",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_CrystalStaff",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/CrystalStaff/Weapon_CrystalStaff.Weapon_CrystalStaff_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_Mirage",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Flail_Mirage/Weapon_Mirage.Weapon_Mirage_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_Monolith",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Monolith/Weapon_Monolith.Weapon_Monolith_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_Polygun",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Polygun/Weapon_Polygun.Weapon_Polygun_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_Thorn",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Thorn/Weapon_Thorn.Weapon_Thorn_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Weapon_TrinityCrossbow",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/TrinityCrossbow/Weapon_TrinityCrossbow.Weapon_TrinityCrossbow_C",
+    "Type": "weapon",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Engram_Alchemist",
@@ -5854,11 +6429,18 @@
     "Id": "Engram_Ritualist",
     "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Engram/Engram_Ritualist.Engram_Ritualist_C",
     "Type": "engram",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Material": "Material_Engram_Ritualist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast location on Losomn OTK, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig. The Ragged Poppet will be near the witch"
+  },
+  {
+    "Id": "Engram_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Engram/Engram_Invoker.Engram_Invoker_C",
+    "Type": "engram",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Quest_Item_Matchbook",
@@ -6267,35 +6849,35 @@
     "Id": "Quest_Item_DLCInjectable_BloodyMedallion_Stage1",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Quest_Item_DLCInjectable_BloodyMedallion/Quest_Item_DLCInjectable_BloodyMedallion_Stage1.Quest_Item_DLCInjectable_BloodyMedallion_Stage1_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Strange Talisman"
   },
   {
     "Id": "Quest_Item_DLCInjectable_BloodyMedallion_Stage2",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Quest_Item_DLCInjectable_BloodyMedallion/Quest_Item_DLCInjectable_BloodyMedallion_Stage2.Quest_Item_DLCInjectable_BloodyMedallion_Stage2_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Bloody Talisman"
   },
   {
     "Id": "Quest_Item_DLCInjectable_BloodyMedallion_Stage3",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Quest_Item_DLCInjectable_BloodyMedallion/Quest_Item_DLCInjectable_BloodyMedallion_Stage3.Quest_Item_DLCInjectable_BloodyMedallion_Stage3_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Bloody Talisman"
   },
   {
     "Id": "Quest_Item_DLCInjectable_BloodyMedallion_Stage4",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Quest_Item_DLCInjectable_BloodyMedallion/Quest_Item_DLCInjectable_BloodyMedallion_Stage4.Quest_Item_DLCInjectable_BloodyMedallion_Stage4_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Bloody Talisman"
   },
   {
     "Id": "Quest_Item_GardenMaze_MausoleumMedallionKey",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_SideD_GardenMaze/Items/Quest_Item_GardenMaze_MausoleumMedallionKey/Quest_Item_GardenMaze_MausoleumMedallionKey.Quest_Item_GardenMaze_MausoleumMedallionKey_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Memoriam Medallion Key",
     "DropType": "Event",
     "DropReference": "Quest_SideD_GardenMaze"
@@ -6304,71 +6886,110 @@
     "Id": "Quest_Item_Lighthouse_KeyA",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_SideD_Lighthouse/Items/Quest_Item_Lighthouse_Keys/Quest_Item_Lighthouse_KeyA.Quest_Item_Lighthouse_KeyA_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Lighthouse Key"
   },
   {
     "Id": "Quest_Item_Lighthouse_KeyB",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_SideD_Lighthouse/Items/Quest_Item_Lighthouse_Keys/Quest_Item_Lighthouse_KeyB.Quest_Item_Lighthouse_KeyB_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Lighthouse Key"
   },
   {
     "Id": "Quest_Item_SewerChamber_ScythePiece1",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_SideD_SewerChamber/Items/Quest_Item_SewerChamber_ScythePieces/Quest_Item_SewerChamber_ScythePiece1.Quest_Item_SewerChamber_ScythePiece1_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Scythe Blade"
   },
   {
     "Id": "Quest_Item_SewerChamber_ScythePiece2",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_SideD_SewerChamber/Items/Quest_Item_SewerChamber_ScythePieces/Quest_Item_SewerChamber_ScythePiece2.Quest_Item_SewerChamber_ScythePiece2_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Scythe Hilt"
   },
   {
     "Id": "Quest_Item_OTK_FeastmasterLeftovers",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_FeastmasterLeftovers/Quest_Item_OTK_FeastmasterLeftovers.Quest_Item_OTK_FeastmasterLeftovers_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Feast Master's Leftovers"
   },
   {
     "Id": "Quest_Item_OTK_NimueDeathItem",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_NimueDeathItem/Quest_Item_OTK_NimueDeathItem.Quest_Item_OTK_NimueDeathItem_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Rod of Retribution"
   },
   {
     "Id": "Quest_Item_OTK_NimuesBloodWard",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_NimuesWard/Quest_Item_OTK_NimuesBloodWard.Quest_Item_OTK_NimuesBloodWard_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Nimue’s Blood-Marred Vow"
   },
   {
     "Id": "Quest_Item_OTK_NimuesWard",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_NimuesWard/Quest_Item_OTK_NimuesWard.Quest_Item_OTK_NimuesWard_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Nimue's Vow"
   },
   {
     "Id": "Quest_Item_OTK_ScribeMedallionKey",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_ScribeMedallionKey/Quest_Item_OTK_ScribeMedallionKey.Quest_Item_OTK_ScribeMedallionKey_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Bookbound Medallion"
   },
   {
     "Id": "Quest_Item_OTK_ScribeTome",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_ScribeTome/Quest_Item_OTK_ScribeTome.Quest_Item_OTK_ScribeTome_C",
     "Type": "quest_item",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Misplaced Memoir"
+  },
+  {
+    "Id": "Quest_Item_DLC_RootMadness",
+    "ProfileId": "/Game/World_DLC2/Quests/Quest_SideD_RootMadness/Items/Quest_Item_DLC_RootMadness.Quest_Item_DLC_RootMadness_C",
+    "Type": "quest_item",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Item_Story_BirdEgg",
+    "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_BirdEgg/Quest_Item_Story_BirdEgg.Quest_Item_Story_BirdEgg_C",
+    "Type": "quest_item",
+    "World": "World_DLC2",
+    "Name": "Kuri Kuri Egg",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Item_Story_DwellsItem",
+    "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_DwellsItem/Quest_Item_Story_DwellsItem.Quest_Item_Story_DwellsItem_C",
+    "Type": "quest_item",
+    "World": "World_DLC2",
+    "Name": "Trinity Memento",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Item_Story_LydusaCurse",
+    "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_LydusaCurse/Quest_Item_Story_LydusaCurse.Quest_Item_Story_LydusaCurse_C",
+    "Type": "quest_item",
+    "World": "World_DLC2",
+    "Name": "Lydusa's Curse",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Item_Story_McGuffin",
+    "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_McGuffin/Quest_Item_Story_McGuffin.Quest_Item_Story_McGuffin_C",
+    "Type": "quest_item",
+    "World": "World_DLC2",
+    "Name": "Cherished Fracture",
+    "Disabled": true
   },
   {
     "Id": "Material_RootGanglia",
@@ -6404,37 +7025,37 @@
   },
   {
     "Id": "Material_AlkahestPowder",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/AlkahestPowder/Material_AlkahestPowder.Material_AlkahestPowder_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/AlkahestPowder/Material_AlkahestPowder.Material_AlkahestPowder_C",
     "Type": "material",
     "World": "World_Fae"
   },
   {
     "Id": "Material_BoneSap",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/BoneSap/Material_BoneSap.Material_BoneSap_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/BoneSap/Material_BoneSap.Material_BoneSap_C",
     "Type": "material",
     "World": "World_Fae"
   },
   {
     "Id": "Material_ForlornFragment",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/ForlornFragment/Material_ForlornFragment.Material_ForlornFragment_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/ForlornFragment/Material_ForlornFragment.Material_ForlornFragment_C",
     "Type": "material",
     "World": "World_Fae"
   },
   {
     "Id": "Material_SacredHuntFeather",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/SacredHuntFeather/Material_SacredHuntFeather.Material_SacredHuntFeather_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/SacredHuntFeather/Material_SacredHuntFeather.Material_SacredHuntFeather_C",
     "Type": "material",
     "World": "World_Fae"
   },
   {
     "Id": "Material_TaintedIchor",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/TaintedIchor/Material_TaintedIchor.Material_TaintedIchor_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/TaintedIchor/Material_TaintedIchor.Material_TaintedIchor_C",
     "Type": "material",
     "World": "World_Fae"
   },
   {
     "Id": "Material_VeneratedSpearhead",
-    "ProfileId": "/Game/World_Fae/Items/Materials/MiniBoss/VeneratedSpearhead/Material_VeneratedSpearhead.Material_VeneratedSpearhead_C",
+    "ProfileId": "/Game/World_Fae/Items/Materials/Miniboss/VeneratedSpearhead/Material_VeneratedSpearhead.Material_VeneratedSpearhead_C",
     "Type": "material",
     "World": "World_Fae"
   },
@@ -6491,26 +7112,26 @@
   },
   {
     "Id": "Material_AgnosiaDriftwood",
-    "ProfileId": "/Game/World_Jungle/Items/Materials/MiniBoss/AgnosiaDriftwood/Material_AgnosiaDriftwood.Material_AgnosiaDriftwood_C",
+    "ProfileId": "/Game/World_Jungle/Items/Materials/Miniboss/AgnosiaDriftwood/Material_AgnosiaDriftwood.Material_AgnosiaDriftwood_C",
     "Type": "material",
     "World": "World_Jungle"
   },
   {
     "Id": "Material_CordycepGland",
-    "ProfileId": "/Game/World_Jungle/Items/Materials/MiniBoss/CordycepGland/Material_CordycepGland.Material_CordycepGland_C",
+    "ProfileId": "/Game/World_Jungle/Items/Materials/Miniboss/CordycepGland/Material_CordycepGland.Material_CordycepGland_C",
     "Type": "material",
     "World": "World_Jungle",
     "Name": "Cordyceps Gland"
   },
   {
     "Id": "Material_SoulSliver",
-    "ProfileId": "/Game/World_Jungle/Items/Materials/MiniBoss/SoulSliver/Material_SoulSliver.Material_SoulSliver_C",
+    "ProfileId": "/Game/World_Jungle/Items/Materials/Miniboss/SoulSliver/Material_SoulSliver.Material_SoulSliver_C",
     "Type": "material",
     "World": "World_Jungle"
   },
   {
     "Id": "Material_TwilightDactylus",
-    "ProfileId": "/Game/World_Jungle/Items/Materials/MiniBoss/TwilightDactylus/Material_TwilightDactylus.Material_TwilightDactylus_C",
+    "ProfileId": "/Game/World_Jungle/Items/Materials/Miniboss/TwilightDactylus/Material_TwilightDactylus.Material_TwilightDactylus_C",
     "Type": "material",
     "World": "World_Jungle",
     "Name": "Twighlight Dactylus"
@@ -6572,25 +7193,25 @@
   },
   {
     "Id": "Material_CrackedShell",
-    "ProfileId": "/Game/World_Nerud/Items/Materials/MiniBoss/CrackedShell/Material_CrackedShell.Material_CrackedShell_C",
+    "ProfileId": "/Game/World_Nerud/Items/Materials/Miniboss/CrackedShell/Material_CrackedShell.Material_CrackedShell_C",
     "Type": "material",
     "World": "World_Nerud"
   },
   {
     "Id": "Material_MutatedGrowth",
-    "ProfileId": "/Game/World_Nerud/Items/Materials/MiniBoss/MutatedGrowth/Material_MutatedGrowth.Material_MutatedGrowth_C",
+    "ProfileId": "/Game/World_Nerud/Items/Materials/Miniboss/MutatedGrowth/Material_MutatedGrowth.Material_MutatedGrowth_C",
     "Type": "material",
     "World": "World_Nerud"
   },
   {
     "Id": "Material_SeekerResidue",
-    "ProfileId": "/Game/World_Nerud/Items/Materials/MiniBoss/SeekerResidue/Material_SeekerResidue.Material_SeekerResidue_C",
+    "ProfileId": "/Game/World_Nerud/Items/Materials/Miniboss/SeekerResidue/Material_SeekerResidue.Material_SeekerResidue_C",
     "Type": "material",
     "World": "World_Nerud"
   },
   {
     "Id": "Material_SentrysOldIris",
-    "ProfileId": "/Game/World_Nerud/Items/Materials/MiniBoss/SentrysOldIris/Material_SentrysOldIris.Material_SentrysOldIris_C",
+    "ProfileId": "/Game/World_Nerud/Items/Materials/Miniboss/SentrysOldIris/Material_SentrysOldIris.Material_SentrysOldIris_C",
     "Type": "material",
     "World": "World_Nerud",
     "Name": "Sentry's Old Iris"
@@ -6622,13 +7243,13 @@
   },
   {
     "Id": "Material_DreadCore",
-    "ProfileId": "/Game/World_Root/Items/Materials/MiniBoss/DreadCore/Material_DreadCore.Material_DreadCore_C",
+    "ProfileId": "/Game/World_Root/Items/Materials/Miniboss/DreadCore/Material_DreadCore.Material_DreadCore_C",
     "Type": "material",
     "World": "World_Root"
   },
   {
     "Id": "Material_NecrocyteStrand",
-    "ProfileId": "/Game/World_Root/Items/Materials/MiniBoss/NecrocyteStrand/Material_NecrocyteStrand.Material_NecrocyteStrand_C",
+    "ProfileId": "/Game/World_Root/Items/Materials/Miniboss/NecrocyteStrand/Material_NecrocyteStrand.Material_NecrocyteStrand_C",
     "Type": "material",
     "World": "World_Root"
   },
@@ -6637,6 +7258,48 @@
     "ProfileId": "/Game/World_Fae/Items/Materials/World/DecrepitRune/Material_DecrepitRune.Material_DecrepitRune_C",
     "Type": "material",
     "World": "World_Fae"
+  },
+  {
+    "Id": "Material_ForgeEmber",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/MiniBoss/ForgeEmber/Material_ForgeEmber.Material_ForgeEmber_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Material_PallidLodestone",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/MiniBoss/PallidLodestone/Material_PallidLodestone.Material_PallidLodestone_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Material_CeramicFlask",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/World/CeramicFlask/Material_CeramicFlask.Material_CeramicFlask_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Material_RegurgitatedSpinySac",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/World/RegurgitatedSpinySack/Material_RegurgitatedSpinySac.Material_RegurgitatedSpinySac_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Material_BlossomingCore",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/WorldBoss/BlossomingCore/Material_BlossomingCore.Material_BlossomingCore_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Material_EyeOfLydusa",
+    "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/WorldBoss/EyeOfLydusa/Material_EyeOfLydusa.Material_EyeOfLydusa_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Material_Engram_Alchemist",
@@ -6719,8 +7382,15 @@
     "Id": "Material_Engram_Ritualist",
     "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Engram/Material_Engram_Ritualist.Material_Engram_Ritualist_C",
     "Type": "material",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Ragged Poppet"
+  },
+  {
+    "Id": "Material_Engram_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Engram/Material_Engram_Invoker.Material_Engram_Invoker_C",
+    "Type": "material",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Material_ShinningEssenceEcho",
@@ -6733,39 +7403,39 @@
   },
   {
     "Id": "Material_HexWreath",
-    "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/MiniBoss/HexWreath/Material_HexWreath.Material_HexWreath_C",
+    "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/Miniboss/HexWreath/Material_HexWreath.Material_HexWreath_C",
     "Type": "material",
-    "World": "World_DLC1 "
+    "World": "World_DLC1"
   },
   {
     "Id": "Material_WretchedSkull",
-    "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/MiniBoss/WretchedSkull/Material_WretchedSkull.Material_WretchedSkull_C",
+    "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/Miniboss/WretchedSkull/Material_WretchedSkull.Material_WretchedSkull_C",
     "Type": "material",
-    "World": "World_DLC1 "
+    "World": "World_DLC1"
   },
   {
     "Id": "Material_CrematedSoulAsh",
     "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/World/CrematedSoulAsh/Material_CrematedSoulAsh.Material_CrematedSoulAsh_C",
     "Type": "material",
-    "World": "World_DLC1 "
+    "World": "World_DLC1"
   },
   {
     "Id": "Material_OccultVessel",
     "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/World/OccultVessel/Material_OccultVessel.Material_OccultVessel_C",
     "Type": "material",
-    "World": "World_DLC1 "
+    "World": "World_DLC1"
   },
   {
     "Id": "Material_AgonySpike",
     "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/WorldBoss/AgonySpike/Material_AgonySpike.Material_AgonySpike_C",
     "Type": "material",
-    "World": "World_DLC1 "
+    "World": "World_DLC1"
   },
   {
     "Id": "Material_TormentorsPommel",
     "ProfileId": "/Game/World_DLC1/Items/CraftingMaterial/WorldBoss/TormentorsPommel/Material_TormentorsPommel.Material_TormentorsPommel_C",
     "Type": "material",
-    "World": "World_DLC1 ",
+    "World": "World_DLC1",
     "Name": "Tormentor's Pommel"
   },
   {
@@ -7234,6 +7904,11 @@
     "ChallengeCount": "10"
   },
   {
+    "Id": "D627C628-4F497780-F6BC269E-A815E1FC",
+    "Type": "challenge",
+    "Name": "Break 15 Statues - Break X Statues"
+  },
+  {
     "Id": "95D6799E-449077F7-0969C7AB-8CD29A2C",
     "Type": "achievement",
     "Name": "Blue Goddess - Meet Nimue"
@@ -7509,6 +8184,31 @@
     "Name": "You Shall Pass - Acquire a Reward from the Bridge Warden "
   },
   {
+    "Id": "DE960209-46229D7A-14337296-143905F1",
+    "Type": "achievement",
+    "Name": "Requiem of the Forgotten Kingdom - Complete the Forgotten Kingdom Story"
+  },
+  {
+    "Id": "CDA84494-4B82472F-FD04BD95-059D4DA3",
+    "Type": "achievement",
+    "Name": "Thank You For Being a Friend - Forge a Friendship"
+  },
+  {
+    "Id": "F0D851B6-412CCD0D-19F16383-DD65619F",
+    "Type": "achievement",
+    "Name": "The Burden Hardest to Bear - Made a Difficult Choice"
+  },
+  {
+    "Id": "5040B4DE-4B73E26A-402E4BA8-ADD3FF8C",
+    "Type": "achievement",
+    "Name": "Master of Elements - Acquire the Invoker Archetype"
+  },
+  {
+    "Id": "AD07B72B-4D493F13-C91F2E91-8A1F9D17",
+    "Type": "achievement",
+    "Name": "Triple Takeover - Acquire the Trinity Crossbow"
+  },
+  {
     "Id": "Quest_Boss_Faelin",
     "Type": "event",
     "World": "World_Fae",
@@ -7571,6 +8271,12 @@
     "Name": "Tal'Ratha",
     "Subtype": "boss",
     "EventLocation": "Forgotten Prison"
+  },
+  {
+    "Id": "Quest_Boss_Lydusa",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Quest_Injectable_FieryGraveyard",
@@ -7804,6 +8510,24 @@
     "Subtype": "injectable"
   },
   {
+    "Id": "Quest_Injectable_Crypt_DLC",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Injectable_Island_DLC",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Injectable_Ziggurat_DLC",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
     "Id": "Quest_Miniboss_Abomination",
     "Type": "event",
     "World": "World_Nerud",
@@ -7914,6 +8638,18 @@
     "Name": "Bruin, Blade of The King",
     "Subtype": "miniboss",
     "EventLocation": "Glistering Cloister"
+  },
+  {
+    "Id": "Quest_Miniboss_Kiln",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
+  },
+  {
+    "Id": "Quest_Miniboss_ShiftingSoldier",
+    "Type": "event",
+    "World": "World_DLC2",
+    "Disabled": true
   },
   {
     "Id": "Quest_OverworldPOI_ClockTower",
@@ -8148,6 +8884,21 @@
     "World": "World_DLC1",
     "Subtype": "dungeon",
     "EventLocation": "The Forgotten Commune"
+  },
+  {
+    "Id": "Quest_SideD_LydusaTemple",
+    "Type": "event",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Quest_SideD_RootMadness",
+    "Type": "event",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Quest_SideD_TombRaid",
+    "Type": "event",
+    "World": "World_DLC2"
   },
   {
     "Id": "Char_Forgotten_Jumper_Aberration",
@@ -8809,5 +9560,12 @@
     "Type": "award",
     "Name": "Revive Allies",
     "Challange": "BCD29B16-4AD4F664-467B11B8-40B71EC6"
+  },
+  {
+    "Id": "Material_AwardTrait_Resolute",
+    "Type": "award",
+    "Name": "Break 15 Statues",
+    "Challange": "D627C628-4F497780-F6BC269E-A815E1FC",
+    "Disabled": true
   }
 ]
