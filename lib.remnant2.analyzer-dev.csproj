@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Remnant 2 save analyzer library</Title>
+    <Description>Remnant 2 save analyzer library</Description>
+    <Copyright>© Andrew Savinykh 2023-2024</Copyright>
+    <PackageProjectUrl>https://github.com/AndrewSav/lib.remnant2.analyzer</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/AndrewSav/lib.remnant2.analyzer</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyName>lib.remnant2.analyzer</AssemblyName>
+    <RootNamespace>lib.remnant2.analyzer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="db.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="db.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lib.remnant2.saves\lib.remnant2.saves\lib.remnant2.saves.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
