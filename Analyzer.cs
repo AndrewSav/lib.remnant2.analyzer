@@ -310,7 +310,7 @@ public partial class Analyzer
     {
         foreach (string message in debugMessages)
         {
-            resultDebugMessages.Add($"Character {charactersCount} (slot:{charSlotInternal}), mode: {mode}, {message}");
+            resultDebugMessages.Add($"Character {charactersCount} (save_{charSlotInternal}), mode: {mode}, {message}");
         }
     }
 
