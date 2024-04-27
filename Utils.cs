@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace lib.remnant2.analyzer;
 
@@ -37,8 +38,61 @@ public class Utils
         return possiblePaths[0];
     }
 
+    // ReSharper disable UnusedMember.Global
     public static string Capitalize(string word)
     {
         return word[..1].ToUpper() + word[1..].ToLower();
+    }
+    // ReSharper restore UnusedMember.Global
+
+    public static string GetNameFromProfileId(string profileId)
+    {
+        int dot = profileId.LastIndexOf('.');
+        if (dot > -0)
+        {
+            profileId = profileId[..dot];
+        }
+        int slash = profileId.LastIndexOf('/');
+        if (slash == -1)
+        {
+            return profileId;
+        }
+
+        return profileId.Substring(slash + 1, profileId.Length - slash - 1);
+    }
+
+    public static bool IsKnownInventoryItem(string item)
+    {
+        string[] patterns = [
+            "^Archetype_.*",
+            "^Armor_Body_Nude$",
+            "^Armor_Gloves_Nude$",
+            "^Armor_Legs_Nude$",
+            "^Consumable_.*",
+            "^Item_DragonHeartUpgrade$",
+            "^Item_Flashlight$",
+            "^Item_HiddenContainer_.*",
+            "^Material_BloodMoonEssence$",
+            "^Material_CorruptedShard$",
+            "^Material_ForgedIron$",
+            "^Material_GalvanizedIron$",
+            "^Material_HardenedIron$",
+            "^Material_HiddenContainer_Simulacrum$",
+            "^Material_Iron$",
+            "^Material_LumeniteCorrupted$",
+            "^Material_LumeniteCrystal$",
+            "^Material_RelicDust$",
+            "^Material_Scraps$",
+            "^Material_Simulacrum$",
+            "^Material_TomeOfKnowledge$",
+            "^Perk_.*",
+            "^PrimePerk_.*",
+            "^RelicFragment_.*",
+            "^Skill_.*",
+            "^SkillTrait_.*",
+            "^Weapon_Unarmed$"
+        ];
+        Regex r = new(string.Join('|',patterns));
+        return r.IsMatch(item);
     }
 }

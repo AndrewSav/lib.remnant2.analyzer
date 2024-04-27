@@ -211,6 +211,16 @@ public partial class Analyzer
             List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
                 .Select(x => pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"]).ToList();
 
+            List<string> unknownInventoryItems = inventory
+                .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+                .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
+                .Select(x => $"Unknown inventory item: {x}")
+                .ToList();
+            if (unknownInventoryItems.Count > 0)
+            {
+                ProcessDebugMessages(unknownInventoryItems, "inventory", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            }
+
             List<Dictionary<string, string>> hasMatsItems = mats.Where(x => invNames.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
 
@@ -235,7 +245,17 @@ public partial class Analyzer
 
             string savePath = Path.Combine(folder, $"save_{profileNavigator.Lookup(ch).Path[^1].Index}.sav");
 
-            SaveFile sf = ReadWithRetry(savePath);
+            SaveFile sf;
+            try
+            {
+                sf = ReadWithRetry(savePath);
+            }
+            catch (IOException e)
+            {
+                result.DebugMessages.Add($"Could not load {savePath}, {e}");
+                continue;
+            }
+
             Navigator navigator = new(sf);
             Property? thaen = navigator.GetProperty("GrowthStage");
 
