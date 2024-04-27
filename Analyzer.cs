@@ -723,7 +723,8 @@ public partial class Analyzer
                     {
                         Type = "World Drop",
                         Items = worldDrops,
-                        Unknown = unknown
+                        Unknown = unknown,
+                        Name = worldDrops.Count > 1 ? "Multiple" : worldDrops[0].Name
                     };
                     l.LootGroups.Add(lg);
                 }
