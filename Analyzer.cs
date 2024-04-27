@@ -145,7 +145,8 @@ public partial class Analyzer
     {
         Dataset result = new()
         {
-            Characters = []
+            Characters = [],
+            DebugMessages = []
         };
 
         string folder = folderPath ?? Utils.GetSteamSavePath();
@@ -153,19 +154,19 @@ public partial class Analyzer
 
         SaveFile profileSf = ReadWithRetry(profilePath);
 
-        Navigator profile = new(profileSf);
-        result.ActiveCharacterIndex = profile.GetProperty("ActiveCharacterIndex")!.Get<int>();
-        ArrayProperty ap = profile.GetProperty("Characters")!.Get<ArrayProperty>();
+        Navigator profileNavigator = new(profileSf);
+        result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
+        ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
         
 
-        for (int index = 0; index < ap.Items.Count; index++)
+        for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
         {
-            object? item = ap.Items[index];
+            object? item = ap.Items[charSlotInternal];
             ObjectProperty ch = (ObjectProperty)item!;
             if (ch.ClassName == null) continue;
             UObject character = ch.Object!;
 
-            Component? inventoryComponent = profile.GetComponent("Inventory", character);
+            Component? inventoryComponent = profileNavigator.GetComponent("Inventory", character);
 
             if (inventoryComponent == null)
             {
@@ -175,15 +176,15 @@ public partial class Analyzer
             }
 
             Regex rArchetype = RegexArchetype();
-            string archetype = rArchetype.Match(profile.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
-            string secondaryArchetype = rArchetype.Match(profile.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
+            string archetype = rArchetype.Match(profileNavigator.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
+            string secondaryArchetype = rArchetype.Match(profileNavigator.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
 
-            List <PropertyBag> itemObjects = profile.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
+            List <PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
 
-            Component? traitsComponent = profile.GetComponent("Traits", character);
-            List<PropertyBag> traitObjects = profile.GetProperty("Traits", traitsComponent)!.Get<ArrayStructProperty>().Items
+            Component? traitsComponent = profileNavigator.GetComponent("Traits", character);
+            List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> traits = traitObjects.Select(x => x["TraitBP"].ToStringValue()!).ToList();
             List<string> inventory = items.Union(traits).ToList();
@@ -217,8 +218,7 @@ public partial class Analyzer
             StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
             SaveData st = (SaveData)cd.Value!;
 
-
-            Profile p = new()
+            Profile profile = new()
             {
                 Inventory = inventory,
                 Traits = traits,
@@ -233,7 +233,7 @@ public partial class Analyzer
                 CharacterDataCount = st.Objects.Count
             };
 
-            string savePath = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
+            string savePath = Path.Combine(folder, $"save_{profileNavigator.Lookup(ch).Path[^1].Index}.sav");
 
             SaveFile sf = ReadWithRetry(savePath);
             Navigator navigator = new(sf);
@@ -255,13 +255,15 @@ public partial class Analyzer
 
 
             RolledWorld campaign = GetCampaign(navigator);
-            FillLootGroups(campaign, p);
+            List<string> debugMessages = FillLootGroups(campaign, profile);
+            ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             Property? adventureSlot = navigator.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 1);
             RolledWorld? adventure = null;
             if (adventureSlot != null)
             {
                 adventure = GetAdventure(navigator);
-                FillLootGroups(adventure, p);
+                debugMessages = FillLootGroups(adventure, profile);
+                ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             }
 
             Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
@@ -275,13 +277,21 @@ public partial class Analyzer
                     QuestCompletedLog = questCompletedLog,
                     HasTree = thaen != null
                 },
-                Profile = p,
-                Index = index,
+                Profile = profile,
+                Index = charSlotInternal,
                 ActiveWorldSlot = mode
             });
         }
 
         return result;
+    }
+
+    private static void ProcessDebugMessages(List<string> debugMessages, string mode, int charactersCount, int charSlotInternal, List<string> resultDebugMessages)
+    {
+        foreach (string message in debugMessages)
+        {
+            resultDebugMessages.Add($"Character {charactersCount} (slot:{charSlotInternal}), mode: {mode}, {message}");
+        }
     }
 
     private static RolledWorld GetCampaign(Navigator navigator)
@@ -623,8 +633,9 @@ public partial class Analyzer
         return save;
     }
 
-    private static void FillLootGroups(RolledWorld world, Profile p)
+    private static List<string> FillLootGroups(RolledWorld world, Profile profile)
     {
+        List<string> debugMessages = [];
         // Add items to locations
         foreach (Zone zz in world.AllZones)
         {
@@ -657,7 +668,16 @@ public partial class Analyzer
 
                     if (ev == null)
                     {
-                        // Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG No drops for {dropReference}");
+                        debugMessages.Add($"Event: Drop reference '{dropReference.Name}' found in the save but is absent from the database");
+                        lg = new LootGroup
+                        {
+                            Items = [],
+                            EventDropReference = dropReference.Name,
+                            Type = "unknown event",
+                            Name = dropReference.Name,
+                            Unknown = UnknownData.Event
+                        };
+                        l.LootGroups.Add(lg);
                         continue;
                     }
 
@@ -683,9 +703,18 @@ public partial class Analyzer
                     .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
                     .Select(ItemDb.GetItemById).ToList();
 
+                UnknownData unknown = UnknownData.None;
                 foreach (DropReference s in l.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
                 {
-                    Console.WriteLine($"!!!!!!!!!!!!!!!!!DEBUG {s.Name} not in Database (world drop {l.Name})");
+                    debugMessages.Add($"World Drop: Drop reference {s.Name} is absent from the database (world drop {l.Name})");
+                    Dictionary<string, string> unknownItem = new()
+                    {
+                        { "Name", s.Name },
+                        { "Id", "unknown" },
+                        { "Type", "unknown" }
+                    };
+                    worldDrops.Add(new(){Item = unknownItem});
+                    unknown = UnknownData.WorldDrop;
                 }
 
                 if (worldDrops.Count > 0)
@@ -693,7 +722,8 @@ public partial class Analyzer
                     lg = new LootGroup
                     {
                         Type = "World Drop",
-                        Items = worldDrops
+                        Items = worldDrops,
+                        Unknown = unknown
                     };
                     l.LootGroups.Add(lg);
                 }
@@ -738,7 +768,7 @@ public partial class Analyzer
                             {
                                 string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
 
-                                return world.CanGetItem(cur) || p.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) ||
+                                return world.CanGetItem(cur) || profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) ||
                                        world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
                             }
 
@@ -770,6 +800,8 @@ public partial class Analyzer
                 }
             }
         }
+
+        return debugMessages;
     }
 
     [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]

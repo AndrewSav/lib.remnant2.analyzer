@@ -8888,17 +8888,26 @@
   {
     "Id": "Quest_SideD_LydusaTemple",
     "Type": "event",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Subtype": "dungeon",
+    "EventLocation": "Goddess's Rest",
+    "Disabled": true
   },
   {
     "Id": "Quest_SideD_RootMadness",
     "Type": "event",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Subtype": "dungeon",
+    "EventLocation": "Infested Abyss",
+    "Disabled": true
   },
   {
     "Id": "Quest_SideD_TombRaid",
     "Type": "event",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Subtype": "dungeon",
+    "EventLocation": "Proving Grounds",
+    "Disabled": true
   },
   {
     "Id": "Char_Forgotten_Jumper_Aberration",
@@ -9446,6 +9455,69 @@
     "Name": "W.D. 109",
     "SpawnType": "Injectable",
     "SpawnReference": "Quest_Injectable_Underworld_LurkerVents"
+  },
+  {
+    "Id": "Char_Deer_Aberration_Quest",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "Protector of the Grove",
+    "SpawnType": "Injectable",
+    "SpawnReference": "Quest_Injectable_Island_DLC",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_Deer_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "Deer_Aberration",
+    "SpawnType": "Injectable",
+    "SpawnReference": "Quest_Injectable_Island_DLC",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_LS_Howitzer_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "Stonewing Lurker",
+    "SpawnType": "Location",
+    "SpawnReference": "Luminous Vale",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_LS_Kiln_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "Charred Sentry",
+    "SpawnType": "Location",
+    "SpawnReference": "Ancient Canopy",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_LS_SS_Pickaxe_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "The Fractured",
+    "SpawnType": "SideD",
+    "SpawnReference": "Quest_SideD_TombRaid",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_Pan_NobleSwordsman_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "The Bloodless Heir ",
+    "SpawnType": "SideD",
+    "SpawnReference": "Quest_SideD_LydusaTemple",
+    "Disabled": true
+  },
+  {
+    "Id": "Char_Pan_Sightline_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC2",
+    "Name": "The Emissary",
+    "SpawnType": "SideD",
+    "SpawnReference": "Quest_SideD_RootMadness",
+    "Disabled": true
   },
   {
     "Id": "AccountAward_FinishCampaign_Survivor",

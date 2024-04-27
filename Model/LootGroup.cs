@@ -13,4 +13,5 @@ public class LootGroup
     // Only events have a drop reference, Location / Vendor / World Drop does not
     public string? EventDropReference;
     public required List<LootItem> Items;
+    public UnknownData Unknown = UnknownData.None;
 }

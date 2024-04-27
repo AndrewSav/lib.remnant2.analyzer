@@ -91,7 +91,6 @@ internal class ItemDb
             Item = Db.Single(x =>
                 x["Id"] == dr.Name || x.ContainsKey("EventId") && x["EventId"] == dr.Name),
             IsDeleted = dr.IsDeleted
-            
         };
     }
 
