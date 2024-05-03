@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 using lib.remnant2.saves.Model;
 using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
@@ -47,10 +48,17 @@ public partial class Analyzer
             string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
             string secondaryArchetype = rArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
 
-            StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
-            SaveData st = (SaveData)cd.Value!;
+            Property? characterData = character.Properties!.Properties.SingleOrDefault(x => x.Key == "CharacterData").Value;
 
-            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({st.Objects.Count})");
+            int objectCount = 0;
+            // Can be null after initial character creation usually it is overwritten
+            // with a proper save immediately after
+            if (characterData != null) 
+            {
+                objectCount = ((SaveData)((StructProperty)characterData.Value!).Value!).Objects.Count;
+            }
+
+            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({objectCount})");
             
         }
         return [.. result];
@@ -137,16 +145,22 @@ public partial class Analyzer
         {
             object? item = ap.Items[index];
             ObjectProperty ch = (ObjectProperty)item!;
-            ExportFile(targetFolder, Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav"), exportCopy, exportDecoded, exportJson);
+            string path = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
+            if (File.Exists(path))
+            {
+                ExportFile(targetFolder, path, exportCopy, exportDecoded, exportJson);
+            }
         }
     }
 
     public static Dataset Analyze(string? folderPath = null)
     {
+        Stopwatch sw = Stopwatch.StartNew();
         Dataset result = new()
         {
             Characters = [],
-            DebugMessages = []
+            DebugMessages = [],
+            DebugPerformance = []
         };
 
         string folder = folderPath ?? Utils.GetSteamSavePath();
@@ -158,6 +172,7 @@ public partial class Analyzer
         result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
         ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
         
+        result.DebugPerformance.Add("Initial load", sw.Elapsed);
 
         for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
         {
@@ -179,15 +194,25 @@ public partial class Analyzer
             string archetype = rArchetype.Match(profileNavigator.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
             string secondaryArchetype = rArchetype.Match(profileNavigator.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} archetypes", sw.Elapsed);
+
             List <PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} items", sw.Elapsed);
 
             Component? traitsComponent = profileNavigator.GetComponent("Traits", character);
             List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> traits = traitObjects.Select(x => x["TraitBP"].ToStringValue()!).ToList();
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} traits", sw.Elapsed);
+
+
             List<string> inventory = items.Union(traits).ToList();
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} inventory", sw.Elapsed);
 
             //JArray db = result.Database = ldb.Value;
             List<Dictionary<string, string>> traitsDb = ItemDb.Db.Where(x => x.GetValueOrDefault("Type") == "trait").ToList();
@@ -198,31 +223,38 @@ public partial class Analyzer
                 .ToList();
             dropReferences.Sort();
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} drop references", sw.Elapsed);
+
+
             List<Dictionary<string, string>> inventoryDbItems = ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
+
+            //var debug = inventoryDbItems.Where(x => x["ProfileId"].Split('/')[2] != x["World"]).ToList();
 
             List<Dictionary<string, string>> missingItems = inventoryDbItems.Where(x => !items.Select(y=>y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
             List<Dictionary<string, string>> missingTraits = traitsDb.Where(x => !traits.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
 
             missingItems = missingItems.Union(missingTraits).ToList();
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} missing items", sw.Elapsed);
+
+
 
             IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
-            IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId"));
+            IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
             List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
                 .Select(x => pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"]).ToList();
 
-            List<string> unknownInventoryItems = inventory
-                .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
-                .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
-                .Select(x => $"Unknown inventory item: {x}")
-                .ToList();
-            if (unknownInventoryItems.Count > 0)
-            {
-                ProcessDebugMessages(unknownInventoryItems, "inventory", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
-            }
+            result.DebugPerformance.Add($"Character {charSlotInternal} inventory names", sw.Elapsed);
+
+            WarnUnknownInventoryItems(inventory, pdb, result, charSlotInternal, "character inventory");
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} inventory warnings", sw.Elapsed);
+
 
             List<Dictionary<string, string>> hasMatsItems = mats.Where(x => invNames.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} has mats", sw.Elapsed);
 
 
             StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
@@ -245,6 +277,8 @@ public partial class Analyzer
 
             string savePath = Path.Combine(folder, $"save_{profileNavigator.Lookup(ch).Path[^1].Index}.sav");
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} save data location", sw.Elapsed);
+
             SaveFile sf;
             try
             {
@@ -256,6 +290,8 @@ public partial class Analyzer
                 continue;
             }
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} save data loaded", sw.Elapsed);
+            
             Navigator navigator = new(sf);
             Property? thaen = navigator.GetProperty("GrowthStage");
 
@@ -271,19 +307,30 @@ public partial class Analyzer
                 }
             }
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} quest completed log", sw.Elapsed);
+            
             int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
 
-
             RolledWorld campaign = GetCampaign(navigator);
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loaded", sw.Elapsed);
+            WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign inventory warnings", sw.Elapsed);
             List<string> debugMessages = FillLootGroups(campaign, profile);
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups", sw.Elapsed);
             ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
             Property? adventureSlot = navigator.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 1);
             RolledWorld? adventure = null;
             if (adventureSlot != null)
             {
                 adventure = GetAdventure(navigator);
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loaded", sw.Elapsed);
+                WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure inventory warnings", sw.Elapsed);
                 debugMessages = FillLootGroups(adventure, profile);
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups", sw.Elapsed);
                 ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
             }
 
             Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
@@ -301,9 +348,23 @@ public partial class Analyzer
                 Index = charSlotInternal,
                 ActiveWorldSlot = mode
             });
+            result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
 
         return result;
+    }
+
+    private static void WarnUnknownInventoryItems(List<string> inventory, IEnumerable<Dictionary<string, string>> pdb, Dataset result, int charSlotInternal, string mode)
+    {
+        List<string> unknownInventoryItems = inventory
+            .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+            .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
+            .Select(x => $"Unknown item: {x}")
+            .ToList();
+        if (unknownInventoryItems.Count > 0)
+        {
+            ProcessDebugMessages(unknownInventoryItems, mode, result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+        }
     }
 
     private static void ProcessDebugMessages(List<string> debugMessages, string mode, int charactersCount, int charSlotInternal, List<string> resultDebugMessages)
@@ -659,6 +720,24 @@ public partial class Analyzer
         // Add items to locations
         foreach (Zone zz in world.AllZones)
         {
+
+            int canopyIndex = zz.Locations.FindIndex(x => x.Name == "Ancient Canopy");
+            // Bloody Walt is on the move and not tied to a particular location
+            // Let's create a special synthetic location for him!
+            if (canopyIndex >= 0)
+            {
+                zz.Locations.Insert(canopyIndex, new()
+                {
+                    Category = zz.Locations[canopyIndex].Category,
+                    Connections = [],
+                    DropReferences = [],
+                    LootGroups = [],
+                    Name = "Ancient Canopy/Luminous Vale",
+                    WorldDrops = [],
+                    WorldStones = []
+                });
+            }
+            
             // Populate locations with possible items
             foreach (Location l in zz.Locations)
             {

@@ -715,14 +715,19 @@
     "Type": "amulet",
     "World": "World_DLC2",
     "Name": "Beads of the Valorous",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Amulet_CervineKeepsake",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/CervineKeepsake/Amulet_CervineKeepsake.Amulet_CervineKeepsake_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Island_DLC",
+    "Prerequisite": "Amulet_RedDoeSigil",
+    "Note": "Found in an outdoor location on Yaesha. There will be a big Doe statue, wear the Red Doe Sigil amulet for a trapdoor in front of the statues to open with the item inside"
   },
   {
     "Id": "Amulet_EchoOfTheForest",
@@ -730,35 +735,47 @@
     "Type": "amulet",
     "World": "World_DLC2",
     "Name": "Echo of the Forest",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ward 13",
+    "Prerequisite": "Quest_Item_Story_DwellsItem",
+    "Note": "Obtained from Dwell in Ward 13 after bringing to him three copies of Trinity Memento quest item across three different adventure/campaign rerolls. Trinity Memento is found in Luminous Vale location on Yaesha as a red glowing item on a ledge, in a cave or on the wooden rope bridge.",
+    "CustomScript": true
   },
   {
     "Id": "Amulet_FragrantThorn",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/FragrantThorn/Amulet_FragrantThorn.Amulet_FragrantThorn_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Amulet_MagnifyingGlass",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/MagnifyingGlass/Amulet_MagnifyingGlass.Amulet_MagnifyingGlass_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
   },
   {
     "Id": "Amulet_MoonStone",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/MoonStone/Amulet_MoonStone.Amulet_MoonStone_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Ziggurat_DLC",
+    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current poisiton. Left, forward, forward, left, forward. As you move forward on the last leg you will fall down to the room with the item"
   },
   {
     "Id": "Amulet_ProfaneSoulStone",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ProfaneSoulStone/Amulet_ProfaneSoulStone.Amulet_ProfaneSoulStone_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_RootMadness",
+    "Note": "Obtained from Root NPC at the end of the Infested Abyss location on Yaesha. After clearing out the third Root Nexus, at the very end of the dungeon talk to the Root NPC, do not choose the fight option, and when asked to submit choose to submit. The item will be given as the reward"
   },
   {
     "Id": "Amulet_ReedOfTheVaunnt",
@@ -766,14 +783,19 @@
     "Type": "amulet",
     "World": "World_DLC2",
     "Name": "Reed of the Vaunnt",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Amulet_SoulStone",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/SoulStone/Amulet_SoulStone.Amulet_SoulStone_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "The Labyrinth",
+    "Prerequisite": "Amulet_ProfaneSoulStone",
+    "Note": "Obtained from The Keeper found in The Labyrinth, near the Inner Sanctum world stone. You have to have Profane Soul Stone in your inventory and initiate a dialog with The Keeper. When you finish the dialog the Keeper will propmt you if you want to cleanse the amulet. Choose to agree to replace Profance Soul Stone with the item"
   },
   {
     "Id": "Amulet_StoneshapersChisel",
@@ -781,21 +803,27 @@
     "Type": "amulet",
     "World": "World_DLC2",
     "Name": "Stoneshaper's Chisel",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Obtained from Uuqul found in Ancient Canopy location on Yaesha. You need to progress through the Lydusa quest enough to having spoken to Lydusa and obtaining the curse. After that talk to Uuqul found in a recess outside the round fixture you jump onto after meeting Walt for the first time. Exhause the dialog with Uuqul to receive the item"
   },
   {
     "Id": "Amulet_WornDogTags",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/WornDogTags/Amulet_WornDogTags.Amulet_WornDogTags_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Luminous Vale",
+    "Note": "Found in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Return to Jack's hidout, after finishing the Lydusa quest line to get the item"
   },
   {
     "Id": "Amulet_ZeroDivide",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ZeroDivide/Amulet_ZeroDivide.Amulet_ZeroDivide_C",
     "Type": "amulet",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud Drop"
   },
   {
     "Id": "Armor_Body_Challenger",
@@ -1860,7 +1888,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Disciple Mantle",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. The item is located in an alcove across that room"
   },
   {
     "Id": "Armor_Gloves_Invoker",
@@ -1868,7 +1898,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Disciple Vambraces",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. The item is located in an alcove across that room"
   },
   {
     "Id": "Armor_Head_Invoker",
@@ -1876,7 +1908,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Disciple Headpiece",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. The item is located in an alcove across that room"
   },
   {
     "Id": "Armor_Legs_Invoker",
@@ -1884,7 +1918,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Disciple Greaves",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. The item is located in an alcove across that room"
   },
   {
     "Id": "Armor_Body_Army",
@@ -1892,7 +1928,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Battle Shirt",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Gloves_Army",
@@ -1900,7 +1938,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Battle Gloves",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Head_Army",
@@ -1908,7 +1948,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Battle Helmet",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Legs_Army",
@@ -1916,15 +1958,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Battle Slacks",
-    "Disabled": true
-  },
-  {
-    "Id": "Armor_Head_Survivor",
-    "ProfileId": "/Game/World_Base/Items/Armor/Survivor/Armor_Head_Survivor.Armor_Head_Survivor_C",
-    "Type": "armor",
-    "World": "World_DLC2",
-    "Name": "Survivor Mask",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Head_BloodlessCrown",
@@ -1932,7 +1968,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Bloodless Crown",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_LydusaTemple",
+    "Note": "Found in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, the item can be seen towards the rear wall"
   },
   {
     "Id": "Armor_Head_MudtoothsHat",
@@ -1940,7 +1978,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Mudtooth's Hat",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ward 13",
+    "Note": "Obtained from Mudtooth in Ward 13 location, after completing the Forgotten Kingdom (Lydusa) storyline"
   },
   {
     "Id": "Armor_Head_TopHat",
@@ -1948,7 +1988,9 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "Dandy Topper",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Forlorn Coast",
+    "Note": "Found in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Shoot the preacher in the head to get the item"
   },
   {
     "Id": "Armor_Head_TrueCrimsonCrown",
@@ -1956,7 +1998,10 @@
     "Type": "armor",
     "World": "World_DLC2",
     "Name": "True Crimson Crown",
-    "Disabled": true
+    "DropType": "Vendor",
+    "DropReference": "Nimue",
+    "Prerequisite": "Armor_Head_RedPrince, Armor_Head_CrimsonGuard",
+    "Note": "Crafted at Nimue from the Crimson Guard Shroud and the Crown of the Red Prince"
   },
   {
     "Id": "Mod_ConcussiveShot",
@@ -2268,21 +2313,30 @@
     "ProfileId": "/Game/World_DLC2/Items/Mods/AbrasiveRounds/Mod_AbrasiveRounds.Mod_AbrasiveRounds_C",
     "Type": "mod",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_PallidLodestone",
+    "DropType": "Event",
+    "DropReference": "Quest_Miniboss_ShiftingSoldier",
+    "Note": "Crafted from Pallid Lodestone droped by The Stonewarden in Earthen Coliseum location on Yaesha"
   },
   {
     "Id": "Mod_FlyingBombTrap",
     "ProfileId": "/Game/World_DLC2/Items/Mods/FlyingBombTrap/Mod_FlyingBombTrap.Mod_FlyingBombTrap_C",
     "Type": "mod",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_CeramicFlask",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Crafted from Ceramic Flask found in Proving Grounds location on Yaesha. After the forth and last checkpoint and finishing the final saw blades area, when you reach the lever, once you are ready turn left and jump through the whole in the floor"
   },
   {
     "Id": "Mod_Heatwave",
     "ProfileId": "/Game/World_DLC2/Items/Mods/Heatwave/Mod_Heatwave.Mod_Heatwave_C",
     "Type": "mod",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_ForgeEmber",
+    "DropType": "Event",
+    "DropReference": "Quest_Miniboss_Kiln",
+    "Note": "Crafted from Forge Ember dropped by Cinderclad Monolith in Deserted Atelier location on Yaesha"
   },
   {
     "Id": "MetaGem_Dervish",
@@ -2734,13 +2788,13 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Dire Fiend aberation in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
+    "Note": "Drops from Dire Fiend aberration in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
   },
   {
     "Id": "MetaGem_FetidWounds",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Ranged/FetidWounds/MetaGem_FetidWounds.MetaGem_FetidWounds_C",
     "Type": "mutator",
-    "World": "World_DLC1",
+    "World": "World_Base",
     "Subtype": "Ranged",
     "DropType": "Vendor",
     "DropReference": "Dwell",
@@ -2755,7 +2809,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Mangled Atoner aberation in Forlon Coast location on Losomn OTK, at the top of Nimue tower"
+    "Note": "Drops from Mangled Atoner aberration in Forlon Coast location on Losomn OTK, at the top of Nimue tower"
   },
   {
     "Id": "MetaGem_Prophecy",
@@ -2788,7 +2842,7 @@
     "Subtype": "Melee",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Little Gorge aberation in Forlon Coast location on Losomn OTK, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig"
+    "Note": "Drops from Little Gorge aberration in Forlon Coast location on Losomn OTK, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig"
   },
   {
     "Id": "MetaGem_Guts",
@@ -2805,7 +2859,7 @@
     "Id": "MetaGem_TaintedBlade",
     "ProfileId": "/Game/World_DLC1/Items/Gems/Melee/TaintedBlade/MetaGem_TaintedBlade.MetaGem_TaintedBlade_C",
     "Type": "mutator",
-    "World": "World_DLC1",
+    "World": "World_Base",
     "Subtype": "Melee",
     "DropType": "Vendor",
     "DropReference": "Dwell",
@@ -2815,57 +2869,87 @@
     "Id": "MetaGem_BattleMage",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Melee/BattleMage/MetaGem_BattleMage.MetaGem_BattleMage_C",
     "Type": "mutator",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_Base",
+    "Subtype": "Melee",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Buy from Dwell at Ward 13"
   },
   {
     "Id": "MetaGem_Gladiator",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Melee/Gladiator/MetaGem_Gladiator.MetaGem_Gladiator_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "The Fractured",
+    "Subtype": "Melee",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Drops from The Fractured aberration in Proving Grounds location on Yaesha. After the third checkpoint stand on the centre pressure plate in the next saw blades area that opens the way forward, but go backward and to your right (left if backtracking) to a newly opened passage to find the abberation in the end. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returing back to the third via the shortcut next to the lever"
   },
   {
     "Id": "MetaGem_FarSighted",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/FarSighted/MetaGem_FarSighted.MetaGem_FarSighted_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "Stonewing Lurker",
+    "Subtype": "Ranged",
+    "DropType": "Location",
+    "DropReference": "Luminous Vale",
+    "Note": "Drops from Stonewing Lurker aberration in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. Return to this spot after competing Lydusa quest line for the aberration to spawn"
   },
   {
     "Id": "MetaGem_NearSighted",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/NearSighted/MetaGem_NearSighted.MetaGem_NearSighted_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "The Emissary",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_RootMadness",
+    "Note": "Drops from The Emissary aberration in Infested Abyss location on Yaesha. After clearing out the third Root Nexus, at the very end of the dungeon talk to the Root NPC and choose one of the options to fight"
   },
   {
     "Id": "MetaGem_PressurePoint",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/PressurePoint/MetaGem_PressurePoint.MetaGem_PressurePoint_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "Charred Sentry",
+    "Subtype": "Ranged",
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Drops from Charred Sentry aberration in Ancient Canopy location on Yaesha. After meeting Walt for the first time and then making the jump onto the round fixture, as you exit the fixture turn left. Before you reach the door back to the starting World Stone, there will be a dead end offshoot to the left and down, the aberration spawns there"
   },
   {
     "Id": "MetaGem_SearingWounds",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/SearingWounds/MetaGem_SearingWounds.MetaGem_SearingWounds_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "The Bloodless Heir",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_LydusaTemple",
+    "Note": "Drops from The Bloodless Heir aberration in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
   },
   {
     "Id": "MetaGem_Spellweaver",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/Spellweaver/MetaGem_Spellweaver.MetaGem_Spellweaver_C",
     "Type": "mutator",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_Base",
+    "Subtype": "Ranged",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Buy from Dwell at Ward 13"
   },
   {
     "Id": "MetaGem_ThousandCuts",
     "ProfileId": "/Game/World_DLC2/Items/Gems/Ranged/ThousandCuts/MetaGem_ThousandCuts.MetaGem_ThousandCuts_C",
     "Type": "mutator",
     "World": "World_DLC2",
-    "Disabled": true
+    "Aberration": "Protector of the Grove",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Island_DLC",
+    "Note": "Drops from Protector of the Grove Aberration found in an outdoor location on Yaesha. There will be a big Doe statue, kill all the (regular) does in the area for the abbearion to appear"
   },
   {
     "Id": "Relic_Consumable_BloomingHeart",
@@ -3083,14 +3167,19 @@
     "ProfileId": "/Game/World_DLC2/Items/Relics/BloodlessHeart/Relic_Consumable_BloodlessHeart.Relic_Consumable_BloodlessHeart_C",
     "Type": "relic",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_LydusaTemple",
+    "Note": "Found in Godess's Rest location on Yaesha. Go left from the main entrance to Lydusa Temple with the 5 blue circles and take the elevator down. Follow the path until you reach a water path with a cave entrance on the left. At the far back of the passage to the left will be a false wall leading to a room containing an elevator. Take the elevator and follow the passage. The heart will be on your right, opposite of the bedchamber."
   },
   {
     "Id": "Relic_Consumable_ProfaneHeart",
     "ProfileId": "/Game/World_DLC2/Items/Relics/ProfaneHeart/Relic_Consumable_ProfaneHeart.Relic_Consumable_ProfaneHeart_C",
     "Type": "relic",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_RootMadness",
+    "Note": "Obtained from Root NPC at the end of the Infested Abyss location on Yaesha. You need to have Profane Soul Stone amulet first. With the amulet go to The Labyrinth and talk to The Keeper. When you end the dialog, the keeper will offer to cleanse. Refuse the offer, and you will hear the voice line to \"return where we first met\". Go to the very end of the Infested Abyss dungeon, talk to the Root NPC and it will exchange your Profane Soul Stone for this item",
+    "CustomScript": true
   },
   {
     "Id": "Ring_RingOfTheAdmiral",
@@ -4453,6 +4542,7 @@
     "Type": "ring",
     "World": "World_DLC1",
     "Name": "A'taerii Booster",
+    "EventId": "Ring_AtaeriiBooster",
     "DropType": "World",
     "DropReference": "World_Nerud",
     "Note": "Random N'Erud drop"
@@ -4703,7 +4793,9 @@
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/BlackSpinel/Ring_BlackSpinel.Ring_BlackSpinel_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
   },
   {
     "Id": "Ring_BloodlessKingsVow",
@@ -4711,7 +4803,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Bloodless King's Vow",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_LydusaTemple",
+    "Note": "Drops from The Bloodless Heir aberration in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
   },
   {
     "Id": "Ring_BurdenOfTheMason",
@@ -4719,7 +4813,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Burden of the Mason",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Luminous Vale",
+    "Note": "Found in Luminous Vale location on Yaesha. There are two elevators in Lumnious Vale, you can see them on a fully explored map as shaded sqares. You need the one that is NOT near the Primal Hollow world stone. While riding the elevator there is a hole in the wall that leads to the room with the item"
   },
   {
     "Id": "Ring_BurdenOfTheMesmer",
@@ -4727,14 +4823,18 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Burden of the Mesmer",
-    "Disabled": true
+    "DropType": "Vendor",
+    "DropReference": "Walt",
+    "Note": "Buy from Walt in Ancient Canopy or Luminous Vale location on Yaesha. Walt stands near different murals in these two areas depending on your quest progression. The item price is greatly reduced if you exhaust all dialogs with Walt before finally dealing with Lydusa. Return to Walt after that to purchase the item at a reasonable price"
   },
   {
     "Id": "Ring_ClosedLoop",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/ClosedLoop/Ring_ClosedLoop.Ring_ClosedLoop_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
   },
   {
     "Id": "Ring_ConjurersCircle",
@@ -4742,49 +4842,63 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Conjurer's Circle",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_RootMadness",
+    "Note": "Found in Infested Abyss location on Yaesha. In the area in front of the third Root Nexus, as you walk from the door on the left to the Root Nexus, there will be a short passage on the right and ledge to drop to at its end. Drop there, follow the path and find the item"
   },
   {
     "Id": "Ring_DarkSeaArmadaCrest",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/DarkSeaArmadaCrest/Ring_DarkSeaArmadaCrest.Ring_DarkSeaArmadaCrest_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the fourth checkpoint stand on the pressure plate in front of the next saw blades area that opens the way forward, once you pass the saws. Instead of going forward there, turn right into the passage that leads back to the area start should you not reach the exit before it closes. If the exit has not closed yet anoher passage to the left will be open with the item in there nearby. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returing back to the third via the shortcut next to the lever"
   },
   {
     "Id": "Ring_FeatheryBinding",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/FeatheryBinding/Ring_FeatheryBinding.Ring_FeatheryBinding_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy/Luminous Vale",
+    "Note": "Obtained from Walt in Ancient Canopy or Luminous Vale location on Yaesha. Walt stands near different murals in these two areas depending on your quest progression. Exhaust all dialogs with Walt before finally dealing with Lydusa. Do not talk to Walt after obtaining Cherished Fracture. Return to Walt after Lydusa has been delt with and talk to him one last time"
   },
   {
     "Id": "Ring_FloodlitDiamond",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/FloodlitDiamond/Ring_FloodlitDiamond.Ring_FloodlitDiamond_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TombRaid",
+    "Note": "Found in Proving Grounds location on Yaesha. After the second checkpoint, in the large, roughly square room with the 4 pot enemies on raised platforms in each corner you need to go to the pressure plate in the left conner at the back of the room. This will lower the pillar across the room from you that you will see. On the nearest wall to this pillar near the ceiling there is an illusory wall that you need to jump through from the rising pillar. Go upstairs from there and find the item"
   },
   {
     "Id": "Ring_GulSignet",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/GulSignet/Ring_GulSignet.Ring_GulSignet_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_KolketEyelet",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/KolketEyelet/Ring_KolketEyelet.Ring_KolketEyelet_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_LeakingGemstone",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/LeakingGemstone/Ring_LeakingGemstone.Ring_LeakingGemstone_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
   },
   {
     "Id": "Ring_MarkOfTheDestroyer",
@@ -4792,7 +4906,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Mark of the Destroyer",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Ziggurat_DLC",
+    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current poisiton. Left, forward, right, forward, right, backward, right backward. At this point you will see an open gateway you will need to go through. The item will be there"
   },
   {
     "Id": "Ring_MatriarchsRing",
@@ -4800,21 +4916,28 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Matriarch's Ring",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_PanWarBand",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/PanWarBand/Ring_PanWarBand.Ring_PanWarBand_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "Coop": true,
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Crypt_DLC",
+    "Note": "Found in an indoor location on Yaesha. This is a co-op item. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three presure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the nearest pressure plate across the entrance, a pillar on the far side of the room will go down. Your partner need to stand on the pilar, and you will need to step off once they are there. The pillar will raise back gaining access to the room with the item"
   },
   {
     "Id": "Ring_RallyBand",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/RallyBand/Ring_RallyBand.Ring_RallyBand_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Luminous Vale",
+    "Note": "Obtained from Private Jack Driver in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Talk to Jack, agree to take him back home, and receive the item "
   },
   {
     "Id": "Ring_RavagersBargain",
@@ -4822,7 +4945,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Ravager's Bargain",
-    "Disabled": true
+    "DropType": "Vendor",
+    "DropReference": "Walt",
+    "Note": "Buy from Walt in Ancient Canopy or Luminous Vale location on Yaesha. Walt stands near different murals in these two areas depending on your quest progression"
   },
   {
     "Id": "Ring_RingOfOrdnance",
@@ -4830,7 +4955,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Ring of Ordnance",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
   },
   {
     "Id": "Ring_RingOfSpirits",
@@ -4838,21 +4965,28 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Ring of Spirits",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Crypt_DLC",
+    "Note": "Found in an indoor location on Yaesha. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three presure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the pressure plate on the same side as the entrance a pillar will go down, stand on it and when it move up jump into the nearest wall closer to the ceiling. The item will be there behaind a false wall"
   },
   {
     "Id": "Ring_SealedResinLoop",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/SealedResinLoop/Ring_SealedResinLoop.Ring_SealedResinLoop_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "EventId": "Ring_SealResinLoop",
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_SoulFeast",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/SoulFeast/Ring_SoulFeast.Ring_SoulFeast_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_TearOfLydusa",
@@ -4860,14 +4994,18 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Tear of Lydusa",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "The Bloodless Throne",
+    "Note": "Found in The Bloodless Throne location on Yaesha. Return to the location after completing the Lydusa quest chain and find the item on the ground where once Lydusa used to be"
   },
   {
     "Id": "Ring_ThalosEyelet",
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Rings/ThalosEyelet/Ring_ThalosEyelet.Ring_ThalosEyelet_C",
     "Type": "ring",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
   },
   {
     "Id": "Ring_TokenOfFavor",
@@ -4875,7 +5013,9 @@
     "Type": "ring",
     "World": "World_DLC2",
     "Name": "Token of Favor",
-    "Disabled": true
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Island_DLC",
+    "Note": "Found in an outdoor location on Yaesha. There will be a big Doe statue, the item will be on the left of it"
   },
   {
     "Id": "Trait_AmmoReserves",
@@ -5091,7 +5231,8 @@
     "Coop": true,
     "DropType": "Event",
     "DropReference": "Quest_SideD_Extermination",
-    "Note": "Found in the Dormant N'Erudian Facility location on N'Erud. This is a co-op trait. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. One player need to activate the console at this room while the count down timer is still running, while other players should stay outside of the control room. The players outside of the control room will die and receive the trait"
+    "Note": "Found in the Dormant N'Erudian Facility location on N'Erud. This is a co-op trait. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. One player need to activate the console at this room while the count down timer is still running, while other players should stay outside of the control room. The players outside of the control room will die and receive the trait",
+    "Disabled": true
   },
   {
     "Id": "Trait_Revivalist",
@@ -5163,7 +5304,8 @@
     "World": "World_Base",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
-    "Note": "Found in Corrupted Harbor location on Root Earth. Complete the boiler room fight event after the first checkpoint"
+    "Note": "Found in Corrupted Harbor location on Root Earth. Complete the boiler room fight event after the first checkpoint",
+    "Disabled": true
   },
   {
     "Id": "Trait_Affliction",
@@ -5187,29 +5329,39 @@
     "Id": "Trait_Chakra",
     "ProfileId": "/Game/World_Base/Items/Traits/Core/Chakra/Trait_Chakra.Trait_Chakra_C",
     "Type": "trait",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_Base",
+    "DropType": "Event",
+    "DropReference": "Quest_RootEarth_Zone2",
+    "Note": "Found in Corrupted Harbor location on Root Earth. Complete the boiler room fight event after the first checkpoint"
   },
   {
     "Id": "Trait_Leech",
     "ProfileId": "/Game/World_Base/Items/Traits/Core/Leech/Trait_Leech.Trait_Leech_C",
     "Type": "trait",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_Base",
+    "Coop": true,
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_Extermination",
+    "Note": "Found in the Dormant N'Erudian Facility location on N'Erud. This is a co-op trait. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. One player need to activate the console at this room while the count down timer is still running, while other players should stay outside of the control room. The players outside of the control room will die and receive the trait"
   },
   {
     "Id": "Trait_Gifted",
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/PerksAndTraits/Trait_Gifted.Trait_Gifted_C",
     "Type": "trait",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Progression",
+    "Note": "Reach Invoker level 10 to unlock this trait for use in any build",
+    "Undetectable": true
   },
   {
     "Id": "Trait_Resolute",
     "ProfileId": "/Game/World_DLC2/Items/Traits/Resolute/Trait_Resolute.Trait_Resolute_C",
     "Type": "trait",
     "World": "World_DLC2",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "The Bloodless Throne",
+    "Note": "Get cursed by Lydusa when you reach the Bloodless Throne location on Yaesha. Die 15 times. Each time you die while cursed you turn to a statue. Destroy the statue 15 times to get the trait",
+    "Challange": "D627C628-4F497780-F6BC269E-A815E1FC"
   },
   {
     "Id": "Weapon_CubeGun",
@@ -6189,7 +6341,7 @@
     "Id": "Weapon_Scythe",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Melee/Scythe/Scythe/Weapon_Scythe.Weapon_Scythe_C",
     "Type": "weapon",
-    "World": "World_DLC1",
+    "World": "World_Base",
     "Name": "Steel Scythe",
     "Subtype": "Melee Weapon",
     "DropType": "Vendor",
@@ -6233,85 +6385,127 @@
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/Corrupted_Savior/Weapon_CorruptedSavior.Weapon_CorruptedSavior_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Disabled": true
+    "Subtype": "Long Gun",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Crafted By Dwell from Savior weapon"
   },
   {
     "Id": "Weapon_CorruptedCubeGun",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedCubeGun/Weapon_CorruptedCubeGun.Weapon_CorruptedCubeGun_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Disabled": true
+    "Subtype": "Hand Gun",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Crafted By Dwell from Cube Gun weapon"
   },
   {
     "Id": "Weapon_CorruptedNebula",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedNebula/Weapon_CorruptedNebula.Weapon_CorruptedNebula_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Disabled": true
+    "Subtype": "Hand Gun",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Crafted By Dwell from Aphelion weapon"
   },
   {
     "Id": "Weapon_CorruptedSorrow",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedSorrow/Weapon_CorruptedSorrow.Weapon_CorruptedSorrow_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Disabled": true
+    "Subtype": "Hand Gun",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Crafted By Dwell from Sorrow weapon"
   },
   {
     "Id": "Weapon_CorruptedTwistedArbalest",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedTwistedArbalest/Weapon_CorruptedTwistedArbalest.Weapon_CorruptedTwistedArbalest_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Disabled": true
+    "Name": "Corrupted Arbalest",
+    "Subtype": "Long Gun",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Crafted By Dwell from Twisted Arbalest weapon"
   },
   {
     "Id": "Weapon_BasicShovel",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/BasicShovel/Weapon_BasicShovel.Weapon_BasicShovel_C",
     "Type": "weapon",
-    "World": "World_DLC2",
+    "World": "World_Base",
     "Name": "Shovel",
-    "Disabled": true
+    "Subtype": "Melee Weapon",
+    "DropType": "Vendor",
+    "DropReference": "Brabus",
+    "Prerequisite": "AccountAward_FinishCampaign_Survivor",
+    "Note": "Buy from Brabus at Ward 13 after any difficulty playthrough"
   },
   {
     "Id": "Weapon_CrystalStaff",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/CrystalStaff/Weapon_CrystalStaff.Weapon_CrystalStaff_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Subtype": "Melee Weapon",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_RootMadness",
+    "Note": "Found in Infested Abyss location on Yaesha. After clearing out the third Root Nexus, proceed to the next checkpoint and find the item in plain sight nearby"
   },
   {
     "Id": "Weapon_Mirage",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Flail_Mirage/Weapon_Mirage.Weapon_Mirage_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_BlossomingCore",
+    "Subtype": "Melee Weapon",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_LydusaTemple",
+    "Note": "Crafted from Blossoming Core found in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, you need to put Cherished Fracture quest item that you obtain from the zone quest into the golden bowl. This will complete Lydusa quest line and will grant you the material"
   },
   {
     "Id": "Weapon_Monolith",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Monolith/Weapon_Monolith.Weapon_Monolith_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_EyeOfLydusa",
+    "Subtype": "Long Gun",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_Lydusa",
+    "Note": "Crafted from Eye of Lydusa, which is obtained by defeating Lydusa in Bloodless Throne location on Yaesha"
   },
   {
     "Id": "Weapon_Polygun",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Polygun/Weapon_Polygun.Weapon_Polygun_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Subtype": "Long Gun",
+    "DropType": "Location",
+    "DropReference": "The Labyrinth",
+    "Note": "You gonna have to look that one up. The item is the reword for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube"
   },
   {
     "Id": "Weapon_Thorn",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Thorn/Weapon_Thorn.Weapon_Thorn_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_RegurgitatedSpinySac",
+    "Subtype": "Long Gun",
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Crafted from Regurgitated Spiny Sac, found in Ancient Canopy location on Yaesha. From the Glittering Grotto worldstone follow the path up but turn right before reaching Walt to get to the Kuri Kuri nest. Look at the egg in the nest but do not collect it. Once you've reached the Luminous Vale location later, return back to the nest to find the egg hatched, and pick up the item"
   },
   {
     "Id": "Weapon_TrinityCrossbow",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/TrinityCrossbow/Weapon_TrinityCrossbow.Weapon_TrinityCrossbow_C",
     "Type": "weapon",
     "World": "World_DLC2",
-    "Disabled": true
+    "Subtype": "Long Gun",
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Prerequisite": "Amulet_EchoOfTheForest",
+    "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the  Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item"
   },
   {
     "Id": "Engram_Alchemist",
@@ -6440,7 +6634,10 @@
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Engram/Engram_Invoker.Engram_Invoker_C",
     "Type": "engram",
     "World": "World_DLC2",
-    "Disabled": true
+    "Material": "Material_Engram_Invoker",
+    "DropType": "Location",
+    "DropReference": "Ancient Canopy",
+    "Note": "Old Flute is found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. You need get there after having spoken to Lydusa and received her curse. In the sand room there will be two sand hills close to each other. You need to maneuver yourself between them so that you do not get killed by the traps. Then you need to stand in place for about 5 minutes gradually sinking into the sand. In the end you will fall through into the room below and get the Old Flute."
   },
   {
     "Id": "Quest_Item_Matchbook",
@@ -6956,16 +7153,14 @@
     "Id": "Quest_Item_DLC_RootMadness",
     "ProfileId": "/Game/World_DLC2/Quests/Quest_SideD_RootMadness/Items/Quest_Item_DLC_RootMadness.Quest_Item_DLC_RootMadness_C",
     "Type": "quest_item",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Quest_Item_Story_BirdEgg",
     "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_BirdEgg/Quest_Item_Story_BirdEgg.Quest_Item_Story_BirdEgg_C",
     "Type": "quest_item",
     "World": "World_DLC2",
-    "Name": "Kuri Kuri Egg",
-    "Disabled": true
+    "Name": "Kuri Kuri Egg"
   },
   {
     "Id": "Quest_Item_Story_DwellsItem",
@@ -6973,23 +7168,22 @@
     "Type": "quest_item",
     "World": "World_DLC2",
     "Name": "Trinity Memento",
-    "Disabled": true
+    "DropType": "Location",
+    "DropReference": "Luminous Vale"
   },
   {
     "Id": "Quest_Item_Story_LydusaCurse",
     "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_LydusaCurse/Quest_Item_Story_LydusaCurse.Quest_Item_Story_LydusaCurse_C",
     "Type": "quest_item",
     "World": "World_DLC2",
-    "Name": "Lydusa's Curse",
-    "Disabled": true
+    "Name": "Lydusa's Curse"
   },
   {
     "Id": "Quest_Item_Story_McGuffin",
     "ProfileId": "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_McGuffin/Quest_Item_Story_McGuffin.Quest_Item_Story_McGuffin_C",
     "Type": "quest_item",
     "World": "World_DLC2",
-    "Name": "Cherished Fracture",
-    "Disabled": true
+    "Name": "Cherished Fracture"
   },
   {
     "Id": "Material_RootGanglia",
@@ -7263,43 +7457,38 @@
     "Id": "Material_ForgeEmber",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/MiniBoss/ForgeEmber/Material_ForgeEmber.Material_ForgeEmber_C",
     "Type": "material",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Material_PallidLodestone",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/MiniBoss/PallidLodestone/Material_PallidLodestone.Material_PallidLodestone_C",
     "Type": "material",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Material_CeramicFlask",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/World/CeramicFlask/Material_CeramicFlask.Material_CeramicFlask_C",
     "Type": "material",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Material_RegurgitatedSpinySac",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/World/RegurgitatedSpinySack/Material_RegurgitatedSpinySac.Material_RegurgitatedSpinySac_C",
     "Type": "material",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Material_BlossomingCore",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/WorldBoss/BlossomingCore/Material_BlossomingCore.Material_BlossomingCore_C",
     "Type": "material",
-    "World": "World_DLC2",
-    "Disabled": true
+    "World": "World_DLC2"
   },
   {
     "Id": "Material_EyeOfLydusa",
     "ProfileId": "/Game/World_DLC2/Items/CraftingMaterial/WorldBoss/EyeOfLydusa/Material_EyeOfLydusa.Material_EyeOfLydusa_C",
     "Type": "material",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Eye of Lydusa"
   },
   {
     "Id": "Material_Engram_Alchemist",
@@ -7390,7 +7579,7 @@
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Engram/Material_Engram_Invoker.Material_Engram_Invoker_C",
     "Type": "material",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Old Flute"
   },
   {
     "Id": "Material_ShinningEssenceEcho",
@@ -8260,7 +8449,7 @@
     "Id": "Quest_Boss_Ravager",
     "Type": "event",
     "World": "World_Jungle",
-    "Name": "Corrupted Ragager",
+    "Name": "Corrupted Ravager",
     "Subtype": "boss",
     "EventLocation": "Ravager's Lair"
   },
@@ -8276,7 +8465,9 @@
     "Id": "Quest_Boss_Lydusa",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Lydusa",
+    "Subtype": "boss",
+    "EventLocation": "The Bloodless Throne"
   },
   {
     "Id": "Quest_Injectable_FieryGraveyard",
@@ -8513,19 +8704,22 @@
     "Id": "Quest_Injectable_Crypt_DLC",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "The Treasure Room",
+    "Subtype": "injectable"
   },
   {
     "Id": "Quest_Injectable_Island_DLC",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Does' Groove",
+    "Subtype": "injectable"
   },
   {
     "Id": "Quest_Injectable_Ziggurat_DLC",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Moon Room",
+    "Subtype": "injectable"
   },
   {
     "Id": "Quest_Miniboss_Abomination",
@@ -8643,13 +8837,17 @@
     "Id": "Quest_Miniboss_Kiln",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "Cinderclad Monolith",
+    "Subtype": "miniboss",
+    "EventLocation": "Deserted Atelier"
   },
   {
     "Id": "Quest_Miniboss_ShiftingSoldier",
     "Type": "event",
     "World": "World_DLC2",
-    "Disabled": true
+    "Name": "The Stonewarden",
+    "Subtype": "miniboss",
+    "EventLocation": "Earthen Coliseum"
   },
   {
     "Id": "Quest_OverworldPOI_ClockTower",
@@ -8890,24 +9088,21 @@
     "Type": "event",
     "World": "World_DLC2",
     "Subtype": "dungeon",
-    "EventLocation": "Goddess's Rest",
-    "Disabled": true
+    "EventLocation": "Goddess's Rest"
   },
   {
     "Id": "Quest_SideD_RootMadness",
     "Type": "event",
     "World": "World_DLC2",
     "Subtype": "dungeon",
-    "EventLocation": "Infested Abyss",
-    "Disabled": true
+    "EventLocation": "Infested Abyss"
   },
   {
     "Id": "Quest_SideD_TombRaid",
     "Type": "event",
     "World": "World_DLC2",
     "Subtype": "dungeon",
-    "EventLocation": "Proving Grounds",
-    "Disabled": true
+    "EventLocation": "Proving Grounds"
   },
   {
     "Id": "Char_Forgotten_Jumper_Aberration",
@@ -9462,17 +9657,7 @@
     "World": "World_DLC2",
     "Name": "Protector of the Grove",
     "SpawnType": "Injectable",
-    "SpawnReference": "Quest_Injectable_Island_DLC",
-    "Disabled": true
-  },
-  {
-    "Id": "Char_Deer_Aberration",
-    "Type": "aberration",
-    "World": "World_DLC2",
-    "Name": "Deer_Aberration",
-    "SpawnType": "Injectable",
-    "SpawnReference": "Quest_Injectable_Island_DLC",
-    "Disabled": true
+    "SpawnReference": "Quest_Injectable_Island_DLC"
   },
   {
     "Id": "Char_LS_Howitzer_Aberration",
@@ -9480,8 +9665,7 @@
     "World": "World_DLC2",
     "Name": "Stonewing Lurker",
     "SpawnType": "Location",
-    "SpawnReference": "Luminous Vale",
-    "Disabled": true
+    "SpawnReference": "Luminous Vale"
   },
   {
     "Id": "Char_LS_Kiln_Aberration",
@@ -9489,8 +9673,7 @@
     "World": "World_DLC2",
     "Name": "Charred Sentry",
     "SpawnType": "Location",
-    "SpawnReference": "Ancient Canopy",
-    "Disabled": true
+    "SpawnReference": "Ancient Canopy"
   },
   {
     "Id": "Char_LS_SS_Pickaxe_Aberration",
@@ -9498,8 +9681,7 @@
     "World": "World_DLC2",
     "Name": "The Fractured",
     "SpawnType": "SideD",
-    "SpawnReference": "Quest_SideD_TombRaid",
-    "Disabled": true
+    "SpawnReference": "Quest_SideD_TombRaid"
   },
   {
     "Id": "Char_Pan_NobleSwordsman_Aberration",
@@ -9507,8 +9689,7 @@
     "World": "World_DLC2",
     "Name": "The Bloodless Heir ",
     "SpawnType": "SideD",
-    "SpawnReference": "Quest_SideD_LydusaTemple",
-    "Disabled": true
+    "SpawnReference": "Quest_SideD_LydusaTemple"
   },
   {
     "Id": "Char_Pan_Sightline_Aberration",
@@ -9516,8 +9697,7 @@
     "World": "World_DLC2",
     "Name": "The Emissary",
     "SpawnType": "SideD",
-    "SpawnReference": "Quest_SideD_RootMadness",
-    "Disabled": true
+    "SpawnReference": "Quest_SideD_RootMadness"
   },
   {
     "Id": "AccountAward_FinishCampaign_Survivor",
@@ -9637,7 +9817,6 @@
     "Id": "Material_AwardTrait_Resolute",
     "Type": "award",
     "Name": "Break 15 Statues",
-    "Challange": "D627C628-4F497780-F6BC269E-A815E1FC",
-    "Disabled": true
+    "Challange": "D627C628-4F497780-F6BC269E-A815E1FC"
   }
 ]

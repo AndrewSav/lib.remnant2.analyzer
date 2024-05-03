@@ -80,6 +80,11 @@ public class Location
                 result.Add("Brabus");
                 result.Add("Norah");
             }
+
+            if (Name == "Ancient Canopy/Luminous Vale")
+            {
+                result.Add("Walt");
+            }
             return result;
         }
     }

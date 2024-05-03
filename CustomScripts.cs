@@ -124,5 +124,8 @@ internal static class CustomScripts
         //Weapon_Anguish
         //Ring_BandOfTheFanatic - it is not possible to get it unless you *already* have the ritualist set
         //Amulet_ParticipationMedal
+        //Relic_Consumable_ProfaneHeart - has to be in a campaign (not adventure) with Infested Abyss
+        //Amulet_EchoOfTheForest - might need to check the number of trinity memento pieces already handed?
+
     };
 }

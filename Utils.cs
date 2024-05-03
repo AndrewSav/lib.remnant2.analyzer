@@ -87,6 +87,7 @@ public class Utils
             "^Material_TomeOfKnowledge$",
             "^Perk_.*",
             "^PrimePerk_.*",
+            "^Quest_Hidden_Item_.*",
             "^RelicFragment_.*",
             "^Skill_.*",
             "^SkillTrait_.*",
