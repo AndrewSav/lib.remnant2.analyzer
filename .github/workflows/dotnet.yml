@@ -28,7 +28,7 @@ jobs:
         TAG: ${{ github.ref_name }}
       run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV      
     - name: Build
-      run: dotnet build -c Release --no-restore /p:Version=$VERSION
+      run: dotnet build lib.remnant2.analyzer.csproj -c Release --no-restore /p:Version=$VERSION
     #- name: Pack
     #  run: dotnet pack
     - name: Push
