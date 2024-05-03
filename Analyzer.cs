@@ -153,7 +153,7 @@ public partial class Analyzer
         }
     }
 
-    public static Dataset Analyze(string? folderPath = null)
+    public static Dataset Analyze(string? folderPath = null, Dataset? oldDataset = null)
     {
         Stopwatch sw = Stopwatch.StartNew();
         Dataset result = new()
@@ -187,6 +187,22 @@ public partial class Analyzer
             {
                 // This can happen after initial character creation usually it is overwritten
                 // with a proper save immediately after
+                continue;
+            }
+
+            string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
+            DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
+
+            Character? oldCharacter = null;
+            if (oldDataset != null )
+            {
+                oldCharacter = oldDataset.Characters.SingleOrDefault(x => x.Index == charSlotInternal);
+            }
+
+            if (oldCharacter != null && oldCharacter.SaveDateTime == saveDateTime)
+            {
+                result.Characters.Add(oldCharacter);
+                result.DebugPerformance.Add($"Old character {charSlotInternal} loaded", sw.Elapsed);
                 continue;
             }
 
@@ -275,14 +291,13 @@ public partial class Analyzer
                 CharacterDataCount = st.Objects.Count
             };
 
-            string savePath = Path.Combine(folder, $"save_{profileNavigator.Lookup(ch).Path[^1].Index}.sav");
-
             result.DebugPerformance.Add($"Character {charSlotInternal} save data location", sw.Elapsed);
 
             SaveFile sf;
             try
             {
                 sf = ReadWithRetry(savePath);
+                saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
             }
             catch (IOException e)
             {
@@ -346,7 +361,8 @@ public partial class Analyzer
                 },
                 Profile = profile,
                 Index = charSlotInternal,
-                ActiveWorldSlot = mode
+                ActiveWorldSlot = mode,
+                SaveDateTime = saveDateTime
             });
             result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
