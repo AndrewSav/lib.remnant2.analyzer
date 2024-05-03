@@ -165,10 +165,14 @@ public partial class Analyzer
 
         string folder = folderPath ?? Utils.GetSteamSavePath();
         string profilePath = Path.Combine(folder, "profile.sav");
+        
 
         SaveFile profileSf = ReadWithRetry(profilePath);
+        result.ProfileSaveFile = profileSf;
 
         Navigator profileNavigator = new(profileSf);
+        result.ProfileNavigator = profileNavigator;
+        
         result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
         ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
         
@@ -362,7 +366,9 @@ public partial class Analyzer
                 Profile = profile,
                 Index = charSlotInternal,
                 ActiveWorldSlot = mode,
-                SaveDateTime = saveDateTime
+                SaveDateTime = saveDateTime,
+                WorldSaveFile = sf,
+                WorldNavigator = navigator
             });
             result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
