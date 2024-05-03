@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.4 (4 May 2024)
+- Add missing prerequisites for some corrupted weapons to the database
+
+
 ## v0.0.3 (3 May 2024)
 
 - Add items from The Forgotten Kingom DLC

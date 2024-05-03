@@ -5241,7 +5241,6 @@
     "World": "World_Base",
     "Coop": true,
     "DropType": "Progression",
-    "Prerequisite": "Material_AwardTrait_Revivalist",
     "Note": "Revive a teammate 15 times",
     "Undetectable": true
   },
@@ -6398,6 +6397,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
+    "Prerequisite": "Weapon_CubeGun",
     "Note": "Crafted By Dwell from Cube Gun weapon"
   },
   {
@@ -6408,6 +6408,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
+    "Prerequisite": "Weapon_Nebula",
     "Note": "Crafted By Dwell from Aphelion weapon"
   },
   {
@@ -6418,6 +6419,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
+    "Prerequisite": "Weapon_Sorrow",
     "Note": "Crafted By Dwell from Sorrow weapon"
   },
   {
@@ -6429,6 +6431,7 @@
     "Subtype": "Long Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
+    "Prerequisite": "Weapon_TwistedArbalest",
     "Note": "Crafted By Dwell from Twisted Arbalest weapon"
   },
   {
