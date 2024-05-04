@@ -2284,7 +2284,7 @@
     "Material": "Material_HexWreath",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Witch",
-    "Note": "Crafted from Hex Wreath droped by Sunken Witch in Sunken Haunt location on Losomn"
+    "Note": "Crafted from Hex Wreath dropped by Sunken Witch in Sunken Haunt location on Losomn"
   },
   {
     "Id": "Mod_KnightGuard",
@@ -2306,7 +2306,7 @@
     "Material": "Material_WretchedSkull",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Impaler",
-    "Note": "Crafted from Wretched Skull droped by Bruin, Blade of The King in Glistering Cloister location on Losomn"
+    "Note": "Crafted from Wretched Skull dropped by Bruin, Blade of The King in Glistering Cloister location on Losomn"
   },
   {
     "Id": "Mod_AbrasiveRounds",
@@ -2316,7 +2316,7 @@
     "Material": "Material_PallidLodestone",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_ShiftingSoldier",
-    "Note": "Crafted from Pallid Lodestone droped by The Stonewarden in Earthen Coliseum location on Yaesha"
+    "Note": "Crafted from Pallid Lodestone dropped by The Stonewarden in Earthen Coliseum location on Yaesha"
   },
   {
     "Id": "Mod_FlyingBombTrap",
