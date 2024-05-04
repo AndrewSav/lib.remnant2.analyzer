@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.5 (unreleased)
+- Add quests to the database, fix "challenge" spelling, 
+- Improve support for looted items detection, when possible
+- Add account awards, achievements, challanges, Cass shop, character level and gender, trait points, time played, difficuly, hardcore to returned data
+- Add ability to hide items that cannot be obtained without rerolling - work in progress
+- Detect which challanges can be achieved without rerolling
+
 ## v0.0.4 (4 May 2024)
 - Add missing prerequisites for some corrupted weapons to the database
 

@@ -13,5 +13,14 @@ public class LootGroup
     // Only events have a drop reference, Location / Vendor / World Drop does not
     public string? EventDropReference;
     public required List<LootItem> Items;
-    public UnknownData Unknown = UnknownData.None;
+    // None - contained in database
+    // WorldDrop - the loot group contains a world drop not in the database
+    // Event - the loot group contains an even not in the database
+    // This determines which column to highlight in RSG World Analyser
+    public UnknownData UnknownMarker = UnknownData.None;
+
+    public override string ToString()
+    {
+        return Name == null ? Type : $"{Name} ({Type})";
+    }
 }

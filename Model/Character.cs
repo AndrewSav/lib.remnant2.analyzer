@@ -24,6 +24,9 @@ public class Character
     // So save it for the client in case it is needed
     // Nullable, so that client could GC it if desired
     public Navigator? WorldNavigator;
+    public required Dataset Dataset;
+
+
 
 
     // Profile string for RSG Analyzer dropdown

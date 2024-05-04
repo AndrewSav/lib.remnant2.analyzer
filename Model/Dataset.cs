@@ -19,4 +19,6 @@ public class Dataset
     // So save it for the client in case it is needed
     // Nullable, so that client could GC it if desired
     public Navigator? ProfileNavigator;
+    public required List<string> AccountAwards;
+
 }

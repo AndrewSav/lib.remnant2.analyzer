@@ -8,6 +8,9 @@ using lib.remnant2.analyzer.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
+using lib.remnant2.saves.IO;
+using lib.remnant2.saves.Model.Memory;
+using System.Buffers.Binary;
 
 namespace lib.remnant2.analyzer;
 
@@ -23,6 +26,14 @@ public partial class Analyzer
         "ring",
         "weapon",
         "engram"
+    ];
+
+    public static string[] Difficulties => [
+        "None",
+        "Survivor",
+        "Veteran",
+        "Nightmare",
+        "Apocalypse"
     ];
 
     public static string[] GetProfileStrings(string? folderPath = null)
@@ -160,22 +171,33 @@ public partial class Analyzer
         {
             Characters = [],
             DebugMessages = [],
-            DebugPerformance = []
+            DebugPerformance = [],
+            AccountAwards = []
         };
 
         string folder = folderPath ?? Utils.GetSteamSavePath();
         string profilePath = Path.Combine(folder, "profile.sav");
         
-
         SaveFile profileSf = ReadWithRetry(profilePath);
         result.ProfileSaveFile = profileSf;
 
+        result.DebugPerformance.Add("Profile loaded", sw.Elapsed);
+
         Navigator profileNavigator = new(profileSf);
         result.ProfileNavigator = profileNavigator;
-        
+
+        result.DebugPerformance.Add("Profile navigator created", sw.Elapsed);
+
         result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
         ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
         
+        Property? accountAwards = profileNavigator.GetProperty("AccountAwards");
+        if (accountAwards != null)
+        {
+            ArrayProperty arr = accountAwards.Get<ArrayProperty>();
+            result.AccountAwards = arr.Items.Select(x => Utils.GetNameFromProfileId(((ObjectProperty)x!).ClassName!)).ToList();
+        }
+
         result.DebugPerformance.Add("Initial load", sw.Elapsed);
 
         for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
@@ -261,7 +283,7 @@ public partial class Analyzer
 
             IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
             IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
-            List<string> invNames = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+            List<string> inventoryIds = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
                 .Select(x => pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"]).ToList();
 
             result.DebugPerformance.Add($"Character {charSlotInternal} inventory names", sw.Elapsed);
@@ -271,7 +293,7 @@ public partial class Analyzer
             result.DebugPerformance.Add($"Character {charSlotInternal} inventory warnings", sw.Elapsed);
 
 
-            List<Dictionary<string, string>> hasMatsItems = mats.Where(x => invNames.Contains(x["Material"])
+            List<Dictionary<string, string>> hasMatsItems = mats.Where(x => inventoryIds.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
 
             result.DebugPerformance.Add($"Character {charSlotInternal} has mats", sw.Elapsed);
@@ -279,11 +301,56 @@ public partial class Analyzer
 
             StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
             SaveData st = (SaveData)cd.Value!;
+            ArrayStructProperty asp = (ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", cd)!.Value!;
+
+            List<ObjectiveProgress> objectives = [];
+            foreach (object? obj in asp.Items)
+            {
+                PropertyBag pb = (PropertyBag)obj!;
+                FGuid objectiveId = pb["ObjectiveID"].Get<FGuid>();
+                int progress = pb["Progress"].Get<int>();
+
+                WriterBase w = new();
+                w.Write(objectiveId);
+
+                uint u1 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[..4]);
+                uint u2 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[4..8]);
+                uint u3 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[8..12]);
+                uint u4 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[12..16]);
+                string uu = $"{u1:X8}-{u2:X8}-{u3:X8}-{u4:X8}";
+
+                //string r1 = BitConverter.ToStringValue(w.ToArray()).Replace("-", "");
+
+                LootItem? objective = ItemDb.GetItemByIdOrDefault(uu);
+                if (objective == null)
+                {
+                    result.DebugMessages.Add($"Character {result.Characters.Count + 1} (save_{charSlotInternal}), unknown objective {uu}");
+                }
+                else
+                {
+                    objectives.Add(new()
+                    {
+                        Id = uu,
+                        Type = objective.Type,
+                        Description = objective.Name,
+                        Progress = progress
+                    });
+                }
+            }
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} has objectives", sw.Elapsed);
+
+
+            var traitRank = profileNavigator.GetProperty("TraitRank", character);
+            var gender = profileNavigator.GetProperty("Gender", character);
+            var characterType = profileNavigator.GetProperty("CharacterType", character);
+            var powerLevel = profileNavigator.GetProperty("PowerLevel", character);
+            var itemLevel = profileNavigator.GetProperty("ItemLevel", character);
+            var lastSavedTraitPoints = profileNavigator.GetProperty("LastSavedTraitPoints", character);
 
             Profile profile = new()
             {
                 Inventory = inventory,
-                Traits = traits,
                 MissingItems = missingItems,
                 HasMatsItems = hasMatsItems,
                 HasFortuneHunter = inventory.Contains(
@@ -292,7 +359,14 @@ public partial class Analyzer
                     "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C"),
                 Archetype = archetype,
                 SecondaryArchetype = secondaryArchetype,
-                CharacterDataCount = st.Objects.Count
+                CharacterDataCount = st.Objects.Count,
+                Objectives = objectives,
+                IsHardcore = characterType != null  && characterType.Get<EnumProperty>().EnumValue.Name == "ERemnantCharacterType::Hardcore",
+                ItemLevel = itemLevel?.Get<int>() ?? -1,
+                LastSavedTraitPoints = lastSavedTraitPoints?.Get<int>() ?? -1,
+                PowerLevel = powerLevel?.Get<int>() ?? -1,
+                TraitRank = traitRank?.Get<int>() ?? -1,
+                Gender = gender != null && gender.Get<EnumProperty>().EnumValue.Name == "EGender::Female" ? "Female" : "Male" 
             };
 
             result.DebugPerformance.Add($"Character {charSlotInternal} save data location", sw.Elapsed);
@@ -314,6 +388,45 @@ public partial class Analyzer
             Navigator navigator = new(sf);
             Property? thaen = navigator.GetProperty("GrowthStage");
 
+            result.DebugPerformance.Add($"Character {charSlotInternal} navigator created", sw.Elapsed);
+
+            float timePlayed = (float)navigator.GetProperty("TimePlayed")!.Value!;
+            TimeSpan tp = TimeSpan.FromSeconds(timePlayed);
+
+            Actor cass = navigator.GetActor("Character_NPC_Cass_C")!;
+
+            List<LootItem> cassLoot = [];
+            List<Component> inventoryList = navigator.FindComponents("Inventory", cass);
+            if (inventoryList is { Count: > 0 })
+            {
+                PropertyBag pb = inventoryList[0].Properties!;
+                ArrayStructProperty aspItems = (ArrayStructProperty)pb["Items"].Value!;
+
+                foreach (object? o in aspItems.Items)
+                {
+                    PropertyBag itemProperties = (PropertyBag)o!;
+
+                    Property inventoryItem = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
+                    Property inventoryHidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
+
+                    bool hidden = (byte)inventoryHidden.Value! != 0;
+                    if (hidden) continue;
+                    string longName = ((ObjectProperty)inventoryItem.Value!).ClassName!;
+                    LootItem? lootItem= ItemDb.GetItemByProfileId(longName);
+                    if (lootItem == null)
+                    {
+                        if (!Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(longName))) 
+                        {
+                            result.DebugMessages.Add($"Character {result.Characters.Count + 1} (save_{charSlotInternal}), unknown Cass item {longName}");
+                        }
+                        continue;
+                    }
+                    cassLoot.Add(lootItem);
+                }
+            }
+
+            result.DebugPerformance.Add($"Character {charSlotInternal} Cass loot read", sw.Elapsed);
+
             Property? qcl = navigator.GetProperty("QuestCompletedLog");
             List<string> questCompletedLog = [];
             if (qcl != null)
@@ -334,7 +447,7 @@ public partial class Analyzer
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign loaded", sw.Elapsed);
             WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign inventory warnings", sw.Elapsed);
-            List<string> debugMessages = FillLootGroups(campaign, profile);
+            List<string> debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups", sw.Elapsed);
             ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
@@ -346,7 +459,7 @@ public partial class Analyzer
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure loaded", sw.Elapsed);
                 WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure inventory warnings", sw.Elapsed);
-                debugMessages = FillLootGroups(adventure, profile);
+                debugMessages = FillLootGroups(adventure, profile, result.AccountAwards);
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups", sw.Elapsed);
                 ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
@@ -354,22 +467,28 @@ public partial class Analyzer
 
             Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
 
-            result.Characters.Add(new()
+            Character c = new()
             {
                 Save = new()
                 {
                     Campaign = campaign,
                     Adventure = adventure,
                     QuestCompletedLog = questCompletedLog,
-                    HasTree = thaen != null
+                    HasTree = thaen != null,
+                    Playtime = tp,
+                    CassShop = cassLoot
                 },
                 Profile = profile,
                 Index = charSlotInternal,
                 ActiveWorldSlot = mode,
                 SaveDateTime = saveDateTime,
                 WorldSaveFile = sf,
-                WorldNavigator = navigator
-            });
+                WorldNavigator = navigator,
+                Dataset = result
+            };
+            result.Characters.Add(c);
+            campaign.Character = c;
+            if (adventure != null) adventure.Character = c;
             result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
 
@@ -381,7 +500,7 @@ public partial class Analyzer
         List<string> unknownInventoryItems = inventory
             .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
             .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
-            .Select(x => $"Unknown item: {x}")
+            .Select(x => $"UnknownMarker item: {x}")
             .ToList();
         if (unknownInventoryItems.Count > 0)
         {
@@ -419,9 +538,13 @@ public partial class Analyzer
         List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
+        int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
+        TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
         RolledWorld rolledWorld = new()
         {
-            QuestInventory = questInventory
+            QuestInventory = questInventory,
+            Difficulty = Difficulties[difficulty],
+            Playtime = tp,
         };
         rolledWorld.Zones =
         [
@@ -448,9 +571,14 @@ public partial class Analyzer
         List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
+        var difficulty = navigator.GetProperty("Difficulty", adventureMeta)?.Get<int>() ?? 1;
+        TimeSpan? tp = navigator.GetProperty("PlayTime", adventureMeta)?.Get<TimeSpan>();
+
         RolledWorld rolledWorld = new()
         {
-            QuestInventory = questInventory
+            QuestInventory = questInventory,
+            Difficulty = Difficulties[difficulty],
+            Playtime = tp,
         };
         rolledWorld.Zones =
         [
@@ -491,6 +619,9 @@ public partial class Analyzer
 
     private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent,Navigator navigator)
     {
+
+        string? story = null;
+        bool? finished = false;
         List<Location> result = [];
         List<Actor> actors = zoneActors.Where(x =>
                 x.GetZoneActorProperties()!["QuestID"].Get<int>() == world &&
@@ -612,7 +743,8 @@ public partial class Analyzer
                 WorldStones = waypoints,
                 Category = category,
                 Connections = GetConnectsTo(connectsTo).ToList(),
-                LootGroups = []
+                LootGroups = [],
+                LootedMarkers = []
             };
             
 
@@ -622,6 +754,7 @@ public partial class Analyzer
                 // Story, Boss, Miniboss, SideD
                 events.Remove(e);
                 string ev = e.ToString()!;
+                l.LootedMarkers.AddRange(GetLootedMarkers(e));
                 Property? qs = navigator.GetProperty("QuestState", e);
 
                 if (ev.EndsWith("_C"))
@@ -641,10 +774,12 @@ public partial class Analyzer
 
                 if (ev.StartsWith("Quest_Story"))
                 {
+                    story = ev;
+                    finished = qs != null && qs.ToStringValue() == "EQuestState::Complete";
                     continue;
                 }
 
-                l.DropReferences.Add(new(){Name=ev,Related = GetRelated(navigator,e),IsDeleted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
+                l.DropReferences.Add(new(){Name=ev,Related = GetRelated(navigator,e),IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
             }
 
             foreach (Actor e in new List<Actor>(events)
@@ -653,9 +788,12 @@ public partial class Analyzer
                          .Where(x => !zoneActors.Select(y => y.GetZoneActorProperties()!["QuestID"].Get<int>())
                              .Contains(x.GetFirstObjectProperties()!["ID"].Get<int>())))
             {
+
                 // Trait, Simulacrum, Injectable, Ring, Amulet, 
                 events.Remove(e);
                 string ev = e.ToString()!;
+                l.LootedMarkers.AddRange(GetLootedMarkers(e));
+
                 if (ev.EndsWith("_C"))
                 {
                     ev = ev[..^"_C".Length];
@@ -666,38 +804,79 @@ public partial class Analyzer
                     ev = ev[..^"_V2".Length];
                 }
 
+                // this works for Ring, Amulet, Trait, Simulacrum
                 Component? cmp = navigator.GetComponent("Loot", e);
                 Property? ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
 
                 if (ev.StartsWith("Quest_Event_Trait"))
                 {
                     l.TraitBook = true;
-                    l.TraitBookDeleted = ds != null && ds.Get<byte>() == 1;
+                    l.TraitBookLooted = ds != null && ds.Get<byte>() == 1;
                     continue;
                 }
 
                 if (ev.Contains("Simulacrum"))
                 {
                     l.Simulacrum = true;
-                    l.SimulacrumDeleted = ds != null && ds.Get<byte>() == 1;
+                    l.SimulacrumLooted = ds != null && ds.Get<byte>() == 1;
                     continue;
                 }
 
                 if (ev.StartsWith("Quest_Event_"))
                 {
-                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsDeleted = ds != null && ds.Get<byte>() == 1 });
+                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
                     continue;
                 }
 
-                l.DropReferences.Add(new(){Name = ev, Related = GetRelated(navigator, e), IsDeleted = ds != null && ds.Get<byte>()==1});
+                l.DropReferences.Add(new(){Name = ev, Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>()==1});
 
             }
 
             result.Add(l);
         }
 
-        return new Zone(zoneParent) { Locations = result };
+        Zone zone = new Zone(zoneParent) { Locations = result };
+        if (finished.HasValue) zone.SetFinished(finished.Value);
+        if (story != null) zone.SetStoryId(story);
+        return zone;
 
+    }
+
+    private static List<LootedMarker> GetLootedMarkers(Actor ev)
+    {
+        List<LootedMarker> result = [];
+        foreach (Component c in ev.Archive.Objects[0].Components!)
+        {
+            if (c.Properties == null || !c.Properties.Contains("Spawns")) continue;
+            Property p = c.Properties["Spawns"];
+            ArrayStructProperty asp = p.Get<ArrayStructProperty>();
+            foreach (object? i in asp.Items)
+            {
+                PropertyBag pb = (PropertyBag)i!;
+                bool isDestroyed = pb.Contains("Destroyed") && pb["Destroyed"].Get<Byte>() == 1;
+                pb = (PropertyBag)pb["SpawnEntry"].Get<StructProperty>().Value!;
+                string type = pb["Type"].Get<EnumProperty>().EnumValue.Name;
+                if (type != "ESpawnType::Item") continue;
+                if (pb["ActorBP"].Value == null) continue;
+                string profileId = pb["ActorBP"].Get<string>();
+
+                if (Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(profileId)))
+                {
+                    continue;
+                }
+                ArrayProperty ap = pb["SpawnPointTags"].Get<ArrayProperty>();
+                string[] spt = ap.Items.Select(x => ((FName)x!).Name).ToArray();
+                result.Add(new()
+                {
+                    IsLooted = isDestroyed,
+                    ProfileId = profileId,
+                    SpawnPointTags = spt,
+                    Event = ev.ToString()!
+                });
+            }
+        }
+
+        return result;
     }
 
     private static List<string> GetRelated(Navigator navigator, Actor e)
@@ -736,7 +915,7 @@ public partial class Analyzer
         return save;
     }
 
-    private static List<string> FillLootGroups(RolledWorld world, Profile profile)
+    private static List<string> FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
     {
         List<string> debugMessages = [];
         // Add items to locations
@@ -756,7 +935,8 @@ public partial class Analyzer
                     LootGroups = [],
                     Name = "Ancient Canopy/Luminous Vale",
                     WorldDrops = [],
-                    WorldStones = []
+                    WorldStones = [],
+                    LootedMarkers = []
                 });
             }
             
@@ -796,7 +976,7 @@ public partial class Analyzer
                             EventDropReference = dropReference.Name,
                             Type = "unknown event",
                             Name = dropReference.Name,
-                            Unknown = UnknownData.Event
+                            UnknownMarker = UnknownData.Event
                         };
                         l.LootGroups.Add(lg);
                         continue;
@@ -844,7 +1024,7 @@ public partial class Analyzer
                     {
                         Type = "World Drop",
                         Items = worldDrops,
-                        Unknown = unknown,
+                        UnknownMarker = unknown,
                         Name = worldDrops.Count > 1 ? "Multiple" : worldDrops[0].Name
                     };
                     l.LootGroups.Add(lg);
@@ -864,6 +1044,31 @@ public partial class Analyzer
             }
         }
 
+        // Process Looted Markers
+        foreach (Zone zz in world.AllZones)
+        {
+            foreach (Location l in zz.Locations)
+            {
+                foreach (LootedMarker m in l.LootedMarkers)
+                {
+                    LootItem? li = ItemDb.GetItemByProfileId(m.ProfileId);
+                    if (li == null)
+                    {
+                        debugMessages.Add($"Looted marker not found in database: {m.ProfileId}");
+                        continue;
+                    }
+
+                    foreach (LootItem item in l.LootGroups.SelectMany(x => x.Items))
+                    {
+                        if (item.Item["Id"] == li.Item["Id"])
+                        {
+                            item.IsLooted = item.IsLooted || li.IsLooted;
+                        }
+                    }
+                }
+            }
+        }
+
         //Mark items that cannot be obtained because no prerequisite
         foreach (Zone zz in world.AllZones)
         {
@@ -873,25 +1078,23 @@ public partial class Analyzer
                 {
                     foreach (LootItem i in new List<LootItem>(lg.Items))
                     {
-                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite)
-                            // temporary ignore new prerequisite types
-                            // TODO: process new prerequisite types properly
-                            && !prerequisite.StartsWith("AccountAward")
-                            && !prerequisite.StartsWith("Engram")
-                            && !prerequisite.StartsWith("Material_AwardTrait"
-                                )
-
-                            )
+                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
                         {
                             List<string> mm = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
 
                             bool Check(string cur)
                             {
-                                string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
+                                if (cur.StartsWith("AccountAward_"))
+                                {
+                                    return accountAwards.Contains(cur); // or can get
 
-                                return world.CanGetItem(cur) || profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) ||
-                                       world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
+                                }
+
+                                string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
+                                return world.CanGetItem(cur)
+                                       || profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant())
+                                       || world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
                             }
 
                             (bool, int) Term(int index) // term => word ',' term | word

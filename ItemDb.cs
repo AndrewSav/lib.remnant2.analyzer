@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace lib.remnant2.analyzer;
 
-internal class ItemDb
+public class ItemDb
 {
     private ItemDb()
     {
@@ -74,6 +74,14 @@ internal class ItemDb
         }
         return result;
     }
+    public static LootItem? GetItemByProfileId(string id)
+    {
+        Dictionary<string, string>? item = Db.SingleOrDefault(x => x.ContainsKey("ProfileId") && string.Compare(x["ProfileId"],id,StringComparison.InvariantCultureIgnoreCase) == 0);
+        return item == null ? null : new LootItem
+        {
+            Item = item
+        };
+    }
     public static LootItem GetItemById(string id)
     {
         return new LootItem
@@ -84,13 +92,25 @@ internal class ItemDb
 
     }
 
+    public static LootItem? GetItemByIdOrDefault(string id)
+    {
+        var item = Db.SingleOrDefault(x =>
+            x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id);
+
+        return item == null ? null : new LootItem
+        {
+            Item = item
+        };
+
+    }
+
     public static LootItem GetItemById(DropReference dr)
     {
         return new LootItem
         {
             Item = Db.Single(x =>
                 x["Id"] == dr.Name || x.ContainsKey("EventId") && x["EventId"] == dr.Name),
-            IsDeleted = dr.IsDeleted
+            IsLooted = dr.IsLooted
         };
     }
 
@@ -111,6 +131,6 @@ internal class ItemDb
     {
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"] == dropReference.Name
-                        && x["DropType"] == dropType).Select(x => new LootItem { Item = x, IsDeleted = dropReference.IsDeleted}).ToList();
+                        && x["DropType"] == dropType).Select(x => new LootItem { Item = x, IsLooted = dropReference.IsLooted}).ToList();
     }
 }

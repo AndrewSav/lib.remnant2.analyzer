@@ -69,6 +69,7 @@ public class Utils
             "^Armor_Gloves_Nude$",
             "^Armor_Legs_Nude$",
             "^Consumable_.*",
+            "^GemContainer_.*",
             "^Item_DragonHeartUpgrade$",
             "^Item_Flashlight$",
             "^Item_HiddenContainer_.*",
@@ -95,5 +96,10 @@ public class Utils
         ];
         Regex r = new(string.Join('|',patterns));
         return r.IsMatch(item);
+    }
+
+    public static string FormatPlaytime(TimeSpan? tp)
+    {
+        return tp.HasValue ? $"{(int)tp.Value.TotalHours}:{tp.Value.Minutes:D2}:{tp.Value.Seconds:D2}" : "Unknown";
     }
 }

@@ -1,12 +1,14 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace lib.remnant2.analyzer.Model;
 
+[DebuggerDisplay("{Name}")]
 public partial class LootItem
 {
     public required Dictionary<string,string> Item;
     public bool IsPrerequisiteMissing = false;
-    public bool IsDeleted = false;
+    public bool IsLooted = false;
 
     public virtual string Name
     {
@@ -21,6 +23,8 @@ public partial class LootItem
     }
 
     public string Type => Item["Type"].Replace("engram", "archetype");
+    // ReSharper disable once UnusedMember.Global
+    // Used by WPF designed
     public string ItemNotes => Item.TryGetValue("Note", out string? value) ? value : string.Empty;
 
     [GeneratedRegex("(?<!^)(?=[A-Z])")]
