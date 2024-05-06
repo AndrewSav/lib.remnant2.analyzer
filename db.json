@@ -9811,18 +9811,6 @@
     "Challenge": "D8479145-44C2D683-74BE74A1-ADDF77F8"
   },
   {
-    "Id": "Material_AwardTrait_Revivalist",
-    "Type": "award",
-    "Name": "Revive Allies",
-    "Challenge": "BCD29B16-4AD4F664-467B11B8-40B71EC6"
-  },
-  {
-    "Id": "Material_AwardTrait_Resolute",
-    "Type": "award",
-    "Name": "Break 15 Statues",
-    "Challenge": "D627C628-4F497780-F6BC269E-A815E1FC"
-  },
-  {
     "Id": "Quest_MainCampaign",
     "Type": "quest",
     "World": "World_Base",

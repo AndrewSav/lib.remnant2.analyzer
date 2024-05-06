@@ -1,11 +1,14 @@
 # Changelog
 
-## v0.0.5 (unreleased)
+## v0.0.6 (unreleased)
+- Add ability to hide items that cannot be obtained without rerolling - work in progress
+- Detect which challanges can be achieved without rerolling  - work in progress
+
+## v0.0.5 (6 May 2024)
 - Add quests to the database, fix "challenge" spelling, 
 - Improve support for looted items detection, when possible
 - Add account awards, achievements, challanges, Cass shop, character level and gender, trait points, time played, difficuly, hardcore to returned data
-- Add ability to hide items that cannot be obtained without rerolling - work in progress
-- Detect which challanges can be achieved without rerolling
+- Split up the huge analyzer file into several files grouping up functions in similar areas, also broke down the huge analyzer method to smaller chunks
 
 ## v0.0.4 (4 May 2024)
 - Add missing prerequisites for some corrupted weapons to the database

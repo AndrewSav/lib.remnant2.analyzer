@@ -1,27 +1,27 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using lib.remnant2.analyzer.Model;
 
 namespace lib.remnant2.analyzer;
 
 internal static class CustomScripts
 {
-    public static Dictionary<string, Func<JArray, List<string>, bool>> Scripts = new()
+    public static Dictionary<string, Func<RolledWorld, bool>> Scripts = new()
     {
         {
-            "Amulet_GoldenRibbon", (_, _) =>
+            "Amulet_GoldenRibbon", (_) =>
             {
                 // if in Gilded Chambers or Council Chamber
                 return true; 
             }
         },
         {
-            "Amulet_SilverRibbon", (_, _) =>
+            "Amulet_SilverRibbon", (_) =>
             {
                 // If in Shattered Gallery or The Great Hall
                 return true;
             }
         },
         {
-            "Engram_Archon", (_, _) =>
+            "Engram_Archon", (_) =>
             {
                 // In Campaign
                 // Has or can get:
@@ -46,21 +46,21 @@ internal static class CustomScripts
             }
         },
         {
-            "Ring_BisectedRing", (_, _) =>
+            "Ring_BisectedRing", (_) =>
             {
                 // Same as archon
                 return true;
             }
         },
         {
-            "Amulet_GunfireSecurityLanyard", (_, _) =>
+            "Amulet_GunfireSecurityLanyard", (_) =>
             {
                 // Same as archon
                 return true;
             }
         },
         {
-            "Relic_Consumable_QuiltedHeart", (_, _) =>
+            "Relic_Consumable_QuiltedHeart", (_) =>
             {
                 // Should have 6 of the 12 following quests in the quest completed log
 
@@ -81,7 +81,7 @@ internal static class CustomScripts
             }
         },
         {
-            "Relic_Consumable_RipenedHeart", (_, _) =>
+            "Relic_Consumable_RipenedHeart", (_) =>
             {
                 // Has The Widow's Court location (for Thaen seed)
                 // Or should already have planted the seed
@@ -89,7 +89,7 @@ internal static class CustomScripts
             }
         },
         {
-            "Relic_Consumable_VoidHeart", (_, _) =>
+            "Relic_Consumable_VoidHeart", (_) =>
             {
                 // Has Sentinel's Keep location
                 // I wonder if we should inject Alepsis-Taura location in this case?
@@ -97,14 +97,14 @@ internal static class CustomScripts
             }
         },
         {
-            "Ring_DowngradedRing", (_, _) =>
+            "Ring_DowngradedRing", (_) =>
             {
                 // Has Sentinel's Keep location
                 return true;
             }
         },
         {
-            "Weapon_CrescentMoon", (_, _) =>
+            "Weapon_CrescentMoon", (_) =>
             {
                 // Has Losomn (+ the dream catcher per-requisite)
                 // I wonder if we should inject it into either Beatific Palace or Nimue's retreat
@@ -115,7 +115,7 @@ internal static class CustomScripts
             // Armor_Gloves_CrimsonGuard
             // Armor_Head_CrimsonGuard
             // Armor_Legs_CrimsonGuard
-            "Armor_Body_CrimsonGuard", (_, _) =>
+            "Armor_Body_CrimsonGuard", (_) =>
             {
                 // Has Gilded Chambers in Losomn OTK
                 return true;
@@ -126,6 +126,64 @@ internal static class CustomScripts
         //Amulet_ParticipationMedal
         //Relic_Consumable_ProfaneHeart - has to be in a campaign (not adventure) with Infested Abyss
         //Amulet_EchoOfTheForest - might need to check the number of trinity memento pieces already handed?
+        {
+            "AccountAward_FinishCampaign_Survivor", world => world.IsCampaign()
+        },
+        {
+            "AccountAward_FinishCampaign_Veteran", world => world.IsCampaign() && Analyzer.Difficulties.ToList().FindIndex(x => x == world.Difficulty) > 1
+        },
+        {
+            "AccountAward_FinishCampaign_Nightmare", world => world.IsCampaign() && Analyzer.Difficulties.ToList().FindIndex(x => x == world.Difficulty) > 2
+        },
+        {
+            "AccountAward_FinishCampaign_Apocalypse", world => world.IsCampaign() && Analyzer.Difficulties.ToList().FindIndex(x => x == world.Difficulty) > 3
+        },
+        {
+            "AccountAward_FinishCampaign_Hardcore", world => world.IsCampaign() && world.Character.Profile.IsHardcore
+        },
+        {
+            "AccountAward_FinishCampaign_Hardcore_Veteran", world => world.IsCampaign() && world.Character.Profile.IsHardcore && Analyzer.Difficulties.ToList().FindIndex(x => x == world.Difficulty) > 1
+        },
+        {
+            "AccountAward_Complete5Biomes", world => AccountAwardCompleteBiomes(world, "AccountAward_Complete5Biomes")
+        },
+        {
+            "AccountAward_Complete15Biomes", world => AccountAwardCompleteBiomes(world, "AccountAward_Complete15Biomes")
+        },
+        {
+            "AccountAward_Complete30Biomes", world => AccountAwardCompleteBiomes(world, "AccountAward_Complete30Biomes")
+        },
+        {
+            "AccountAward_DefeatXWorldBosses", world => AccountAwardCompleteBiomes(world, "AccountAward_DefeatXWorldBosses")
+        },
+        {
+            "AccountAward_HardcoreYaesha", world => world.Character.Profile.IsHardcore && world.Zones.Any(x=>x.Name == "Yaesha")
+        },
+        {
+            "AccountAward_HardcoreLosomn", world => world.Character.Profile.IsHardcore && world.Zones.Any(x=>x.Name == "Losomn")
+        },
+        {
+            "AccountAward_HardcoreNerud", world => world.Character.Profile.IsHardcore && world.Zones.Any(x=>x.Name == "N'Erud")
+        },
+        {
+            "AccountAward_HardcoreLabyrinth", world => world.Character.Profile.IsHardcore && world.Zones.Any(x=>x.Name == "Labyrinth")
+        },
+        {
+            "AccountAward_DefeatAllBosses", world =>
+            {
+                string[] challengeIds = ItemDb.GetItemById("AccountAward_DefeatAllBosses").Item["Challenge"].Split(',').Select(x => x.Trim()).ToArray();
+                return world.Character.Profile.IsHardcore && world.Zones.Any(x => x.Name == "Labyrinth");
+            }
+        },
 
     };
+
+    public static bool AccountAwardCompleteBiomes(RolledWorld world, string accountAward)
+    {
+        string challengeId = ItemDb.GetItemById(accountAward).Item["Challenge"];
+        int progress = world.Character.Profile.Objectives.Single(x => x.Id == challengeId).Progress;
+        int challengeTarget = int.Parse(ItemDb.GetItemById(challengeId).Item["ChallengeCount"]);
+        int canDo = world.Zones.Count(x => x is { Finished: false, CompletesBiome: true });
+        return progress + canDo >= challengeTarget;
+    }
 }

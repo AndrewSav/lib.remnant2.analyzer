@@ -5,9 +5,6 @@ using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Navigation;
 using lib.remnant2.analyzer.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Reflection;
 using lib.remnant2.saves.IO;
 using lib.remnant2.saves.Model.Memory;
 using System.Buffers.Binary;
@@ -16,6 +13,11 @@ namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
+    [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
+    private static partial Regex RegexArchetype();
+    [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
+    private static partial Regex RegexPrerequisite();
+
     public static string[] InventoryTypes =>
     [
         "amulet",
@@ -36,137 +38,10 @@ public partial class Analyzer
         "Apocalypse"
     ];
 
-    public static string[] GetProfileStrings(string? folderPath = null)
-    {
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        string profilePath = Path.Combine(folder, "profile.sav");
-
-        List<string> result = [];
-
-        SaveFile profileSf = ReadWithRetry(profilePath);
-        ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Properties.Single(x => x.Key == "Characters").Value.Value!;
-        for (int index = 0; index < ap.Items.Count; index++)
-        {
-            object? item = ap.Items[index];
-            ObjectProperty ch = (ObjectProperty)item!;
-            if (ch.ClassName == null) continue;
-            UObject character = ch.Object!;
-
-            string? archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value.ToStringValue();
-            string? secondaryArchPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
-
-            Regex rArchetype = RegexArchetype();
-            string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
-            string secondaryArchetype = rArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
-
-            Property? characterData = character.Properties!.Properties.SingleOrDefault(x => x.Key == "CharacterData").Value;
-
-            int objectCount = 0;
-            // Can be null after initial character creation usually it is overwritten
-            // with a proper save immediately after
-            if (characterData != null) 
-            {
-                objectCount = ((SaveData)((StructProperty)characterData.Value!).Value!).Objects.Count;
-            }
-
-            result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({objectCount})");
-            
-        }
-        return [.. result];
-    }
-
-    public static string GetProfileStringCombined(string? folderPath = null)
-    {
-        return string.Join(", ", GetProfileStrings(folderPath));
-    }
-
-    public class IgnorePropertiesResolver(IEnumerable<string> propNamesToIgnore) : DefaultContractResolver
-    {
-        private readonly HashSet<string> _ignoreProps = [..propNamesToIgnore];
-
-        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
-        {
-            JsonProperty property = base.CreateProperty(member, memberSerialization);
-            if (_ignoreProps.Contains(property.PropertyName!))
-            {
-                property.ShouldSerialize = _ => false;
-                return property;
-            }
-
-            if (property.DeclaringType == typeof(Property))
-            {
-                property.ShouldSerialize = x =>
-                {
-                    Property p = (Property)x;
-                    return p.Name.Name != "FowVisitedCoordinates";
-                };
-                return property;
-
-            }
-            return property;
-        }
-    }
-    private static SaveFile ExportFile(string targetFolder, string sourcePath, bool exportCopy, bool exportDecoded, bool exportJson)
-    {
-        if (exportCopy)
-        {
-            File.Copy(sourcePath, Path.Combine(targetFolder, Path.GetFileName(sourcePath)),true);
-        }
-        
-        string fileName = Path.GetFileNameWithoutExtension(sourcePath);
-        SaveFile sf = SaveFile.Read(sourcePath);
-        
-        if (exportDecoded)
-        {
-            SaveFile.WriteUncompressed(Path.Combine(targetFolder, $"{fileName}.dec"), sf);
-        }
-
-        if (exportJson)
-        {
-            JsonSerializer serializer = new()
-            {
-                Formatting = Formatting.Indented,
-                ContractResolver = new IgnorePropertiesResolver([
-                    "ReadOffset",
-                    "WriteOffset",
-                    "ReadLength",
-                    "WriteLength",
-                    "ExtraComponentsData",
-                    "ExtraPropertiesData"
-                ]),
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            using StreamWriter sw = new(Path.Combine(targetFolder, $"{fileName}.json"));
-            using JsonWriter writer = new JsonTextWriter(sw);
-            serializer.Serialize(writer, sf.SaveData);
-        }
-        return sf;
-    }
-
-    public static void Export(string targetFolder, string? folderPath, bool exportCopy, bool exportDecoded, bool exportJson)
-    {
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        SaveFile profileSf = ExportFile(targetFolder, Path.Combine(folder, "profile.sav"), exportCopy, exportDecoded, exportJson);
-
-        Navigator profile = new(profileSf);
-        ArrayProperty ap = profile.GetProperty("Characters")!.Get<ArrayProperty>();
-
-        for (int index = 0; index < ap.Items.Count; index++)
-        {
-            object? item = ap.Items[index];
-            ObjectProperty ch = (ObjectProperty)item!;
-            string path = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
-            if (File.Exists(path))
-            {
-                ExportFile(targetFolder, path, exportCopy, exportDecoded, exportJson);
-            }
-        }
-    }
-
     public static Dataset Analyze(string? folderPath = null, Dataset? oldDataset = null)
     {
         Stopwatch sw = Stopwatch.StartNew();
+        
         Dataset result = new()
         {
             Characters = [],
@@ -177,38 +52,33 @@ public partial class Analyzer
 
         string folder = folderPath ?? Utils.GetSteamSavePath();
         string profilePath = Path.Combine(folder, "profile.sav");
-        
         SaveFile profileSf = ReadWithRetry(profilePath);
         result.ProfileSaveFile = profileSf;
-
         result.DebugPerformance.Add("Profile loaded", sw.Elapsed);
 
         Navigator profileNavigator = new(profileSf);
         result.ProfileNavigator = profileNavigator;
-
         result.DebugPerformance.Add("Profile navigator created", sw.Elapsed);
 
-        result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
-        ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
-        
         Property? accountAwards = profileNavigator.GetProperty("AccountAwards");
         if (accountAwards != null)
         {
             ArrayProperty arr = accountAwards.Get<ArrayProperty>();
             result.AccountAwards = arr.Items.Select(x => Utils.GetNameFromProfileId(((ObjectProperty)x!).ClassName!)).ToList();
         }
-
+        
+        result.ActiveCharacterIndex = profileNavigator.GetProperty("ActiveCharacterIndex")!.Get<int>();
+        ArrayProperty ap = profileNavigator.GetProperty("Characters")!.Get<ArrayProperty>();
         result.DebugPerformance.Add("Initial load", sw.Elapsed);
+
 
         for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
         {
-            object? item = ap.Items[charSlotInternal];
-            ObjectProperty ch = (ObjectProperty)item!;
+            ObjectProperty ch = (ObjectProperty)ap.Items[charSlotInternal]!;
             if (ch.ClassName == null) continue;
+            
             UObject character = ch.Object!;
-
             Component? inventoryComponent = profileNavigator.GetComponent("Inventory", character);
-
             if (inventoryComponent == null)
             {
                 // This can happen after initial character creation usually it is overwritten
@@ -219,6 +89,7 @@ public partial class Analyzer
             string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
             DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
 
+            // If this is not the first load, some saves might not have changed, so no point parsing them again
             Character? oldCharacter = null;
             if (oldDataset != null )
             {
@@ -228,6 +99,7 @@ public partial class Analyzer
             if (oldCharacter != null && oldCharacter.SaveDateTime == saveDateTime)
             {
                 result.Characters.Add(oldCharacter);
+                oldCharacter.Dataset = result;
                 result.DebugPerformance.Add($"Old character {charSlotInternal} loaded", sw.Elapsed);
                 continue;
             }
@@ -235,111 +107,49 @@ public partial class Analyzer
             Regex rArchetype = RegexArchetype();
             string archetype = rArchetype.Match(profileNavigator.GetProperty("Archetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
             string secondaryArchetype = rArchetype.Match(profileNavigator.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "").Groups["archetype"].Value;
-
             result.DebugPerformance.Add($"Character {charSlotInternal} archetypes", sw.Elapsed);
 
             List <PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
-
             result.DebugPerformance.Add($"Character {charSlotInternal} items", sw.Elapsed);
 
             Component? traitsComponent = profileNavigator.GetComponent("Traits", character);
             List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!.Get<ArrayStructProperty>().Items
                 .Select(x => (PropertyBag)x!).ToList();
             List<string> traits = traitObjects.Select(x => x["TraitBP"].ToStringValue()!).ToList();
-
             result.DebugPerformance.Add($"Character {charSlotInternal} traits", sw.Elapsed);
 
 
             List<string> inventory = items.Union(traits).ToList();
+            result.DebugPerformance.Add($"Character {charSlotInternal} inventory (items+traits)", sw.Elapsed);
 
-            result.DebugPerformance.Add($"Character {charSlotInternal} inventory", sw.Elapsed);
-
-            //JArray db = result.Database = ldb.Value;
+            List<Dictionary<string, string>> inventoryDb = ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
             List<Dictionary<string, string>> traitsDb = ItemDb.Db.Where(x => x.GetValueOrDefault("Type") == "trait").ToList();
-
-            List<string> dropReferences = ItemDb.Db.Where(x => x.ContainsKey("EventDropReference"))
-                .Select(x => x["EventDropReference"])
-                .Distinct()
-                .ToList();
-            dropReferences.Sort();
-
-            result.DebugPerformance.Add($"Character {charSlotInternal} drop references", sw.Elapsed);
-
-
-            List<Dictionary<string, string>> inventoryDbItems = ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
-
-            //var debug = inventoryDbItems.Where(x => x["ProfileId"].Split('/')[2] != x["World"]).ToList();
-
-            List<Dictionary<string, string>> missingItems = inventoryDbItems.Where(x => !items.Select(y=>y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
+            List<Dictionary<string, string>> missingItems = inventoryDb.Where(x => !items.Select(y=>y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
             List<Dictionary<string, string>> missingTraits = traitsDb.Where(x => !traits.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
-
             missingItems = missingItems.Union(missingTraits).ToList();
-
             result.DebugPerformance.Add($"Character {charSlotInternal} missing items", sw.Elapsed);
 
-
-
-            IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
             IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
             List<string> inventoryIds = inventory.Where(x => pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
                 .Select(x => pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"]).ToList();
-
-            result.DebugPerformance.Add($"Character {charSlotInternal} inventory names", sw.Elapsed);
+            result.DebugPerformance.Add($"Character {charSlotInternal} inventory ids, db items only", sw.Elapsed);
 
             WarnUnknownInventoryItems(inventory, pdb, result, charSlotInternal, "character inventory");
+            result.DebugPerformance.Add($"Character {charSlotInternal} unknown inventory items warnings", sw.Elapsed);
 
-            result.DebugPerformance.Add($"Character {charSlotInternal} inventory warnings", sw.Elapsed);
-
-
+            IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
             List<Dictionary<string, string>> hasMatsItems = mats.Where(x => inventoryIds.Contains(x["Material"])
                                                                             && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
-
             result.DebugPerformance.Add($"Character {charSlotInternal} has mats", sw.Elapsed);
 
 
-            StructProperty cd = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
-            SaveData st = (SaveData)cd.Value!;
-            ArrayStructProperty asp = (ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", cd)!.Value!;
-
-            List<ObjectiveProgress> objectives = [];
-            foreach (object? obj in asp.Items)
-            {
-                PropertyBag pb = (PropertyBag)obj!;
-                FGuid objectiveId = pb["ObjectiveID"].Get<FGuid>();
-                int progress = pb["Progress"].Get<int>();
-
-                WriterBase w = new();
-                w.Write(objectiveId);
-
-                uint u1 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[..4]);
-                uint u2 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[4..8]);
-                uint u3 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[8..12]);
-                uint u4 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[12..16]);
-                string uu = $"{u1:X8}-{u2:X8}-{u3:X8}-{u4:X8}";
-
-                //string r1 = BitConverter.ToStringValue(w.ToArray()).Replace("-", "");
-
-                LootItem? objective = ItemDb.GetItemByIdOrDefault(uu);
-                if (objective == null)
-                {
-                    result.DebugMessages.Add($"Character {result.Characters.Count + 1} (save_{charSlotInternal}), unknown objective {uu}");
-                }
-                else
-                {
-                    objectives.Add(new()
-                    {
-                        Id = uu,
-                        Type = objective.Type,
-                        Description = objective.Name,
-                        Progress = progress
-                    });
-                }
-            }
-
+            StructProperty characterData = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
+            (List<ObjectiveProgress> objectives, List<string> debugMessages) 
+                = GetObjectives((ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", characterData)!.Value!);
+            ProcessDebugMessages(debugMessages, "objectives", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} has objectives", sw.Elapsed);
-
 
             var traitRank = profileNavigator.GetProperty("TraitRank", character);
             var gender = profileNavigator.GetProperty("Gender", character);
@@ -359,7 +169,7 @@ public partial class Analyzer
                     "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C"),
                 Archetype = archetype,
                 SecondaryArchetype = secondaryArchetype,
-                CharacterDataCount = st.Objects.Count,
+                CharacterDataCount = ((SaveData)characterData.Value!).Objects.Count,
                 Objectives = objectives,
                 IsHardcore = characterType != null  && characterType.Get<EnumProperty>().EnumValue.Name == "ERemnantCharacterType::Hardcore",
                 ItemLevel = itemLevel?.Get<int>() ?? -1,
@@ -368,8 +178,7 @@ public partial class Analyzer
                 TraitRank = traitRank?.Get<int>() ?? -1,
                 Gender = gender != null && gender.Get<EnumProperty>().EnumValue.Name == "EGender::Female" ? "Female" : "Male" 
             };
-
-            result.DebugPerformance.Add($"Character {charSlotInternal} save data location", sw.Elapsed);
+            result.DebugPerformance.Add($"Character {charSlotInternal} profile created", sw.Elapsed);
 
             SaveFile sf;
             try
@@ -382,89 +191,39 @@ public partial class Analyzer
                 result.DebugMessages.Add($"Could not load {savePath}, {e}");
                 continue;
             }
-
             result.DebugPerformance.Add($"Character {charSlotInternal} save data loaded", sw.Elapsed);
             
             Navigator navigator = new(sf);
             Property? thaen = navigator.GetProperty("GrowthStage");
-
             result.DebugPerformance.Add($"Character {charSlotInternal} navigator created", sw.Elapsed);
 
-            float timePlayed = (float)navigator.GetProperty("TimePlayed")!.Value!;
-            TimeSpan tp = TimeSpan.FromSeconds(timePlayed);
+            TimeSpan tp = TimeSpan.FromSeconds((float)navigator.GetProperty("TimePlayed")!.Value!);
 
-            Actor cass = navigator.GetActor("Character_NPC_Cass_C")!;
-
-            List<LootItem> cassLoot = [];
-            List<Component> inventoryList = navigator.FindComponents("Inventory", cass);
-            if (inventoryList is { Count: > 0 })
-            {
-                PropertyBag pb = inventoryList[0].Properties!;
-                ArrayStructProperty aspItems = (ArrayStructProperty)pb["Items"].Value!;
-
-                foreach (object? o in aspItems.Items)
-                {
-                    PropertyBag itemProperties = (PropertyBag)o!;
-
-                    Property inventoryItem = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
-                    Property inventoryHidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
-
-                    bool hidden = (byte)inventoryHidden.Value! != 0;
-                    if (hidden) continue;
-                    string longName = ((ObjectProperty)inventoryItem.Value!).ClassName!;
-                    LootItem? lootItem= ItemDb.GetItemByProfileId(longName);
-                    if (lootItem == null)
-                    {
-                        if (!Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(longName))) 
-                        {
-                            result.DebugMessages.Add($"Character {result.Characters.Count + 1} (save_{charSlotInternal}), unknown Cass item {longName}");
-                        }
-                        continue;
-                    }
-                    cassLoot.Add(lootItem);
-                }
-            }
-
+            (debugMessages, List<LootItem> cassLoot) = GetCassShop(navigator.FindComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!));
+            ProcessDebugMessages(debugMessages, "cass", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} Cass loot read", sw.Elapsed);
 
-            Property? qcl = navigator.GetProperty("QuestCompletedLog");
-            List<string> questCompletedLog = [];
-            if (qcl != null)
-            {
-                foreach (object? q in navigator.GetProperty("QuestCompletedLog")!.Get<ArrayProperty>().Items)
-                {
-                    FName quest = (FName)q!;
-                    if (quest.ToString() == "None") continue;
-                    questCompletedLog.Add(quest.ToString());
-                }
-            }
-
+            List<string> questCompletedLog = GetQuestLog(navigator.GetProperty("QuestCompletedLog"));
             result.DebugPerformance.Add($"Character {charSlotInternal} quest completed log", sw.Elapsed);
             
-            int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
-
             RolledWorld campaign = GetCampaign(navigator);
-            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loaded", sw.Elapsed);
             WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
-            result.DebugPerformance.Add($"Character {charSlotInternal} campaign inventory warnings", sw.Elapsed);
-            List<string> debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
-            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups", sw.Elapsed);
+            debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
             ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
+            
             Property? adventureSlot = navigator.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 1);
             RolledWorld? adventure = null;
             if (adventureSlot != null)
             {
                 adventure = GetAdventure(navigator);
-                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loaded", sw.Elapsed);
                 WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
-                result.DebugPerformance.Add($"Character {charSlotInternal} adventure inventory warnings", sw.Elapsed);
                 debugMessages = FillLootGroups(adventure, profile, result.AccountAwards);
-                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups", sw.Elapsed);
                 ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
             }
 
+            int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
             Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
 
             Character c = new()
@@ -495,400 +254,93 @@ public partial class Analyzer
         return result;
     }
 
-    private static void WarnUnknownInventoryItems(List<string> inventory, IEnumerable<Dictionary<string, string>> pdb, Dataset result, int charSlotInternal, string mode)
+    private static (List<ObjectiveProgress> objectives, List<string> debugMessages) GetObjectives(ArrayStructProperty asp)
     {
-        List<string> unknownInventoryItems = inventory
-            .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
-            .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
-            .Select(x => $"UnknownMarker item: {x}")
-            .ToList();
-        if (unknownInventoryItems.Count > 0)
+        List<ObjectiveProgress> objectives = [];
+        List<string> debugMessages = [];
+        foreach (object? obj in asp.Items)
         {
-            ProcessDebugMessages(unknownInventoryItems, mode, result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
-        }
-    }
+            PropertyBag pb = (PropertyBag)obj!;
+            FGuid objectiveId = pb["ObjectiveID"].Get<FGuid>();
+            int progress = pb["Progress"].Get<int>();
 
-    private static void ProcessDebugMessages(List<string> debugMessages, string mode, int charactersCount, int charSlotInternal, List<string> resultDebugMessages)
-    {
-        foreach (string message in debugMessages)
-        {
-            resultDebugMessages.Add($"Character {charactersCount} (save_{charSlotInternal}), mode: {mode}, {message}");
-        }
-    }
+            WriterBase w = new();
+            w.Write(objectiveId);
 
-    private static RolledWorld GetCampaign(Navigator navigator)
-    {
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x=>x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
+            uint u1 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[..4]);
+            uint u2 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[4..8]);
+            uint u3 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[8..12]);
+            uint u4 = BinaryPrimitives.ReadUInt32LittleEndian(w.ToArray().AsSpan()[12..16]);
+            string uu = $"{u1:X8}-{u2:X8}-{u3:X8}-{u4:X8}";
 
-        UObject campaignMeta = navigator.FindActors("Quest_Campaign", main).Single().Archive.Objects[0];
-        int campaignId = campaignMeta.Properties!["ID"].Get<int>();
-        UObject? campaignObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
-
-        int world1 = navigator.GetComponent("World1", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int world2 = navigator.GetComponent("World2", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int world3 = navigator.GetComponent("World3", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int labyrinth = navigator.GetComponent("Labyrinth", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int rootEarth = navigator.GetComponent("RootEarth", campaignMeta)!.Properties!["QuestID"].Get<int>();
-
-        PropertyBag campaignInventory = navigator.GetComponent("RemnantPlayerInventory", campaignMeta)!.Properties!;
-
-        List<string> questInventory = GetInventory(campaignInventory);
-
-        List<Actor> zoneActors = navigator.GetActors("ZoneActor", campaignObject);
-        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)
-            .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
-
-        int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
-        TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
-        RolledWorld rolledWorld = new()
-        {
-            QuestInventory = questInventory,
-            Difficulty = Difficulties[difficulty],
-            Playtime = tp,
-        };
-        rolledWorld.Zones =
-        [
-            GetZone(zoneActors, world1, labyrinth, events, rolledWorld ,navigator), 
-            GetZone(zoneActors, labyrinth, labyrinth, events, rolledWorld, navigator), 
-            GetZone(zoneActors, world2, labyrinth, events, rolledWorld, navigator), 
-            GetZone(zoneActors, world3, labyrinth, events, rolledWorld, navigator), 
-            GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld, navigator)
-        ];
-        return rolledWorld;
-    }
-
-    private static RolledWorld GetAdventure(Navigator navigator)
-    {
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
-
-        UObject adventureMeta = navigator.FindActors("Quest_AdventureMode", main).Single().Archive.Objects[0];
-        int? adventureId = adventureMeta.Properties!["ID"].Get<int>();
-        UObject? adventureObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{adventureId}_Container.Quest_Container:PersistentLevel");
-        int quest = navigator.GetComponent("Quest", adventureMeta)!.Properties!["QuestID"].Get<int>();
-        PropertyBag adventureInventory = navigator.GetComponent("RemnantPlayerInventory", adventureMeta)!.Properties!;
-        List<string> questInventory = GetInventory(adventureInventory);
-        List<Actor> zoneActorsAdventure = navigator.GetActors("ZoneActor", adventureObject);
-        List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)
-            .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
-
-        var difficulty = navigator.GetProperty("Difficulty", adventureMeta)?.Get<int>() ?? 1;
-        TimeSpan? tp = navigator.GetProperty("PlayTime", adventureMeta)?.Get<TimeSpan>();
-
-        RolledWorld rolledWorld = new()
-        {
-            QuestInventory = questInventory,
-            Difficulty = Difficulties[difficulty],
-            Playtime = tp,
-        };
-        rolledWorld.Zones =
-        [
-            GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld, navigator),
-        ];
-        return rolledWorld;
-    }
-
-    private static List<string> GetInventory(PropertyBag inventoryBag)
-    {
-        List<string> result = [];
-        ArrayStructProperty? inventory = null;
-        if (inventoryBag.Contains("Items"))
-        {
-            inventory = inventoryBag["Items"].Get<ArrayStructProperty>();
-        }
-
-        if (inventory != null)
-        {
-            foreach (object? o in inventory.Items)
+            LootItem? objective = ItemDb.GetItemByIdOrDefault(uu);
+            if (objective == null)
             {
-                PropertyBag itemProperties = (PropertyBag)o!;
-
-                Property item = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
-                Property hidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
-
-                if ((byte)hidden.Value! != 0)
-                {
-                    continue;
-                }
-
-                result.Add(((ObjectProperty)item.Value!).ClassName!);
+                debugMessages.Add($"unknown objective {uu}");
             }
-        }
-
-        return result;
-    }
-
-    private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent,Navigator navigator)
-    {
-
-        string? story = null;
-        bool? finished = false;
-        List<Location> result = [];
-        List<Actor> actors = zoneActors.Where(x =>
-                x.GetZoneActorProperties()!["QuestID"].Get<int>() == world &&
-                !x.GetZoneActorProperties()!.Contains("ParentZoneID"))
-            .ToList();
-
-        Actor start;
-        if (actors.Any(x => x.GetZoneActorProperties()!["NameID"].ToStringValue()!.Contains("one1")))
-        {
-            start = actors.Count > 1
-                ? actors.Single(x => x.GetZoneActorProperties()!["NameID"].ToStringValue()!.Contains("one1"))
-                : actors[0];
-
-        }
-        else
-        {
-            start = actors[0];
-        }
-
-        //Actor start = zoneActors.Single(x => x.GetZoneActorProperties()!["QuestID"].Get<int>() == world && !x.GetZoneActorProperties()!.Contains("ParentZoneID"));
-        string category = "";
-        Queue<Actor> queue = new();
-        queue.Enqueue(start);
-        List<string> seen = [];
-        while (queue.Count > 0)
-        {
-            Actor current = queue.Dequeue();
-            PropertyBag pb = current.GetZoneActorProperties()!;
-            string label = pb["Label"].ToStringValue()!;
-            int zoneId = pb["ID"].Get<int>();
-            int questId = pb["QuestID"].Get<int>();
-
-            if (seen.Contains(label)) continue;
-            seen.Add(label);
-
-            ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
-
-            List<string> waypoints = [];
-            List<string> connectsTo = [];
-
-            foreach (object? o in links.Items)
+            else
             {
-                PropertyBag link = (PropertyBag)o!;
-
-                if (string.IsNullOrEmpty(category))
+                objectives.Add(new()
                 {
-                    string? linkCategory = link["Category"].ToStringValue();
-                    if (!string.IsNullOrEmpty(linkCategory) && linkCategory != "None")
-                    {
-                        category = linkCategory;
-                    }
-                }
-
-                string type = link["Type"].ToStringValue()!;
-                string linkLabel = link["Label"].ToStringValue()!;
-                string name = link["NameID"].ToStringValue()!;
-                string? destinationZoneName = link["DestinationZone"].ToStringValue();
-
-                switch (type)
-                {
-                    case "EZoneLinkType::Waypoint":
-                        waypoints.Add(linkLabel);
-                        break;
-                    case "EZoneLinkType::Checkpoint":
-                        break;
-                    case "EZoneLinkType::Link":
-                        if (destinationZoneName != "None" && !name.Contains("CardDoor") &&
-                            destinationZoneName != "2_Zone")
-                        {
-                            Actor destinationZone = zoneActors.Single(x =>
-                                x.GetZoneActorProperties()!["NameID"].ToStringValue() == destinationZoneName);
-                            string destinationZoneLabel = destinationZone.GetZoneActorProperties()!["Label"].ToStringValue()!;
-
-                            if (linkLabel == "Malefic Palace" && destinationZoneLabel == "Beatific Palace"
-                                || destinationZoneLabel == "Malefic Palace" && linkLabel == "Beatific Palace") continue;
-
-                            bool isLabyrinth =
-                                destinationZone.GetZoneActorProperties()!["QuestID"].Get<int>() == labyrinth &&
-                                world != labyrinth
-                                || destinationZone.GetZoneActorProperties()!["QuestID"].Get<int>() != labyrinth &&
-                                world == labyrinth;
-                            if (!isLabyrinth)
-                            {
-                                connectsTo.Add(destinationZoneLabel);
-                                if (!seen.Contains(destinationZoneLabel))
-                                {
-                                    queue.Enqueue(destinationZone);
-                                }
-                            }
-                        }
-
-                        break;
-                    default:
-                        throw new InvalidDataException($"unexpected link type '{type}'");
-                }
-            }
-
-            string cat = category;
-
-            IEnumerable<string> GetConnectsTo(List<string> connections)
-            {
-                foreach (IGrouping<string, string> c in connections.GroupBy(x => x))
-                {
-                    string x = "";
-                    if (c.Count() > 1 && cat == "Jungle")
-                    {
-                        x = $" x{c.Count()}";
-                    }
-
-                    yield return $"{c.Key}{x}";
-                }
-            }
-
-            Location l = new()
-            {
-                Name = label,
-                DropReferences = [],
-                WorldDrops = [],
-                WorldStones = waypoints,
-                Category = category,
-                Connections = GetConnectsTo(connectsTo).ToList(),
-                LootGroups = [],
-                LootedMarkers = []
-            };
-            
-
-            foreach (Actor e in new List<Actor>(events).Where(x =>
-                         x.GetFirstObjectProperties()!["ID"].Get<int>() == questId))
-            {
-                // Story, Boss, Miniboss, SideD
-                events.Remove(e);
-                string ev = e.ToString()!;
-                l.LootedMarkers.AddRange(GetLootedMarkers(e));
-                Property? qs = navigator.GetProperty("QuestState", e);
-
-                if (ev.EndsWith("_C"))
-                {
-                    ev = ev[..^2];
-                }
-
-                if (ev.EndsWith("_V2"))
-                {
-                    ev = ev[..^3];
-                }
-
-                if (ev.EndsWith("_OneShot"))
-                {
-                    ev = ev[..^8];
-                }
-
-                if (ev.StartsWith("Quest_Story"))
-                {
-                    story = ev;
-                    finished = qs != null && qs.ToStringValue() == "EQuestState::Complete";
-                    continue;
-                }
-
-                l.DropReferences.Add(new(){Name=ev,Related = GetRelated(navigator,e),IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
-            }
-
-            foreach (Actor e in new List<Actor>(events)
-                         .Where(x => x.GetFirstObjectProperties()!.Contains("ZoneID"))
-                         .Where(x => x.GetFirstObjectProperties()!["ZoneID"].Get<int>() == zoneId)
-                         .Where(x => !zoneActors.Select(y => y.GetZoneActorProperties()!["QuestID"].Get<int>())
-                             .Contains(x.GetFirstObjectProperties()!["ID"].Get<int>())))
-            {
-
-                // Trait, Simulacrum, Injectable, Ring, Amulet, 
-                events.Remove(e);
-                string ev = e.ToString()!;
-                l.LootedMarkers.AddRange(GetLootedMarkers(e));
-
-                if (ev.EndsWith("_C"))
-                {
-                    ev = ev[..^"_C".Length];
-                }
-
-                if (ev.EndsWith("_V2"))
-                {
-                    ev = ev[..^"_V2".Length];
-                }
-
-                // this works for Ring, Amulet, Trait, Simulacrum
-                Component? cmp = navigator.GetComponent("Loot", e);
-                Property? ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
-
-                if (ev.StartsWith("Quest_Event_Trait"))
-                {
-                    l.TraitBook = true;
-                    l.TraitBookLooted = ds != null && ds.Get<byte>() == 1;
-                    continue;
-                }
-
-                if (ev.Contains("Simulacrum"))
-                {
-                    l.Simulacrum = true;
-                    l.SimulacrumLooted = ds != null && ds.Get<byte>() == 1;
-                    continue;
-                }
-
-                if (ev.StartsWith("Quest_Event_"))
-                {
-                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
-                    continue;
-                }
-
-                l.DropReferences.Add(new(){Name = ev, Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>()==1});
-
-            }
-
-            result.Add(l);
-        }
-
-        Zone zone = new Zone(zoneParent) { Locations = result };
-        if (finished.HasValue) zone.SetFinished(finished.Value);
-        if (story != null) zone.SetStoryId(story);
-        return zone;
-
-    }
-
-    private static List<LootedMarker> GetLootedMarkers(Actor ev)
-    {
-        List<LootedMarker> result = [];
-        foreach (Component c in ev.Archive.Objects[0].Components!)
-        {
-            if (c.Properties == null || !c.Properties.Contains("Spawns")) continue;
-            Property p = c.Properties["Spawns"];
-            ArrayStructProperty asp = p.Get<ArrayStructProperty>();
-            foreach (object? i in asp.Items)
-            {
-                PropertyBag pb = (PropertyBag)i!;
-                bool isDestroyed = pb.Contains("Destroyed") && pb["Destroyed"].Get<Byte>() == 1;
-                pb = (PropertyBag)pb["SpawnEntry"].Get<StructProperty>().Value!;
-                string type = pb["Type"].Get<EnumProperty>().EnumValue.Name;
-                if (type != "ESpawnType::Item") continue;
-                if (pb["ActorBP"].Value == null) continue;
-                string profileId = pb["ActorBP"].Get<string>();
-
-                if (Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(profileId)))
-                {
-                    continue;
-                }
-                ArrayProperty ap = pb["SpawnPointTags"].Get<ArrayProperty>();
-                string[] spt = ap.Items.Select(x => ((FName)x!).Name).ToArray();
-                result.Add(new()
-                {
-                    IsLooted = isDestroyed,
-                    ProfileId = profileId,
-                    SpawnPointTags = spt,
-                    Event = ev.ToString()!
+                    Id = uu,
+                    Type = objective.Type,
+                    Description = objective.Name,
+                    Progress = progress
                 });
             }
         }
 
-        return result;
+        return (objectives, debugMessages);
     }
 
-    private static List<string> GetRelated(Navigator navigator, Actor e)
+    private static (List<string> debugMessages, List<LootItem> cassLoot) GetCassShop(List<Component> inventoryList)
     {
-        return navigator.GetProperties("SpawnEntry", e)
-            .Select(x => navigator.GetProperty("ActorBP", x))
-            .Where(x => !string.IsNullOrEmpty(x?.ToStringValue()))
-            .Select(x => x!.ToStringValue()!.Split('.')[^1])
-            .Where(x => !x.StartsWith("Char_"))
-            .Where(x => !x.StartsWith("BP_"))
-            .Where(x => !x.StartsWith("Consumable_"))
-            .ToList();
+        List<string> debugMessages = [];
+        List<LootItem> cassLoot = [];
+        if (inventoryList is { Count: > 0 })
+        {
+            PropertyBag pb = inventoryList[0].Properties!;
+            ArrayStructProperty aspItems = (ArrayStructProperty)pb["Items"].Value!;
+
+            foreach (object? o in aspItems.Items)
+            {
+                PropertyBag itemProperties = (PropertyBag)o!;
+
+                Property inventoryItem = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
+                Property inventoryHidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
+
+                bool hidden = (byte)inventoryHidden.Value! != 0;
+                if (hidden) continue;
+                string longName = ((ObjectProperty)inventoryItem.Value!).ClassName!;
+                LootItem? lootItem = ItemDb.GetItemByProfileId(longName);
+                if (lootItem == null)
+                {
+                    if (!Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(longName)))
+                    {
+                        debugMessages.Add($"unknown Cass item {longName}");
+                    }
+                    continue;
+                }
+                cassLoot.Add(lootItem);
+            }
+        }
+
+        return (debugMessages, cassLoot);
+    }
+
+    private static List<string> GetQuestLog(Property? questCompletedLog)
+    {
+        List<string> result = [];
+        if (questCompletedLog != null)
+        {
+            foreach (object? q in questCompletedLog.Get<ArrayProperty>().Items)
+            {
+                FName quest = (FName)q!;
+                if (quest.ToString() == "None") continue;
+                result.Add(quest.ToString());
+            }
+        }
+        return result;
     }
 
     private static SaveFile ReadWithRetry(string profilePath)
@@ -914,223 +366,25 @@ public partial class Analyzer
         }
         return save;
     }
-
-    private static List<string> FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
+    
+    private static void WarnUnknownInventoryItems(List<string> inventory, IEnumerable<Dictionary<string, string>> pdb, Dataset result, int charSlotInternal, string mode)
     {
-        List<string> debugMessages = [];
-        // Add items to locations
-        foreach (Zone zz in world.AllZones)
+        List<string> unknownInventoryItems = inventory
+            .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+            .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
+            .Select(x => $"UnknownMarker item: {x}")
+            .ToList();
+        if (unknownInventoryItems.Count > 0)
         {
-
-            int canopyIndex = zz.Locations.FindIndex(x => x.Name == "Ancient Canopy");
-            // Bloody Walt is on the move and not tied to a particular location
-            // Let's create a special synthetic location for him!
-            if (canopyIndex >= 0)
-            {
-                zz.Locations.Insert(canopyIndex, new()
-                {
-                    Category = zz.Locations[canopyIndex].Category,
-                    Connections = [],
-                    DropReferences = [],
-                    LootGroups = [],
-                    Name = "Ancient Canopy/Luminous Vale",
-                    WorldDrops = [],
-                    WorldStones = [],
-                    LootedMarkers = []
-                });
-            }
-            
-            // Populate locations with possible items
-            foreach (Location l in zz.Locations)
-            {
-                // Part 1 : Drop Type : Location
-                l.LootGroups = [];
-                LootGroup lg = new()
-                {
-                    Type = "Location",
-                    Items = ItemDb.GetItemsByReference("Location", l.Name),
-                };
-                if (lg.Items.Count > 0)
-                {
-                    l.LootGroups.Add(lg);
-                }
-
-                // Part 2 : Drop Type : Event
-                foreach (DropReference dropReference in l.DropReferences)
-                {
-
-                    // This reference injects Nimue into one of the two locations she appears in:
-                    // Beatific Palace, as such it's not very useful to us, because
-                    // it's the very same Nimue as in Nimue's retreat, so we are skipping it
-                    if (dropReference.Name == "Quest_Injectable_GoldenHall_Nimue") continue;
-                    
-                    Dictionary<string,string>? ev = ItemDb.Db.SingleOrDefault(x =>
-                        x["Id"].Equals(dropReference.Name, StringComparison.InvariantCultureIgnoreCase));
-
-                    if (ev == null)
-                    {
-                        debugMessages.Add($"Event: Drop reference '{dropReference.Name}' found in the save but is absent from the database");
-                        lg = new LootGroup
-                        {
-                            Items = [],
-                            EventDropReference = dropReference.Name,
-                            Type = "unknown event",
-                            Name = dropReference.Name,
-                            UnknownMarker = UnknownData.Event
-                        };
-                        l.LootGroups.Add(lg);
-                        continue;
-                    }
-
-                    string type = ev["Subtype"];
-                    string? name = null;
-                    if (type == "overworld POI" || type == "boss" || type == "miniboss" || type == "injectable")
-                    {
-                        name = ev["Name"];
-                    }
-
-                    lg = new LootGroup
-                    {
-                        Items = ItemDb.GetItemsByReference("Event", dropReference).Where(x => x.Type != "challenge").ToList(),
-                        EventDropReference = dropReference.Name,
-                        Type = type,
-                        Name = name
-                    };
-                    l.LootGroups.Add(lg);
-                }
-
-                // Part 3 : Drop Type : World Drop
-                List<LootItem> worldDrops = l.WorldDrops
-                    .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
-                    .Select(ItemDb.GetItemById).ToList();
-
-                UnknownData unknown = UnknownData.None;
-                foreach (DropReference s in l.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
-                {
-                    debugMessages.Add($"World Drop: Drop reference {s.Name} is absent from the database (world drop {l.Name})");
-                    Dictionary<string, string> unknownItem = new()
-                    {
-                        { "Name", s.Name },
-                        { "Id", "unknown" },
-                        { "Type", "unknown" }
-                    };
-                    worldDrops.Add(new(){Item = unknownItem});
-                    unknown = UnknownData.WorldDrop;
-                }
-
-                if (worldDrops.Count > 0)
-                {
-                    lg = new LootGroup
-                    {
-                        Type = "World Drop",
-                        Items = worldDrops,
-                        UnknownMarker = unknown,
-                        Name = worldDrops.Count > 1 ? "Multiple" : worldDrops[0].Name
-                    };
-                    l.LootGroups.Add(lg);
-                }
-
-                // Part 4 : Drop Type : Vendor
-                foreach (string vendor in l.Vendors)
-                {
-                    lg = new LootGroup
-                    {
-                        Type = "Vendor",
-                        Name = vendor,
-                        Items = ItemDb.GetItemsByReference("Vendor", vendor)
-                    };
-                    l.LootGroups.Add(lg);
-                }
-            }
+            ProcessDebugMessages(unknownInventoryItems, mode, result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
         }
-
-        // Process Looted Markers
-        foreach (Zone zz in world.AllZones)
-        {
-            foreach (Location l in zz.Locations)
-            {
-                foreach (LootedMarker m in l.LootedMarkers)
-                {
-                    LootItem? li = ItemDb.GetItemByProfileId(m.ProfileId);
-                    if (li == null)
-                    {
-                        debugMessages.Add($"Looted marker not found in database: {m.ProfileId}");
-                        continue;
-                    }
-
-                    foreach (LootItem item in l.LootGroups.SelectMany(x => x.Items))
-                    {
-                        if (item.Item["Id"] == li.Item["Id"])
-                        {
-                            item.IsLooted = item.IsLooted || li.IsLooted;
-                        }
-                    }
-                }
-            }
-        }
-
-        //Mark items that cannot be obtained because no prerequisite
-        foreach (Zone zz in world.AllZones)
-        {
-            foreach (Location l in zz.Locations)
-            {
-                foreach (LootGroup lg in new List<LootGroup>(l.LootGroups))
-                {
-                    foreach (LootItem i in new List<LootItem>(lg.Items))
-                    {
-                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
-                        {
-                            List<string> mm = RegexPrerequisite().Matches(prerequisite)
-                                .Select(x => x.Value.Trim()).ToList();
-
-                            bool Check(string cur)
-                            {
-                                if (cur.StartsWith("AccountAward_"))
-                                {
-                                    return accountAwards.Contains(cur); // or can get
-
-                                }
-
-                                string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
-                                return world.CanGetItem(cur)
-                                       || profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant())
-                                       || world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
-                            }
-
-                            (bool, int) Term(int index) // term => word ',' term | word
-                            {
-                                bool left = Check(mm[index++]);
-                                if (index >= mm.Count || mm[index++] != ",") return (left, index);
-                                (bool right, index) = Term(index);
-                                return (left && right, index);
-                            }
-
-                            (bool, int) Expr(int index) // expr => term '|' expr | term
-                            {
-                                (bool left, index) = Term(index);
-                                if (index >= mm.Count || mm[index++] != "|") return (left, index);
-                                (bool right, index) = Expr(index);
-                                return (left || right, index);
-                            }
-
-
-                            (bool res, _) = Expr(0);
-
-                            if (!res)
-                            {
-                                i.IsPrerequisiteMissing = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return debugMessages;
     }
 
-    [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
-    private static partial Regex RegexArchetype();
-    [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
-    private static partial Regex RegexPrerequisite();
+    private static void ProcessDebugMessages(List<string> debugMessages, string mode, int charactersCount, int charSlotInternal, List<string> resultDebugMessages)
+    {
+        foreach (string message in debugMessages)
+        {
+            resultDebugMessages.Add($"Character {charactersCount} (save_{charSlotInternal}), mode: {mode}, {message}");
+        }
+    }
 }
