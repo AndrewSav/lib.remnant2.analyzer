@@ -38,6 +38,16 @@ public partial class Analyzer
         "Apocalypse"
     ];
 
+    public static Dictionary<string, string> WorldBiomeMap => new()
+    {
+        { "World_Labyrinth", "Labyrinth" },
+        { "World_Nerud", "N'Erud" },
+        { "World_Fae", "Losomn" },
+        { "World_Jungle", "Yaesha" },
+        { "World_Root", "Root Earth" },
+    };
+
+
     public static Dataset Analyze(string? folderPath = null, Dataset? oldDataset = null)
     {
         Stopwatch sw = Stopwatch.StartNew();

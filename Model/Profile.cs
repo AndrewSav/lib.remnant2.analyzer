@@ -49,4 +49,12 @@ public class Profile
     // Profile string for RSG Analyzer dropdown
     public string ProfileString => Archetype + (string.IsNullOrEmpty(SecondaryArchetype) ? "" : $", {SecondaryArchetype}") + $" ({CharacterDataCount})";
 
+    public bool IsObjectiveAchieved(string objectiveId)
+    {
+        ObjectiveProgress? objective = Objectives.Find(x => x.Id == objectiveId);
+        if (objective == null) return false;
+        LootItem item = ItemDb.GetItemById(objectiveId);
+        if (!item.Item.TryGetValue("ChallengeCount", out string? goal)) return true;
+        return objective.Progress >= int.Parse(goal);
+    }
 }

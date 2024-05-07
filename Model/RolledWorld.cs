@@ -1,6 +1,4 @@
-﻿using lib.remnant2.saves.Model;
-
-namespace lib.remnant2.analyzer.Model;
+﻿namespace lib.remnant2.analyzer.Model;
 
 // Represents part of the data from a single save_N.sav: either adventure data or campaign data
 public class RolledWorld
@@ -29,11 +27,9 @@ public class RolledWorld
         return AllZones.Any(x => x.CanGetItem(item));
     }
 
-    public bool IsCampaign() => Zones.Exists(x => x.Name == "The Labyrinth");
-
     public bool CanGetAccountAward(string award)
     {
         string[] challengeIds = ItemDb.GetItemById(award).Item["Challenge"].Split(',').Select(x => x.Trim()).ToArray();
-        return challengeIds.All(id => CustomScripts.Dispatch(this, id));
+        return challengeIds.All(id => Character.Profile.IsObjectiveAchieved(id) || CustomScripts.CanGet(this, id));
     }
 }
