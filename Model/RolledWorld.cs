@@ -33,6 +33,7 @@ public class RolledWorld
 
     public bool CanGetAccountAward(string award)
     {
-        return false;
+        string[] challengeIds = ItemDb.GetItemById(award).Item["Challenge"].Split(',').Select(x => x.Trim()).ToArray();
+        return challengeIds.All(id => CustomScripts.Dispatch(this, id));
     }
 }

@@ -208,19 +208,15 @@ public partial class Analyzer
             
             RolledWorld campaign = GetCampaign(navigator);
             WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
-            debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
-            ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
-            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
-            
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loaded", sw.Elapsed);
+
             Property? adventureSlot = navigator.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 1);
             RolledWorld? adventure = null;
             if (adventureSlot != null)
             {
                 adventure = GetAdventure(navigator);
                 WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
-                debugMessages = FillLootGroups(adventure, profile, result.AccountAwards);
-                ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
-                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loaded", sw.Elapsed);
             }
 
             int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
@@ -247,7 +243,24 @@ public partial class Analyzer
             };
             result.Characters.Add(c);
             campaign.Character = c;
-            if (adventure != null) adventure.Character = c;
+
+            debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
+            ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
+
+            if (adventure != null)
+            {
+                adventure.Character = c;
+                debugMessages = FillLootGroups(adventure, profile, result.AccountAwards);
+                ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+                result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
+
+            }
+
+
+
+
+
             result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
 

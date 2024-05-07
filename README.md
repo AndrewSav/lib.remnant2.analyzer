@@ -22,4 +22,3 @@ Here is the brief description is what included in the `Dataset`.
 - LootItem is the lowest level. It represent an in-game item, such as a ring or a gun.
 
 The library embeds `db.json` file which has the list of all in-game items and is used for the analysis above.
-

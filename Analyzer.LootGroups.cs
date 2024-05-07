@@ -158,7 +158,8 @@ public partial class Analyzer
             }
         }
 
-        //Mark items that cannot be obtained because no prerequisite
+        // Mark items that cannot be obtained because no prerequisite
+        // TODO: need to have debug logging here to troubleshoot why item is shown/not shown
         foreach (Zone zz in world.AllZones)
         {
             foreach (Location l in zz.Locations)
@@ -176,7 +177,7 @@ public partial class Analyzer
                             {
                                 if (cur.StartsWith("AccountAward_"))
                                 {
-                                    return accountAwards.Contains(cur); // or can get
+                                    return accountAwards.Contains(cur) || world.CanGetAccountAward(cur);
 
                                 }
 

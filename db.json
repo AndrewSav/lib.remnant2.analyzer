@@ -7662,8 +7662,8 @@
     "Id": "B9BC305C-4A7A3D58-CFA0759F-C914A400",
     "Type": "challenge",
     "Name": "Kill Final Boss - Finish Campaign (Survivor)",
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "CF080EC5-4624C541-27ED12B3-4266F172",
@@ -7702,8 +7702,8 @@
     "Type": "challenge",
     "Name": "Kill Final Boss - Finish Campaign (Veteran)",
     "Difficulty": "Veteran",
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "85714765-4385A092-269FC387-05F2CEED",
@@ -7742,8 +7742,8 @@
     "Type": "challenge",
     "Name": "Kill Final Boss - Finish Campaign (Nightmare)",
     "Difficulty": "Nightmare",
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "395BA5BA-494A225A-046D668C-B9514B86",
@@ -7782,8 +7782,8 @@
     "Type": "challenge",
     "Name": "Kill Final Boss - Finish Campaign (Apocalypse)",
     "Difficulty": "Apocalypse",
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "7D57C8EC-4C12B1A6-72737F90-80703BC3",
@@ -7822,8 +7822,8 @@
     "Type": "challenge",
     "Name": "Kill Final Boss - Finish Campaign (Hardcore)",
     "Hardcore": true,
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "20DB617A-448F41B9-F197B997-F7E835DE",
@@ -7867,8 +7867,8 @@
     "Name": "Kill Final Boss - Finish Campaign (Hardcore, Veteran)",
     "Difficulty": "Veteran",
     "Hardcore": true,
-    "DropType": "Event",
-    "DropReference": "Quest_RootEarth_TowerBoss"
+    "DropType": "World",
+    "DropReference": "World_Root"
   },
   {
     "Id": "88F5D110-4F8FC2A0-CBD23F87-096A8A69",
