@@ -2274,7 +2274,7 @@
     "Material": "Material_DreadCore",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
-    "Note": "Crafted from Dread Core dropped by Wenom, found in Corrupted Harbor location on Root Earth"
+    "Note": "Crafted from Dread Core dropped by Venom, found in Corrupted Harbor location on Root Earth"
   },
   {
     "Id": "Mod_CreepingMist",

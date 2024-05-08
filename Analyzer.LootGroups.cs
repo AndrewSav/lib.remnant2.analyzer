@@ -1,9 +1,14 @@
 ﻿using lib.remnant2.analyzer.Model;
+using System.Runtime.ConstrainedExecution;
+using System.Text.RegularExpressions;
 
 namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
+    [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
+    private static partial Regex RegexPrerequisite();
+
     private static List<string> FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
     {
         List<string> debugMessages = [];
@@ -76,6 +81,11 @@ public partial class Analyzer
                     if (type == "overworld POI" || type == "boss" || type == "miniboss" || type == "injectable")
                     {
                         name = ev["Name"];
+                    }
+
+                    if (type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone"))
+                    {
+                        dropReference.IsLooted = false;
                     }
 
                     lg = new LootGroup
@@ -170,27 +180,58 @@ public partial class Analyzer
                     {
                         if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
                         {
-                            List<string> mm = RegexPrerequisite().Matches(prerequisite)
+                            List<string> prerequisiteDebugMessages = [];
+                            List<string> prerequisiteExpressionTokens = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
+
+                            prerequisiteDebugMessages.Add($"Processing prerequisites for {i.Name}. '{prerequisite}'");
 
                             bool Check(string cur)
                             {
                                 if (cur.StartsWith("AccountAward_"))
                                 {
-                                    return accountAwards.Contains(cur) || world.CanGetAccountAward(cur);
-
+                                    if (accountAwards.Contains(cur))
+                                    {
+                                        prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                        return true;
+                                    }
+                                    if (world.CanGetAccountAward(cur))
+                                    {
+                                        prerequisiteDebugMessages.Add($"Can get '{cur}'");
+                                        return true;
+                                    }
+                                    prerequisiteDebugMessages.Add($"Do not have and cannot get '{cur}'");
+                                    return false;
                                 }
 
                                 string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
-                                return world.CanGetItem(cur)
-                                       || profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant())
-                                       || world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant());
+
+                                if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
+                                {
+                                    prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                    return true;
+                                }
+
+                                if (world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
+                                {
+                                    prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                    return true;
+                                }
+
+                                if (world.CanGetItem(cur))
+                                {
+                                    prerequisiteDebugMessages.Add($"Can get '{cur}'");
+                                    return true;
+                                }
+
+                                prerequisiteDebugMessages.Add($"Do not have and cannot get '{cur}'");
+                                return false;
                             }
 
                             (bool, int) Term(int index) // term => word ',' term | word
                             {
-                                bool left = Check(mm[index++]);
-                                if (index >= mm.Count || mm[index++] != ",") return (left, index);
+                                bool left = Check(prerequisiteExpressionTokens[index++]);
+                                if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != ",") return (left, index);
                                 (bool right, index) = Term(index);
                                 return (left && right, index);
                             }
@@ -198,7 +239,7 @@ public partial class Analyzer
                             (bool, int) Expr(int index) // expr => term '|' expr | term
                             {
                                 (bool left, index) = Term(index);
-                                if (index >= mm.Count || mm[index++] != "|") return (left, index);
+                                if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != "|") return (left, index);
                                 (bool right, index) = Expr(index);
                                 return (left || right, index);
                             }
@@ -209,7 +250,13 @@ public partial class Analyzer
                             if (!res)
                             {
                                 i.IsPrerequisiteMissing = true;
+                                prerequisiteDebugMessages.Add($"Prerequisite check NEGATIVE for '{prerequisite}'");
                             }
+                            else
+                            {
+                                prerequisiteDebugMessages.Add($"Prerequisite check POSITIVE for '{prerequisite}'");
+                            }
+                            //debugMessages.AddRange(prerequisiteDebugMessages);
                         }
                     }
                 }

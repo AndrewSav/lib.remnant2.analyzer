@@ -1,8 +1,12 @@
 # Changelog
 
-## v0.0.6 (unreleased)
-- Add ability to hide items that cannot be obtained without rerolling - work in progress
-- Detect which challanges can be achieved without rerolling  - work in progress
+## v0.0.7 (unreleased)
+- Check if items can be obtained based on their prerequisites - work in progress
+- Debug logging for prerequisites - work in progress
+
+## v0.0.6 (8 May 2024)
+- Detect which challanges can be achieved without rerolling
+- Minor fixes and improvements
 
 ## v0.0.5 (6 May 2024)
 - Add quests to the database, fix "challenge" spelling, 

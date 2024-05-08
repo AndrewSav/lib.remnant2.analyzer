@@ -23,8 +23,9 @@ public partial class LootItem
     }
 
     public string Type => Item["Type"].Replace("engram", "archetype");
+    
     // ReSharper disable once UnusedMember.Global
-    // Used by WPF designed
+    // Used by WPF designer
     public string ItemNotes => Item.TryGetValue("Note", out string? value) ? value : string.Empty;
 
     [GeneratedRegex("(?<!^)(?=[A-Z])")]

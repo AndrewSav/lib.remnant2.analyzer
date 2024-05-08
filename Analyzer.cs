@@ -15,8 +15,6 @@ public partial class Analyzer
 {
     [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
     private static partial Regex RegexArchetype();
-    [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
-    private static partial Regex RegexPrerequisite();
 
     public static string[] InventoryTypes =>
     [
@@ -158,7 +156,7 @@ public partial class Analyzer
             StructProperty characterData = (StructProperty)character.Properties!.Properties.Single(x => x.Key == "CharacterData").Value.Value!;
             (List<ObjectiveProgress> objectives, List<string> debugMessages) 
                 = GetObjectives((ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", characterData)!.Value!);
-            ProcessDebugMessages(debugMessages, "objectives", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            ProcessDebugMessages(debugMessages, "objectives", result.Characters.Count, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} has objectives", sw.Elapsed);
 
             var traitRank = profileNavigator.GetProperty("TraitRank", character);
@@ -210,7 +208,7 @@ public partial class Analyzer
             TimeSpan tp = TimeSpan.FromSeconds((float)navigator.GetProperty("TimePlayed")!.Value!);
 
             (debugMessages, List<LootItem> cassLoot) = GetCassShop(navigator.FindComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!));
-            ProcessDebugMessages(debugMessages, "cass", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            ProcessDebugMessages(debugMessages, "cass", result.Characters.Count, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} Cass loot read", sw.Elapsed);
 
             List<string> questCompletedLog = GetQuestLog(navigator.GetProperty("QuestCompletedLog"));
@@ -255,21 +253,17 @@ public partial class Analyzer
             campaign.Character = c;
 
             debugMessages = FillLootGroups(campaign, profile, result.AccountAwards);
-            ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            ProcessDebugMessages(debugMessages, "campaign", result.Characters.Count-1, charSlotInternal, result.DebugMessages);
             result.DebugPerformance.Add($"Character {charSlotInternal} campaign loot groups warnings", sw.Elapsed);
 
             if (adventure != null)
             {
                 adventure.Character = c;
                 debugMessages = FillLootGroups(adventure, profile, result.AccountAwards);
-                ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+                ProcessDebugMessages(debugMessages, "adventure", result.Characters.Count-1, charSlotInternal, result.DebugMessages);
                 result.DebugPerformance.Add($"Character {charSlotInternal} adventure loot groups warnings", sw.Elapsed);
 
             }
-
-
-
-
 
             result.DebugPerformance.Add($"Character {charSlotInternal} processed", sw.Elapsed);
         }
@@ -399,7 +393,7 @@ public partial class Analyzer
             .ToList();
         if (unknownInventoryItems.Count > 0)
         {
-            ProcessDebugMessages(unknownInventoryItems, mode, result.Characters.Count + 1, charSlotInternal, result.DebugMessages);
+            ProcessDebugMessages(unknownInventoryItems, mode, result.Characters.Count, charSlotInternal, result.DebugMessages);
         }
     }
 
