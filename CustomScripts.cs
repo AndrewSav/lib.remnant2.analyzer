@@ -234,7 +234,7 @@ internal static class CustomScripts
     public static bool KillSpecificBoss(RolledWorld world, string id)
     {
         LootItem item = ItemDb.GetItemById(id);
-        string[] bosses = Analyzer.WorldBiomeMap[item.Item["DropReference"]].Split('|').Select(x => x.Trim()).ToArray();
+        string[] bosses = item.Item["DropReference"].Split('|').Select(x => x.Trim()).ToArray();
         foreach (string boss in bosses)
         {
             if (world.Zones.SelectMany(x => x.Locations).SelectMany(x => x.LootGroups)

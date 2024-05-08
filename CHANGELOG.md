@@ -1,8 +1,11 @@
 # Changelog
 
-## v0.0.7 (unreleased)
+## v0.0.8 (unreleased)
 - Check if items can be obtained based on their prerequisites - work in progress
 - Debug logging for prerequisites - work in progress
+
+## v0.0.7 (8 May 2024)
+- Fix a crash
 
 ## v0.0.6 (8 May 2024)
 - Detect which challanges can be achieved without rerolling
