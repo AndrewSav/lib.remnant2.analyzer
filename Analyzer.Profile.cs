@@ -7,6 +7,9 @@ namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
+    [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
+    private static partial Regex RegexArchetype();
+
     public static string GetProfileStringCombined(string? folderPath = null)
     {
         return string.Join(", ", GetProfileStrings(folderPath));
@@ -28,7 +31,7 @@ public partial class Analyzer
             if (ch.ClassName == null) continue;
             UObject character = ch.Object!;
 
-            string? archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value.ToStringValue();
+            string? archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value?.ToStringValue();
             string? secondaryArchPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
 
             Regex rArchetype = RegexArchetype();
@@ -43,6 +46,11 @@ public partial class Analyzer
             if (characterData != null)
             {
                 objectCount = ((SaveData)((StructProperty)characterData.Value!).Value!).Objects.Count;
+            }
+
+            if (string.IsNullOrEmpty(archetype))
+            {
+                archetype = "Unknown";
             }
 
             result.Add(archetype + (string.IsNullOrEmpty(secondaryArchetype) ? "" : $", {secondaryArchetype}") + $" ({objectCount})");

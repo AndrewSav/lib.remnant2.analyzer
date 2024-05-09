@@ -188,7 +188,9 @@ public partial class Analyzer
 
                             bool Check(string cur)
                             {
-                                if (cur.StartsWith("AccountAward_"))
+                                LootItem item = ItemDb.GetItemById(cur);
+
+                                if (item.Type == "award")
                                 {
                                     if (accountAwards.Contains(cur))
                                     {
@@ -204,8 +206,23 @@ public partial class Analyzer
                                     return false;
                                 }
 
-                                string itemProfileId = ItemDb.Db.Single(x => x["Id"] == cur)["ProfileId"];
+                                if (item.Type == "challenge")
+                                {
+                                    //if (world.Character.Profile.IsObjectiveAchieved(cur))
+                                    //{
+                                    //    prerequisiteDebugMessages.Add($"Have '{item.Name}'");
+                                    //    return true;
+                                    //}
+                                    if (world.CanGetChallenge(cur))
+                                    {
+                                        prerequisiteDebugMessages.Add($"Can get '{item.Name}'");
+                                        return true;
+                                    }
+                                    prerequisiteDebugMessages.Add($"Do not have and cannot get '{item.Name}'");
+                                    return false;
+                                }
 
+                                string itemProfileId = item.Item["ProfileId"];
                                 if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
                                 {
                                     prerequisiteDebugMessages.Add($"Have '{cur}'");

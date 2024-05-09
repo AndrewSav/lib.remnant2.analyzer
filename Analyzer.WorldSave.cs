@@ -16,11 +16,19 @@ public partial class Analyzer
         int campaignId = campaignMeta.Properties!["ID"].Get<int>();
         UObject? campaignObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
 
-        int world1 = navigator.GetComponent("World1", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int world2 = navigator.GetComponent("World2", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int world3 = navigator.GetComponent("World3", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int labyrinth = navigator.GetComponent("Labyrinth", campaignMeta)!.Properties!["QuestID"].Get<int>();
-        int rootEarth = navigator.GetComponent("RootEarth", campaignMeta)!.Properties!["QuestID"].Get<int>();
+        int world1, world2, world3, labyrinth, rootEarth;
+        try
+        {
+            world1 = navigator.GetComponent("World1", campaignMeta)!.Properties!["QuestID"].Get<int>();
+            world2 = navigator.GetComponent("World2", campaignMeta)!.Properties!["QuestID"].Get<int>();
+            world3 = navigator.GetComponent("World3", campaignMeta)!.Properties!["QuestID"].Get<int>();
+            labyrinth = navigator.GetComponent("Labyrinth", campaignMeta)!.Properties!["QuestID"].Get<int>();
+            rootEarth = navigator.GetComponent("RootEarth", campaignMeta)!.Properties!["QuestID"].Get<int>();
+        }
+        catch (InvalidOperationException ex)
+        {
+            throw new InvalidOperationException("This save does not contain a campaign", ex);
+        }
 
         PropertyBag campaignInventory = navigator.GetComponent("RemnantPlayerInventory", campaignMeta)!.Properties!;
 

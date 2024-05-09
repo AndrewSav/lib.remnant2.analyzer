@@ -13,9 +13,6 @@ namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
-    [GeneratedRegex("Archetype_(?<archetype>[a-zA-Z]+)")]
-    private static partial Regex RegexArchetype();
-
     public static string[] InventoryTypes =>
     [
         "amulet",
