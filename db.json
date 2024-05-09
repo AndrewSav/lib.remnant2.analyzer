@@ -5242,6 +5242,7 @@
     "World": "World_Base",
     "Coop": true,
     "DropType": "Progression",
+    "Prerequisite": "BCD29B16-4AD4F664-467B11B8-40B71EC6",
     "Note": "Revive a teammate 15 times",
     "Undetectable": true
   },

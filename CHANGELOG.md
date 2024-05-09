@@ -1,10 +1,12 @@
 # Changelog
 
-## v0.0.8 (unreleased)
+## v0.0.9 (unreleased)
 - Check if items can be obtained based on their prerequisites - work in progress
 - Debug logging for prerequisites - work in progress
+
+## v0.0.8 (9 May 2024)
 - Detect Resolute trait aquisition
-- Improvements for challenge detection
+- Improvements for challenge detection (Resolute, Participation Medal, Revivalist)
 - Fixes for rare crashes when the save does not have an archetype or a campaign
 
 ## v0.0.7 (8 May 2024)
