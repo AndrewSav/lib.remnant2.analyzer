@@ -1,6 +1,6 @@
 ﻿using lib.remnant2.analyzer.Model;
-using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
+using Serilog;
 
 namespace lib.remnant2.analyzer;
 
@@ -9,9 +9,21 @@ public partial class Analyzer
     [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
     private static partial Regex RegexPrerequisite();
 
-    private static List<string> FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
+    private static void FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
     {
-        List<string> debugMessages = [];
+        int characterSlot = world.Character.Index;
+        int characterIndex = world.Character.Dataset.Characters.FindIndex(x => x == world.Character);
+        string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
+
+        ILogger logger = Log.Logger
+            .ForContext(Log.Category, Log.UnknownItems)
+            .ForContext("RemnantNotificationType", "Warning")
+            .ForContext("SourceContext", "Analyzer:LootGroups");
+
+        ILogger prerequisiteLogger = Log.Logger
+            .ForContext(Log.Category, Log.Prerequisites)
+            .ForContext("SourceContext", "Analyzer:LootGroups");
+
         // Add items to locations
         foreach (Zone zz in world.AllZones)
         {
@@ -63,7 +75,7 @@ public partial class Analyzer
 
                     if (ev == null)
                     {
-                        debugMessages.Add($"Event: Drop reference '{dropReference.Name}' found in the save but is absent from the database");
+                        logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Event: Drop reference '{dropReference.Name}' found in the save but is absent from the database");
                         lg = new LootGroup
                         {
                             Items = [],
@@ -106,7 +118,7 @@ public partial class Analyzer
                 UnknownData unknown = UnknownData.None;
                 foreach (DropReference s in l.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
                 {
-                    debugMessages.Add($"World Drop: Drop reference {s.Name} is absent from the database (world drop {l.Name})");
+                    logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, World Drop: Drop reference {s.Name} is absent from the database (world drop {l.Name})");
                     Dictionary<string, string> unknownItem = new()
                     {
                         { "Name", s.Name },
@@ -153,7 +165,7 @@ public partial class Analyzer
                     LootItem? li = ItemDb.GetItemByProfileId(m.ProfileId);
                     if (li == null)
                     {
-                        debugMessages.Add($"Looted marker not found in database: {m.ProfileId}");
+                        logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Looted marker not found in database: {m.ProfileId}");
                         continue;
                     }
 
@@ -169,7 +181,6 @@ public partial class Analyzer
         }
 
         // Mark items that cannot be obtained because no prerequisite
-        // TODO: need to have debug logging here to troubleshoot why item is shown/not shown
         foreach (Zone zz in world.AllZones)
         {
             foreach (Location l in zz.Locations)
@@ -180,11 +191,10 @@ public partial class Analyzer
                     {
                         if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
                         {
-                            List<string> prerequisiteDebugMessages = [];
                             List<string> prerequisiteExpressionTokens = RegexPrerequisite().Matches(prerequisite)
                                 .Select(x => x.Value.Trim()).ToList();
 
-                            prerequisiteDebugMessages.Add($"Processing prerequisites for {i.Name}. '{prerequisite}'");
+                            prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Processing prerequisites for {i.Name}. '{prerequisite}'");
 
                             bool Check(string cur)
                             {
@@ -194,54 +204,54 @@ public partial class Analyzer
                                 {
                                     if (accountAwards.Contains(cur))
                                     {
-                                        prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                        prerequisiteLogger.Information($"  Have '{cur}'");
                                         return true;
                                     }
                                     if (world.CanGetAccountAward(cur))
                                     {
-                                        prerequisiteDebugMessages.Add($"Can get '{cur}'");
+                                        prerequisiteLogger.Information($"  Can get '{cur}'");
                                         return true;
                                     }
-                                    prerequisiteDebugMessages.Add($"Do not have and cannot get '{cur}'");
+                                    prerequisiteLogger.Information($"   Do not have and cannot get '{cur}'");
                                     return false;
                                 }
 
                                 if (item.Type == "challenge")
                                 {
-                                    //if (world.Character.Profile.IsObjectiveAchieved(cur))
-                                    //{
-                                    //    prerequisiteDebugMessages.Add($"Have '{item.Name}'");
-                                    //    return true;
-                                    //}
-                                    if (world.CanGetChallenge(cur))
+                                    if (world.Character.Profile.IsObjectiveAchieved(cur))
                                     {
-                                        prerequisiteDebugMessages.Add($"Can get '{item.Name}'");
+                                        prerequisiteLogger.Information($"  Have '{item.Name}'");
                                         return true;
                                     }
-                                    prerequisiteDebugMessages.Add($"Do not have and cannot get '{item.Name}'");
+                                    if (world.CanGetChallenge(cur))
+                                    {
+                                        prerequisiteLogger.Information($"  Can get '{item.Name}'");
+                                        return true;
+                                    }
+                                    prerequisiteLogger.Information($"  Do not have and cannot get '{item.Name}'");
                                     return false;
                                 }
 
                                 string itemProfileId = item.Item["ProfileId"];
                                 if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
                                 {
-                                    prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                    prerequisiteLogger.Information($"  Have '{cur}'");
                                     return true;
                                 }
 
                                 if (world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
                                 {
-                                    prerequisiteDebugMessages.Add($"Have '{cur}'");
+                                    prerequisiteLogger.Information($"   Have '{cur}'");
                                     return true;
                                 }
 
                                 if (world.CanGetItem(cur))
                                 {
-                                    prerequisiteDebugMessages.Add($"Can get '{cur}'");
+                                    prerequisiteLogger.Information($"  Can get '{cur}'");
                                     return true;
                                 }
 
-                                prerequisiteDebugMessages.Add($"Do not have and cannot get '{cur}'");
+                                prerequisiteLogger.Information($"  Do not have and cannot get '{cur}'");
                                 return false;
                             }
 
@@ -267,19 +277,16 @@ public partial class Analyzer
                             if (!res)
                             {
                                 i.IsPrerequisiteMissing = true;
-                                prerequisiteDebugMessages.Add($"Prerequisite check NEGATIVE for '{prerequisite}'");
+                                prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
                             }
                             else
                             {
-                                prerequisiteDebugMessages.Add($"Prerequisite check POSITIVE for '{prerequisite}'");
+                                prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
                             }
-                            //debugMessages.AddRange(prerequisiteDebugMessages);
                         }
                     }
                 }
             }
         }
-
-        return debugMessages;
     }
 }

@@ -15,22 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore lib.remnant2.analyzer.csproj
     - name: Set Version Variable
       if: ${{ github.ref_type == 'tag' }}
       env:
         TAG: ${{ github.ref_name }}
       run: echo "VERSION=${TAG#v}" >> $GITHUB_ENV      
     - name: Build
-      run: dotnet build lib.remnant2.analyzer.csproj -c Release --no-restore /p:Version=$VERSION
-    #- name: Pack
-    #  run: dotnet pack
+      run: dotnet build lib.remnant2.analyzer.csproj -c Release /p:Version=$VERSION
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
     - name: Push
       if: github.ref_type == 'tag' && startsWith(github.ref, 'refs/tags/v')
       run: dotnet nuget push bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

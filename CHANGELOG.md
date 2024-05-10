@@ -2,7 +2,9 @@
 
 ## v0.0.9 (unreleased)
 - Check if items can be obtained based on their prerequisites - work in progress
-- Debug logging for prerequisites - work in progress
+
+## v0.0.9 (10 May 2024)
+- Reworked logging and implemeted debug logging for prerequisites
 
 ## v0.0.8 (9 May 2024)
 - Detect Resolute trait aquisition

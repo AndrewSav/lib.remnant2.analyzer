@@ -1,5 +1,5 @@
 ﻿using lib.remnant2.analyzer.Model;
-using System;
+
 namespace lib.remnant2.analyzer;
 
 internal static class CustomScripts

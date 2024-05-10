@@ -19,9 +19,6 @@ public class Zone(RolledWorld parent)
     {
         return Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items)
             .Any(x => x.Item["Id"] == item && (!x.Item.ContainsKey("Prerequisite")
-                                               // temporary ignore new prerequisite types
-                                               // TODO: process new prerequisite types properly
-                                               || x.Item["Prerequisite"].StartsWith("AccountAward")
                                                || Parent.CanGetItem(x.Item["Prerequisite"])));
     }
 
