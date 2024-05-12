@@ -56,7 +56,7 @@
     "DropType": "Vendor",
     "DropReference": "Reggie",
     "Prerequisite": "AccountAward_DefeatAllBosses",
-    "Note": "Buy from Reggie at Ward 13 after killing every single boss, aberrations not required. There are 23 in total"
+    "Note": "Buy from Reggie at Ward 13 after killing every single base game World and mini boss, including Labyrinth Sentinel; aberrations and world boss alt kills not required"
   },
   {
     "Id": "Amulet_OnyxPendulum",
@@ -94,7 +94,7 @@
     "World": "World_Fae",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_BurningCity_Rookery",
-    "Note": "There is a secret path covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find the item in the next area"
+    "Note": "There is a secret path, a  hole in a wall, covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find the item in the next area"
   },
   {
     "Id": "Amulet_ShockDevice",
@@ -113,7 +113,7 @@
     "Material": "Quest_Item_Rookery_WoodenBox",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_BurningCity_Rookery",
-    "Note": "There is a secret path covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find Wooden Box in the next area the item is inside it (inspect Wooden Box from inventory)"
+    "Note": "There is a secret path, a hole in the wall, covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find the Wooden Box in the next area the item is inside it (inspect Wooden Box from inventory)"
   },
   {
     "Id": "Amulet_GoldenRibbon",
@@ -621,7 +621,7 @@
     "Name": "Cost of Betrayal",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK, shoot the dead council members for the item to drop"
+    "Note": "Found in Chamber of the Faithless location on Losomn, shoot the dead council members for the item to drop"
   },
   {
     "Id": "Amulet_DeathSoakedIdol",
@@ -660,7 +660,7 @@
     "Name": "Gift of the Unbound",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "In the One True King adventure, agree to kill Nimue, when talkint to One True King, go to Nimue and chose to spare Nimue. Go back to One True King and kill him. Return to Nimue for the reward"
+    "Note": "In the One True King adventure, agree to kill Nimue whilst talking to One True King and then go to Nimue and chose to spare her. Agree to kill the One True King and then go and kill him. Return to Nimue for the reward"
   },
   {
     "Id": "Amulet_IndexOfTheScribe",
@@ -669,7 +669,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Bring Misplaced Memoir quest item found in Forlorn Coast location on Losomn OTK to Leywise found in Forlorn Coast location on Losomn OTK, receive the item as the reward"
+    "Note": "Bring the Misplaced Memoir quest item, which spawns in a random location in the Losomn, Forlorn Coast, to Leywise, found near the Forlorn Coast Worldstone, to receive the item as the reward"
   },
   {
     "Id": "Amulet_LegacyProtocol",
@@ -1807,7 +1807,7 @@
     "Name": "Zealot's Overcoat",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
+    "Note": "Found in Forlorn Coast location on Losomn, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
   },
   {
     "Id": "Armor_Gloves_Ritualist",
@@ -1817,7 +1817,7 @@
     "Name": "Zealot's Wraps",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
+    "Note": "Found in Forlorn Coast location on Losomn, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
   },
   {
     "Id": "Armor_Head_Ritualist",
@@ -1827,7 +1827,7 @@
     "Name": "Zealot's Hat",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
+    "Note": "Found in Forlorn Coast location on Losomn, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
   },
   {
     "Id": "Armor_Legs_Ritualist",
@@ -1837,7 +1837,7 @@
     "Name": "Zealot's Seaboots",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
+    "Note": "Found in Forlorn Coast location on Losomn, get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. As you descend it you will come to a ledge with a few hung bodies, shoot the rope and then interact with the body that drops"
   },
   {
     "Id": "Armor_Body_CrimsonGuard",
@@ -1847,7 +1847,7 @@
     "Name": "Crimson Guard Plate",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -1858,7 +1858,7 @@
     "Name": "Crimson Guard Gauntlets",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -1869,7 +1869,7 @@
     "Name": "Crimson Guard Shroud",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -1880,7 +1880,7 @@
     "Name": "Crimson Guard Sabatons",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Guilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -1991,7 +1991,7 @@
     "Name": "Dandy Topper",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Shoot the preacher in the head to get the item"
+    "Note": "Found in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Shoot the preacher in the head to get the item"
   },
   {
     "Id": "Armor_Head_TrueCrimsonCrown",
@@ -2789,7 +2789,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Dire Fiend aberration in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
+    "Note": "Drops from Dire Fiend aberration in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
   },
   {
     "Id": "MetaGem_FetidWounds",
@@ -2810,7 +2810,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Mangled Atoner aberration in Forlon Coast location on Losomn OTK, at the top of Nimue tower"
+    "Note": "Drops from Mangled Atoner aberration in Forlon Coast location on Losomn, at the top of Nimue tower"
   },
   {
     "Id": "MetaGem_Prophecy",
@@ -2843,7 +2843,7 @@
     "Subtype": "Melee",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Little Gorge aberration in Forlon Coast location on Losomn OTK, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig"
+    "Note": "Drops from Little Gorge aberration in Forlon Coast location on Losomn, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig"
   },
   {
     "Id": "MetaGem_Guts",
@@ -3152,7 +3152,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK. Talk to One True King and agree to kill Nimue. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and chose option to kill her"
+    "Note": "Found in Forlorn Coast location on Losomn. Talk to One True King and agree to kill Nimue. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and chose option to kill her"
   },
   {
     "Id": "Relic_Consumable_PaperHeart",
@@ -3161,7 +3161,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn OTK. Find Misplaced Memoir quest item in Forlorn Coast location. Examine the item and interact with it to get the Bookbound Medallion quest item. Use it to open the locked door, the item is behind it"
+    "Note": "Found in Chamber of the Faithless location on Losomn. Find Misplaced Memoir quest item in Forlorn Coast location. Examine the item and interact with it to get the Bookbound Medallion quest item. Use it to open the locked door, the item is behind it"
   },
   {
     "Id": "Relic_Consumable_BloodlessHeart",
@@ -4555,7 +4555,7 @@
     "World": "World_DLC1",
     "DropType": "Vendor",
     "DropReference": "Leywise",
-    "Note": "Buy from Leywise in Forlorn Coast location on Losomn OTK. Leywise can be found besides a cooking pot, looking extremely worried and occupied. He denies the player when he is being interacted on, until you try a few more times. After telling him, 'I want something crafted', he will explain that he does not do that because he is a Royal Scribe. After this, we can tell him that we want to buy something. Laywise will offer us the item."
+    "Note": "Buy from Leywise in Forlorn Coast location on Losomn. Leywise can be found besides a cooking pot, looking extremely worried and occupied. He denies the player when he is being interacted on, until you try a few more times. After telling him, 'I want something crafted', he will explain that he does not do that because he is a Royal Scribe. After this, we can tell him that we want to buy something. Laywise will offer us the item."
   },
   {
     "Id": "Ring_BandOfTheFanatic",
@@ -4566,7 +4566,7 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Armor_Body_Ritualist, Armor_Gloves_Ritualist, Armor_Head_Ritualist, Armor_Legs_Ritualist",
-    "Note": "Found in Forlon Coast location on Losomn OTK, at the start of the level when you cross a long bridge to the main area there will be a preacher. Wear the Zealot set (otherwise you will get attacked once you approach the preacher), do not attack anyone and wait until the end of the preacher's speech. Then interact with the preacher and he will give you the item.",
+    "Note": "Found in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Wear the Zealot set (otherwise you will get attacked once you approach the preacher), do not attack anyone and wait until the end of the preacher's speech. Then interact with the preacher and he will give you the item.",
     "CustomScript": true
   },
   {
@@ -4597,7 +4597,7 @@
     "Name": "Bridge Warden's Crest",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK. Aftert getting to Drowened Wen worldstone  you reach a small checkpoint near an iron door leading to the level start. From there you need to cross the water by jumping from boat to boat. Once on the otherside you need to reach the Mournful Promenade world stone without killing any Fae. If you avoid the area where Fae fighting with Dran nearby you should not meet any additional Fae on your way to the worldstone. You will see the big Warden not far from the Worldstone. Do not attack him, talk to him and he will give you the item."
+    "Note": "Found in Forlorn Coast location on Losomn. Aftert getting to Drowened Wen worldstone  you reach a small checkpoint near an iron door leading to the level start. From there you need to cross the water by jumping from boat to boat. Once on the otherside you need to reach the Mournful Promenade world stone without killing any Fae. If you avoid the area where Fae fighting with Dran nearby you should not meet any additional Fae on your way to the worldstone. You will see the big Warden not far from the Worldstone. Do not attack him, talk to him and he will give you the item."
   },
   {
     "Id": "Ring_BurdenOfTheDeparted",
@@ -4608,7 +4608,7 @@
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
     "Prerequisite": "Ring_BurdenOfTheDivine",
-    "Note": "Found in the Chamber of the Faithless location on Losomn OTK. Defeat The One True King while having Burden of the Divine equipped"
+    "Note": "Found in the Chamber of the Faithless location on Losomn. Defeat The One True King while having Burden of the Divine equipped"
   },
   {
     "Id": "Ring_BurdenOfTheSciolist",
@@ -4618,7 +4618,7 @@
     "Name": "Burden of the Sciolist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn OTK, Find Misplaced Memoir quest item in Forlon Coast location on Losomn OTK, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn OTK and give him the medallion the first time he asks"
+    "Note": "Found in Forlon Coast location on Losomn, Find Misplaced Memoir quest item in Forlon Coast location on Losomn, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn and give him the medallion the first time he asks"
   },
   {
     "Id": "Ring_CrimsonDreamstone",
@@ -4636,7 +4636,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast loaction on Losomn OTK. Frow the Drowned Wen Worldstone go straight ahead on the first intersection to the anchor statue. Kill all the pigs nearby to get the item"
+    "Note": "Found in Forlorn Coast loaction on Losomn. Frow the Drowned Wen Worldstone go straight ahead on the first intersection to the anchor statue. Kill all the pigs nearby to get the item"
   },
   {
     "Id": "Ring_DriedClayRing",
@@ -4654,7 +4654,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK. On the other side of the broken bridge that starts from the Mournful Promenade Worldstone access the lift to go down, the item will be at the bottom of the ride"
+    "Note": "Found in Forlorn Coast location on Losomn. On the other side of the broken bridge that starts from the Mournful Promenade Worldstone access the lift to go down, the item will be at the bottom of the ride"
   },
   {
     "Id": "Ring_JewelOfTheBeholden",
@@ -4663,7 +4663,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK. Talk to One True King before talking to Nimue and kill him. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and get the item"
+    "Note": "Found in Forlorn Coast location on Losomn. Talk to One True King before talking to Nimue and kill him. Get to Nimue tower via Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs to get access to Nimue tower. Descend the tower, talk to Nimue and get the item"
   },
   {
     "Id": "Ring_LightHouseKeepersRing",
@@ -4720,7 +4720,7 @@
     "Name": "Ring of Infinite Damage",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn OTK, Find Misplaced Memoir quest item in Forlon Coast location on Losomn OTK, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn OTK do not give him the medallion the first time he asks, but give it to him second time he asks"
+    "Note": "Found in Forlon Coast location on Losomn, Find Misplaced Memoir quest item in Forlon Coast location on Losomn, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn do not give him the medallion the first time he asks, but give it to him second time he asks"
   },
   {
     "Id": "Ring_RingOfTheCastaway",
@@ -4730,7 +4730,7 @@
     "Name": "Ring of the Castaway",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_DLC",
-    "Note": "Found in a sewer location on Losomn. There will be an area with a pit in the middle and some platforms on the surroinding walls. Go all the way to the top, which will require a few jumps and find the item there"
+    "Note": "Found in a sewer location on Losomn. There will be an area with a pit in the middle and some platforms on the surrounding walls. Go all the way to the top, which will require a few jumps and find the item there"
   },
   {
     "Id": "Ring_RingOfTheVain",
@@ -4778,7 +4778,7 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Quest_Item_OTK_FeastmasterLeftovers",
-    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn OTK. First to The Great Hall location on Losomn OTK and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise and insit on him eating the Leftovers. You will receive the item as the result"
+    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn. First to The Great Hall location on Losomn and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise and insit on him eating the Leftovers. You will receive the item as the result"
   },
   {
     "Id": "Ring_WoodRing",
@@ -5324,7 +5324,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in the Forlorn Coast location on Losomn OTK. You need to shoot three bells after which the trait is awared. The first bell in near the Drawned Wen worldstone. The second bell is in the courtyard right before the Palace of the One True King, where there is a big guy with an Axe along with a lot of hogs. To find the third bell, in Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs. Once you transition outside hug the right  wall till you see the bell"
+    "Note": "Found in the Forlorn Coast location in Losomn. You need to shoot three bells after which the trait is awarded. The first bell is near the Drowned Wen worldstone. The second bell is in the courtyard right before the Palace of the One True King, where there is a big guy with an Axe along along with a lot of hogs. To find the third bell, in Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs. Once you transition outside hug the right  wall till you see the bell"
   },
   {
     "Id": "Trait_Chakra",
@@ -6358,7 +6358,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in the Forlorn Coast location on Losomn OTK. From the Drowned Wen world stone go straight ahead at the first intersection to reach an anchor statue, turn right, descend into the well and follow a short path. Once you emerge to the sewers take a ladder directly to your left. Kill the manticora, and find the item in the next room"
+    "Note": "Found in the Forlorn Coast location on Losomn. From the Drowned Wen world stone go straight ahead at the first intersection to reach an anchor statue, turn right, descend into the well and follow a short path. Once you emerge to the sewers take a ladder directly to your left. Kill the manticora, and find the item in the next room"
   },
   {
     "Id": "Weapon_Wrathbringer",
@@ -6369,7 +6369,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
-    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn OTK after destroying his weapon at least once"
+    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn after destroying his weapon at least once"
   },
   {
     "Id": "Weapon_Monarch",
@@ -6380,7 +6380,7 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
-    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn OTK defore destroying his weapon even once"
+    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn defore destroying his weapon even once"
   },
   {
     "Id": "Weapon_CorruptedSavior",
@@ -6489,7 +6489,7 @@
     "Subtype": "Long Gun",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "You gonna have to look that one up. The item is the reword for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube"
+    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube"
   },
   {
     "Id": "Weapon_Thorn",
@@ -6633,7 +6633,7 @@
     "Material": "Material_Engram_Ritualist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn OTK, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig. The Ragged Poppet will be near the witch"
+    "Note": "Found in Forlorn Coast location on Losomn, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig. The Ragged Poppet will be near the witch"
   },
   {
     "Id": "Engram_Invoker",
