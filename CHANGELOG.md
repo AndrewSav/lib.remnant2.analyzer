@@ -1,7 +1,10 @@
 # Changelog
 
-## v0.0.11 (unreleased)
+## v0.0.12 (unreleased)
 - Check if items can be obtained based on their prerequisites - work in progress
+
+## v0.0.11 (17 May 2024)
+- Re-tag botched build
 
 ## v0.0.10 (17 May 2024)
 - Fixed a few database typos
