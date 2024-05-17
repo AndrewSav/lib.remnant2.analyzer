@@ -105,23 +105,6 @@ public partial class Analyzer
                     continue;
                 }
 
-                string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
-                DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
-
-                // If this is not the first load, some saves might not have changed, so no point parsing them again
-                Character? oldCharacter = null;
-                if (oldDataset != null)
-                {
-                    oldCharacter = oldDataset.Characters.SingleOrDefault(x => x.Index == charSlotInternal);
-                }
-
-                if (oldCharacter != null && oldCharacter.SaveDateTime == saveDateTime)
-                {
-                    result.Characters.Add(oldCharacter);
-                    oldCharacter.Dataset = result;
-                    continue;
-                }
-
                 operation = performance.BeginOperation($"Character {charSlotInternal} archetypes");
                 Regex rArchetype = RegexArchetype();
                 string archetype = rArchetype
@@ -225,6 +208,35 @@ public partial class Analyzer
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {charSlotInternal} save load");
+
+                string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
+                DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
+
+                // If this is not the first load, some saves might not have changed, so no point parsing them again
+                Character? oldCharacter = null;
+                if (oldDataset != null)
+                {
+                    oldCharacter = oldDataset.Characters.SingleOrDefault(x => x.Index == charSlotInternal);
+                }
+
+                if (oldCharacter != null && oldCharacter.SaveDateTime == saveDateTime)
+                {
+                    Character oldNewCharacter = new()
+                    {
+                        Save = oldCharacter.Save,
+                        Profile = profile,
+                        Index = charSlotInternal,
+                        ActiveWorldSlot = oldCharacter.ActiveWorldSlot,
+                        SaveDateTime = saveDateTime,
+                        WorldSaveFile = oldCharacter.WorldSaveFile,
+                        WorldNavigator = oldCharacter.WorldNavigator,
+                        Dataset = result
+                    };
+                    result.Characters.Add(oldNewCharacter);
+                    oldNewCharacter.Save.Campaign.Character = oldNewCharacter;
+                    continue;
+                }
+
                 SaveFile sf;
                 try
                 {

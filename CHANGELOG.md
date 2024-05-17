@@ -1,7 +1,11 @@
 # Changelog
 
-## v0.0.9 (unreleased)
+## v0.0.11 (unreleased)
 - Check if items can be obtained based on their prerequisites - work in progress
+
+## v0.0.10 (17 May 2024)
+- Fixed a few database typos
+- Fixed an issue where loading profile only was not updating profile correctly
 
 ## v0.0.9 (10 May 2024)
 - Reworked logging and implemeted debug logging for prerequisites
