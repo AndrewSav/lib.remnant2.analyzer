@@ -79,14 +79,14 @@ public class ItemDb
         Dictionary<string, string>? item = Db.SingleOrDefault(x => x.ContainsKey("ProfileId") && string.Compare(x["ProfileId"],id,StringComparison.InvariantCultureIgnoreCase) == 0);
         return item == null ? null : new LootItem
         {
-            Item = item
+            Properties = item
         };
     }
     public static LootItem GetItemById(string id)
     {
         return new LootItem
         {
-            Item = Db.Single(x =>
+            Properties = Db.Single(x =>
                 x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id)
         };
 
@@ -99,7 +99,7 @@ public class ItemDb
 
         return item == null ? null : new LootItem
         {
-            Item = item
+            Properties = item
         };
 
     }
@@ -108,7 +108,7 @@ public class ItemDb
     {
         return new LootItem
         {
-            Item = Db.Single(x =>
+            Properties = Db.Single(x =>
                 x["Id"] == dr.Name || x.ContainsKey("EventId") && x["EventId"] == dr.Name),
             IsLooted = dr.IsLooted
         };
@@ -124,13 +124,13 @@ public class ItemDb
     {
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"] == dropReference
-                        && x["DropType"] == dropType).Select(x => new LootItem { Item = x }).ToList();
+                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x }).ToList();
     }
 
     public static List<LootItem> GetItemsByReference(string dropType, DropReference dropReference)
     {
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"] == dropReference.Name
-                        && x["DropType"] == dropType).Select(x => new LootItem { Item = x, IsLooted = dropReference.IsLooted}).ToList();
+                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x, IsLooted = dropReference.IsLooted}).ToList();
     }
 }

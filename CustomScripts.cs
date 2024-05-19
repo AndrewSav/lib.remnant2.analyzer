@@ -1,139 +1,49 @@
 ﻿using lib.remnant2.analyzer.Model;
+using Serilog;
+
 
 namespace lib.remnant2.analyzer;
 
-internal static class CustomScripts
+internal static partial class CustomScripts
 {
 
-    public static bool CanGet(RolledWorld world, string id)
+    private static readonly ILogger Logger = Log.Logger
+        .ForContext(Log.Category, Log.UnknownItems)
+        .ForContext("RemnantNotificationType", "Warning")
+        .ForContext("SourceContext", "CustomScripts");
+
+
+    public static bool CanGetChallenge(RolledWorld world, string id)
     {
-        return Scripts[id](world, id);
+        return CanGetChallengeFunctions[id](world, id);
     }
 
-    public static Dictionary<string, Func<RolledWorld, string, bool>> Scripts = new()
+    public static Dictionary<string, Func<LootItemContext, bool>> Scripts = new()
     {
-        {
-            "Amulet_GoldenRibbon", (_,_) =>
-            {
-                // if in Gilded Chambers or Council Chamber
-                return true;
-            }
-        },
-        {
-            "Amulet_SilverRibbon", (_,_) =>
-            {
-                // If in Shattered Gallery or The Great Hall
-                return true;
-            }
-        },
-        {
-            "Engram_Archon", (_,_) =>
-            {
-                // In Campaign
-                // Has or can get:
-                // Armor_Body_Explorer
-                // Armor_Gloves_Explorer
-                // Armor_Head_Explorer
-                // Armor_Legs_Explorer
-                // Relic_Consumable_VoidHeart
-                // Weapon_Shotgun
-                // Weapon_CubeGun
-                // Weapon_LabyrinthStaff
-                // Amulet_LetosAmulet
-                // Ring_AmberMoonstone
-                // Ring_BlackCatBand
-                // Ring_AnastasijasInspiration
-                // Ring_ZaniasMalice
-                // Has:
-                // Fortune Hunter skill of Explorer
-                // Wormhole skill of Invader
+        { "Amulet_GoldenRibbon", GoldenRibbon },
+        { "Amulet_SilverRibbon", SilverRibbon },
+        { "Amulet_EchoOfTheForest", EchoOfTheForest },
+        { "Armor_Body_CrimsonGuard", CrimsonGuard },
+        { "Armor_Gloves_CrimsonGuard", CrimsonGuard },
+        { "Armor_Head_CrimsonGuard", CrimsonGuard },
+        { "Armor_Legs_CrimsonGuard", CrimsonGuard },
+        { "Relic_Consumable_QuiltedHeart", QuiltedHeart },
+        { "Relic_Consumable_RipenedHeart", RipenedHeart },
+        { "Relic_Consumable_VoidHeart", VoidHeart },
+        { "Relic_Consumable_ProfaneHeart", ProfaneHeart },
+        { "Ring_DowngradedRing", DowngradedRing },
+        { "Ring_BandOfTheFanatic", BandOfTheFanatic },
+        { "Weapon_CrescentMoon", CrescentMoon }, // Has to be injected if we want to support it
+        //Weapon_Anguish // Has to be injected if we want to support it
+        //Amulet_ParticipationMedal // Has to be injected if we want to support it
+        { "Weapon_Deceit", Deceit },
+        { "Weapon_Godsplitter", Godsplitter },
 
-                return true;
-            }
-        },
-        {
-            "Ring_BisectedRing", (_,_) =>
-            {
-                // Same as archon
-                return true;
-            }
-        },
-        {
-            "Amulet_GunfireSecurityLanyard", (_,_) =>
-            {
-                // Same as archon
-                return true;
-            }
-        },
-        {
-            "Relic_Consumable_QuiltedHeart", (_,_) =>
-            {
-                // Should have 6 of the 12 following quests in the quest completed log
 
-                // Quest_Boss_Faelin/Quest_Boss_Faerlin
-                // Quest_Boss_NightWeaver
-                // Quest_Miniboss_BloatKing
-                // Quest_Miniboss_DranGrenadier
-                // Quest_Miniboss_FaeArchon
-                // Quest_Miniboss_RedPrince
-                // Quest_SideD_CrimsonHarvest
-                // Quest_SideD_FaeCouncil
-                // Quest_SideD_Ravenous
-                // Quest_SideD_ThreeMenMorris
-                // Quest_SideD_TownTurnToDust
-                // Quest_SideD_CharnelHouse
-
-                return true;
-            }
-        },
-        {
-            "Relic_Consumable_RipenedHeart", (_,_) =>
-            {
-                // Has The Widow's Court location (for Thaen seed)
-                // Or should already have planted the seed
-                return true;
-            }
-        },
-        {
-            "Relic_Consumable_VoidHeart", (_,_) =>
-            {
-                // Has Sentinel's Keep location
-                // I wonder if we should inject Alepsis-Taura location in this case?
-                return true;
-            }
-        },
-        {
-            "Ring_DowngradedRing", (_,_) =>
-            {
-                // Has Sentinel's Keep location
-                return true;
-            }
-        },
-        {
-            "Weapon_CrescentMoon", (_,_) =>
-            {
-                // Has Losomn (+ the dream catcher per-requisite)
-                // I wonder if we should inject it into either Beatific Palace or Nimue's retreat
-                return true;
-            }
-        },
-        {
-            // Armor_Gloves_CrimsonGuard
-            // Armor_Head_CrimsonGuard
-            // Armor_Legs_CrimsonGuard
-            "Armor_Body_CrimsonGuard", (_,_) =>
-            {
-                // Has Gilded Chambers in Losomn OTK
-                return true;
-            }
-        },
-        //Weapon_Anguish
-        //Ring_BandOfTheFanatic - it is not possible to get it unless you *already* have the ritualist set
-        //Amulet_ParticipationMedal
-        //Polygun requires the archon outfit
-        //Relic_Consumable_ProfaneHeart - has to be in a campaign (not adventure) with Infested Abyss
-        //Amulet_EchoOfTheForest - might need to check the number of trinity memento pieces already handed?
-        //Trinity Crossbow
+    };
+    
+    public static Dictionary<string, Func<RolledWorld, string, bool>> CanGetChallengeFunctions = new()
+    {
         // ReSharper disable StringLiteralTypo
         { "3E4C2F02-472BB871-BE76D7A8-E869D8C2", FinishBiome }, // Kill Jungle World Boss - Finish Campaign (Survivor)
         { "BC7301F3-4340EFA2-E55B6995-C77D97DB", FinishBiome }, // Kill Fae World Boss - Finish Campaign (Survivor)
@@ -197,67 +107,8 @@ internal static class CustomScripts
         { "A071DF92-4C794849-4A1002B0-DFF292DA", AnyTime }, // Die 15 Times - Die 15 Times
         { "D8479145-44C2D683-74BE74A1-ADDF77F8", AnyTime }, // Flop 100 Times - Flop Dodge a Bunch
         { "BCD29B16-4AD4F664-467B11B8-40B71EC6", AnyTime }, // Revive Allies - No Soldier Left Behind
-        { "1856B8B3-49AA2901-48AE90B8-B3C89533", ApocalypseCampaign }, // Die 10 Times - Die 10 Times to Bosses on Apocalypse
+        { "1856B8B3-49AA2901-48AE90B8-B3C89533", ApocalypseDifficulty }, // Die 10 Times - Die 10 Times to Bosses on Apocalypse
         { "D627C628-4F497780-F6BC269E-A815E1FC", LydusaCurse }, // Break 15 Statues - Break X Statues
+        // ReSharper restore StringLiteralTypo
     };
-    // ReSharper restore StringLiteralTypo
-
-    private static bool FinishBiome(RolledWorld world, string id)
-    {
-        LootItem item = ItemDb.GetItemById(id);
-        string biome = Analyzer.WorldBiomeMap[item.Item["DropReference"]];
-        item.Item.TryGetValue("Difficulty", out string? tempDifficulty);
-        item.Item.TryGetValue("Hardcore", out string? tempHardcore);
-        string difficulty = tempDifficulty ?? "Survivor";
-        bool isHardcore = tempHardcore == "True";
-
-        if (!world.Character.Profile.IsHardcore && isHardcore) return false;
-        if (Analyzer.Difficulties.ToList().FindIndex(x => x == difficulty) > Analyzer.Difficulties.ToList().FindIndex(x => x == world.Difficulty)) return false;
-        return world.Zones.Any(x => x.Name == biome);
-    }
-
-    public static bool FinishXBiomes(RolledWorld world, string id)
-    {
-        int progress = world.Character.Profile.Objectives.SingleOrDefault(x => x.Id == id)?.Progress ?? 0;
-        int challengeTarget = int.Parse(ItemDb.GetItemById(id).Item["ChallengeCount"]);
-        int canDoBiomes = world.Zones.Count(x => x is { Finished: false, CompletesBiome: true });
-        return progress + canDoBiomes >= challengeTarget;
-    }
-
-    public static bool KillWorldBossHardcore(RolledWorld world, string id)
-    {
-        LootItem item = ItemDb.GetItemById(id);
-        string biome = Analyzer.WorldBiomeMap[item.Item["DropReference"]];
-        return world.Zones.Any(x => x.Name == biome) && world.Character.Profile.IsHardcore;
-    }
-
-    public static bool KillSpecificBoss(RolledWorld world, string id)
-    {
-        LootItem item = ItemDb.GetItemById(id);
-        string[] bosses = item.Item["DropReference"].Split('|').Select(x => x.Trim()).ToArray();
-        foreach (string boss in bosses)
-        {
-            if (world.Zones.SelectMany(x => x.Locations).SelectMany(x => x.LootGroups)
-                .Any(x => x.EventDropReference == boss)) return true;
-            if (boss == "World_Labyrinth" && world.Zones.Any(x => x.Name == "Labyrinth")) return true;
-        }
-        return false;
-    }
-
-    private static bool AnyTime(RolledWorld world, string id)
-    {
-        return true;
-    }
-    
-    private static bool ApocalypseCampaign(RolledWorld world, string id)
-    {
-        return world.Difficulty == "Apocalypse";
-    }
-    
-    private static bool LydusaCurse(RolledWorld world, string id)
-    {
-        var lydusaZone = world.Zones.SingleOrDefault( x => x.Story == "The Forgotten Kingdom");
-        if (lydusaZone == null) return false;
-        return !lydusaZone.Finished;
-    }
 }

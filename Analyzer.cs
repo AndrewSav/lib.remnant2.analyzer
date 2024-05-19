@@ -230,10 +230,10 @@ public partial class Analyzer
                         SaveDateTime = saveDateTime,
                         WorldSaveFile = oldCharacter.WorldSaveFile,
                         WorldNavigator = oldCharacter.WorldNavigator,
-                        Dataset = result
+                        ParentDataset = result
                     };
                     result.Characters.Add(oldNewCharacter);
-                    oldNewCharacter.Save.Campaign.Character = oldNewCharacter;
+                    oldNewCharacter.Save.Campaign.ParentCharacter = oldNewCharacter;
                     continue;
                 }
 
@@ -301,20 +301,20 @@ public partial class Analyzer
                     SaveDateTime = saveDateTime,
                     WorldSaveFile = sf,
                     WorldNavigator = navigator,
-                    Dataset = result
+                    ParentDataset = result
                 };
                 result.Characters.Add(c);
-                campaign.Character = c;
+                campaign.ParentCharacter = c;
 
-                FillLootGroups(campaign, profile, result.AccountAwards);
+                FillLootGroups(campaign);
                 operation.Complete();
 
 
                 operation = performance.BeginOperation($"Character {charSlotInternal} adventure loot groups");
                 if (adventure != null)
                 {
-                    adventure.Character = c;
-                    FillLootGroups(adventure, profile, result.AccountAwards);
+                    adventure.ParentCharacter = c;
+                    FillLootGroups(adventure);
 
                 }
 

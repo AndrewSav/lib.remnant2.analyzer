@@ -13,7 +13,7 @@ public class RolledWorld
     public List<Zone> AllZones => [ Ward13,..Zones ];
 
     private Character? _character;
-    public Character Character
+    public Character ParentCharacter
     {
         get => _character ?? throw new InvalidOperationException("Character is not set for RolledWorld, this is unexpected");
         set => _character = value;
@@ -29,12 +29,12 @@ public class RolledWorld
 
     public bool CanGetAccountAward(string award)
     {
-        string[] challengeIds = ItemDb.GetItemById(award).Item["Challenge"].Split(',').Select(x => x.Trim()).ToArray();
-        return challengeIds.All(id => Character.Profile.IsObjectiveAchieved(id) || CanGetChallenge(id));
+        string[] challengeIds = ItemDb.GetItemById(award).Properties["Challenge"].Split(',').Select(x => x.Trim()).ToArray();
+        return challengeIds.All(id => ParentCharacter.Profile.IsObjectiveAchieved(id) || CanGetChallenge(id));
     }
 
     public bool CanGetChallenge(string challenge)
     {
-        return CustomScripts.CanGet(this, challenge);
+        return CustomScripts.CanGetChallenge(this, challenge);
     }
 }

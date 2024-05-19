@@ -6,17 +6,17 @@ namespace lib.remnant2.analyzer.Model;
 public class Location
 {
     public required string Name;
-    public required List<string> WorldStones;
-    public required List<string> Connections;
+    public List<string> WorldStones = [];
+    public List<string> Connections = [];
     public bool TraitBook;
     public bool TraitBookLooted;
     public bool Simulacrum;
     public bool SimulacrumLooted;
-    public required List<DropReference> WorldDrops;
-    public required List<DropReference> DropReferences;
+    public List<DropReference> WorldDrops = [];
+    public List<DropReference> DropReferences =[];
     public required string Category;
-    public required List<LootGroup> LootGroups;
-    public required List<LootedMarker> LootedMarkers;
+    public List<LootGroup> LootGroups=[];
+    public List<LootedMarker> LootedMarkers = [];
 
 
     public bool Bloodmoon

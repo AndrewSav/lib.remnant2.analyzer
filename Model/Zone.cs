@@ -18,8 +18,8 @@ public class Zone(RolledWorld parent)
     public bool CanGetItem(string item)
     {
         return Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items)
-            .Any(x => x.Item["Id"] == item && (!x.Item.ContainsKey("Prerequisite")
-                                               || Parent.CanGetItem(x.Item["Prerequisite"])));
+            .Any(x => x.Id == item && (!x.Properties.ContainsKey("Prerequisite")
+                                               || Parent.CanGetItem(x.Properties["Prerequisite"])));
     }
 
     public void SetStoryId(string story)

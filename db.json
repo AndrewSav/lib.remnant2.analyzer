@@ -396,8 +396,8 @@
     "World": "World_Labyrinth",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires",
-    "CustomScript": true
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {
     "Id": "Amulet_CoreBooster",
@@ -3514,8 +3514,8 @@
     "Type": "ring",
     "World": "World_Fae",
     "Name": "Faelin's Sigil",
-    "DropType": "Location",
-    "DropReference": "Beatific Gallery",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_Faelin",
     "Note": "Found in Beatific Gallery location on Losomn, given by Faelin as a reward for killing Faerin, a world boss in Malefic Gallery location on Losomn"
   },
   {
@@ -3533,8 +3533,8 @@
     "Type": "ring",
     "World": "World_Fae",
     "Name": "Faerin's Sigil",
-    "DropType": "Location",
-    "DropReference": "Malefic Gallery",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_Faerlin",
     "Note": "Found in Malefic Gallery location on Losomn, given by Faerin as a reward for killing Faelin, a world boss in Beatific Gallery location on Losomn"
   },
   {
@@ -4065,8 +4065,8 @@
     "World": "World_Labyrinth",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires",
-    "CustomScript": true
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {
     "Id": "Ring_DenseSiliconRing",
@@ -5024,6 +5024,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Gunslinger",
     "Note": "Reach Gunslinger level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5042,6 +5043,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Archon",
     "Note": "Reach Archon level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5051,6 +5053,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Engineer",
     "Note": "Reach Engineer level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5060,6 +5063,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Handler",
     "Note": "Reach Handler level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5069,6 +5073,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Hunter",
     "Note": "Reach Hunter level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5078,6 +5083,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Alchemist",
     "Note": "Reach Alchemist level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5087,6 +5093,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Summoner",
     "Note": "Reach Summoner level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5096,6 +5103,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Challenger",
     "Note": "Reach Challenger level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5105,6 +5113,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Explorer",
     "Note": "Reach Explorer level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5114,6 +5123,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Medic",
     "Note": "Reach Medic level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5123,6 +5133,7 @@
     "Type": "trait",
     "World": "World_Base",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Invader",
     "Note": "Reach Invader level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5314,6 +5325,7 @@
     "Type": "trait",
     "World": "World_DLC1",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Ritualist",
     "Note": "Reach Ritualist level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5351,6 +5363,7 @@
     "Type": "trait",
     "World": "World_DLC2",
     "DropType": "Progression",
+    "Prerequisite": "Engram_Invoker",
     "Note": "Reach Invoker level 10 to unlock this trait for use in any build",
     "Undetectable": true
   },
@@ -5600,7 +5613,8 @@
     "Subtype": "Long Gun",
     "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Crafted from Anamy's Echo, which you can obtain attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide consumable  Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
-    "CustomScript": true
+    "CustomScript": true,
+    "Undetectable": true
   },
   {
     "Id": "Weapon_Deceit",
@@ -6316,7 +6330,8 @@
     "World": "World_DLC1",
     "Subtype": "Hand Gun",
     "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a locatio with the material.",
-    "CustomScript": true
+    "CustomScript": true,
+    "Undetectable": true
   },
   {
     "Id": "Weapon_Sparkfire",
@@ -6489,7 +6504,8 @@
     "Subtype": "Long Gun",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube"
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype"
   },
   {
     "Id": "Weapon_Thorn",
@@ -6531,8 +6547,8 @@
     "Material": "Material_Engram_Archon",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the Strange Box. The Fortune Hunter skill of the explorer, can help finding it before the timer expires",
-    "CustomScript": true
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the Strange Box. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {
     "Id": "Engram_Challenger",

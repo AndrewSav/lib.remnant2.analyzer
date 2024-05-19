@@ -9,10 +9,10 @@ public partial class Analyzer
     [GeneratedRegex(@"([^|,]+)|(\|)|(,)")]
     private static partial Regex RegexPrerequisite();
 
-    private static void FillLootGroups(RolledWorld world, Profile profile, List<string> accountAwards)
+    private static void FillLootGroups(RolledWorld world)
     {
-        int characterSlot = world.Character.Index;
-        int characterIndex = world.Character.Dataset.Characters.FindIndex(x => x == world.Character);
+        int characterSlot = world.ParentCharacter.Index;
+        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter);
         string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
 
         ILogger logger = Log.Logger
@@ -36,15 +36,21 @@ public partial class Analyzer
                 zz.Locations.Insert(canopyIndex, new()
                 {
                     Category = zz.Locations[canopyIndex].Category,
-                    Connections = [],
-                    DropReferences = [],
-                    LootGroups = [],
                     Name = "Ancient Canopy/Luminous Vale",
-                    WorldDrops = [],
-                    WorldStones = [],
-                    LootedMarkers = []
                 });
             }
+
+            int sentinelsKeepIndex = zz.Locations.FindIndex(x => x.Name == "Sentinel's Keep");
+            // Inject Alepsis-Taura
+            if (sentinelsKeepIndex >= 0)
+            {
+                zz.Locations.Insert(zz.Locations.Count, new()
+                {
+                    Category = zz.Locations[sentinelsKeepIndex].Category,
+                    Name = "Alepsis-Taura",
+                });
+            }
+
 
             // Populate locations with possible items
             foreach (Location l in zz.Locations)
@@ -125,7 +131,7 @@ public partial class Analyzer
                         { "Id", "unknown" },
                         { "Type", "unknown" }
                     };
-                    worldDrops.Add(new() { Item = unknownItem });
+                    worldDrops.Add(new() { Properties = unknownItem });
                     unknown = UnknownData.WorldDrop;
                 }
 
@@ -171,7 +177,7 @@ public partial class Analyzer
 
                     foreach (LootItem item in l.LootGroups.SelectMany(x => x.Items))
                     {
-                        if (item.Item["Id"] == li.Item["Id"])
+                        if (item.Id == li.Id)
                         {
                             item.IsLooted = item.IsLooted || li.IsLooted;
                         }
@@ -181,102 +187,22 @@ public partial class Analyzer
         }
 
         // Mark items that cannot be obtained because no prerequisite
+        // Process item custom scripts
         foreach (Zone zz in world.AllZones)
         {
             foreach (Location l in zz.Locations)
             {
                 foreach (LootGroup lg in new List<LootGroup>(l.LootGroups))
                 {
-                    foreach (LootItem i in new List<LootItem>(lg.Items))
+                    foreach (LootItem item in new List<LootItem>(lg.Items))
                     {
-                        if (i.Item.TryGetValue("Prerequisite", out string? prerequisite))
+                        if (item.Properties.TryGetValue("Prerequisite", out string? prerequisite))
                         {
-                            List<string> prerequisiteExpressionTokens = RegexPrerequisite().Matches(prerequisite)
-                                .Select(x => x.Value.Trim()).ToList();
-
-                            prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Processing prerequisites for {i.Name}. '{prerequisite}'");
-
-                            bool Check(string cur)
-                            {
-                                LootItem item = ItemDb.GetItemById(cur);
-
-                                if (item.Type == "award")
-                                {
-                                    if (accountAwards.Contains(cur))
-                                    {
-                                        prerequisiteLogger.Information($"  Have '{cur}'");
-                                        return true;
-                                    }
-                                    if (world.CanGetAccountAward(cur))
-                                    {
-                                        prerequisiteLogger.Information($"  Can get '{cur}'");
-                                        return true;
-                                    }
-                                    prerequisiteLogger.Information($"   Do not have and cannot get '{cur}'");
-                                    return false;
-                                }
-
-                                if (item.Type == "challenge")
-                                {
-                                    if (world.Character.Profile.IsObjectiveAchieved(cur))
-                                    {
-                                        prerequisiteLogger.Information($"  Have '{item.Name}'");
-                                        return true;
-                                    }
-                                    if (world.CanGetChallenge(cur))
-                                    {
-                                        prerequisiteLogger.Information($"  Can get '{item.Name}'");
-                                        return true;
-                                    }
-                                    prerequisiteLogger.Information($"  Do not have and cannot get '{item.Name}'");
-                                    return false;
-                                }
-
-                                string itemProfileId = item.Item["ProfileId"];
-                                if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
-                                {
-                                    prerequisiteLogger.Information($"  Have '{cur}'");
-                                    return true;
-                                }
-
-                                if (world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()))
-                                {
-                                    prerequisiteLogger.Information($"   Have '{cur}'");
-                                    return true;
-                                }
-
-                                if (world.CanGetItem(cur))
-                                {
-                                    prerequisiteLogger.Information($"  Can get '{cur}'");
-                                    return true;
-                                }
-
-                                prerequisiteLogger.Information($"  Do not have and cannot get '{cur}'");
-                                return false;
-                            }
-
-                            (bool, int) Term(int index) // term => word ',' term | word
-                            {
-                                bool left = Check(prerequisiteExpressionTokens[index++]);
-                                if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != ",") return (left, index);
-                                (bool right, index) = Term(index);
-                                return (left && right, index);
-                            }
-
-                            (bool, int) Expr(int index) // expr => term '|' expr | term
-                            {
-                                (bool left, index) = Term(index);
-                                if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != "|") return (left, index);
-                                (bool right, index) = Expr(index);
-                                return (left || right, index);
-                            }
-
-
-                            (bool res, _) = Expr(0);
+                            bool res = CheckPrerequisites(world, item, prerequisite);
 
                             if (!res)
                             {
-                                i.IsPrerequisiteMissing = true;
+                                item.IsPrerequisiteMissing = true;
                                 prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
                             }
                             else
@@ -284,9 +210,130 @@ public partial class Analyzer
                                 prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
                             }
                         }
+
+                        if (CustomScripts.Scripts.TryGetValue(item.Id, out Func<LootItemContext, bool>? func))
+                        {
+                            LootItemContext lic = new()
+                            {
+                                LootItem = item,
+                                Location = l,
+                                LootGroup = lg,
+                                World = world,
+                                Zone = zz
+                            };
+                            if (!func(lic))
+                            {
+                                lg.Items.Remove(item);
+                            }
+                        }
+                    }
+
+                    if (lg.Items.Count == 0)
+                    {
+                        l.LootGroups.Remove(lg);
                     }
                 }
             }
         }
+    }
+
+    private static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
+    {
+
+        if (!checkHave && !checkCanGet) return true; 
+
+        List<string> accountAwards = world.ParentCharacter.ParentDataset.AccountAwards;
+        Profile profile = world.ParentCharacter.Profile;
+        int characterSlot = world.ParentCharacter.Index;
+        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter);
+        string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
+        ILogger prerequisiteLogger = Log.Logger
+            .ForContext(Log.Category, Log.Prerequisites)
+            .ForContext("SourceContext", "Analyzer:LootGroups");
+
+
+        List<string> prerequisiteExpressionTokens = RegexPrerequisite().Matches(prerequisite)
+            .Select(x => x.Value.Trim()).ToList();
+
+        prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Processing prerequisites for {item.Name}. '{prerequisite}'");
+
+        bool Check(string cur)
+        {
+            LootItem currentItem = ItemDb.GetItemById(cur);
+
+            if (currentItem.Type == "award")
+            {
+                if (accountAwards.Contains(cur) && checkHave)
+                {
+                    prerequisiteLogger.Information($"  Have '{cur}'");
+                    return true;
+                }
+                if (world.CanGetAccountAward(cur) && checkCanGet)
+                {
+                    prerequisiteLogger.Information($"  Can get '{cur}'");
+                    return true;
+                }
+                prerequisiteLogger.Information($"   Do not have and/or cannot get '{cur}'. CheckHave: {checkHave}, CheckCanGet: {checkCanGet}");
+                return false;
+            }
+
+            if (currentItem.Type == "challenge")
+            {
+                if (world.ParentCharacter.Profile.IsObjectiveAchieved(cur) && checkHave)
+                {
+                    prerequisiteLogger.Information($"  Have '{currentItem.Name}'");
+                    return true;
+                }
+                if (world.CanGetChallenge(cur) && checkCanGet)
+                {
+                    prerequisiteLogger.Information($"  Can get '{currentItem.Name}'");
+                    return true;
+                }
+                prerequisiteLogger.Information($"  Do not have and/or cannot get '{currentItem.Name}'. CheckHave: {checkHave}, CheckCanGet: {checkCanGet}");
+                return false;
+            }
+
+            string itemProfileId = currentItem.Properties["ProfileId"];
+            if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            {
+                prerequisiteLogger.Information($"  Have '{cur}'");
+                return true;
+            }
+
+            if (world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            {
+                prerequisiteLogger.Information($"   Have '{cur}'");
+                return true;
+            }
+
+            if (world.CanGetItem(cur) && checkCanGet)
+            {
+                prerequisiteLogger.Information($"  Can get '{cur}'");
+                return true;
+            }
+
+            prerequisiteLogger.Information($"  Do not have and/or cannot get '{cur}'. CheckHave: {checkHave}, CheckCanGet: {checkCanGet}");
+            return false;
+        }
+
+        (bool, int) Term(int index) // term => word ',' term | word
+        {
+            bool left = Check(prerequisiteExpressionTokens[index++]);
+            if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != ",") return (left, index);
+            (bool right, index) = Term(index);
+            return (left && right, index);
+        }
+
+        (bool, int) Expr(int index) // expr => term '|' expr | term
+        {
+            (bool left, index) = Term(index);
+            if (index >= prerequisiteExpressionTokens.Count || prerequisiteExpressionTokens[index++] != "|") return (left, index);
+            (bool right, index) = Expr(index);
+            return (left || right, index);
+        }
+
+
+        (bool res, _) = Expr(0);
+        return res;
     }
 }

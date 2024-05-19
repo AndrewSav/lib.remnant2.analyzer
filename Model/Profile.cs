@@ -54,7 +54,7 @@ public class Profile
         ObjectiveProgress? objective = Objectives.Find(x => x.Id == objectiveId);
         if (objective == null) return false;
         LootItem item = ItemDb.GetItemById(objectiveId);
-        if (!item.Item.TryGetValue("ChallengeCount", out string? goal)) return true;
+        if (!item.Properties.TryGetValue("ChallengeCount", out string? goal)) return true;
         return objective.Progress >= int.Parse(goal);
     }
 }
