@@ -7,8 +7,6 @@ public class Profile
     public required List<Dictionary<string,string>> MissingItems;
     // List of missing items that can be crafted now because we have the material
     public required List<Dictionary<string, string>> HasMatsItems;
-    public bool HasWormhole;
-    public bool HasFortuneHunter;
     public required string Archetype;
     public required string SecondaryArchetype;
     public required List<ObjectiveProgress> Objectives;

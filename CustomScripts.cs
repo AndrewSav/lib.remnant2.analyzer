@@ -10,7 +10,7 @@ internal static partial class CustomScripts
     private static readonly ILogger Logger = Log.Logger
         .ForContext(Log.Category, Log.UnknownItems)
         .ForContext("RemnantNotificationType", "Warning")
-        .ForContext("SourceContext", "CustomScripts");
+        .ForContext(typeof(CustomScripts));
 
 
     public static bool CanGetChallenge(RolledWorld world, string id)
@@ -29,7 +29,6 @@ internal static partial class CustomScripts
         { "Armor_Legs_CrimsonGuard", CrimsonGuard },
         { "Relic_Consumable_QuiltedHeart", QuiltedHeart },
         { "Relic_Consumable_RipenedHeart", RipenedHeart },
-        { "Relic_Consumable_VoidHeart", VoidHeart },
         { "Relic_Consumable_ProfaneHeart", ProfaneHeart },
         { "Ring_DowngradedRing", DowngradedRing },
         { "Ring_BandOfTheFanatic", BandOfTheFanatic },
@@ -38,6 +37,9 @@ internal static partial class CustomScripts
         //Amulet_ParticipationMedal // Has to be injected if we want to support it
         { "Weapon_Deceit", Deceit },
         { "Weapon_Godsplitter", Godsplitter },
+        { "Relic_Consumable_VoidHeart", VoidHeart },
+        { "Amulet_NecklaceOfFlowingLife", NecklaceOfFlowingLife },
+        
 
 
     };

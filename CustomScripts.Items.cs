@@ -1,4 +1,7 @@
 ﻿using lib.remnant2.analyzer.Model;
+using lib.remnant2.saves.Model;
+using lib.remnant2.saves.Model.Properties;
+using lib.remnant2.saves.Navigation;
 
 namespace lib.remnant2.analyzer;
 
@@ -93,14 +96,10 @@ internal static partial class CustomScripts
     {
         // Has The Widow's Court location (for Thaen seed)
         // Or should already have planted the seed
-        return true;
 
-    }
+        // HasTree = thaen != null,
+        //Property? thaen = lic.World.ParentCharacter.WorldNavigator.GetProperty("GrowthStage");
 
-    private static bool VoidHeart(LootItemContext lic)
-    {
-        // Has Sentinel's Keep location
-        // I wonder if we should inject Alepsis-Taura location in this case?
         return true;
 
     }
@@ -130,8 +129,11 @@ internal static partial class CustomScripts
         return true;
     }
 
+    // Additional IsLooted detection ----------------------------------------------------------------------------------------------------------
+    
     private static bool Deceit(LootItemContext lic)
     {
+        // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
             lic.Zone.Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items).Single(x => x.Id == "Weapon_Godsplitter").IsLooted = true;
@@ -141,6 +143,7 @@ internal static partial class CustomScripts
 
     private static bool Godsplitter(LootItemContext lic)
     {
+        // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
             lic.Zone.Locations.SelectMany( x=> x.LootGroups).SelectMany( x=> x.Items).Single( x => x.Id == "Weapon_Deceit").IsLooted = true;
@@ -148,4 +151,32 @@ internal static partial class CustomScripts
         return true;
     }
 
+    private static bool VoidHeart(LootItemContext lic)
+    {
+        // If the Override Pin is used, then although Void Heart is not technically looted it can no longer be accessed
+        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
+        string selector = lic.World.Zones.Count > 1 ? "Quest_Campaign_Main_C" : "Quest_AdventureMode_Nerud_C";
+        UObject meta = navigator.GetActor(selector, main)!.Archive.Objects[0];
+        int? id = meta.Properties!["ID"].Get<int>();
+        UObject? obj = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{id}_Container.Quest_Container:PersistentLevel");
+        Actor theCore = navigator.GetActor("Quest_Story_TheCore_C", obj)!;
+        PropertyBag props = theCore.GetFirstObjectProperties()!;
+        bool endingB = props.Contains("Ending_B") && props["Ending_B"].Get<byte>() != 0;
+
+        if (endingB)
+        {
+            lic.LootItem.IsLooted = true;
+        }
+
+        return true;
+    }
+
+    private static bool NecklaceOfFlowingLife(LootItemContext lic)
+    {
+        //Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        //var bla = navigator.FindObjects("CryptHidden").ToArray();
+        //var bla2 = navigator.Root.Children.Where( x=> $"{x}".Contains("CryptHidden")).ToArray();
+        return true;
+    }
 }

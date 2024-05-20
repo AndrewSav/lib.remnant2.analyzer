@@ -91,7 +91,7 @@ public partial class Analyzer
 
         for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
         {
-            using (performance.TimeOperation($"Character {charSlotInternal}"))
+            using (performance.TimeOperation($"Character {result.Characters.Count+1} (save_{charSlotInternal})"))
             {
                 ObjectProperty ch = (ObjectProperty)ap.Items[charSlotInternal]!;
                 if (ch.ClassName == null) continue;
@@ -105,7 +105,7 @@ public partial class Analyzer
                     continue;
                 }
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} archetypes");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) archetypes");
                 Regex rArchetype = RegexArchetype();
                 string archetype = rArchetype
                     .Match(profileNavigator.GetProperty("Archetype", character)?.Get<string>() ?? "")
@@ -115,14 +115,14 @@ public partial class Analyzer
                     .Groups["archetype"].Value;
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} items");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) items");
                 List<PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
                 List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} traits");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) traits");
                 Component? traitsComponent = profileNavigator.GetComponent("Traits", character);
                 List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!
                     .Get<ArrayStructProperty>().Items
@@ -131,11 +131,11 @@ public partial class Analyzer
                 operation.Complete();
 
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} inventory (items+traits)");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory (items+traits)");
                 List<string> inventory = items.Union(traits).ToList();
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} missing items");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
                 List<Dictionary<string, string>> inventoryDb =
                     ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
                 List<Dictionary<string, string>> traitsDb =
@@ -147,7 +147,7 @@ public partial class Analyzer
                 missingItems = missingItems.Union(missingTraits).ToList();
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} inventory ids, db items only");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory ids, db items only");
                 IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
                 List<string> inventoryIds = inventory.Where(x =>
                         pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
@@ -156,17 +156,17 @@ public partial class Analyzer
                     .ToList();
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} unknown inventory items warnings");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) unknown inventory items warnings");
                 WarnUnknownInventoryItems(inventory, pdb, result, charSlotInternal, "character inventory");
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} objectives");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) objectives");
                 IEnumerable<Dictionary<string, string>> mats = ItemDb.Db.Where(x => x.ContainsKey("Material"));
                 List<Dictionary<string, string>> hasMatsItems = mats.Where(x => inventoryIds.Contains(x["Material"])
                     && missingItems.Select(y => y["Id"]).Contains(x["Id"])).ToList();
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} has mats");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) has mats");
                 StructProperty characterData = (StructProperty)character.Properties!.Properties
                     .Single(x => x.Key == "CharacterData").Value.Value!;
                 List<ObjectiveProgress> objectives = 
@@ -174,7 +174,7 @@ public partial class Analyzer
                         result.Characters.Count, charSlotInternal);
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} create profile");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) create profile");
                 var traitRank = profileNavigator.GetProperty("TraitRank", character);
                 var gender = profileNavigator.GetProperty("Gender", character);
                 var characterType = profileNavigator.GetProperty("CharacterType", character);
@@ -187,10 +187,6 @@ public partial class Analyzer
                     Inventory = inventory,
                     MissingItems = missingItems,
                     HasMatsItems = hasMatsItems,
-                    HasFortuneHunter = inventory.Contains(
-                        "/Game/World_Base/Items/Archetypes/Explorer/Skills/FortuneHunter/Skill_FortuneHunter.Skill_FortuneHunter_C"),
-                    HasWormhole = inventory.Contains(
-                        "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C"),
                     Archetype = archetype,
                     SecondaryArchetype = secondaryArchetype,
                     CharacterDataCount = ((SaveData)characterData.Value!).Objects.Count,
@@ -207,7 +203,7 @@ public partial class Analyzer
                 };
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} save load");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) save load");
 
                 string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
                 DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
@@ -250,27 +246,26 @@ public partial class Analyzer
                 }
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} create navigator");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) create navigator");
                 Navigator navigator = new(sf);
-                Property? thaen = navigator.GetProperty("GrowthStage");
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} read Cass loot");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read Cass loot");
                 TimeSpan tp = TimeSpan.FromSeconds((float)navigator.GetProperty("TimePlayed")!.Value!);
 
                 List<LootItem> cassLoot = GetCassShop(navigator.FindComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!), result.Characters.Count, charSlotInternal);
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} read quest log");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read quest log");
                 List<string> questCompletedLog = GetQuestLog(navigator.GetProperty("QuestCompletedLog"));
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} load campaign");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load campaign");
                 RolledWorld campaign = GetCampaign(navigator);
                 WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} load adventure");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load adventure");
                 Property? adventureSlot = navigator.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 1);
                 RolledWorld? adventure = null;
                 if (adventureSlot != null)
@@ -280,7 +275,7 @@ public partial class Analyzer
                 }
                 operation.Complete();
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} campaign loot groups");
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) campaign loot groups");
                 int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
                 Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
 
@@ -291,7 +286,6 @@ public partial class Analyzer
                         Campaign = campaign,
                         Adventure = adventure,
                         QuestCompletedLog = questCompletedLog,
-                        HasTree = thaen != null,
                         Playtime = tp,
                         CassShop = cassLoot
                     },
@@ -310,7 +304,7 @@ public partial class Analyzer
                 operation.Complete();
 
 
-                operation = performance.BeginOperation($"Character {charSlotInternal} adventure loot groups");
+                operation = performance.BeginOperation($"Character {result.Characters.Count} (save_{charSlotInternal}) adventure loot groups");
                 if (adventure != null)
                 {
                     adventure.ParentCharacter = c;
@@ -320,6 +314,7 @@ public partial class Analyzer
 
                 operation.Complete();
             }
+            logger.Information("-----------------------------------------------------------------------------");
         }
 
         operationAnalyze.Complete();

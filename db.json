@@ -396,7 +396,7 @@
     "World": "World_Labyrinth",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_ZaniasMalice",
     "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {
@@ -4065,7 +4065,7 @@
     "World": "World_Labyrinth",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_ZaniasMalice",
     "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the item. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {
@@ -4239,7 +4239,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Towers_ElevatorShaft",
-    "Note": "Found in a tower location on N'Erud. There will be an elevator that is slower than the rest and does not rotate. What for an opening you can jump into mid-way. Follow the path to the next elevator. Step on it and walk off before it goes down. Second elevator platform will arrive, walk on it to go up. Follow the path at the top"
+    "Note": "Found in a tower location on N'Erud. There will be an elevator that is slower than the rest and does not rotate. What for an opening you can jump into mid-way. The item will be in the room behind that"
   },
   {
     "Id": "Ring_MetalDriver",
@@ -4301,7 +4301,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Towers_ElevatorShaft",
-    "Note": "Found in a tower location on N'Erud. There will be an elevator that is slower than the rest and does not rotate. What for an opening you can jump into mid-way. The item will be in the room behind that"
+    "Note": "Found in a tower location on N'Erud. There will be an elevator that is slower than the rest and does not rotate. What for an opening you can jump into mid-way. Follow the path to the next elevator. Step on it and walk off before it goes down. Second elevator platform will arrive, walk on it to go up. Follow the path at the top"
   },
   {
     "Id": "Ring_ReroutingCable",
@@ -5625,7 +5625,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faelin",
-    "Note": "Crafted from Imposter's Heart, dropped by Faelin world boss n Beatific Gallery location on Losomn"
+    "Note": "Crafted from Imposter's Heart, dropped by Faelin world boss n Beatific Gallery location on Losomn",
+    "CustomScript": true
   },
   {
     "Id": "Weapon_Merciless",
@@ -5915,7 +5916,8 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faerlin",
-    "Note": "Crafted from Imposter's Heart, dropped by Faerin world boss in Malefic Gallery location on Losomn"
+    "Note": "Crafted from Melded Hilt, dropped by Faerin world boss in Malefic Gallery location on Losomn",
+    "CustomScript": true
   },
   {
     "Id": "Weapon_HerosSword",
@@ -6547,7 +6549,7 @@
     "Material": "Material_Engram_Archon",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
+    "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_ZaniasMalice",
     "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the Strange Box. The Fortune Hunter skill of the explorer, can help finding it before the timer expires"
   },
   {

@@ -12,7 +12,7 @@ public partial class Analyzer
     private static void FillLootGroups(RolledWorld world)
     {
         int characterSlot = world.ParentCharacter.Index;
-        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter);
+        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter) + 1;
         string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
 
         ILogger logger = Log.Logger
@@ -41,6 +41,7 @@ public partial class Analyzer
             }
 
             int sentinelsKeepIndex = zz.Locations.FindIndex(x => x.Name == "Sentinel's Keep");
+            int seekersRestIndex = zz.Locations.FindIndex(x => x.Name == "Seeker's Rest");
             // Inject Alepsis-Taura
             if (sentinelsKeepIndex >= 0)
             {
@@ -48,9 +49,9 @@ public partial class Analyzer
                 {
                     Category = zz.Locations[sentinelsKeepIndex].Category,
                     Name = "Alepsis-Taura",
+                    LootedMarkers = zz.Locations[seekersRestIndex].LootedMarkers
                 });
             }
-
 
             // Populate locations with possible items
             foreach (Location l in zz.Locations)
@@ -101,14 +102,11 @@ public partial class Analyzer
                         name = ev["Name"];
                     }
 
-                    if (type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone"))
-                    {
-                        dropReference.IsLooted = false;
-                    }
-
+                    // This is not a boss-only zone so if zone is complete does not mean all items are looted
+                    bool propagateLooted = !(type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone"));
                     lg = new LootGroup
                     {
-                        Items = ItemDb.GetItemsByReference("Event", dropReference).Where(x => x.Type != "challenge").ToList(),
+                        Items = ItemDb.GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").ToList(),
                         EventDropReference = dropReference.Name,
                         Type = type,
                         Name = name
@@ -179,7 +177,7 @@ public partial class Analyzer
                     {
                         if (item.Id == li.Id)
                         {
-                            item.IsLooted = item.IsLooted || li.IsLooted;
+                            item.IsLooted = item.IsLooted || m.IsLooted;
                         }
                     }
                 }
@@ -245,7 +243,7 @@ public partial class Analyzer
         List<string> accountAwards = world.ParentCharacter.ParentDataset.AccountAwards;
         Profile profile = world.ParentCharacter.Profile;
         int characterSlot = world.ParentCharacter.Index;
-        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter);
+        int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter) + 1;
         string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
         ILogger prerequisiteLogger = Log.Logger
             .ForContext(Log.Category, Log.Prerequisites)

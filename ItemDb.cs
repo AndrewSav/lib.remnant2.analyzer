@@ -127,10 +127,10 @@ public class ItemDb
                         && x["DropType"] == dropType).Select(x => new LootItem { Properties = x }).ToList();
     }
 
-    public static List<LootItem> GetItemsByReference(string dropType, DropReference dropReference)
+    public static List<LootItem> GetItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
     {
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"] == dropReference.Name
-                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x, IsLooted = dropReference.IsLooted}).ToList();
+                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x, IsLooted = dropReference.IsLooted && propagateLooted }).ToList();
     }
 }

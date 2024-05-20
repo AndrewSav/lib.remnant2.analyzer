@@ -1,7 +1,7 @@
 ﻿namespace lib.remnant2.analyzer.Model;
 
 // Represents a collection of Loot Items that come from the same source. The sources are:
-//   Event(s): boss, injectable, miniboss, overworld POI, location, dungeon
+//   Event(s): boss, injectable, miniboss, overworld POI, location (Quest_RootEarth_TowerBoss, Quest_RootEarth_Zone1, Quest_RootEarth_Zone2), dungeon
 //   Location
 //   Vendor(s)
 //   World Drop

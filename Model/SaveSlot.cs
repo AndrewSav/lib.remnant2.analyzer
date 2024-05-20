@@ -6,7 +6,6 @@ public class SaveSlot
     public required RolledWorld Campaign;
     public RolledWorld? Adventure;
     public required List<string> QuestCompletedLog;
-    public bool HasTree;
     public required List<LootItem> CassShop;
     public TimeSpan? Playtime;
 }
