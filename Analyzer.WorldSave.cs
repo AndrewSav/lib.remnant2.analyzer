@@ -73,12 +73,14 @@ public partial class Analyzer
 
         var difficulty = navigator.GetProperty("Difficulty", adventureMeta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", adventureMeta)?.Get<TimeSpan>();
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
 
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
+            RespawnLinkNameId = respawnLinkNameId,
         };
         rolledWorld.Zones =
         [
@@ -151,6 +153,7 @@ public partial class Analyzer
             Actor current = queue.Dequeue();
             PropertyBag pb = current.GetZoneActorProperties()!;
             string label = pb["Label"].ToStringValue()!;
+            string labelId = pb["NameID"].ToStringValue()!;
             int zoneId = pb["ID"].Get<int>();
             int questId = pb["QuestID"].Get<int>();
 
@@ -159,7 +162,7 @@ public partial class Analyzer
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
 
-            List<string> waypoints = [];
+            List<WorldStone> waypoints = [];
             List<string> connectsTo = [];
 
             foreach (object? o in links.Items)
@@ -183,7 +186,7 @@ public partial class Analyzer
                 switch (type)
                 {
                     case "EZoneLinkType::Waypoint":
-                        waypoints.Add(linkLabel);
+                        waypoints.Add(new WorldStone { Name = linkLabel, NameId = name });
                         break;
                     case "EZoneLinkType::Checkpoint":
                         break;
@@ -238,6 +241,7 @@ public partial class Analyzer
             Location l = new()
             {
                 Name = label,
+                NameId = labelId,
                 DropReferences = [],
                 WorldDrops = [],
                 WorldStones = waypoints,

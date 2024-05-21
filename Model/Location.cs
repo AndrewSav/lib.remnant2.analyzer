@@ -6,7 +6,8 @@ namespace lib.remnant2.analyzer.Model;
 public class Location
 {
     public required string Name;
-    public List<string> WorldStones = [];
+    public required string NameId;
+    public List<WorldStone> WorldStones = [];
     public List<string> Connections = [];
     public bool TraitBook;
     public bool TraitBookLooted;
@@ -95,7 +96,8 @@ public class Location
     public static Location Ward13 => new()
     {
         Name = "Ward 13",
-        WorldStones = [ "Ward 13" ],
+        NameId = "2_Zone",
+        WorldStones = [ new() { Name = "Ward 13", NameId = "2_Waypoint_Town" } ],
         Connections = [],
         WorldDrops = [],
         DropReferences = [],

@@ -37,6 +37,7 @@ public partial class Analyzer
                 {
                     Category = zz.Locations[canopyIndex].Category,
                     Name = "Ancient Canopy/Luminous Vale",
+                    NameId = "0000_NotApplicable"
                 });
             }
 
@@ -49,6 +50,7 @@ public partial class Analyzer
                 {
                     Category = zz.Locations[sentinelsKeepIndex].Category,
                     Name = "Alepsis-Taura",
+                    NameId = "1159_Zone_Nebula",
                     LootedMarkers = zz.Locations[seekersRestIndex].LootedMarkers
                 });
             }

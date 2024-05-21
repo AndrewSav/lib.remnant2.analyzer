@@ -21,6 +21,7 @@ public class RolledWorld
 
     public required string Difficulty;
     public TimeSpan? Playtime;
+    public string? RespawnLinkNameId;
 
     public bool CanGetItem(string item)
     {
