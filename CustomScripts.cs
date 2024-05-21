@@ -12,6 +12,10 @@ internal static partial class CustomScripts
         .ForContext("RemnantNotificationType", "Warning")
         .ForContext(typeof(CustomScripts));
 
+    //private static readonly ILogger Logger2 = Log.Logger
+    //    .ForContext(Log.Category, Log.Misc)
+    //    .ForContext(typeof(CustomScripts));
+
 
     public static bool CanGetChallenge(RolledWorld world, string id)
     {
@@ -33,12 +37,12 @@ internal static partial class CustomScripts
         { "Ring_DowngradedRing", DowngradedRing },
         { "Ring_BandOfTheFanatic", BandOfTheFanatic },
         { "Weapon_CrescentMoon", CrescentMoon }, // Has to be injected if we want to support it
-        //Weapon_Anguish // Has to be injected if we want to support it
-        //Amulet_ParticipationMedal // Has to be injected if we want to support it
-        { "Weapon_Deceit", Deceit },
-        { "Weapon_Godsplitter", Godsplitter },
-        { "Relic_Consumable_VoidHeart", VoidHeart },
-        { "Amulet_NecklaceOfFlowingLife", NecklaceOfFlowingLife },
+        //Weapon_Anguish // TODO: Has to be injected if we want to support it
+        //Amulet_ParticipationMedal // TODO: Has to be injected if we want to support it
+        { "Weapon_Deceit", lic => { Deceit(lic); return true; } },
+        { "Weapon_Godsplitter", lic => { Godsplitter(lic); return true; } },
+        { "Relic_Consumable_VoidHeart", lic => { VoidHeart(lic); return true; } },
+        { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } },
         
 
 

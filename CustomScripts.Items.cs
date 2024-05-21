@@ -1,5 +1,6 @@
 ﻿using lib.remnant2.analyzer.Model;
 using lib.remnant2.saves.Model;
+using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Navigation;
 
@@ -9,6 +10,7 @@ internal static partial class CustomScripts
 {
     private static bool GoldenRibbon(LootItemContext lic)
     {
+        // The injectable gives Golden Ribbon only in these locations
         string[] locations =
         [
             "Council Chamber",
@@ -16,6 +18,7 @@ internal static partial class CustomScripts
             "Glistering Cloister"
         ];
 
+        // The injectable gives Silver Ribbon only in these locations
         string[] others =
         [
             "The Great Hall",
@@ -35,6 +38,7 @@ internal static partial class CustomScripts
 
     private static bool SilverRibbon(LootItemContext lic)
     {
+        // The injectable gives Silver Ribbon only in these locations
         string[] locations =
         [
             "The Great Hall",
@@ -42,6 +46,7 @@ internal static partial class CustomScripts
             "Shattered Gallery"
         ];
 
+        // The injectable gives Golden Ribbon only in these locations
         string[] others =
         [
             "Council Chamber",
@@ -59,108 +64,136 @@ internal static partial class CustomScripts
         return result;
     }
 
-    private static bool EchoOfTheForest(LootItemContext lic)
-    {
-        //might need to check the number of trinity memento pieces already handed?
-        return true;
-    }
-
     private static bool CrimsonGuard(LootItemContext lic)
     {
-        // Has Gilded Chambers in Losomn OTK
-        return true;
+        // Crimson Guard can only be obtained if we have Red Prince generated in the zone
+        return lic.Zone.Locations.Any(x => x.Name == "Gilded Chambers");
     }
 
     private static bool QuiltedHeart(LootItemContext lic)
     {
-        // Should have 6 of the 12 following quests in the quest completed log
+        // We need 6 of the following quests
+        List<string> required =
+        [
+            "Quest_Boss_NightWeaver",
+            "Quest_Miniboss_BloatKing",
+            "Quest_Miniboss_DranGrenadier",
+            "Quest_Miniboss_FaeArchon",
+            "Quest_Miniboss_RedPrince",
+            "Quest_SideD_CrimsonHarvest",
+            "Quest_SideD_FaeCouncil",
+            "Quest_SideD_Ravenous",
+            "Quest_SideD_ThreeMenMorris",
+            "Quest_SideD_TownTurnToDust",
+            "Quest_SideD_CharnelHouse"
+        ];
 
-        // Quest_Boss_Faelin/Quest_Boss_Faerlin
-        // Quest_Boss_NightWeaver
-        // Quest_Miniboss_BloatKing
-        // Quest_Miniboss_DranGrenadier
-        // Quest_Miniboss_FaeArchon
-        // Quest_Miniboss_RedPrince
-        // Quest_SideD_CrimsonHarvest
-        // Quest_SideD_FaeCouncil
-        // Quest_SideD_Ravenous
-        // Quest_SideD_ThreeMenMorris
-        // Quest_SideD_TownTurnToDust
-        // Quest_SideD_CharnelHouse
+        List<string> done = lic.World.ParentCharacter.Save.QuestCompletedLog;
 
-        return true;
+        // Either of these counts as one, the other one does not count
+        bool doneImposter = done.Contains("Quest_Boss_Faelin") || done.Contains("Quest_Boss_Faerlin");
 
+        int counter = doneImposter ? 1 : 0;
+
+        // Quests we have already done
+        foreach (string q in done)
+        {
+            if (required.Remove(q))
+            {                
+                counter++;
+            }
+        }
+
+        var refs = lic.Zone.Locations.SelectMany(x => x.DropReferences).ToList();
+
+        // Quests we can do in this save
+        foreach (DropReference dropReference in refs)
+        {
+            if (required.Remove(dropReference.Name))
+            {                
+                counter++;
+            }
+        }
+
+        // And either of the two as above
+        if (!doneImposter && (refs.Exists( x => x.Name == "Quest_Boss_Faelin") || refs.Exists(x => x.Name == "Quest_Boss_Faerlin")))
+        {
+            counter++;
+        }
+
+        return counter >= 6;
     }
 
     private static bool RipenedHeart(LootItemContext lic)
     {
-        // Has The Widow's Court location (for Thaen seed)
-        // Or should already have planted the seed
+        // Have The Widow's Court location (for Thaen seed)
+        // Or have already planted the seed
 
-        // HasTree = thaen != null,
-        //Property? thaen = lic.World.ParentCharacter.WorldNavigator.GetProperty("GrowthStage");
-
-        return true;
-
+        Property? thaen = lic.World.ParentCharacter.WorldNavigator!.GetProperty("GrowthStage");
+        return thaen != null || lic.World.Zones.SelectMany( x=> x.Locations).Any(x => x.Name == "The Widow's Court");
     }
 
     private static bool ProfaneHeart(LootItemContext lic)
     {
-        //Has to be in a campaign (not adventure) with Infested Abyss
-        return true;
+        //Has to be in a campaign (not adventure)
+        return lic.World.IsCampaign;
     }
 
     private static bool DowngradedRing(LootItemContext lic)
     {
-        // Has Sentinel's Keep location
-        return true;
+        // Only available in "The Core" story
+        bool exists = lic.Zone.Story == "The Core";
+        if (exists)
+        {
+            // Incidentally we get blocked out of the item on the same condition as for VoidHeart
+            VoidHeart(lic);
+        }
+        return exists;
     }
 
     private static bool BandOfTheFanatic(LootItemContext lic)
     {
-        //it is not possible to get it unless you *already* have the ritualist set
-        return true;
+        // It is not possible to get it unless you *already* have the ritualist set
+        return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, lic.LootItem.Properties["Prerequisite"], checkCanGet: false);
     }
 
+    private static bool EchoOfTheForest(LootItemContext lic)
+    {
+        // TODO: might need to check the number of trinity memento pieces already handed?
+        return true;
+    }
+    
     private static bool CrescentMoon(LootItemContext lic)
     {
-        // Has Losomn (+ the dream catcher per-requisite)
+        // TODO: Has Losomn (+ the dream catcher per-requisite)
         // I wonder if we should inject it into either Beatific Palace or Nimue's retreat
         return true;
     }
 
     // Additional IsLooted detection ----------------------------------------------------------------------------------------------------------
     
-    private static bool Deceit(LootItemContext lic)
+    private static void Deceit(LootItemContext lic)
     {
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
             lic.Zone.Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items).Single(x => x.Id == "Weapon_Godsplitter").IsLooted = true;
         }
-        return true;
     }
 
-    private static bool Godsplitter(LootItemContext lic)
+    private static void Godsplitter(LootItemContext lic)
     {
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
             lic.Zone.Locations.SelectMany( x=> x.LootGroups).SelectMany( x=> x.Items).Single( x => x.Id == "Weapon_Deceit").IsLooted = true;
         }
-        return true;
     }
 
-    private static bool VoidHeart(LootItemContext lic)
+    private static void VoidHeart(LootItemContext lic)
     {
         // If the Override Pin is used, then although Void Heart is not technically looted it can no longer be accessed
-        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
-        string selector = lic.World.Zones.Count > 1 ? "Quest_Campaign_Main_C" : "Quest_AdventureMode_Nerud_C";
-        UObject meta = navigator.GetActor(selector, main)!.Archive.Objects[0];
-        int? id = meta.Properties!["ID"].Get<int>();
-        UObject? obj = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{id}_Container.Quest_Container:PersistentLevel");
-        Actor theCore = navigator.GetActor("Quest_Story_TheCore_C", obj)!;
+        Actor theCore = lic.GetActor("Quest_Story_TheCore_C");
         PropertyBag props = theCore.GetFirstObjectProperties()!;
         bool endingB = props.Contains("Ending_B") && props["Ending_B"].Get<byte>() != 0;
 
@@ -168,15 +201,34 @@ internal static partial class CustomScripts
         {
             lic.LootItem.IsLooted = true;
         }
-
-        return true;
     }
 
-    private static bool NecklaceOfFlowingLife(LootItemContext lic)
+    private static void NecklaceOfFlowingLife(LootItemContext lic)
     {
-        //Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
-        //var bla = navigator.FindObjects("CryptHidden").ToArray();
-        //var bla2 = navigator.Root.Children.Where( x=> $"{x}".Contains("CryptHidden")).ToArray();
-        return true;
+        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        Actor crypt = lic.GetActor("Quest_Injectable_CryptHidden_C");
+        string key = ((PropertyBag)navigator.GetProperty("Key", crypt)!.Get<StructProperty>().Value!)["ContainerKey"].Get<FName>().Name;
+
+
+        // Player has not been there yet
+        if (key == "None") return;
+
+        UObject zone = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == key);
+        List<KeyValuePair<ulong, Actor>> actors = ((PersistenceContainer)zone.Properties!.Properties[1].Value.Get<StructProperty>().Value!).Actors;
+
+        const int chestId = 86; // Let's pray to god it never changes
+        PropertyBag chest = actors.Single(x => x.Key == chestId).Value.GetFirstObjectProperties()!;
+
+        // Chest is not opened yet
+        if (!chest.Contains("Open") || chest["Open"].Get<byte>() == 0) return;
+
+        // The item is on the floor
+        bool itemOnTheFloor = actors.Any(x => x.Value.ToString() == "Amulet_NecklaceOfFlowingLife_C");
+
+        // If it is not on the floor it is looted
+        if (!itemOnTheFloor)
+        {
+            lic.LootItem.IsLooted = true;
+        }
     }
 }

@@ -314,7 +314,7 @@ public partial class Analyzer
 
                 operation.Complete();
             }
-            logger.Information("-----------------------------------------------------------------------------");
+            performance.Information("-----------------------------------------------------------------------------");
         }
 
         operationAnalyze.Complete();

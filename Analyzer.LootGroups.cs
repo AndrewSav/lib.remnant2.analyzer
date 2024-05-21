@@ -13,7 +13,7 @@ public partial class Analyzer
     {
         int characterSlot = world.ParentCharacter.Index;
         int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter) + 1;
-        string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
+        string mode = world.IsCampaign ? "campaign" : "adventure";
 
         ILogger logger = Log.Logger
             .ForContext(Log.Category, Log.UnknownItems)
@@ -235,7 +235,7 @@ public partial class Analyzer
         }
     }
 
-    private static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
+    internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
     {
 
         if (!checkHave && !checkCanGet) return true; 
@@ -244,7 +244,7 @@ public partial class Analyzer
         Profile profile = world.ParentCharacter.Profile;
         int characterSlot = world.ParentCharacter.Index;
         int characterIndex = world.ParentCharacter.ParentDataset.Characters.FindIndex(x => x == world.ParentCharacter) + 1;
-        string mode = world.Zones.Exists(x => x.Name == "Labyrinth") ? "campaign" : "adventure";
+        string mode = world.IsCampaign ? "campaign" : "adventure";
         ILogger prerequisiteLogger = Log.Logger
             .ForContext(Log.Category, Log.Prerequisites)
             .ForContext("SourceContext", "Analyzer:LootGroups");

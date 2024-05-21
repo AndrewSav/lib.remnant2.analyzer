@@ -37,4 +37,6 @@ public class RolledWorld
     {
         return CustomScripts.CanGetChallenge(this, challenge);
     }
+    
+    public bool IsCampaign => Zones.Exists(x => x.Name == "Labyrinth");
 }
