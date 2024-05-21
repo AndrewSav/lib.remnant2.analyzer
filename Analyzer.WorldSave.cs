@@ -40,11 +40,14 @@ public partial class Analyzer
 
         int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
+
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
+            RespawnLinkNameId = respawnLinkNameId,
         };
         rolledWorld.Zones =
         [
