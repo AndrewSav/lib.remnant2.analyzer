@@ -340,8 +340,8 @@ public partial class Analyzer
         }
 
         Zone zone = new(zoneParent) { Locations = result };
-        if (finished.HasValue) zone.SetFinished(finished.Value);
-        if (story != null) zone.SetStoryId(story);
+        if (finished.HasValue) zone.Finished = finished.Value;
+        if (story != null) zone.StoryId = story;
         return zone;
 
     }

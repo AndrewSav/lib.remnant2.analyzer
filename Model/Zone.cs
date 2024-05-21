@@ -7,7 +7,6 @@ public class Zone(RolledWorld parent)
 {
     public required List<Location> Locations;
     public RolledWorld Parent { get; } = parent;
-    private string? _story;
     private bool? _finished;
 
     public string Name
@@ -22,15 +21,7 @@ public class Zone(RolledWorld parent)
                                                || Parent.CanGetItem(x.Properties["Prerequisite"])));
     }
 
-    public void SetStoryId(string story)
-    {
-        _story = story;
-    }
-
-    public void SetFinished(bool finished)
-    {
-        _finished = finished;
-    }
+    public string? StoryId { get; set; }
 
     public string Story
     {
@@ -40,7 +31,7 @@ public class Zone(RolledWorld parent)
             if (Name == "Labyrinth") return "The Labyrinth";
             if (Name == "Root Earth") return "Root Earth";
 
-            return ItemDb.GetItemById($"Quest_{_story}").Name;
+            return ItemDb.GetItemById($"Quest_{StoryId}").Name;
         }
     }
 
@@ -55,6 +46,7 @@ public class Zone(RolledWorld parent)
 
             return _finished!.Value;
         }
+        set { _finished = value; }
     }
 
     public bool CompletesBiome
