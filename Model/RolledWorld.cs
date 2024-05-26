@@ -5,7 +5,7 @@ public class RolledWorld
 {
     public RolledWorld()
     {
-        Ward13 = new(this) { Locations = [ Location.Ward13 ] };
+        Ward13 = new(this) { Locations = [ Location.GetWard13() ] };
     }
     public List<Zone> Zones = [];
     public required List<string> QuestInventory;
@@ -21,7 +21,7 @@ public class RolledWorld
 
     public required string Difficulty;
     public TimeSpan? Playtime;
-    public string? RespawnLinkNameId;
+    public string? RespawnPoint;
 
     public bool CanGetItem(string item)
     {

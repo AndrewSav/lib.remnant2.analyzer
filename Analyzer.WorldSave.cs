@@ -40,14 +40,12 @@ public partial class Analyzer
 
         int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
-        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
 
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
-            RespawnLinkNameId = respawnLinkNameId,
         };
         rolledWorld.Zones =
         [
@@ -57,6 +55,20 @@ public partial class Analyzer
             GetZone(zoneActors, world3, labyrinth, events, rolledWorld, navigator),
             GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld, navigator)
         ];
+
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
+        if (string.IsNullOrEmpty(respawnLinkNameId))
+        {
+            rolledWorld.RespawnPoint = null;
+        }
+        else
+        {
+            string? respawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+                .SingleOrDefault(x => x != null);
+            rolledWorld.RespawnPoint = respawnPoint;
+        }
+
         return rolledWorld;
     }
 
@@ -76,19 +88,31 @@ public partial class Analyzer
 
         var difficulty = navigator.GetProperty("Difficulty", adventureMeta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", adventureMeta)?.Get<TimeSpan>();
-        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
 
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
-            RespawnLinkNameId = respawnLinkNameId,
         };
         rolledWorld.Zones =
         [
             GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld, navigator),
         ];
+
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
+        if (string.IsNullOrEmpty(respawnLinkNameId))
+        {
+            rolledWorld.RespawnPoint = null;
+        }
+        else
+        {
+            string? respawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+                .SingleOrDefault(x => x != null);
+            rolledWorld.RespawnPoint = respawnPoint;
+        }
+
         return rolledWorld;
     }
 
@@ -156,7 +180,6 @@ public partial class Analyzer
             Actor current = queue.Dequeue();
             PropertyBag pb = current.GetZoneActorProperties()!;
             string label = pb["Label"].ToStringValue()!;
-            string labelId = pb["NameID"].ToStringValue()!;
             int zoneId = pb["ID"].Get<int>();
             int questId = pb["QuestID"].Get<int>();
 
@@ -165,7 +188,8 @@ public partial class Analyzer
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
 
-            List<WorldStone> waypoints = [];
+            List<string> waypoints = [];
+            Dictionary<string, string> waypointIdMap = [];
             List<string> connectsTo = [];
 
             foreach (object? o in links.Items)
@@ -189,7 +213,8 @@ public partial class Analyzer
                 switch (type)
                 {
                     case "EZoneLinkType::Waypoint":
-                        waypoints.Add(new WorldStone { Name = linkLabel, NameId = name });
+                        waypoints.Add(linkLabel);
+                        waypointIdMap[linkLabel] = name;
                         break;
                     case "EZoneLinkType::Checkpoint":
                         break;
@@ -241,19 +266,18 @@ public partial class Analyzer
                 }
             }
 
-            Location l = new()
+            var l = new Location(
+                name: label,
+                category: category,
+                worldStones: waypoints,
+                worldStoneIdMap: waypointIdMap,
+                connections: GetConnectsTo(connectsTo).ToList())
             {
-                Name = label,
-                NameId = labelId,
                 DropReferences = [],
                 WorldDrops = [],
-                WorldStones = waypoints,
-                Category = category,
-                Connections = GetConnectsTo(connectsTo).ToList(),
                 LootGroups = [],
                 LootedMarkers = []
             };
-
 
             foreach (Actor e in new List<Actor>(events).Where(x =>
                          x.GetFirstObjectProperties()!["ID"].Get<int>() == questId))

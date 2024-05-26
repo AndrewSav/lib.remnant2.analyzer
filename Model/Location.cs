@@ -5,20 +5,43 @@ namespace lib.remnant2.analyzer.Model;
 [DebuggerDisplay("{Name}")]
 public class Location
 {
-    public required string Name;
-    public required string NameId;
-    public List<WorldStone> WorldStones = [];
+    // Simplified init
+    public Location(string name, string category)
+    {
+        Name = name;
+        Category = category;
+    }
+
+    // Full init including world stones
+    public Location(
+        string name,
+        string category,
+        List<string> worldStones,
+        Dictionary<string, string> worldStoneIdMap,
+        List<string> connections)
+    {
+        Name = name;
+        Category = category;
+        WorldStones = worldStones;
+        WorldStoneIdMap = worldStoneIdMap;
+        Connections = connections;
+    }
+
+    private readonly Dictionary<string, string> WorldStoneIdMap = [];
+
+    public string Name;
+    public string Category;
+    public List<string> WorldStones = [];
     public List<string> Connections = [];
+
     public bool TraitBook;
     public bool TraitBookLooted;
     public bool Simulacrum;
     public bool SimulacrumLooted;
     public List<DropReference> WorldDrops = [];
-    public List<DropReference> DropReferences =[];
-    public required string Category;
-    public List<LootGroup> LootGroups=[];
+    public List<DropReference> DropReferences = [];
+    public List<LootGroup> LootGroups = [];
     public List<LootedMarker> LootedMarkers = [];
-
 
     public bool Bloodmoon
     {
@@ -93,16 +116,24 @@ public class Location
         }
     }
 
-    public static Location Ward13 => new()
+    public static Location GetWard13()
     {
-        Name = "Ward 13",
-        NameId = "2_Zone",
-        WorldStones = [ new() { Name = "Ward 13", NameId = "2_Waypoint_Town" } ],
-        Connections = [],
-        WorldDrops = [],
-        DropReferences = [],
-        Category = "Ward 13",
-        LootGroups = [],
-        LootedMarkers = []
-    };
+        return new Location(
+            name: "Ward 13",
+            category: "Ward 13",
+            worldStones: ["Ward 13"],
+            worldStoneIdMap: new() { { "Ward 13", "2_Waypoint_Town" } },
+            connections: [])
+        {
+            WorldDrops = [],
+            DropReferences = [],
+            LootGroups = [],
+            LootedMarkers = []
+        };
+    }
+
+    public string? GetWorldStoneById(string worldStoneId)
+    {
+        return WorldStoneIdMap.FirstOrDefault(x => x.Value.Equals(worldStoneId)).Key;
+    }
 }

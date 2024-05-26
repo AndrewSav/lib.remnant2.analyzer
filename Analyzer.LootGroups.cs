@@ -33,12 +33,10 @@ public partial class Analyzer
             // Let's create a special synthetic location for him!
             if (canopyIndex >= 0)
             {
-                zz.Locations.Insert(canopyIndex, new()
-                {
-                    Category = zz.Locations[canopyIndex].Category,
-                    Name = "Ancient Canopy/Luminous Vale",
-                    NameId = "0000_NotApplicable"
-                });
+                zz.Locations.Insert(canopyIndex, new(
+                    name: "Ancient Canopy/Luminous Vale",
+                    category: zz.Locations[canopyIndex].Category
+                ));
             }
 
             int sentinelsKeepIndex = zz.Locations.FindIndex(x => x.Name == "Sentinel's Keep");
@@ -46,11 +44,11 @@ public partial class Analyzer
             // Inject Alepsis-Taura
             if (sentinelsKeepIndex >= 0)
             {
-                zz.Locations.Insert(zz.Locations.Count, new()
+                zz.Locations.Insert(zz.Locations.Count, new(
+                    name: "Alepsis-Taura",
+                    category: zz.Locations[sentinelsKeepIndex].Category
+                    )
                 {
-                    Category = zz.Locations[sentinelsKeepIndex].Category,
-                    Name = "Alepsis-Taura",
-                    NameId = "1159_Zone_Nebula",
                     LootedMarkers = zz.Locations[seekersRestIndex].LootedMarkers
                 });
             }
@@ -240,7 +238,7 @@ public partial class Analyzer
     internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
     {
 
-        if (!checkHave && !checkCanGet) return true; 
+        if (!checkHave && !checkCanGet) return true;
 
         List<string> accountAwards = world.ParentCharacter.ParentDataset.AccountAwards;
         Profile profile = world.ParentCharacter.Profile;
