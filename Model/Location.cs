@@ -23,11 +23,11 @@ public class Location
         Name = name;
         Category = category;
         WorldStones = worldStones;
-        WorldStoneIdMap = worldStoneIdMap;
         Connections = connections;
+        _worldStoneIdMap = worldStoneIdMap;
     }
 
-    private readonly Dictionary<string, string> WorldStoneIdMap = [];
+    private readonly Dictionary<string, string> _worldStoneIdMap = [];
 
     public string Name;
     public string Category;
@@ -132,8 +132,10 @@ public class Location
         };
     }
 
-    public string? GetWorldStoneById(string worldStoneId)
+    public string? GetWorldStoneById(string? worldStoneId)
     {
-        return WorldStoneIdMap.FirstOrDefault(x => x.Value.Equals(worldStoneId)).Key;
+        if (worldStoneId == null) return null;
+        _worldStoneIdMap.TryGetValue(worldStoneId, out string? value);
+        return value;
     }
 }

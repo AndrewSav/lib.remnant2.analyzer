@@ -57,17 +57,9 @@ public partial class Analyzer
         ];
 
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
-        if (string.IsNullOrEmpty(respawnLinkNameId))
-        {
-            rolledWorld.RespawnPoint = null;
-        }
-        else
-        {
-            string? respawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
-                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
-                .SingleOrDefault(x => x != null);
-            rolledWorld.RespawnPoint = respawnPoint;
-        }
+        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+            .SingleOrDefault(x => x != null);
 
         return rolledWorld;
     }
@@ -101,17 +93,9 @@ public partial class Analyzer
         ];
 
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
-        if (string.IsNullOrEmpty(respawnLinkNameId))
-        {
-            rolledWorld.RespawnPoint = null;
-        }
-        else
-        {
-            string? respawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
-                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
-                .SingleOrDefault(x => x != null);
-            rolledWorld.RespawnPoint = respawnPoint;
-        }
+        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+            .SingleOrDefault(x => x != null);
 
         return rolledWorld;
     }
@@ -214,7 +198,7 @@ public partial class Analyzer
                 {
                     case "EZoneLinkType::Waypoint":
                         waypoints.Add(linkLabel);
-                        waypointIdMap[linkLabel] = name;
+                        waypointIdMap[name] = linkLabel;
                         break;
                     case "EZoneLinkType::Checkpoint":
                         break;
