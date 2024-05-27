@@ -36,7 +36,6 @@ internal static partial class CustomScripts
         { "Relic_Consumable_ProfaneHeart", ProfaneHeart },
         { "Ring_DowngradedRing", DowngradedRing },
         { "Ring_BandOfTheFanatic", BandOfTheFanatic },
-        { "Weapon_CrescentMoon", CrescentMoon }, // Has to be injected if we want to support it
         //Weapon_Anguish // TODO: Has to be injected if we want to support it
         //Amulet_ParticipationMedal // TODO: Has to be injected if we want to support it
         { "Weapon_Deceit", lic => { Deceit(lic); return true; } },

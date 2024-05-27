@@ -163,13 +163,6 @@ internal static partial class CustomScripts
         return true;
     }
     
-    private static bool CrescentMoon(LootItemContext lic)
-    {
-        // TODO: Has Losomn (+ the dream catcher per-requisite)
-        // I wonder if we should inject it into either Beatific Palace or Nimue's retreat
-        return true;
-    }
-
     // Additional IsLooted detection ----------------------------------------------------------------------------------------------------------
     
     private static void Deceit(LootItemContext lic)

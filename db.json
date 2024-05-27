@@ -5611,9 +5611,10 @@
     "World": "World_Base",
     "Material": "Material_AnamysEcho",
     "Subtype": "Long Gun",
+    "DropType": "Location",
+    "DropReference": "Nimue's Retreat | Beatific Palace",
     "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Crafted from Anamy's Echo, which you can obtain attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide consumable  Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
-    "CustomScript": true,
     "Undetectable": true
   },
   {
@@ -6331,7 +6332,7 @@
     "Type": "weapon",
     "World": "World_DLC1",
     "Subtype": "Hand Gun",
-    "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a locatio with the material.",
+    "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
     "CustomScript": true,
     "Undetectable": true
   },
