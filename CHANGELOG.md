@@ -1,7 +1,10 @@
 # Changelog
 
-## v0.0.12 (unreleased)
-- Check if items can be obtained based on their prerequisites - work in progress
+## v0.0.12 (28 May 2024)
+- Added last respawn point for characters
+- Added correct detection of all outstanding items except Anguish
+- Added inventory items count, for future improvements (e.g. consumables, corrupted items cost check)
+- Typos and corrections in db.json
 
 ## v0.0.11 (17 May 2024)
 - Re-tag botched build
