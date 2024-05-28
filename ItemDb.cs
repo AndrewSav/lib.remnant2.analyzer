@@ -123,7 +123,7 @@ public class ItemDb
     public static List<LootItem> GetItemsByReference(string dropType, string dropReference)
     {
         return Db.Where(x => x.ContainsKey("DropReference"))
-            .Where(x => x["DropReference"] == dropReference
+            .Where(x => x["DropReference"].Split('|').Select(y => y.Trim()).Contains(dropReference)
                         && x["DropType"] == dropType).Select(x => new LootItem { Properties = x }).ToList();
     }
 

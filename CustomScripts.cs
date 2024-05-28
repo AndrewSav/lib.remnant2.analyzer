@@ -26,7 +26,6 @@ internal static partial class CustomScripts
     {
         { "Amulet_GoldenRibbon", GoldenRibbon },
         { "Amulet_SilverRibbon", SilverRibbon },
-        { "Amulet_EchoOfTheForest", EchoOfTheForest },
         { "Armor_Body_CrimsonGuard", CrimsonGuard },
         { "Armor_Gloves_CrimsonGuard", CrimsonGuard },
         { "Armor_Head_CrimsonGuard", CrimsonGuard },
@@ -36,18 +35,19 @@ internal static partial class CustomScripts
         { "Relic_Consumable_ProfaneHeart", ProfaneHeart },
         { "Ring_DowngradedRing", DowngradedRing },
         { "Ring_BandOfTheFanatic", BandOfTheFanatic },
-        { "Weapon_CrescentMoon", CrescentMoon }, // Has to be injected if we want to support it
         //Weapon_Anguish // TODO: Has to be injected if we want to support it
         //Amulet_ParticipationMedal // TODO: Has to be injected if we want to support it
         { "Weapon_Deceit", lic => { Deceit(lic); return true; } },
         { "Weapon_Godsplitter", lic => { Godsplitter(lic); return true; } },
         { "Relic_Consumable_VoidHeart", lic => { VoidHeart(lic); return true; } },
-        { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } },
-        
-
-
+        { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } }
     };
-    
+
+    public static Dictionary<string, Action<LootItemContext>> PrerequisitesScripts = new()
+    {
+        { "Amulet_EchoOfTheForest", EchoOfTheForest },
+    };
+
     public static Dictionary<string, Func<RolledWorld, string, bool>> CanGetChallengeFunctions = new()
     {
         // ReSharper disable StringLiteralTypo
