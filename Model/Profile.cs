@@ -3,7 +3,7 @@
 // Represents data in profile.sav that correspond to a single character
 public class Profile
 {
-    public required List<string> Inventory;
+    public required List<InventoryItem> Inventory;
     public required List<Dictionary<string,string>> MissingItems;
     // List of missing items that can be crafted now because we have the material
     public required List<Dictionary<string, string>> HasMatsItems;
@@ -35,7 +35,8 @@ public class Profile
 
     public List<string> FilteredInventory => Inventory.Where(x => ItemDb.Db
             .Where(y => Analyzer.InventoryTypes.Contains(y["Type"]) || y["Type"] == "trait")
-            .Select(y => y.GetValueOrDefault("ProfileId")?.ToLowerInvariant()).Contains(x.ToLowerInvariant()))
+            .Select(y => y.GetValueOrDefault("ProfileId")?.ToLowerInvariant()).Contains(x.Name.ToLowerInvariant()))
+            .Select(x => x.Name)
         .ToList();
 
     public int AcquiredItems => FilteredInventory.Count;

@@ -33,7 +33,12 @@ public partial class Analyzer
             // Let's create a special synthetic location for him!
             if (canopyIndex >= 0)
             {
-                zz.Locations.Insert(canopyIndex, new()
+                // The very first location is always associated with the story.
+                // Since there are a few IsLooted markers coming from the story,
+                // we access that first location further down when processing those markers.
+                // Here we make sure not to insert the location at the first position
+                // As Ancient Canopy is the first location in the zone and should remain such
+                zz.Locations.Insert(canopyIndex+1, new()
                 {
                     Category = zz.Locations[canopyIndex].Category,
                     Name = "Ancient Canopy/Luminous Vale",
@@ -162,9 +167,12 @@ public partial class Analyzer
         // Process additional Looted Markers
         foreach (Zone zz in world.AllZones)
         {
+            // Story associated loot items are attached to the first zone location
+            var firstL = zz.Locations.First();
+
             foreach (Location l in zz.Locations)
             {
-                foreach (LootedMarker m in l.LootedMarkers)
+                foreach (LootedMarker m in l.LootedMarkers.Union(firstL.LootedMarkers))
                 {
                     LootItem? li = ItemDb.GetItemByProfileId(m.ProfileId);
                     if (li == null)
@@ -292,7 +300,8 @@ public partial class Analyzer
             }
 
             string itemProfileId = currentItem.Properties["ProfileId"];
-            if (profile.Inventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+
+            if (profile.Inventory.Select(y => y.Name.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
             {
                 prerequisiteLogger.Information($"  Have '{cur}'");
                 return true;
@@ -306,6 +315,30 @@ public partial class Analyzer
 
             if (world.CanGetItem(cur) && checkCanGet)
             {
+                if (CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Action<LootItemContext>? script))
+                {
+                    prerequisiteLogger.Information($"  Running custom prerequisite script for '{cur}'");
+                    var li = world.AllZones
+                        .SelectMany(x => x.Locations.Select(y => new { Zone = x, Location = y }))
+                        .SelectMany(x => x.Location.LootGroups.Select(y => new { x.Zone, x.Location, LootGroup = y }))
+                        .SelectMany(x => x.LootGroup.Items.Select(y => new { x.Zone, x.Location, x.LootGroup, LootItem = y }))
+                        .Single(x => x.LootItem.Id == cur);
+
+                    LootItemContext lic = new()
+                    {
+                        LootItem = li.LootItem,
+                        Location = li.Location,
+                        LootGroup = li.LootGroup,
+                        World = world,
+                        Zone = li.Zone
+                    };
+                    script(lic);
+                    if (li.LootItem.IsPrerequisiteMissing)
+                    {
+                        prerequisiteLogger.Information($"  Cannot get '{cur}' due to custom prerequisite script");
+                        return false;
+                    }
+                }
                 prerequisiteLogger.Information($"  Can get '{cur}'");
                 return true;
             }

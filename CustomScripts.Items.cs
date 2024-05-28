@@ -157,10 +157,32 @@ internal static partial class CustomScripts
         return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, lic.LootItem.Properties["Prerequisite"], checkCanGet: false);
     }
 
-    private static bool EchoOfTheForest(LootItemContext lic)
+    // Additional Prerequisites detection ----------------------------------------------------------------------------------------------------------
+
+    private static void EchoOfTheForest(LootItemContext lic)
     {
-        // TODO: might need to check the number of trinity memento pieces already handed?
-        return true;
+        string counterItemName = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Hidden_Item_Trinity_Counter.Quest_Hidden_Item_Trinity_Counter_C";
+
+        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.Name == counterItemName);
+
+        int counter = 0;
+        if (counterItem != null)
+        {
+            counter = counterItem.Quantity ?? 1;
+        }
+
+        bool mementoAvailable = false;
+
+        Location? vale = lic.World.Zones.SingleOrDefault(x => x.Name == "Yaesha")?.Locations.SingleOrDefault(x => x.Name == "Luminous Vale");
+        if (vale != null)
+        {
+            mementoAvailable = !vale.LootGroups.Single(x => x.Type == "Location").Items.Single(x => x.Id == "Quest_Item_Story_DwellsItem").IsLooted;
+        }
+
+        string mementoItemName = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_DwellsItem/Quest_Item_Story_DwellsItem.Quest_Item_Story_DwellsItem_C";
+        bool hasMemento = lic.World.QuestInventory.Any(x => x == mementoItemName);
+
+        lic.LootItem.IsPrerequisiteMissing = counter < 2 || counter < 3 && !(hasMemento || mementoAvailable);
     }
     
     // Additional IsLooted detection ----------------------------------------------------------------------------------------------------------

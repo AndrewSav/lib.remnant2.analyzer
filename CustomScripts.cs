@@ -26,7 +26,6 @@ internal static partial class CustomScripts
     {
         { "Amulet_GoldenRibbon", GoldenRibbon },
         { "Amulet_SilverRibbon", SilverRibbon },
-        { "Amulet_EchoOfTheForest", EchoOfTheForest },
         { "Armor_Body_CrimsonGuard", CrimsonGuard },
         { "Armor_Gloves_CrimsonGuard", CrimsonGuard },
         { "Armor_Head_CrimsonGuard", CrimsonGuard },
@@ -41,12 +40,14 @@ internal static partial class CustomScripts
         { "Weapon_Deceit", lic => { Deceit(lic); return true; } },
         { "Weapon_Godsplitter", lic => { Godsplitter(lic); return true; } },
         { "Relic_Consumable_VoidHeart", lic => { VoidHeart(lic); return true; } },
-        { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } },
-        
-
-
+        { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } }
     };
-    
+
+    public static Dictionary<string, Action<LootItemContext>> PrerequisitesScripts = new()
+    {
+        { "Amulet_EchoOfTheForest", EchoOfTheForest },
+    };
+
     public static Dictionary<string, Func<RolledWorld, string, bool>> CanGetChallengeFunctions = new()
     {
         // ReSharper disable StringLiteralTypo

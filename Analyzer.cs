@@ -7,6 +7,7 @@ using lib.remnant2.analyzer.Model;
 using lib.remnant2.saves.IO;
 using lib.remnant2.saves.Model.Memory;
 using System.Buffers.Binary;
+using System.Diagnostics;
 using Serilog;
 using SerilogTimings;
 using SerilogTimings.Extensions;
@@ -119,7 +120,7 @@ public partial class Analyzer
                 List<PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
-                List<string> items = itemObjects.Select(x => x["ItemBP"].ToStringValue()!).ToList();
+                List<InventoryItem> items = itemObjects.Select(GetInventoryItem).ToList();
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) traits");
@@ -132,7 +133,7 @@ public partial class Analyzer
 
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory (items+traits)");
-                List<string> inventory = items.Union(traits).ToList();
+                List<InventoryItem> inventory = items.Union(traits.Select(x => new InventoryItem {Name = x})).ToList();
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
@@ -141,7 +142,7 @@ public partial class Analyzer
                 List<Dictionary<string, string>> traitsDb =
                     ItemDb.Db.Where(x => x.GetValueOrDefault("Type") == "trait").ToList();
                 List<Dictionary<string, string>> missingItems = inventoryDb.Where(x =>
-                    !items.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
+                    !items.Select(y => y.Name.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
                 List<Dictionary<string, string>> missingTraits = traitsDb.Where(x =>
                     !traits.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
                 missingItems = missingItems.Union(missingTraits).ToList();
@@ -150,14 +151,14 @@ public partial class Analyzer
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory ids, db items only");
                 IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
                 List<string> inventoryIds = inventory.Where(x =>
-                        pdb.Any(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
+                        pdb.Any(y => y["ProfileId"].Equals(x.Name, StringComparison.InvariantCultureIgnoreCase)))
                     .Select(x =>
-                        pdb.Single(y => y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase))["Id"])
+                        pdb.Single(y => y["ProfileId"].Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))["Id"])
                     .ToList();
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) unknown inventory items warnings");
-                WarnUnknownInventoryItems(inventory, pdb, result, charSlotInternal, "character inventory");
+                WarnUnknownInventoryItems(inventory.Select(x => x.Name).ToList(), pdb, result, charSlotInternal, "character inventory");
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) objectives");
@@ -459,5 +460,19 @@ public partial class Analyzer
         {
             logger.Warning(s); }
 
+    }
+
+    private static InventoryItem GetInventoryItem(PropertyBag pb)
+    {
+        int? quantity = null;
+        if (pb.Contains("InstanceData"))
+        {
+            PropertyBag instance = pb["InstanceData"].Get<ObjectProperty>().Object!.Properties!;
+            if (instance.Contains("Quantity"))
+            {
+                quantity = instance["Quantity"].Get<int>();
+            }
+        }
+        return new() { Name = pb["ItemBP"].ToStringValue()!, Quantity = quantity };
     }
 }
