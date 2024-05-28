@@ -40,6 +40,7 @@ public partial class Analyzer
 
         int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
+
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
@@ -54,6 +55,12 @@ public partial class Analyzer
             GetZone(zoneActors, world3, labyrinth, events, rolledWorld, navigator),
             GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld, navigator)
         ];
+
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
+        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+            .SingleOrDefault(x => x != null);
+
         return rolledWorld;
     }
 
@@ -84,6 +91,12 @@ public partial class Analyzer
         [
             GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld, navigator),
         ];
+
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
+        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
+            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+            .SingleOrDefault(x => x != null);
+
         return rolledWorld;
     }
 
@@ -160,6 +173,7 @@ public partial class Analyzer
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
 
             List<string> waypoints = [];
+            Dictionary<string, string> waypointIdMap = [];
             List<string> connectsTo = [];
 
             foreach (object? o in links.Items)
@@ -184,6 +198,7 @@ public partial class Analyzer
                 {
                     case "EZoneLinkType::Waypoint":
                         waypoints.Add(linkLabel);
+                        waypointIdMap[name] = linkLabel;
                         break;
                     case "EZoneLinkType::Checkpoint":
                         break;
@@ -235,18 +250,18 @@ public partial class Analyzer
                 }
             }
 
-            Location l = new()
+            var l = new Location(
+                name: label,
+                category: category,
+                worldStones: waypoints,
+                worldStoneIdMap: waypointIdMap,
+                connections: GetConnectsTo(connectsTo).ToList())
             {
-                Name = label,
                 DropReferences = [],
                 WorldDrops = [],
-                WorldStones = waypoints,
-                Category = category,
-                Connections = GetConnectsTo(connectsTo).ToList(),
                 LootGroups = [],
                 LootedMarkers = []
             };
-
 
             foreach (Actor e in new List<Actor>(events).Where(x =>
                          x.GetFirstObjectProperties()!["ID"].Get<int>() == questId))
@@ -336,8 +351,8 @@ public partial class Analyzer
         }
 
         Zone zone = new(zoneParent) { Locations = result };
-        if (finished.HasValue) zone.SetFinished(finished.Value);
-        if (story != null) zone.SetStoryId(story);
+        if (finished.HasValue) zone.Finished = finished.Value;
+        if (story != null) zone.StoryId = story;
         return zone;
 
     }
