@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.13 (unreleased)
+- Refactor GetAdventure/GetCompaign to a single method
+- Bump saves library version
+
 ## v0.0.12 (28 May 2024)
 - Added last respawn point for characters
 - Added correct detection of all outstanding items except Anguish

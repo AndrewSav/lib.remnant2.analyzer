@@ -8,38 +8,49 @@ namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
-    private static RolledWorld GetCampaign(Navigator navigator)
+    private record RolledData
     {
+        public required string Selector {get; init;}
+        public required string[] Worlds { get; init; }
+    }
+
+    private static readonly Dictionary<string, RolledData> Rolled = new()
+    {
+        { "campaign", new RolledData { Selector = "Quest_Campaign", Worlds = ["World1", "Labyrinth","World2","World3","RootEarth"]}},
+        { "adventure", new RolledData { Selector = "Quest_AdventureMode", Worlds = ["Quest"] } }
+    };
+
+    private static RolledWorld GetRolledWorld(Navigator navigator, string mode)
+    {
+        RolledData data = Rolled[mode];
+        
         UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
 
-        UObject campaignMeta = navigator.FindActors("Quest_Campaign", main).Single().Archive.Objects[0];
-        int campaignId = campaignMeta.Properties!["ID"].Get<int>();
-        UObject? campaignObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{campaignId}_Container.Quest_Container:PersistentLevel");
+        UObject meta = navigator.FindActors(data.Selector, main).Single().Archive.Objects[0];
+        int rollId = meta.Properties!["ID"].Get<int>();
+        UObject? rollObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel");
 
-        int world1, world2, world3, labyrinth, rootEarth;
+        int[] worldIds;
         try
         {
-            world1 = navigator.GetComponent("World1", campaignMeta)!.Properties!["QuestID"].Get<int>();
-            world2 = navigator.GetComponent("World2", campaignMeta)!.Properties!["QuestID"].Get<int>();
-            world3 = navigator.GetComponent("World3", campaignMeta)!.Properties!["QuestID"].Get<int>();
-            labyrinth = navigator.GetComponent("Labyrinth", campaignMeta)!.Properties!["QuestID"].Get<int>();
-            rootEarth = navigator.GetComponent("RootEarth", campaignMeta)!.Properties!["QuestID"].Get<int>();
+            worldIds = data.Worlds.Select(x => navigator.GetComponent(x, meta)!.Properties!["QuestID"].Get<int>()).ToArray();
         }
         catch (InvalidOperationException ex)
         {
-            throw new InvalidOperationException("This save does not contain a campaign", ex);
+            throw new InvalidOperationException($"This save does not contain a rolled world in ${mode} mode", ex);
         }
 
-        PropertyBag campaignInventory = navigator.GetComponent("RemnantPlayerInventory", campaignMeta)!.Properties!;
+        int t = data.Worlds.ToList().FindIndex(x => x == "Labyrinth");
+        int labyrinthId = t == -1 ? 0 : worldIds[t];
 
-        List<string> questInventory = GetQuestInventory(campaignInventory);
-
-        List<Actor> zoneActors = navigator.GetActors("ZoneActor", campaignObject);
-        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", campaignObject)
+        PropertyBag inventory = navigator.GetComponent("RemnantPlayerInventory", meta)!.Properties!;
+        List<string> questInventory = GetQuestInventory(inventory);
+        List<Actor> zoneActors = navigator.GetActors("ZoneActor", rollObject);
+        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", rollObject)
             .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
-        int difficulty = navigator.GetProperty("Difficulty", campaignMeta)?.Get<int>() ?? 1;
-        TimeSpan? tp = navigator.GetProperty("PlayTime", campaignMeta)?.Get<TimeSpan>();
+        int difficulty = navigator.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
+        TimeSpan? tp = navigator.GetProperty("PlayTime", meta)?.Get<TimeSpan>();
 
         RolledWorld rolledWorld = new()
         {
@@ -47,52 +58,9 @@ public partial class Analyzer
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
         };
-        rolledWorld.Zones =
-        [
-            GetZone(zoneActors, world1, labyrinth, events, rolledWorld ,navigator),
-            GetZone(zoneActors, labyrinth, labyrinth, events, rolledWorld, navigator),
-            GetZone(zoneActors, world2, labyrinth, events, rolledWorld, navigator),
-            GetZone(zoneActors, world3, labyrinth, events, rolledWorld, navigator),
-            GetZone(zoneActors, rootEarth, labyrinth, events, rolledWorld, navigator)
-        ];
+        rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
 
-        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", campaignMeta)?.Get<FName>().Name;
-        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
-            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
-            .SingleOrDefault(x => x != null);
-
-        return rolledWorld;
-    }
-
-    private static RolledWorld GetAdventure(Navigator navigator)
-    {
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
-
-        UObject adventureMeta = navigator.FindActors("Quest_AdventureMode", main).Single().Archive.Objects[0];
-        int? adventureId = adventureMeta.Properties!["ID"].Get<int>();
-        UObject? adventureObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{adventureId}_Container.Quest_Container:PersistentLevel");
-        int quest = navigator.GetComponent("Quest", adventureMeta)!.Properties!["QuestID"].Get<int>();
-        PropertyBag adventureInventory = navigator.GetComponent("RemnantPlayerInventory", adventureMeta)!.Properties!;
-        List<string> questInventory = GetQuestInventory(adventureInventory);
-        List<Actor> zoneActorsAdventure = navigator.GetActors("ZoneActor", adventureObject);
-        List<Actor> eventsAdventure = navigator.FindActors("^((?!ZoneActor).)*$", adventureObject)
-            .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
-
-        var difficulty = navigator.GetProperty("Difficulty", adventureMeta)?.Get<int>() ?? 1;
-        TimeSpan? tp = navigator.GetProperty("PlayTime", adventureMeta)?.Get<TimeSpan>();
-
-        RolledWorld rolledWorld = new()
-        {
-            QuestInventory = questInventory,
-            Difficulty = Difficulties[difficulty],
-            Playtime = tp,
-        };
-        rolledWorld.Zones =
-        [
-            GetZone(zoneActorsAdventure, quest, 0, eventsAdventure, rolledWorld, navigator),
-        ];
-
-        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", adventureMeta)?.Get<FName>().Name;
+        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
         rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
             .Select(x => x.GetWorldStoneById(respawnLinkNameId))
             .SingleOrDefault(x => x != null);
@@ -405,6 +373,4 @@ public partial class Analyzer
             .Where(x => !x.StartsWith("Consumable_"))
             .ToList();
     }
-
-
 }

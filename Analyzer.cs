@@ -7,7 +7,6 @@ using lib.remnant2.analyzer.Model;
 using lib.remnant2.saves.IO;
 using lib.remnant2.saves.Model.Memory;
 using System.Buffers.Binary;
-using System.Diagnostics;
 using Serilog;
 using SerilogTimings;
 using SerilogTimings.Extensions;
@@ -262,7 +261,7 @@ public partial class Analyzer
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load campaign");
-                RolledWorld campaign = GetCampaign(navigator);
+                RolledWorld campaign = GetRolledWorld(navigator,"campaign");
                 WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
                 operation.Complete();
 
@@ -271,7 +270,7 @@ public partial class Analyzer
                 RolledWorld? adventure = null;
                 if (adventureSlot != null)
                 {
-                    adventure = GetAdventure(navigator);
+                    adventure = GetRolledWorld(navigator, "adventure");
                     WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
                 }
                 operation.Complete();
