@@ -3,12 +3,11 @@
 namespace lib.remnant2.analyzer.Model;
 
 [DebuggerDisplay("{Name}")]
-public class Zone(RolledWorld parent)
+public class Zone(RolledWorld parent, DropReference? story)
 {
     public required List<Location> Locations;
     public RolledWorld Parent { get; } = parent;
-    private bool? _finished;
-
+    
     public string Name
     {
         get { return Locations.GroupBy(x => x.World).OrderByDescending(x => x.Count()).First().Key; }
@@ -21,8 +20,6 @@ public class Zone(RolledWorld parent)
                                                || Parent.CanGetItem(x.Properties["Prerequisite"])));
     }
 
-    public string? StoryId { get; set; }
-
     public string Story
     {
         get
@@ -31,7 +28,7 @@ public class Zone(RolledWorld parent)
             if (Name == "Labyrinth") return "The Labyrinth";
             if (Name == "Root Earth") return "Root Earth";
 
-            return ItemDb.GetItemById($"Quest_{StoryId}").Name;
+            return ItemDb.GetItemById($"Quest_{story!.Name}").Name;
         }
     }
 
@@ -44,9 +41,8 @@ public class Zone(RolledWorld parent)
                 return Locations.Single(x => x.Name == "Blackened Citadel").LootGroups.SelectMany(x => x.Items)
                     .Any(x => x.IsLooted);
 
-            return _finished!.Value;
+            return story?.IsLooted ?? false;
         }
-        set { _finished = value; }
     }
 
     public bool CompletesBiome
@@ -58,4 +54,6 @@ public class Zone(RolledWorld parent)
             return true;
         }
     }
+
+    public List<string>? Related => story?.Related;
 }

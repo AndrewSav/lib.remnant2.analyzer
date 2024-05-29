@@ -101,8 +101,7 @@ public partial class Analyzer
     private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent, Navigator navigator)
     {
 
-        string? story = null;
-        bool? finished = false;
+        DropReference? story = null;
         List<Location> result = [];
         List<Actor> actors = zoneActors.Where(x =>
                 x.GetZoneActorProperties()!["QuestID"].Get<int>() == world &&
@@ -257,8 +256,11 @@ public partial class Analyzer
 
                 if (ev.StartsWith("Quest_Story"))
                 {
-                    story = ev;
-                    finished = qs != null && qs.ToStringValue() == "EQuestState::Complete";
+                    story = new()
+                    {
+                        Name = ev, Related = GetRelated(navigator, e),
+                        IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete"
+                    };
                     continue;
                 }
 
@@ -305,12 +307,14 @@ public partial class Analyzer
                     continue;
                 }
 
+                // Ring, Amulet
                 if (ev.StartsWith("Quest_Event_"))
                 {
                     l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
                     continue;
                 }
 
+                // Injectable
                 l.DropReferences.Add(new() { Name = ev, Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
 
             }
@@ -318,9 +322,7 @@ public partial class Analyzer
             result.Add(l);
         }
 
-        Zone zone = new(zoneParent) { Locations = result };
-        if (finished.HasValue) zone.Finished = finished.Value;
-        if (story != null) zone.StoryId = story;
+        Zone zone = new(zoneParent, story) { Locations = result };
         return zone;
 
     }
@@ -362,6 +364,7 @@ public partial class Analyzer
         return result;
     }
 
+    // This is an attempt to get spawned items related to an actor, exploratory
     private static List<string> GetRelated(Navigator navigator, Actor e)
     {
         return navigator.GetProperties("SpawnEntry", e)
@@ -369,6 +372,7 @@ public partial class Analyzer
             .Where(x => !string.IsNullOrEmpty(x?.ToStringValue()))
             .Select(x => x!.ToStringValue()!.Split('.')[^1])
             .Where(x => !x.StartsWith("Char_"))
+            .Where(x => !x.StartsWith("Character_"))
             .Where(x => !x.StartsWith("BP_"))
             .Where(x => !x.StartsWith("Consumable_"))
             .ToList();
