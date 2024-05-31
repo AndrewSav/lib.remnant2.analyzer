@@ -1,4 +1,5 @@
-﻿using lib.remnant2.analyzer.Model;
+﻿using System.Runtime.CompilerServices;
+using lib.remnant2.analyzer.Model;
 using System.Text.RegularExpressions;
 using Serilog;
 
@@ -25,10 +26,10 @@ public partial class Analyzer
             .ForContext("SourceContext", "Analyzer:LootGroups");
 
         // Add items to locations
-        foreach (Zone zz in world.AllZones)
+        foreach (Zone zone in world.AllZones)
         {
 
-            int canopyIndex = zz.Locations.FindIndex(x => x.Name == "Ancient Canopy");
+            int canopyIndex = zone.Locations.FindIndex(x => x.Name == "Ancient Canopy");
             // Bloody Walt is on the move and not tied to a particular location
             // Let's create a special synthetic location for him!
             if (canopyIndex >= 0)
@@ -38,43 +39,43 @@ public partial class Analyzer
                 // we access that first location further down when processing those markers.
                 // Here we make sure not to insert the location at the first position
                 // As Ancient Canopy is the first location in the zone and should remain such
-                zz.Locations.Insert(canopyIndex+1, new(
+                zone.Locations.Insert(canopyIndex+1, new(
                     name: "Ancient Canopy/Luminous Vale",
-                    category: zz.Locations[canopyIndex].Category
+                    category: zone.Locations[canopyIndex].Category
                 ));
             }
 
-            int sentinelsKeepIndex = zz.Locations.FindIndex(x => x.Name == "Sentinel's Keep");
-            int seekersRestIndex = zz.Locations.FindIndex(x => x.Name == "Seeker's Rest");
+            int sentinelsKeepIndex = zone.Locations.FindIndex(x => x.Name == "Sentinel's Keep");
+            int seekersRestIndex = zone.Locations.FindIndex(x => x.Name == "Seeker's Rest");
             // Inject Alepsis-Taura
             if (sentinelsKeepIndex >= 0)
             {
-                zz.Locations.Insert(zz.Locations.Count, new(
+                zone.Locations.Insert(zone.Locations.Count, new(
                     name: "Alepsis-Taura",
-                    category: zz.Locations[sentinelsKeepIndex].Category
+                    category: zone.Locations[sentinelsKeepIndex].Category
                     )
                 {
-                    LootedMarkers = zz.Locations[seekersRestIndex].LootedMarkers
+                    LootedMarkers = zone.Locations[seekersRestIndex].LootedMarkers
                 });
             }
 
             // Populate locations with possible items
-            foreach (Location l in zz.Locations)
+            foreach (Location location in zone.Locations)
             {
                 // Part 1 : Drop Type : Location
-                l.LootGroups = [];
+                location.LootGroups = [];
                 LootGroup lg = new()
                 {
                     Type = "Location",
-                    Items = ItemDb.GetItemsByReference("Location", l.Name),
+                    Items = ItemDb.GetItemsByReference("Location", location.Name),
                 };
                 if (lg.Items.Count > 0)
                 {
-                    l.LootGroups.Add(lg);
+                    location.LootGroups.Add(lg);
                 }
 
                 // Part 2 : Drop Type : Event
-                foreach (DropReference dropReference in l.DropReferences)
+                foreach (DropReference dropReference in location.DropReferences)
                 {
 
                     // This reference injects Nimue into one of the two locations she appears in:
@@ -96,7 +97,7 @@ public partial class Analyzer
                             Name = dropReference.Name,
                             UnknownMarker = UnknownData.Event
                         };
-                        l.LootGroups.Add(lg);
+                        location.LootGroups.Add(lg);
                         continue;
                     }
 
@@ -108,7 +109,10 @@ public partial class Analyzer
                     }
 
                     // This is not a boss-only zone so if zone is complete does not mean all items are looted
-                    bool propagateLooted = !(type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone"));
+                    bool propagateLooted = !(
+                        type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone")
+                        || type == "dungeon"
+                        );
                     lg = new LootGroup
                     {
                         Items = ItemDb.GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").ToList(),
@@ -116,18 +120,18 @@ public partial class Analyzer
                         Type = type,
                         Name = name
                     };
-                    l.LootGroups.Add(lg);
+                    location.LootGroups.Add(lg);
                 }
 
                 // Part 3 : Drop Type : World Drop
-                List<LootItem> worldDrops = l.WorldDrops
+                List<LootItem> worldDrops = location.WorldDrops
                     .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
                     .Select(ItemDb.GetItemById).ToList();
 
                 UnknownData unknown = UnknownData.None;
-                foreach (DropReference s in l.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
+                foreach (DropReference s in location.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
                 {
-                    logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, World Drop: Drop reference {s.Name} is absent from the database (world drop {l.Name})");
+                    logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, World Drop: Drop reference {s.Name} is absent from the database (world drop {location.Name})");
                     Dictionary<string, string> unknownItem = new()
                     {
                         { "Name", s.Name },
@@ -147,11 +151,11 @@ public partial class Analyzer
                         UnknownMarker = unknown,
                         Name = worldDrops.Count > 1 ? "Multiple" : worldDrops[0].Name
                     };
-                    l.LootGroups.Add(lg);
+                    location.LootGroups.Add(lg);
                 }
 
                 // Part 4 : Drop Type : Vendor
-                foreach (string vendor in l.Vendors)
+                foreach (string vendor in location.Vendors)
                 {
                     lg = new LootGroup
                     {
@@ -159,87 +163,106 @@ public partial class Analyzer
                         Name = vendor,
                         Items = ItemDb.GetItemsByReference("Vendor", vendor)
                     };
-                    l.LootGroups.Add(lg);
+                    location.LootGroups.Add(lg);
+                }
+            }
+        }
+        // Part 5 : Drop Type : Progression
+        world.ProgressionItems = new()
+        {
+            Type = "Progression",
+            Items = ItemDb.GetItemsByReference("Progression"),
+        };
+
+        // Process additional Looted Markers
+        foreach (Zone zone in world.AllZones)
+        {
+            // Story associated loot items are attached to the first zone location
+            var firstL = zone.Locations.First();
+
+            foreach (Location location in zone.Locations)
+            {
+                foreach (LootedMarker marker in location.LootedMarkers.Union(firstL.LootedMarkers))
+                {
+                    LootItem? li = ItemDb.GetItemByProfileId(marker.ProfileId);
+                    if (li == null)
+                    {
+                        logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Looted marker not found in database: {marker.ProfileId}");
+                        continue;
+                    }
+
+                    foreach (LootItem item in location.LootGroups.SelectMany(x => x.Items))
+                    {
+                        if (item.Id == li.Id)
+                        {
+                            // This might need to be dealt with in custom scripts
+                            // Sometimes finished location means that the item is looted, and sometimes it does not
+                            //item.IsLooted = item.IsLooted || marker.IsLooted;
+                            item.IsLooted = marker.IsLooted;
+                        }
+                    }
                 }
             }
         }
 
-        // Process additional Looted Markers
-        foreach (Zone zz in world.AllZones)
+        void ProcessPrerequisitesAndScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
         {
-            // Story associated loot items are attached to the first zone location
-            var firstL = zz.Locations.First();
-
-            foreach (Location l in zz.Locations)
+            if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite))
             {
-                foreach (LootedMarker m in l.LootedMarkers.Union(firstL.LootedMarkers))
-                {
-                    LootItem? li = ItemDb.GetItemByProfileId(m.ProfileId);
-                    if (li == null)
-                    {
-                        logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Looted marker not found in database: {m.ProfileId}");
-                        continue;
-                    }
+                bool res = CheckPrerequisites(world, lootItem, prerequisite);
 
-                    foreach (LootItem item in l.LootGroups.SelectMany(x => x.Items))
-                    {
-                        if (item.Id == li.Id)
-                        {
-                            item.IsLooted = item.IsLooted || m.IsLooted;
-                        }
-                    }
+                if (!res)
+                {
+                    lootItem.IsPrerequisiteMissing = true;
+                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
+                }
+                else
+                {
+                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
+                }
+            }
+
+            if (CustomScripts.Scripts.TryGetValue(lootItem.Id, out Func<LootItemContext, bool>? func))
+            {
+                LootItemContext lic = new()
+                {
+                    LootItem = lootItem,
+                    Location = location,
+                    LootGroup = lootGroup,
+                    World = world,
+                    Zone = zone
+                };
+                if (!func(lic))
+                {
+                    lootGroup.Items.Remove(lootItem);
                 }
             }
         }
 
         // Mark items that cannot be obtained because no prerequisite
         // Process item custom scripts
-        foreach (Zone zz in world.AllZones)
+        foreach (Zone zone in world.AllZones)
         {
-            foreach (Location l in zz.Locations)
+            foreach (Location location in zone.Locations)
             {
-                foreach (LootGroup lg in new List<LootGroup>(l.LootGroups))
+                foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
                 {
-                    foreach (LootItem item in new List<LootItem>(lg.Items))
+                    foreach (LootItem item in new List<LootItem>(lootGroup.Items))
                     {
-                        if (item.Properties.TryGetValue("Prerequisite", out string? prerequisite))
-                        {
-                            bool res = CheckPrerequisites(world, item, prerequisite);
-
-                            if (!res)
-                            {
-                                item.IsPrerequisiteMissing = true;
-                                prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
-                            }
-                            else
-                            {
-                                prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
-                            }
-                        }
-
-                        if (CustomScripts.Scripts.TryGetValue(item.Id, out Func<LootItemContext, bool>? func))
-                        {
-                            LootItemContext lic = new()
-                            {
-                                LootItem = item,
-                                Location = l,
-                                LootGroup = lg,
-                                World = world,
-                                Zone = zz
-                            };
-                            if (!func(lic))
-                            {
-                                lg.Items.Remove(item);
-                            }
-                        }
+                        ProcessPrerequisitesAndScripts(zone, location, lootGroup, item);
                     }
 
-                    if (lg.Items.Count == 0)
+                    if (lootGroup.Items.Count == 0)
                     {
-                        l.LootGroups.Remove(lg);
+                        location.LootGroups.Remove(lootGroup);
                     }
                 }
             }
+        }
+
+        foreach (LootItem item in new List<LootItem>(world.ProgressionItems.Items))
+        {
+            ProcessPrerequisitesAndScripts(null, null, world.ProgressionItems, item);
         }
     }
 

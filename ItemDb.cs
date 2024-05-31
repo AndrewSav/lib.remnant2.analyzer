@@ -120,6 +120,12 @@ public class ItemDb
             x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id);
     }
 
+    public static List<LootItem> GetItemsByReference(string dropType)
+    {
+        return Db.Where(x => x.ContainsKey("DropType")
+                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x }).ToList();
+    }
+
     public static List<LootItem> GetItemsByReference(string dropType, string dropReference)
     {
         return Db.Where(x => x.ContainsKey("DropReference"))

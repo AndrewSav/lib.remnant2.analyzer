@@ -1,9 +1,10 @@
 # Changelog
 
-## v0.0.13 (unreleased)
+## v0.0.13 (31 May 2024)
 - Refactor GetAdventure/GetCompaign to a single method
 - Refactor to replace store/finished in Zone class with a DropReference
 - Bump saves library version
+- Add Anguish detection
 
 ## v0.0.12 (28 May 2024)
 - Added last respawn point for characters

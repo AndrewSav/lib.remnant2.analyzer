@@ -463,15 +463,19 @@ public partial class Analyzer
 
     private static InventoryItem GetInventoryItem(PropertyBag pb)
     {
-        int? quantity = null;
+        InventoryItem result = new() { Name = pb["ItemBP"].ToStringValue()! };
         if (pb.Contains("InstanceData"))
         {
             PropertyBag instance = pb["InstanceData"].Get<ObjectProperty>().Object!.Properties!;
             if (instance.Contains("Quantity"))
             {
-                quantity = instance["Quantity"].Get<int>();
+                result.Quantity = instance["Quantity"].Get<int>();
+            }
+            if (instance.Contains("Level"))
+            {
+                result.Level = instance["Level"].Get<ByteProperty>().EnumByte;
             }
         }
-        return new() { Name = pb["ItemBP"].ToStringValue()!, Quantity = quantity };
+        return result;
     }
 }

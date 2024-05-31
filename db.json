@@ -2455,7 +2455,7 @@
     "Subtype": "Melee",
     "DropType": "Event",
     "DropReference": "Quest_SideD_HiddenMaze",
-    "Note": "Drops from Fester aberration found in Endaira's End location on Yaesha. Stand on a plain near the checkpoint at the end of the dungeon to lift the wall and enter the Pan Labyrinth. To find Fester, from the first chamber go straight ahead and then to the left"
+    "Note": "Drops from Fester aberration found in Endaira's End location on Yaesha. Stand on a plate near the checkpoint at the end of the dungeon to lift the wall and enter the Pan Labyrinth. To find Fester, from the first chamber go straight ahead and then to the left"
   },
   {
     "Id": "MetaGem_VengefulStrike",
@@ -3800,7 +3800,7 @@
     "Coop": true,
     "DropType": "Event",
     "DropReference": "Quest_SideD_HiddenMaze",
-    "Note": "Found in Endaira's End location on Yaesha. One person stand son the pressure plate near the checkpoint at the end of the location to open a hidden door in the wall to Pan Labyrinth. This also opens a second hidden door on the other side of the check point across a fallen column next to a visible locked door - the other person goes through that door and then opens the visible door from the inside to let the other(s) in. From there there will be a chainsaw event, where one person need to go to the very end of the chainsaw hall and the other stand on the pressure plate near the entrance to the chainsaw hall. That will open the hidden door at the end of the hall where the item is. There are also two hidden doors on each side of the chainsaw hall operated by a pressure plate, these do not lead to the item"
+    "Note": "Found in Endaira's End location on Yaesha. This is a co-op item. One person stands on the pressure plate near the checkpoint at the end of the location to open a hidden door in the wall to Pan Labyrinth. This also opens a second hidden door on the other side of the check point across a fallen column next to a visible locked door - the other person goes through that door and then opens the visible door from the inside to let the other(s) in. From there there will be a chainsaw event, where one person need to go to the very end of the chainsaw hall and the other stand on the pressure plate near the entrance to the chainsaw hall. That will open the hidden door at the end of the hall where the item is. There are also two hidden doors on each side of the chainsaw hall operated by a pressure plate, these do not lead to the item"
   },
   {
     "Id": "Ring_CelerityStone",
@@ -6332,6 +6332,7 @@
     "Type": "weapon",
     "World": "World_DLC1",
     "Subtype": "Hand Gun",
+    "DropType": "Progression",
     "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
     "CustomScript": true,
     "Undetectable": true
@@ -7151,7 +7152,7 @@
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_NimuesWard/Quest_Item_OTK_NimuesBloodWard.Quest_Item_OTK_NimuesBloodWard_C",
     "Type": "quest_item",
     "World": "World_DLC1",
-    "Name": "Nimue’s Blood-Marred Vow"
+    "Name": "Nimue's Blood-Marred Vow"
   },
   {
     "Id": "Quest_Item_OTK_NimuesWard",

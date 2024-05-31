@@ -6,8 +6,9 @@ namespace lib.remnant2.analyzer.Model;
 internal class LootItemContext
 {
     public required RolledWorld World { get; set; }
-    public required Zone Zone { get; set; }
-    public required Location Location { get; set; }
+    // Zone and location are not available for "Progression" items not tied to a particular location
+    public required Zone? Zone { get; set; }
+    public required Location? Location { get; set; }
     public required LootGroup LootGroup { get; set; }
     public required LootItem LootItem { get; set; }
 

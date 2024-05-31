@@ -23,6 +23,8 @@ public class RolledWorld
     public TimeSpan? Playtime;
     public string? RespawnPoint;
 
+    public LootGroup? ProgressionItems;
+
     public bool CanGetItem(string item)
     {
         return AllZones.Any(x => x.CanGetItem(item));

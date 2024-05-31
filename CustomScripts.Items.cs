@@ -26,7 +26,7 @@ internal static partial class CustomScripts
             "Shattered Gallery"
         ];
 
-        bool result = locations.Contains(lic.Location.Name);
+        bool result = locations.Contains(lic.Location!.Name);
 
         if (!result && !others.Contains(lic.Location.Name))
         {
@@ -54,7 +54,7 @@ internal static partial class CustomScripts
             "Glistering Cloister"
         ];
 
-        bool result = locations.Contains(lic.Location.Name);
+        bool result = locations.Contains(lic.Location!.Name);
 
         if (!result && !others.Contains(lic.Location.Name))
         {
@@ -67,7 +67,7 @@ internal static partial class CustomScripts
     private static bool CrimsonGuard(LootItemContext lic)
     {
         // Crimson Guard can only be obtained if we have Red Prince generated in the zone
-        return lic.Zone.Locations.Any(x => x.Name == "Gilded Chambers");
+        return lic.Zone!.Locations.Any(x => x.Name == "Gilded Chambers");
     }
 
     private static bool QuiltedHeart(LootItemContext lic)
@@ -104,7 +104,7 @@ internal static partial class CustomScripts
             }
         }
 
-        var refs = lic.Zone.Locations.SelectMany(x => x.DropReferences).ToList();
+        var refs = lic.Zone!.Locations.SelectMany(x => x.DropReferences).ToList();
 
         // Quests we can do in this save
         foreach (DropReference dropReference in refs)
@@ -142,7 +142,7 @@ internal static partial class CustomScripts
     private static bool DowngradedRing(LootItemContext lic)
     {
         // Only available in "The Core" story
-        bool exists = lic.Zone.Story == "The Core";
+        bool exists = lic.Zone!.Story == "The Core";
         if (exists)
         {
             // Incidentally we get blocked out of the item on the same condition as for VoidHeart
@@ -157,7 +157,66 @@ internal static partial class CustomScripts
         return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, lic.LootItem.Properties["Prerequisite"], checkCanGet: false);
     }
 
-    // Quest_Item_DLC_DreamLevel_C
+    private static bool Anguish(LootItemContext lic)
+    {
+
+        string counterItemName = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
+        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.Name == counterItemName);
+
+        if (counterItem == null)
+        {
+            // The Anguish quest has not started, to start it we need Ethereal Manor
+            LootGroup? etherealManor = lic.World.Zones
+                .SingleOrDefault(x => x.Name == "Losomn")?.Locations.SelectMany(x => x.LootGroups)
+                .SingleOrDefault(x => x.EventDropReference == "Quest_Injectable_BurningCity_DLC");
+
+            // If we have it, add Anguish to it
+            if (etherealManor != null)
+            {
+                etherealManor.Items.Add(lic.LootItem);
+            }
+
+            // remove Anguish form the Progression Loot Group
+            return false;
+        }
+
+        // We have Anguish quest, let's see what is the next part
+        switch (counterItem.Level)
+        {
+            case 0:
+            case null:
+                lic.World.Ward13.Locations[0].LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                break;
+            case 1:
+                lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "Yaesha")?.Locations
+                    .SingleOrDefault(x => x.Name == "The Red Throne")?.LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                break;
+            case 2:
+                lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "Labyrinth")?.Locations[0].LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                break;
+            case 3:
+                lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "N'Erud")?.Locations.SelectMany(x => x.LootGroups)
+                    .SingleOrDefault(x => x.EventDropReference == "Quest_Boss_TalRatha")?.Items.Add(lic.LootItem);
+                break;
+            case 4:
+                lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "Root Earth")?.Locations.SelectMany(x => x.LootGroups)
+                    .SingleOrDefault(x => x.EventDropReference == "Quest_RootEarth_Zone1")?.Items.Add(lic.LootItem);
+                break;
+            case 5:
+                lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "Losomn")?.Locations
+                    .SingleOrDefault(x => x.Name == "The Tormented Asylum")?.LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                break;
+        }
+
+        // In any case we want to remove this from the Progression Loot Group
+        return false;
+
+    }
 
     // Additional Prerequisites detection ----------------------------------------------------------------------------------------------------------
 
@@ -194,7 +253,7 @@ internal static partial class CustomScripts
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
-            lic.Zone.Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items).Single(x => x.Id == "Weapon_Godsplitter").IsLooted = true;
+            lic.Zone!.Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items).Single(x => x.Id == "Weapon_Godsplitter").IsLooted = true;
         }
     }
 
@@ -203,7 +262,7 @@ internal static partial class CustomScripts
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
-            lic.Zone.Locations.SelectMany( x=> x.LootGroups).SelectMany( x=> x.Items).Single( x => x.Id == "Weapon_Deceit").IsLooted = true;
+            lic.Zone!.Locations.SelectMany( x=> x.LootGroups).SelectMany( x=> x.Items).Single( x => x.Id == "Weapon_Deceit").IsLooted = true;
         }
     }
 
