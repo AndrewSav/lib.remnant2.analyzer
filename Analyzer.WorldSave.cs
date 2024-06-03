@@ -73,15 +73,15 @@ public partial class Analyzer
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
         if (respawnLinkNameId != null)
         {
-            var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
-            rolledWorld.RespawnPoint = respawnPoint.name;
-            rolledWorld.RespawnPointType = respawnPoint.type;
+            var (name, type) = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
+            rolledWorld.RespawnPoint = name;
+            rolledWorld.RespawnPointType = type;
         }
 
         return rolledWorld;
     }
 
-    private static (string name, RespawnPointType type) FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
+    private static (string? name, RespawnPointType type) FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
     {
         var worldStoneName = zones.SelectMany(x => x.Locations)
                 .Select(x => x.GetWorldStoneById(respawnLinkNameId))
@@ -97,7 +97,7 @@ public partial class Analyzer
         if (targetLocation is not null) return ($"{targetLocation.Name} <-> {targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
 
         // Nothing is found
-        return (string.Empty, RespawnPointType.None);
+        return (null, RespawnPointType.None);
     }
 
     private static List<string> GetQuestInventory(PropertyBag inventoryBag)
