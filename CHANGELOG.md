@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.14 (3 June 2024)
+- Use new release of the saves library with performance improvements
+- Add Dran Dream item in ignore list for unknown items
+
 ## v0.0.13 (31 May 2024)
 - Refactor GetAdventure/GetCompaign to a single method
 - Refactor to replace store/finished in Zone class with a DropReference

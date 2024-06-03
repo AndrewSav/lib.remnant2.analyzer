@@ -36,7 +36,6 @@ internal static partial class CustomScripts
         { "Ring_DowngradedRing", DowngradedRing },
         { "Ring_BandOfTheFanatic", BandOfTheFanatic },
         { "Weapon_Anguish", Anguish },
-        //Amulet_ParticipationMedal // TODO: Has to be injected if we want to support it
         { "Weapon_Deceit", lic => { Deceit(lic); return true; } },
         { "Weapon_Godsplitter", lic => { Godsplitter(lic); return true; } },
         { "Relic_Consumable_VoidHeart", lic => { VoidHeart(lic); return true; } },

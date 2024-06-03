@@ -89,6 +89,7 @@ public class Utils
             "^Perk_.*",
             "^PrimePerk_.*",
             "^Quest_Hidden_Item_.*",
+            "^Quest_Item_DLC_DreamLevel$",
             "^RelicFragment_.*",
             "^Skill_.*",
             "^SkillTrait_.*",
