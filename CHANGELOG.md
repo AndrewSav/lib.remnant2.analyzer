@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.16 (3 June 2024)
+- Added Huntress', Nimue's, Dran's and Root Walker's dreams consumables to craftable items
+
 ## v0.0.15 (3 June 2024)
 - Added craftable items if character has materials in the inventory
 - Added performance counters for loot groups
