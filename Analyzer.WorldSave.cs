@@ -210,7 +210,6 @@ public partial class Analyzer
                             Actor destinationZone = zoneActors.Single(x =>
                                 x.GetZoneActorProperties()!["NameID"].ToStringValue() == destinationZoneName);
                             string destinationZoneLabel = destinationZone.GetZoneActorProperties()!["Label"].ToStringValue()!;
-                            string destinationZoneId = destinationZone.GetZoneActorProperties()!["NameID"].ToStringValue()!;
 
                             if (linkLabel == "Malefic Palace" && destinationZoneLabel == "Beatific Palace"
                                 || destinationZoneLabel == "Malefic Palace" && linkLabel == "Beatific Palace") continue;
