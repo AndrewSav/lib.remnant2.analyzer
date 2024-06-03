@@ -16,7 +16,7 @@ internal class LootItemContext
     {
         Navigator navigator = World.ParentCharacter.WorldNavigator!;
         UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
-        string selector = World.IsCampaign ? "Quest_Campaign_Main_C" : "Quest_AdventureMode_Nerud_C";
+        string selector = World.IsCampaign ? "Quest_Campaign_Main_C" : "Quest_AdventureMode_Jungle_C";
         UObject meta = navigator.GetActor(selector, main)!.Archive.Objects[0];
         int? id = meta.Properties!["ID"].Get<int>();
         UObject? obj = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{id}_Container.Quest_Container:PersistentLevel");

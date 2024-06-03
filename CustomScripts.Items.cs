@@ -171,10 +171,7 @@ internal static partial class CustomScripts
                 .SingleOrDefault(x => x.EventDropReference == "Quest_Injectable_BurningCity_DLC");
 
             // If we have it, add Anguish to it
-            if (etherealManor != null)
-            {
-                etherealManor.Items.Add(lic.LootItem);
-            }
+            etherealManor?.Items.Add(lic.LootItem);
 
             // remove Anguish form the Progression Loot Group
             return false;
