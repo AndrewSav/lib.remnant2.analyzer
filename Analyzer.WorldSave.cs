@@ -3,6 +3,7 @@ using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Model;
 using lib.remnant2.saves.Navigation;
+using lib.remnant2.analyzer.Enums;
 
 namespace lib.remnant2.analyzer;
 
@@ -70,11 +71,33 @@ public partial class Analyzer
         rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
 
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
-        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
-            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
-            .SingleOrDefault(x => x != null);
+        if (respawnLinkNameId != null)
+        {
+            var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
+            rolledWorld.RespawnPoint = respawnPoint.name;
+            rolledWorld.RespawnPointType = respawnPoint.type;
+        }
 
         return rolledWorld;
+    }
+
+    private static (string name, RespawnPointType type) FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
+    {
+        var worldStoneName = zones.SelectMany(x => x.Locations)
+                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+                .SingleOrDefault(x => x != null);
+        if (worldStoneName is not null) return (worldStoneName, RespawnPointType.Waypoint);
+
+        var checkpointName = zones.SelectMany(x => x.Locations)
+                .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
+        if (checkpointName is not null) return (checkpointName, RespawnPointType.Checkpoint);
+        
+        var targetLocation = zones.SelectMany(x => x.Locations)
+                .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
+        if (targetLocation is not null) return ($"{targetLocation.Name} <-> {targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
+
+        // Nothing is found
+        return (string.Empty, RespawnPointType.None);
     }
 
     private static List<string> GetQuestInventory(PropertyBag inventoryBag)
@@ -147,10 +170,9 @@ public partial class Analyzer
             seen.Add(label);
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
-
-            List<string> waypoints = [];
+            List<string> checkpoints = [];
             Dictionary<string, string> waypointIdMap = [];
-            List<string> connectsTo = [];
+            Dictionary<string, string> connectionsIdMap = [];
 
             foreach (object? o in links.Items)
             {
@@ -167,24 +189,28 @@ public partial class Analyzer
 
                 string type = link["Type"].ToStringValue()!;
                 string linkLabel = link["Label"].ToStringValue()!;
-                string name = link["NameID"].ToStringValue()!;
-                string? destinationZoneName = link["DestinationZone"].ToStringValue();
+                string linkName = link["NameID"].ToStringValue()!;
 
                 switch (type)
                 {
                     case "EZoneLinkType::Waypoint":
-                        waypoints.Add(linkLabel);
-                        waypointIdMap[name] = linkLabel;
+                        waypointIdMap[linkName] = linkLabel;
                         break;
                     case "EZoneLinkType::Checkpoint":
+                        checkpoints.Add(linkName);
                         break;
                     case "EZoneLinkType::Link":
-                        if (destinationZoneName != "None" && !name.Contains("CardDoor") &&
+                        string? destinationZoneName = link["DestinationZone"].ToStringValue();
+
+                        if (destinationZoneName != "None" && !linkName.Contains("CardDoor") &&
                             destinationZoneName != "2_Zone")
                         {
+                            // TODO: Test whether you can respawn at card door. If so, will need to add it as a connection to find respawn point later
+
                             Actor destinationZone = zoneActors.Single(x =>
                                 x.GetZoneActorProperties()!["NameID"].ToStringValue() == destinationZoneName);
                             string destinationZoneLabel = destinationZone.GetZoneActorProperties()!["Label"].ToStringValue()!;
+                            string destinationZoneId = destinationZone.GetZoneActorProperties()!["NameID"].ToStringValue()!;
 
                             if (linkLabel == "Malefic Palace" && destinationZoneLabel == "Beatific Palace"
                                 || destinationZoneLabel == "Malefic Palace" && linkLabel == "Beatific Palace") continue;
@@ -196,7 +222,7 @@ public partial class Analyzer
                                 world == labyrinth;
                             if (!isLabyrinth)
                             {
-                                connectsTo.Add(destinationZoneLabel);
+                                connectionsIdMap[linkName] = destinationZoneLabel;
                                 if (!seen.Contains(destinationZoneLabel))
                                 {
                                     queue.Enqueue(destinationZone);
@@ -210,33 +236,17 @@ public partial class Analyzer
                 }
             }
 
-            string cat = category;
-
-            IEnumerable<string> GetConnectsTo(List<string> connections)
-            {
-                foreach (IGrouping<string, string> c in connections.GroupBy(x => x))
-                {
-                    string x = "";
-                    if (c.Count() > 1 && cat == "Jungle")
-                    {
-                        x = $" x{c.Count()}";
-                    }
-
-                    yield return $"{c.Key}{x}";
-                }
-            }
-
             var l = new Location(
                 name: label,
                 category: category,
-                worldStones: waypoints,
                 worldStoneIdMap: waypointIdMap,
-                connections: GetConnectsTo(connectsTo).ToList())
+                connectionsIdMap: connectionsIdMap,
+                checkpoints: checkpoints)
             {
                 DropReferences = [],
                 WorldDrops = [],
                 LootGroups = [],
-                LootedMarkers = []
+                LootedMarkers = [],
             };
 
             foreach (Actor e in new List<Actor>(events).Where(x =>
