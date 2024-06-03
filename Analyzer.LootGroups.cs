@@ -1,7 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using lib.remnant2.analyzer.Model;
+﻿using lib.remnant2.analyzer.Model;
 using System.Text.RegularExpressions;
 using Serilog;
+using SerilogTimings.Extensions;
+using System.Collections.Generic;
 
 namespace lib.remnant2.analyzer;
 
@@ -25,7 +26,13 @@ public partial class Analyzer
             .ForContext(Log.Category, Log.Prerequisites)
             .ForContext("SourceContext", "Analyzer:LootGroups");
 
+        ILogger performanceLogger = Log.Logger
+            .ForContext(Log.Category, Log.Performance)
+            .ForContext("SourceContext", "Analyzer:LootGroups");
+
+
         // Add items to locations
+        var operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, add items to locations");
         foreach (Zone zone in world.AllZones)
         {
 
@@ -167,14 +174,11 @@ public partial class Analyzer
                 }
             }
         }
-        // Part 5 : Drop Type : Progression
-        world.ProgressionItems = new()
-        {
-            Type = "Progression",
-            Items = ItemDb.GetItemsByReference("Progression"),
-        };
+        operation.Complete();
+
 
         // Process additional Looted Markers
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process additional loot markers");
         foreach (Zone zone in world.AllZones)
         {
             // Story associated loot items are attached to the first zone location
@@ -204,6 +208,8 @@ public partial class Analyzer
                 }
             }
         }
+        operation.Complete();
+
 
         void ProcessPrerequisitesAndScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
         {
@@ -241,6 +247,7 @@ public partial class Analyzer
 
         // Mark items that cannot be obtained because no prerequisite
         // Process item custom scripts
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process prerequisites and scripts");
         foreach (Zone zone in world.AllZones)
         {
             foreach (Location location in zone.Locations)
@@ -259,16 +266,57 @@ public partial class Analyzer
                 }
             }
         }
-
-        foreach (LootItem item in new List<LootItem>(world.ProgressionItems.Items))
+        operation.Complete();
+        
+        // Progression items are the items that are not tied to any particular location
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, progression items");
+        LootGroup progression = new()
         {
-            ProcessPrerequisitesAndScripts(null, null, world.ProgressionItems, item);
+            Type = "Progression",
+            Items = ItemDb.GetItemsByReference("Progression"),
+        };
+        world.AdditionalItems.Add(progression);
+        foreach (LootItem item in new List<LootItem>(progression.Items))
+        {
+            ProcessPrerequisitesAndScripts(null, null, progression, item);
+        }
+        operation.Complete();
+
+        // Show items that can be obtained because the character already has the material in their inventory
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, craftable items");
+
+        LootGroup craftable = new()
+        {
+            Type = "Craftable",
+            // Quest Inventory is for Wooden Box that grants Effigy Pendant
+            Items = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Select(x => x.Name).Union(world.QuestInventory)).ToList()
+        };
+        world.AdditionalItems.Add(craftable);
+
+        operation.Complete();
+    }
+
+    internal static IEnumerable<LootItem> GetItemsWithMaterials(IEnumerable<string> inventory)
+    {
+        Dictionary<string, List<Dictionary<string, string>>> materials = ItemDb.Db.Where(x => x.ContainsKey("Material"))
+            .GroupBy(x => x["Material"])
+            .ToDictionary(x => x.Key, x => x.ToList());
+
+        foreach (string item in inventory)
+        {
+            string name = Utils.GetNameFromProfileId(item);
+            if (materials.TryGetValue(name, out List<Dictionary<string, string>>? mat))
+            {
+                foreach (Dictionary<string, string> d in mat)
+                {
+                    yield return new LootItem { Properties = d };
+                }
+            }
         }
     }
 
     internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
     {
-
         if (!checkHave && !checkCanGet) return true;
 
         List<string> accountAwards = world.ParentCharacter.ParentDataset.AccountAwards;
@@ -385,7 +433,6 @@ public partial class Analyzer
             (bool right, index) = Expr(index);
             return (left || right, index);
         }
-
 
         (bool res, _) = Expr(0);
         return res;

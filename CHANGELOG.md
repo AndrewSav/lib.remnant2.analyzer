@@ -1,14 +1,18 @@
 # Changelog
 
+## v0.0.15 (3 June 2024)
+- Added craftable items if character has materials in the inventory
+- Added performance counters for loot groups
+
 ## v0.0.14 (3 June 2024)
 - Use new release of the saves library with performance improvements
-- Add Dran Dream item in ignore list for unknown items
+- Added Dran Dream item in ignore list for unknown items
 
 ## v0.0.13 (31 May 2024)
-- Refactor GetAdventure/GetCompaign to a single method
-- Refactor to replace store/finished in Zone class with a DropReference
-- Bump saves library version
-- Add Anguish detection
+- Refactored GetAdventure/GetCompaign to a single method
+- Refactored to replace store/finished in Zone class with a DropReference
+- Bumped saves library version
+- Added Anguish detection
 
 ## v0.0.12 (28 May 2024)
 - Added last respawn point for characters

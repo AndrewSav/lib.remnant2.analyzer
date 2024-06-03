@@ -23,7 +23,7 @@ public class RolledWorld
     public TimeSpan? Playtime;
     public string? RespawnPoint;
 
-    public LootGroup? ProgressionItems;
+    public List <LootGroup> AdditionalItems =[];
 
     public bool CanGetItem(string item)
     {
