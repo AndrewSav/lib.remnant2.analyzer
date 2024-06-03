@@ -301,11 +301,15 @@ public partial class Analyzer
         Dictionary<string, List<Dictionary<string, string>>> materials = ItemDb.Db.Where(x => x.ContainsKey("Material"))
             .GroupBy(x => x["Material"])
             .ToDictionary(x => x.Key, x => x.ToList());
+        Dictionary<string, List<Dictionary<string, string>>> consumables = ItemDb.Db.Where(x => x.ContainsKey("Consumable"))
+            .GroupBy(x => x["Consumable"])
+            .ToDictionary(x => x.Key, x => x.ToList());
+        Dictionary<string, List<Dictionary<string, string>>> combined = new[] {materials,consumables}.SelectMany(dict => dict).ToDictionary();
 
         foreach (string item in inventory)
         {
             string name = Utils.GetNameFromProfileId(item);
-            if (materials.TryGetValue(name, out List<Dictionary<string, string>>? mat))
+            if (combined.TryGetValue(name, out List<Dictionary<string, string>>? mat))
             {
                 foreach (Dictionary<string, string> d in mat)
                 {
