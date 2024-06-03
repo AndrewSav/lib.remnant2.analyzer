@@ -26,9 +26,10 @@ public partial class Analyzer
         
         UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
 
-        UObject meta = navigator.FindActors(data.Selector, main).Single().Archive.Objects[0];
+        UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(data.Selector)).Archive.Objects[0];
+
         int rollId = meta.Properties!["ID"].Get<int>();
-        UObject? rollObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel");
+        UObject rollObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel")!;
 
         int[] worldIds;
         try
@@ -46,9 +47,17 @@ public partial class Analyzer
         PropertyBag inventory = navigator.GetComponent("RemnantPlayerInventory", meta)!.Properties!;
         List<string> questInventory = GetQuestInventory(inventory);
         List<Actor> zoneActors = navigator.GetActors("ZoneActor", rollObject);
-        List<Actor> events = navigator.FindActors("^((?!ZoneActor).)*$", rollObject)
-            .Where(x => x.GetFirstObjectProperties()!.Contains("ID")).ToList();
 
+        List<Actor> events = rollObject.Properties!["Blob"].Get<PersistenceContainer>().Actors
+            .Select( x=> x.Value)
+            .Where(
+                x =>
+                {
+                    var obj = x.Archive.Objects[0];
+                    return obj.Name != "ZoneActor" && obj.Properties!.Contains("ID");
+                })
+            .ToList();
+        
         int difficulty = navigator.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
         TimeSpan? tp = navigator.GetProperty("PlayTime", meta)?.Get<TimeSpan>();
 

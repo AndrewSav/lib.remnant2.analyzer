@@ -253,7 +253,10 @@ public partial class Analyzer
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read Cass loot");
                 TimeSpan tp = TimeSpan.FromSeconds((float)navigator.GetProperty("TimePlayed")!.Value!);
 
-                List<LootItem> cassLoot = GetCassShop(navigator.FindComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!), result.Characters.Count, charSlotInternal);
+                //var css = navigator.GetActor("Character_NPC_Cass_C")!;
+                //var tmp = navigator.GetComponent("Inventory", css);
+
+                List <LootItem> cassLoot = GetCassShop(navigator.GetComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!), result.Characters.Count, charSlotInternal);
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read quest log");
