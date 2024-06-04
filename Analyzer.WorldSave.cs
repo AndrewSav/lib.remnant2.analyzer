@@ -73,31 +73,31 @@ public partial class Analyzer
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
         if (respawnLinkNameId != null)
         {
-            var (name, type) = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
-            rolledWorld.RespawnPoint = name;
-            rolledWorld.RespawnPointType = type;
+            var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
+            rolledWorld.RespawnPoint = respawnPoint.Name;
+            rolledWorld.RespawnPointType = respawnPoint.Type;
         }
 
         return rolledWorld;
     }
 
-    private static (string? name, RespawnPointType type) FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
+    private static RespawnPoint FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
     {
         var worldStoneName = zones.SelectMany(x => x.Locations)
                 .Select(x => x.GetWorldStoneById(respawnLinkNameId))
                 .SingleOrDefault(x => x != null);
-        if (worldStoneName is not null) return (worldStoneName, RespawnPointType.Waypoint);
+        if (worldStoneName is not null) return new RespawnPoint(worldStoneName, RespawnPointType.Waypoint);
 
         var checkpointName = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
-        if (checkpointName is not null) return (checkpointName, RespawnPointType.Checkpoint);
+        if (checkpointName is not null) return new RespawnPoint(checkpointName, RespawnPointType.Checkpoint);
         
         var targetLocation = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
-        if (targetLocation is not null) return ($"{targetLocation.Name} <-> {targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
+        if (targetLocation is not null) return new RespawnPoint($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
 
         // Nothing is found
-        return (null, RespawnPointType.None);
+        return new RespawnPoint(null, RespawnPointType.None);
     }
 
     private static List<string> GetQuestInventory(PropertyBag inventoryBag)
