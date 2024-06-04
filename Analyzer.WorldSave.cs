@@ -171,8 +171,8 @@ public partial class Analyzer
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
             List<string> checkpoints = [];
-            Dictionary<string, string> waypointIdMap = [];
-            Dictionary<string, string> connectionsIdMap = [];
+            List<(string, string)> waypointIdMap = [];
+            List<(string, string)> connectionsIdMap = [];
 
             foreach (object? o in links.Items)
             {
@@ -194,7 +194,7 @@ public partial class Analyzer
                 switch (type)
                 {
                     case "EZoneLinkType::Waypoint":
-                        waypointIdMap[linkName] = linkLabel;
+                        waypointIdMap.Add((linkName, linkLabel));
                         break;
                     case "EZoneLinkType::Checkpoint":
                         checkpoints.Add(linkName);
@@ -219,7 +219,7 @@ public partial class Analyzer
                                 world == labyrinth;
                             if (!isLabyrinth)
                             {
-                                connectionsIdMap[linkName] = destinationZoneLabel;
+                                connectionsIdMap.Add((linkName, destinationZoneLabel));
                                 if (!seen.Contains(destinationZoneLabel))
                                 {
                                     queue.Enqueue(destinationZone);
