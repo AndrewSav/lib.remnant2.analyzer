@@ -205,8 +205,6 @@ public partial class Analyzer
                         if (destinationZoneName != "None" && !linkName.Contains("CardDoor") &&
                             destinationZoneName != "2_Zone")
                         {
-                            // TODO: Test whether you can respawn at card door. If so, will need to add it as a connection to find respawn point later
-
                             Actor destinationZone = zoneActors.Single(x =>
                                 x.GetZoneActorProperties()!["NameID"].ToStringValue() == destinationZoneName);
                             string destinationZoneLabel = destinationZone.GetZoneActorProperties()!["Label"].ToStringValue()!;
