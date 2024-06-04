@@ -16,8 +16,8 @@ public class Location
     public Location(
         string name,
         string category,
-        Dictionary<string, string> worldStoneIdMap,
-        Dictionary<string, string> connectionsIdMap,
+        List<(string, string)> worldStoneIdMap,
+        List<(string, string)> connectionsIdMap,
         List<string> checkpoints)
     {
         Name = name;
@@ -27,14 +27,14 @@ public class Location
         _checkpoints = checkpoints;
     }
 
-    private readonly Dictionary<string, string> _worldStoneIdMap = []; // <waypointId, waypointName>
-    private readonly Dictionary<string, string> _connectionsIdMap = []; // <LinkId, DestinationName>
+    private readonly List<(string waypointId, string waypointName)> _worldStoneIdMap = []; // <waypointId, waypointName>
+    private readonly List<(string linkId, string destinationName)> _connectionsIdMap = []; // <LinkId, DestinationName>
     private readonly List<string> _checkpoints = [];
 
     public string Name;
     public string Category;
-    public List<string> WorldStones => _worldStoneIdMap.Values.ToList();
-    public List<string> Connections => _connectionsIdMap.Values.Distinct().ToList();
+    public List<string> WorldStones => _worldStoneIdMap.Select(x => x.waypointName).ToList();
+    public List<string> Connections => _connectionsIdMap.Select(x => x.destinationName).Distinct().ToList();
 
     public bool TraitBook;
     public bool TraitBookLooted;
@@ -123,7 +123,7 @@ public class Location
         return new Location(
             name: "Ward 13",
             category: "Ward 13",
-            worldStoneIdMap: new() { { "2_Waypoint_Town", "Ward 13" } },
+            worldStoneIdMap: [( "2_Waypoint_Town", "Ward 13" )],
             connectionsIdMap: [],
             checkpoints: [])
         {
@@ -137,15 +137,13 @@ public class Location
     public string? GetWorldStoneById(string? worldStoneId)
     {
         if (worldStoneId == null) return null;
-        _worldStoneIdMap.TryGetValue(worldStoneId, out string? value);
-        return value;
+        return _worldStoneIdMap.FirstOrDefault(x => x.waypointId.Equals(worldStoneId)).waypointName;
     }
 
     public string? GetLinkDestinationById(string? zoneLinkId)
     {
         if (zoneLinkId == null) return null;
-        _connectionsIdMap.TryGetValue(zoneLinkId, out string? value);
-        return value;
+        return _connectionsIdMap.FirstOrDefault(x => x.linkId.Equals(zoneLinkId)).destinationName;
     }
 
     public bool ContainsCheckpointId(string checkpointId)
