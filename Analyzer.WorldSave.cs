@@ -74,8 +74,7 @@ public partial class Analyzer
         if (respawnLinkNameId != null)
         {
             var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
-            rolledWorld.RespawnPoint = respawnPoint.Name;
-            rolledWorld.RespawnPointType = respawnPoint.Type;
+            rolledWorld.RespawnPoint = respawnPoint;
         }
 
         return rolledWorld;
