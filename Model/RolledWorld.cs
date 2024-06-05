@@ -1,6 +1,4 @@
-﻿using lib.remnant2.analyzer.Enums;
-
-namespace lib.remnant2.analyzer.Model;
+﻿namespace lib.remnant2.analyzer.Model;
 
 // Represents part of the data from a single save_N.sav: either adventure data or campaign data
 public class RolledWorld
@@ -23,7 +21,7 @@ public class RolledWorld
 
     public required string Difficulty;
     public TimeSpan? Playtime;
-    public RespawnPoint RespawnPoint = new(null, RespawnPointType.None);
+    public RespawnPoint? RespawnPoint;
 
     public List <LootGroup> AdditionalItems =[];
 

@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using Waypoint = (string waypointId, string waypointName);
+using Connection = (string linkId, string destinationName);
 
 namespace lib.remnant2.analyzer.Model;
 
@@ -16,8 +18,8 @@ public class Location
     public Location(
         string name,
         string category,
-        List<(string, string)> worldStoneIdMap,
-        List<(string, string)> connectionsIdMap,
+        List<Waypoint> worldStoneIdMap,
+        List<Connection> connectionsIdMap,
         List<string> checkpoints)
     {
         Name = name;
@@ -27,8 +29,8 @@ public class Location
         _checkpoints = checkpoints;
     }
 
-    private readonly List<(string waypointId, string waypointName)> _worldStoneIdMap = [];
-    private readonly List<(string linkId, string destinationName)> _connectionsIdMap = [];
+    private readonly List<Waypoint> _worldStoneIdMap = [];
+    private readonly List<Connection> _connectionsIdMap = [];
     private readonly List<string> _checkpoints = [];
 
     public string Name;
@@ -149,7 +151,6 @@ public class Location
 
     public bool ContainsCheckpointId(string checkpointId)
     {
-        if (_checkpoints.Contains(checkpointId)) return true;
-        return false;
+        return _checkpoints.Contains(checkpointId);
     }
 }
