@@ -1,6 +1,5 @@
 ﻿using lib.remnant2.saves.Model;
 using lib.remnant2.saves.Navigation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace lib.remnant2.analyzer.Model;
 
