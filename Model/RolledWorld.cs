@@ -23,8 +23,7 @@ public class RolledWorld
 
     public required string Difficulty;
     public TimeSpan? Playtime;
-    public string? RespawnPoint;
-    public RespawnPointType RespawnPointType;
+    public RespawnPoint RespawnPoint = new(null, RespawnPointType.None);
 
     public List <LootGroup> AdditionalItems =[];
 
