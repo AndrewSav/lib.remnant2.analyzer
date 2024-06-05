@@ -1,7 +1,7 @@
 # Changelog
 
 ## v0.0.18 (5 June 2024)
-- Amended Fix Necklese of Flowing Life crash fix from yesterday to not crash on Void Heart
+- Amended Fix Necklace of Flowing Life crash fix from yesterday to not crash on Void Heart
 
 ## v0.0.17 (4 June 2024)
 - Fixed Necklace of Flowing Life crash
