@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using Waypoint = (string waypointId, string waypointName);
+using Connection = (string linkId, string destinationName);
 
 namespace lib.remnant2.analyzer.Model;
 
@@ -16,23 +18,26 @@ public class Location
     public Location(
         string name,
         string category,
-        List<string> worldStones,
-        Dictionary<string, string> worldStoneIdMap,
-        List<string> connections)
+        List<Waypoint> worldStoneIdMap,
+        List<Connection> connectionsIdMap,
+        List<string> checkpoints)
     {
         Name = name;
         Category = category;
-        WorldStones = worldStones;
-        Connections = connections;
         _worldStoneIdMap = worldStoneIdMap;
+        _connectionsIdMap = connectionsIdMap;
+        _checkpoints = checkpoints;
     }
 
-    private readonly Dictionary<string, string> _worldStoneIdMap = [];
+    private readonly List<Waypoint> _worldStoneIdMap = [];
+    private readonly List<Connection> _connectionsIdMap = [];
+    private readonly List<string> _checkpoints = [];
 
     public string Name;
     public string Category;
-    public List<string> WorldStones = [];
-    public List<string> Connections = [];
+    public List<string> WorldStones => _worldStoneIdMap.Select(x => x.waypointName).ToList();
+    public List<string> Connections => _connectionsIdMap.GroupBy(x => x.destinationName)
+        .Select(g => g.Count() > 1 ? $"{g.Key} x{g.Count()}" : g.Key).ToList();
 
     public bool TraitBook;
     public bool TraitBookLooted;
@@ -121,9 +126,9 @@ public class Location
         return new Location(
             name: "Ward 13",
             category: "Ward 13",
-            worldStones: ["Ward 13"],
-            worldStoneIdMap: new() { { "Ward 13", "2_Waypoint_Town" } },
-            connections: [])
+            worldStoneIdMap: [( "2_Waypoint_Town", "Ward 13" )],
+            connectionsIdMap: [],
+            checkpoints: [])
         {
             WorldDrops = [],
             DropReferences = [],
@@ -135,7 +140,17 @@ public class Location
     public string? GetWorldStoneById(string? worldStoneId)
     {
         if (worldStoneId == null) return null;
-        _worldStoneIdMap.TryGetValue(worldStoneId, out string? value);
-        return value;
+        return _worldStoneIdMap.FirstOrDefault(x => x.waypointId.Equals(worldStoneId)).waypointName;
+    }
+
+    public string? GetLinkDestinationById(string? zoneLinkId)
+    {
+        if (zoneLinkId == null) return null;
+        return _connectionsIdMap.FirstOrDefault(x => x.linkId.Equals(zoneLinkId)).destinationName;
+    }
+
+    public bool ContainsCheckpointId(string checkpointId)
+    {
+        return _checkpoints.Contains(checkpointId);
     }
 }

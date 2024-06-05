@@ -70,11 +70,32 @@ public partial class Analyzer
         rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
 
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
-        rolledWorld.RespawnPoint = rolledWorld.AllZones.SelectMany(x => x.Locations)
-            .Select(x => x.GetWorldStoneById(respawnLinkNameId))
-            .SingleOrDefault(x => x != null);
+        if (respawnLinkNameId != null)
+        {
+            var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
+            rolledWorld.RespawnPoint = respawnPoint;
+        }
 
         return rolledWorld;
+    }
+
+    private static RespawnPoint? FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
+    {
+        var worldStoneName = zones.SelectMany(x => x.Locations)
+                .Select(x => x.GetWorldStoneById(respawnLinkNameId))
+                .SingleOrDefault(x => x != null);
+        if (worldStoneName is not null) return new RespawnPoint(worldStoneName, RespawnPoint.RespawnPointType.Waypoint);
+
+        var checkpointName = zones.SelectMany(x => x.Locations)
+                .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
+        if (checkpointName is not null) return new RespawnPoint(checkpointName, RespawnPoint.RespawnPointType.Checkpoint);
+        
+        var targetLocation = zones.SelectMany(x => x.Locations)
+                .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
+        if (targetLocation is not null) return new RespawnPoint($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPoint.RespawnPointType.ZoneTransition);
+
+        // Nothing is found
+        return null;
     }
 
     private static List<string> GetQuestInventory(PropertyBag inventoryBag)
@@ -147,10 +168,9 @@ public partial class Analyzer
             seen.Add(label);
 
             ArrayStructProperty links = pb["ZoneLinks"].Get<ArrayStructProperty>();
-
-            List<string> waypoints = [];
-            Dictionary<string, string> waypointIdMap = [];
-            List<string> connectsTo = [];
+            List<string> checkpoints = [];
+            List<(string, string)> waypointIdMap = [];
+            List<(string, string)> connectionsIdMap = [];
 
             foreach (object? o in links.Items)
             {
@@ -167,19 +187,20 @@ public partial class Analyzer
 
                 string type = link["Type"].ToStringValue()!;
                 string linkLabel = link["Label"].ToStringValue()!;
-                string name = link["NameID"].ToStringValue()!;
-                string? destinationZoneName = link["DestinationZone"].ToStringValue();
+                string linkName = link["NameID"].ToStringValue()!;
 
                 switch (type)
                 {
                     case "EZoneLinkType::Waypoint":
-                        waypoints.Add(linkLabel);
-                        waypointIdMap[name] = linkLabel;
+                        waypointIdMap.Add((linkName, linkLabel));
                         break;
                     case "EZoneLinkType::Checkpoint":
+                        checkpoints.Add(linkName);
                         break;
                     case "EZoneLinkType::Link":
-                        if (destinationZoneName != "None" && !name.Contains("CardDoor") &&
+                        string? destinationZoneName = link["DestinationZone"].ToStringValue();
+
+                        if (destinationZoneName != "None" && !linkName.Contains("CardDoor") &&
                             destinationZoneName != "2_Zone")
                         {
                             Actor destinationZone = zoneActors.Single(x =>
@@ -196,7 +217,7 @@ public partial class Analyzer
                                 world == labyrinth;
                             if (!isLabyrinth)
                             {
-                                connectsTo.Add(destinationZoneLabel);
+                                connectionsIdMap.Add((linkName, destinationZoneLabel));
                                 if (!seen.Contains(destinationZoneLabel))
                                 {
                                     queue.Enqueue(destinationZone);
@@ -210,33 +231,17 @@ public partial class Analyzer
                 }
             }
 
-            string cat = category;
-
-            IEnumerable<string> GetConnectsTo(List<string> connections)
-            {
-                foreach (IGrouping<string, string> c in connections.GroupBy(x => x))
-                {
-                    string x = "";
-                    if (c.Count() > 1 && cat == "Jungle")
-                    {
-                        x = $" x{c.Count()}";
-                    }
-
-                    yield return $"{c.Key}{x}";
-                }
-            }
-
             var l = new Location(
                 name: label,
                 category: category,
-                worldStones: waypoints,
                 worldStoneIdMap: waypointIdMap,
-                connections: GetConnectsTo(connectsTo).ToList())
+                connectionsIdMap: connectionsIdMap,
+                checkpoints: checkpoints)
             {
                 DropReferences = [],
                 WorldDrops = [],
                 LootGroups = [],
-                LootedMarkers = []
+                LootedMarkers = [],
             };
 
             foreach (Actor e in new List<Actor>(events).Where(x =>
