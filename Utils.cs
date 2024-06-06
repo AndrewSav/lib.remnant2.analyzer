@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace lib.remnant2.analyzer;
 
-public class Utils
+public partial class Utils
 {
     private static readonly Guid SavedGamesGuid = new("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
 
@@ -42,6 +42,10 @@ public class Utils
     public static string Capitalize(string word)
     {
         return word[..1].ToUpper() + word[1..].ToLower();
+    }
+    public static string FormatCamelAsWords(string word)
+    {
+        return string.Join(' ', RegexSplitAtCapitals().Split(word).Select(x => x.Trim('_')));
     }
     // ReSharper restore UnusedMember.Global
 
@@ -103,4 +107,7 @@ public class Utils
     {
         return tp.HasValue ? $"{(int)tp.Value.TotalHours}:{tp.Value.Minutes:D2}:{tp.Value.Seconds:D2}" : "Unknown";
     }
+
+    [GeneratedRegex("(?<!^)(?=[A-Z])")]
+    private static partial Regex RegexSplitAtCapitals();
 }

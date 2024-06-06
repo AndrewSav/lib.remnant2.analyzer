@@ -10317,5 +10317,808 @@
     "World": "World_Jungle",
     "Name": "Forgotten Field",
     "Subtype": "dungeon"
+  },
+  {
+    "Id": "Archetype_Invoker",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Archetype_Invoker.Archetype_Invoker_C",
+    "Type": "archetype",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Archetype_Summoner",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Archetype_Summoner.Archetype_Summoner_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Medic",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Archetype_Medic.Archetype_Medic_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Invader",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Invader/Archetype_Invader.Archetype_Invader_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Hunter",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Archetype_Hunter.Archetype_Hunter_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Handler",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Archetype_Handler.Archetype_Handler_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Gunslinger",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Archetype_Gunslinger.Archetype_Gunslinger_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Explorer",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Explorer/Archetype_Explorer.Archetype_Explorer_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Engineer",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Archetype_Engineer.Archetype_Engineer_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Challenger",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Archetype_Challenger.Archetype_Challenger_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Archon",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Archetype_Archon.Archetype_Archon_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Alchemist",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Archetype_Alchemist.Archetype_Alchemist_C",
+    "Type": "archetype",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Archetype_Ritualist",
+    "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Archetype_Ritualist.Archetype_Ritualist_C",
+    "Type": "archetype",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Mod_FusionCannon",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/Corrupted_Savior/Mod_FusionCannon.Mod_FusionCannon_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_CubeRoom",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedCubeGun/Mod_CubeRoom/Mod_CubeRoom.Mod_CubeRoom_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_NanoPhase",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedNebula/Mod_NanoPhase/Mod_NanoPhase.Mod_NanoPhase_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_WillOfTheWisp",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedSorrow/Mod_WillOfTheWisp/Mod_WillOfTheWisp.Mod_WillOfTheWisp_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_GuardiansVigil",
+    "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedTwistedArbalest/Mod_GaurdiansVigil/Mod_GuardiansVigil.Mod_GuardiansVigil_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Mortar",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CorruptedMeridian/Mod_Mortar/Mod_Mortar.Mod_Mortar_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_DeathBrand",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CorruptedRunePistol/Mod_DeathBrand/Mod_DeathBrand.Mod_DeathBrand_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_CubeShield",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CubeGun/Mod_CubeShield/Mod_CubeShield.Mod_CubeShield_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_ChaosDriver",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Enigma/Mod_ChaosDriver/Mod_ChaosDriver.Mod_ChaosDriver_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_ExplosiveShot",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Hellfire/Mod_ExplosiveShot/Mod_ExplosiveShot.Mod_ExplosiveShot_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Screamer",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Meridian/Mod_Screamer/Mod_Screamer.Mod_Screamer_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_NanoSwarm",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Nebula/Mod_NanoSwarm/Mod_NanoSwarm.Mod_NanoSwarm_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Soulbrand",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/RunePistol/Mod_Soulbrand/Mod_Soulbrand.Mod_Soulbrand_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Eulogy",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Sorrow/Mod_Eulogy/Mod_Eulogy.Mod_Eulogy_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_BigBang",
+    "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/StarShot/Mod_BigBang/Mod_BigBang.Mod_BigBang_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_BetaRay",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/AlphaOmega/Mod_BetaRay/Mod_BetaRay.Mod_BetaRay_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Supernova",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Aphelion/Mod_Supernova/Mod_Supernova.Mod_Supernova_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Micronova",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedAphelion/Mod_Micronova/Mod_Micronova.Mod_Micronova_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Windfall",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedDeceit/Mod_Windfall/Mod_Windfall.Mod_Windfall_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Bloodshot",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedMerciless/Mod_Bloodshot/Mod_Bloodshot.Mod_Bloodshot_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_MoonlightBarrage",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CrescentMoon/Mod_MoonlightBarrage/Mod_MoonlightBarrage.Mod_MoonlightBarrage_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Fracture",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Fracture/Mod_Fracture.Mod_Fracture_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Ouroboros",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Ouroboros/Mod_Ouroboros.Mod_Ouroboros_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Bloodline",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Merciless/Mod_Bloodline/Mod_Bloodline.Mod_Bloodline_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Dreadwalker",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Nightfall/Mod_Dreadwalker/Mod_Dreadwalker.Mod_Dreadwalker_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_HeatSink",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/PlasmaCutter/Mod_HeatSink/Mod_HeatSink.Mod_HeatSink_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Banish",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Repulsor/Mod_Banish/Mod_Banish.Mod_Banish_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Starfall",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Sagittarius/Mod_Starfall/Mod_Starfall.Mod_Starfall_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_FusionCannon",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Savior/Mod_FusionCannon/Mod_FusionCannon.Mod_FusionCannon_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_Shatterstar",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Savior/Mod_Shatterstar/Mod_Shatterstar.Mod_Shatterstar_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_SporeShot",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Sporebloom/Mod_SporeShot/Mod_SporeShot.Mod_SporeShot_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_GravityCore",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Starkiller/Mod_GravityCore/Mod_GravityCore.Mod_GravityCore_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_GuardiansCall",
+    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/TwistedArbalest/Mod_GuardiansCall/Mod_GuardiansCall.Mod_GuardiansCall_C",
+    "Type": "specialmod",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Mod_LoathTheWeak",
+    "ProfileId": "/Game/World_DLC1/Items/Weapons/Anguish/Mod/Mod_LoathTheWeak.Mod_LoathTheWeak_C",
+    "Type": "specialmod",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Mod_ChainOfCommand",
+    "ProfileId": "/Game/World_DLC1/Items/Weapons/Monarch/Mod_Monarch/Mod_ChainOfCommand.Mod_ChainOfCommand_C",
+    "Type": "specialmod",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Mod_Sandstorm",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Monolith/Mod_Sandstorm/Mod_Sandstorm.Mod_Sandstorm_C",
+    "Type": "specialmod",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Mod_Polyactuator",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Polygun/Mod/Mod_Polyactuator.Mod_Polyactuator_C",
+    "Type": "specialmod",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Mod_Deadwood",
+    "ProfileId": "/Game/World_DLC2/Items/Weapons/Thorn/Mod/Mod_Deadwood.Mod_Deadwood_C",
+    "Type": "specialmod",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Consumable_DragonHeart",
+    "ProfileId": "/Game/Items/Common/Consumable_DragonHeart.Consumable_DragonHeart_C",
+    "Type": "relic",
+    "World": "World_Base",
+    "Name": "Dragon Heart",
+    "DropType": "Start"
+  },
+  {
+    "Id": "RelicFragment_MeleeCritChance",
+    "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/CritChance/RelicFragment_MeleeCritChance.RelicFragment_MeleeCritChance_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_MeleeCritDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/CritChance/RelicFragment_MeleeCritDamage.RelicFragment_MeleeCritDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_MeleeAttackSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/RelicFragment_MeleeAttackSpeed.RelicFragment_MeleeAttackSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_MeleeDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/RelicFragment_MeleeDamage.RelicFragment_MeleeDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_AmmoPickups",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_AmmoPickups.RelicFragment_AmmoPickups_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_AmmoReserves",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_AmmoReserves.RelicFragment_AmmoReserves_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_CastSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_CastSpeed.RelicFragment_CastSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ChargeMeleeCost",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_ChargeMeleeCost.RelicFragment_ChargeMeleeCost_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ConsumableDuration",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_ConsumableDuration.RelicFragment_ConsumableDuration_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ConsumableSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_ConsumableSpeed.RelicFragment_ConsumableSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_Recoil",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_Recoil.RelicFragment_Recoil_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_SpreadRecovery",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_SpreadRecovery.RelicFragment_SpreadRecovery_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_StaminaCosts",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_StaminaCosts.RelicFragment_StaminaCosts_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_StaminaRecoveryDelay",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_StaminaRecoveryDelay.RelicFragment_StaminaRecoveryDelay_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_WeaponSpread",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_WeaponSpread.RelicFragment_WeaponSpread_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_WeaponSwapSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_WeaponSwapSpeed.RelicFragment_WeaponSwapSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ArmorEffectiveness",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ArmorEffectiveness.RelicFragment_ArmorEffectiveness_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_BlightResistance",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_BlightResistance.RelicFragment_BlightResistance_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_DamageReduction",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_DamageReduction.RelicFragment_DamageReduction_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ElementalResistance",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ElementalResistance.RelicFragment_ElementalResistance_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_GreyHealthRate",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_GreyHealthRate.RelicFragment_GreyHealthRate_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_HealingEffectiveness",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_HealingEffectiveness.RelicFragment_HealingEffectiveness_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_Health",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_Health.RelicFragment_Health_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ModCost",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ModCost.RelicFragment_ModCost_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ModDuration",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ModDuration.RelicFragment_ModDuration_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ReviveSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ReviveSpeed.RelicFragment_ReviveSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ShieldEffectiveness",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ShieldEffectiveness.RelicFragment_ShieldEffectiveness_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_SkillCooldown",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_SkillCooldown.RelicFragment_SkillCooldown_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_SkillDuration",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_SkillDuration.RelicFragment_SkillDuration_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_Stamina",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_Stamina.RelicFragment_Stamina_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_RangedCritChance",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/CritChance/RelicFragment_RangedCritChance.RelicFragment_RangedCritChance_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_RangedCritDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/CritChance/RelicFragment_RangedCritDamage.RelicFragment_RangedCritDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ElementalDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_ElementalDamage.RelicFragment_ElementalDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_ModDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_ModDamage.RelicFragment_ModDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_RangedDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_RangedDamage.RelicFragment_RangedDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_RangedFireRate",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_RangedFireRate.RelicFragment_RangedFireRate_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_RangedWeakspotDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_RangedWeakspotDamage.RelicFragment_RangedWeakspotDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_SkillDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_SkillDamage.RelicFragment_SkillDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "RelicFragment_StaggerDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_StaggerDamage.RelicFragment_StaggerDamage_C",
+    "Type": "fragment",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_AlchemistVial_ElixirOfLife",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/ElixirOfLife/Skill_AlchemistVial_ElixirOfLife.Skill_AlchemistVial_ElixirOfLife_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_AlchemistVial_FrenzyDust",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/FrenzyDust/Skill_AlchemistVial_FrenzyDust.Skill_AlchemistVial_FrenzyDust_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_AlchemistVial_StoneMist",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/StoneMist/Skill_AlchemistVial_StoneMist.Skill_AlchemistVial_StoneMist_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_ChaosGate",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Skills/ChaosRune/Skill_ChaosGate.Skill_ChaosGate_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_HavocForm",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Skills/HavocForm/Skill_HavocForm.Skill_HavocForm_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_RealityRune",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Skills/StasisField/Skill_RealityRune.Skill_RealityRune_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Battlecry_Juggernaut",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Skills/Battlecry_Juggernaut/Skill_Battlecry_Juggernaut.Skill_Battlecry_Juggernaut_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Rampage",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Skills/Rage/Skill_Rampage.Skill_Rampage_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_WarStomp",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Skills/WarStomp/Skill_WarStomp.Skill_WarStomp_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Deployable_FlameThrower",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_FlameThrower/Skill_Deployable_FlameThrower.Skill_Deployable_FlameThrower_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Deployable_Gatling",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_Gatling/Skill_Deployable_Gatling.Skill_Deployable_Gatling_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Deployable_ImpactCannon",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_ImpactCannon/Skill_Deployable_ImpactCannon.Skill_Deployable_ImpactCannon_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_FortuneHunter",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Explorer/Skills/FortuneHunter/Skill_FortuneHunter.Skill_FortuneHunter_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_GoldDigger",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Explorer/Skills/GoldDigger/Skill_GoldDigger.Skill_GoldDigger_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Plainswalker",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Explorer/Skills/WorldTraveler/Skill_Plainswalker.Skill_Plainswalker_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Bulletstorm",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Skills/Bulletstorm/Skill_Bulletstorm.Skill_Bulletstorm_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Aimable_QuickDraw",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Skills/QuickDraw/Skill_Aimable_QuickDraw.Skill_Aimable_QuickDraw_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Sidewinder",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Skills/Sidewinder/Skill_Sidewinder.Skill_Sidewinder_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_AttackDog",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Skills/Skill_AttackDog/Skill_AttackDog.Skill_AttackDog_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_GuardDog",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Skills/Skill_GuardDog/Skill_GuardDog.Skill_GuardDog_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_SupportDog_Command",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Skills/Skill_SupportDog/Skill_SupportDog_Command.Skill_SupportDog_Command_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_HuntersFocus",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersFocus/Skill_HuntersFocus.Skill_HuntersFocus_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_HuntersMark",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersMark/Skill_HuntersMark.Skill_HuntersMark_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_HuntersShroud",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersShroud/Skill_HuntersShroud.Skill_HuntersShroud_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Reboot",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Invader/Skills/Reboot/Skill_Reboot.Skill_Reboot_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_VoidCloak",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Invader/Skills/VoidCloak/Skill_VoidCloak.Skill_VoidCloak_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_WormHole",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Invader/Skills/WormHole/Skill_WormHole.Skill_WormHole_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_HealingSurge",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Skills/HealingSurge/Skill_HealingSurge.Skill_HealingSurge_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Redemption",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Skills/Redemption/Skill_Redemption.Skill_Redemption_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Wellspring",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Skills/Wellspring/Skill_Wellspring.Skill_Wellspring_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_SummonBruteMinion",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionBrute/Skill_SummonBruteMinion.Skill_SummonBruteMinion_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_SummonFlyerMinion",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionFlyer/Skill_SummonFlyerMinion.Skill_SummonFlyerMinion_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_SummonHollowMinion",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionHollow/Skill_SummonHollowMinion.Skill_SummonHollowMinion_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Skill_Deathwish",
+    "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Skills/Deathwish/Skill_Deathwish.Skill_Deathwish_C",
+    "Type": "skill",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Skill_Eruption",
+    "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Skills/Eruption/Skill_Eruption.Skill_Eruption_C",
+    "Type": "skill",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Skill_Miasma",
+    "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Skills/Miasma/Skill_Miasma.Skill_Miasma_C",
+    "Type": "skill",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Skill_WayOfForest",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfForest/Skill_WayOfForest.Skill_WayOfForest_C",
+    "Type": "skill",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Skill_WayOfSand",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfSand/Skill_WayOfSand.Skill_WayOfSand_C",
+    "Type": "skill",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Skill_WayOfWater",
+    "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfWater/Skill_WayOfWater.Skill_WayOfWater_C",
+    "Type": "skill",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Armor_Body_Nude",
+    "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Body_Nude.Armor_Body_Nude_C",
+    "Type": "armor",
+    "World": "World_Base",
+    "Name": "Default Body"
+  },
+  {
+    "Id": "Armor_Gloves_Nude",
+    "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Gloves_Nude.Armor_Gloves_Nude_C",
+    "Type": "armor",
+    "World": "World_Base",
+    "Name": "Default Gloves"
+  },
+  {
+    "Id": "Armor_Legs_Nude",
+    "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Legs_Nude.Armor_Legs_Nude_C",
+    "Type": "armor",
+    "World": "World_Base",
+    "Name": "Default Legs"
   }
 ]

@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace lib.remnant2.analyzer.Model;
 
 [DebuggerDisplay("{Name}")]
-public partial class LootItem
+public class LootItem
 {
     public required Dictionary<string,string> Properties;
     public bool IsPrerequisiteMissing = false;
@@ -14,10 +13,13 @@ public partial class LootItem
     {
         get
         {
-            return !Properties.TryGetValue("Name", out string? value) ? string.Join(' ',
-                    RegexSplitAtCapitals().Split(Id.Replace("Consumable_", "")[(Id.IndexOf('_') + 1)..]))
-                : value;
-
+            if (Properties.TryGetValue("Name", out string? value))
+            {
+                return value;
+            }
+            string s = Id.Replace("Consumable_", "");
+            s = s[(s.IndexOf('_') + 1)..];
+            return Utils.FormatCamelAsWords(s);
         }
     }
 
@@ -28,6 +30,4 @@ public partial class LootItem
     // Used by WPF designer
     public string ItemNotes => Properties.TryGetValue("Note", out string? value) ? value : string.Empty;
 
-    [GeneratedRegex("(?<!^)(?=[A-Z])")]
-    private static partial Regex RegexSplitAtCapitals();
 }

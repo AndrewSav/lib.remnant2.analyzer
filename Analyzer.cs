@@ -10,6 +10,8 @@ using System.Buffers.Binary;
 using Serilog;
 using SerilogTimings;
 using SerilogTimings.Extensions;
+using lib.remnant2.analyzer.Enums;
+
 
 namespace lib.remnant2.analyzer;
 
@@ -174,6 +176,31 @@ public partial class Analyzer
                         result.Characters.Count, charSlotInternal);
                 operation.Complete();
 
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) loadouts");
+                Property? profileLoadoutRecords = profileNavigator.GetProperty("LoadoutRecords", character);
+                List<List<LoadoutRecord>>? loadouts = null;
+                if (profileLoadoutRecords != null)
+                {
+                    loadouts = [];
+                    List<Property> loadoutEntries = profileNavigator.GetProperties("Entries", profileLoadoutRecords);
+                    foreach (var loadoutEntry in loadoutEntries)
+                    {
+                        List<LoadoutRecord> loadout = [];
+                        loadouts.Add(loadout);
+                        ArrayStructProperty asp = loadoutEntry.Get<ArrayStructProperty>();
+                        foreach (object? aspItem in asp.Items)
+                        {
+                            PropertyBag pb = (PropertyBag)aspItem!;
+                            loadout.Add(new(
+                                id: pb["ItemClass"].Get<string>(),
+                                level: pb["Level"].Get<int>(),
+                                typeId: pb["Slot"].Get<ObjectProperty>().ClassName!
+                            ));
+                        }
+                    }
+                }
+                operation.Complete();
+
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) create profile");
                 var traitRank = profileNavigator.GetProperty("TraitRank", character);
                 var gender = profileNavigator.GetProperty("Gender", character);
@@ -199,7 +226,8 @@ public partial class Analyzer
                     TraitRank = traitRank?.Get<int>() ?? -1,
                     Gender = gender != null && gender.Get<EnumProperty>().EnumValue.Name == "EGender::Female"
                         ? "Female"
-                        : "Male"
+                        : "Male",
+                    Loadouts = loadouts
                 };
                 operation.Complete();
 
@@ -280,7 +308,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) campaign loot groups");
                 int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
-                Character.WorldSlot mode = slot == 0 ? Character.WorldSlot.Campaign : Character.WorldSlot.Adventure;
+                WorldSlot mode = slot == 0 ? WorldSlot.Campaign : WorldSlot.Adventure;
 
                 Character c = new()
                 {

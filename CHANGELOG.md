@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.19 (Unreleased)
+- Added support for respawn points orther then Worldstones
+- Added support for loadouts. Had to add non-removable weapon mods, archetype skills and relic fragments to the DB because of that. At this stage I have not gone through every item to check if the names are correct, this will have to be done at a later stage
+
 ## v0.0.18 (5 June 2024)
 - Amended Fix Necklace of Flowing Life crash fix from yesterday to not crash on Void Heart
 

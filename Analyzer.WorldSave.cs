@@ -1,8 +1,10 @@
-﻿using lib.remnant2.analyzer.Model;
+﻿using lib.remnant2.analyzer.Enums;
+using lib.remnant2.analyzer.Model;
 using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Model;
 using lib.remnant2.saves.Navigation;
+
 
 namespace lib.remnant2.analyzer;
 
@@ -84,15 +86,15 @@ public partial class Analyzer
         var worldStoneName = zones.SelectMany(x => x.Locations)
                 .Select(x => x.GetWorldStoneById(respawnLinkNameId))
                 .SingleOrDefault(x => x != null);
-        if (worldStoneName is not null) return new RespawnPoint(worldStoneName, RespawnPoint.RespawnPointType.Waypoint);
+        if (worldStoneName is not null) return new RespawnPoint(worldStoneName, RespawnPointType.WorldStone);
 
         var checkpointName = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
-        if (checkpointName is not null) return new RespawnPoint(checkpointName, RespawnPoint.RespawnPointType.Checkpoint);
+        if (checkpointName is not null) return new RespawnPoint(checkpointName, RespawnPointType.Checkpoint);
         
         var targetLocation = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
-        if (targetLocation is not null) return new RespawnPoint($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPoint.RespawnPointType.ZoneTransition);
+        if (targetLocation is not null) return new RespawnPoint($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
 
         // Nothing is found
         return null;

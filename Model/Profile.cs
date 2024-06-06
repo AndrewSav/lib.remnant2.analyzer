@@ -22,7 +22,7 @@ public class Profile
         get => _gender ?? "Male";
         set => _gender = value;
     }
-
+    public List<List<LoadoutRecord>>? Loadouts;
 
     // Pass a missing item, if it can be obtained right away, return the material name
     // otherwise return null

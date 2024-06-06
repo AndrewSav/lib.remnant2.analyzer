@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using Serilog;
 using SerilogTimings.Extensions;
+using lib.remnant2.analyzer.Enums;
 
 namespace lib.remnant2.analyzer;
 
