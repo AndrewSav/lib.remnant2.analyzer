@@ -54,6 +54,4 @@ public class Zone(RolledWorld parent, DropReference? story)
             return true;
         }
     }
-
-    public List<string>? Related => story?.Related;
 }

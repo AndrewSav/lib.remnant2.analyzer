@@ -6,6 +6,6 @@ Dataset: ActiveCharacterIndex, DebugMessages, DebugPerformance, ProfileSaveFile,
       RolledWorld: QuestInventory, Ward13 (generated), AllZones = Zones + Ward13
         List<Zone>: Name
           List<Location>: Name, WorldStones, Connections, TraitBook, TraitBookLooted, Simulacrum, SimulacrumLooted, WorldDrops, DropReferenes, Category(maps to world/biome)
-            DropReference: Name, IsLooted, Related
+            DropReference: Name, IsLooted
             List<LootGroup>: Name(for vendor, overworld POI, boss, miniboss, injectable), Type (boss, injectable, miniboss, overworld POI, location, dungeon, vendor, world drop), EventDropReference, UnknownMarker
               List<LootItem>: Item (ItemDb dictionary), Name, Type, ItemNotes

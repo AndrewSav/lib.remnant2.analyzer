@@ -160,8 +160,8 @@ internal static partial class CustomScripts
     private static bool Anguish(LootItemContext lic)
     {
 
-        string counterItemName = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
-        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.Name == counterItemName);
+        string counterItemProfileId = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
+        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == counterItemProfileId);
 
         if (counterItem == null)
         {
@@ -219,9 +219,9 @@ internal static partial class CustomScripts
 
     private static void EchoOfTheForest(LootItemContext lic)
     {
-        string counterItemName = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Hidden_Item_Trinity_Counter.Quest_Hidden_Item_Trinity_Counter_C";
+        string counterItemProfileId = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Hidden_Item_Trinity_Counter.Quest_Hidden_Item_Trinity_Counter_C";
 
-        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.Name == counterItemName);
+        InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == counterItemProfileId);
 
         int counter = 0;
         if (counterItem != null)
@@ -238,7 +238,7 @@ internal static partial class CustomScripts
         }
 
         string mementoItemName = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_DwellsItem/Quest_Item_Story_DwellsItem.Quest_Item_Story_DwellsItem_C";
-        bool hasMemento = lic.World.QuestInventory.Any(x => x == mementoItemName);
+        bool hasMemento = lic.World.QuestInventory.Any(x => x.ProfileId == mementoItemName);
 
         lic.LootItem.IsPrerequisiteMissing = counter < 2 || counter < 3 && !(hasMemento || mementoAvailable);
     }

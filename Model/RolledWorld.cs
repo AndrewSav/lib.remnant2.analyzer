@@ -8,7 +8,7 @@ public class RolledWorld
         Ward13 = new(this, null) { Locations = [ Location.GetWard13() ] };
     }
     public List<Zone> Zones = [];
-    public required List<string> QuestInventory;
+    public required List<InventoryItem> QuestInventory;
     public Zone Ward13;
     public List<Zone> AllZones => [ Ward13,..Zones ];
 

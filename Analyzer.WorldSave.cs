@@ -47,7 +47,7 @@ public partial class Analyzer
         int labyrinthId = t == -1 ? 0 : worldIds[t];
 
         PropertyBag inventory = navigator.GetComponent("RemnantPlayerInventory", meta)!.Properties!;
-        List<string> questInventory = GetQuestInventory(inventory);
+        List<InventoryItem> questInventory = GetQuestInventory(inventory);
         List<Actor> zoneActors = navigator.GetActors("ZoneActor", rollObject);
 
         List<Actor> events = rollObject.Properties!["Blob"].Get<PersistenceContainer>().Actors
@@ -100,9 +100,9 @@ public partial class Analyzer
         return null;
     }
 
-    private static List<string> GetQuestInventory(PropertyBag inventoryBag)
+    private static List<InventoryItem> GetQuestInventory(PropertyBag inventoryBag)
     {
-        List<string> result = [];
+        List<InventoryItem> result = [];
         ArrayStructProperty? inventory = null;
         if (inventoryBag.Contains("Items"))
         {
@@ -114,8 +114,6 @@ public partial class Analyzer
             foreach (object? o in inventory.Items)
             {
                 PropertyBag itemProperties = (PropertyBag)o!;
-
-                Property item = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
                 Property hidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
 
                 if ((byte)hidden.Value! != 0)
@@ -123,7 +121,7 @@ public partial class Analyzer
                     continue;
                 }
 
-                result.Add(((ObjectProperty)item.Value!).ClassName!);
+                result.Add(GetInventoryItem(itemProperties));
             }
         }
 
@@ -274,13 +272,13 @@ public partial class Analyzer
                 {
                     story = new()
                     {
-                        Name = ev, Related = GetRelated(navigator, e),
+                        Name = ev,
                         IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete"
                     };
                     continue;
                 }
 
-                l.DropReferences.Add(new() { Name = ev, Related = GetRelated(navigator, e), IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
+                l.DropReferences.Add(new() { Name = ev, IsLooted = qs != null && qs.ToStringValue() == "EQuestState::Complete" });
             }
 
             foreach (Actor e in new List<Actor>(events)
@@ -326,12 +324,12 @@ public partial class Analyzer
                 // Ring, Amulet
                 if (ev.StartsWith("Quest_Event_"))
                 {
-                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
+                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], IsLooted = ds != null && ds.Get<byte>() == 1 });
                     continue;
                 }
 
                 // Injectable
-                l.DropReferences.Add(new() { Name = ev, Related = GetRelated(navigator, e), IsLooted = ds != null && ds.Get<byte>() == 1 });
+                l.DropReferences.Add(new() { Name = ev, IsLooted = ds != null && ds.Get<byte>() == 1 });
 
             }
 
@@ -378,19 +376,5 @@ public partial class Analyzer
         }
 
         return result;
-    }
-
-    // This is an attempt to get spawned items related to an actor, exploratory
-    private static List<string> GetRelated(Navigator navigator, Actor e)
-    {
-        return navigator.GetProperties("SpawnEntry", e)
-            .Select(x => navigator.GetProperty("ActorBP", x))
-            .Where(x => !string.IsNullOrEmpty(x?.ToStringValue()))
-            .Select(x => x!.ToStringValue()!.Split('.')[^1])
-            .Where(x => !x.StartsWith("Char_"))
-            .Where(x => !x.StartsWith("Character_"))
-            .Where(x => !x.StartsWith("BP_"))
-            .Where(x => !x.StartsWith("Consumable_"))
-            .ToList();
     }
 }

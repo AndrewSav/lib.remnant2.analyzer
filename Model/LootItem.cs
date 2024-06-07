@@ -24,7 +24,7 @@ public class LootItem
     }
 
     public string Id => Properties["Id"];
-    public string Type => Properties["Type"].Replace("engram", "archetype");
+    public string Type => Properties["Type"];
     
     // ReSharper disable once UnusedMember.Global
     // Used by WPF designer

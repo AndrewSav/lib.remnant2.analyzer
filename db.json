@@ -10565,12 +10565,6 @@
     "World": "World_Base"
   },
   {
-    "Id": "Mod_FusionCannon",
-    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Savior/Mod_FusionCannon/Mod_FusionCannon.Mod_FusionCannon_C",
-    "Type": "specialmod",
-    "World": "World_Base"
-  },
-  {
     "Id": "Mod_Shatterstar",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Savior/Mod_Shatterstar/Mod_Shatterstar.Mod_Shatterstar_C",
     "Type": "specialmod",
@@ -10636,19 +10630,22 @@
     "Id": "RelicFragment_MeleeCritChance",
     "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/CritChance/RelicFragment_MeleeCritChance.RelicFragment_MeleeCritChance_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Melee Critical Chance"
   },
   {
     "Id": "RelicFragment_MeleeCritDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/CritChance/RelicFragment_MeleeCritDamage.RelicFragment_MeleeCritDamage_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Melee Critical Damage"
   },
   {
     "Id": "RelicFragment_MeleeAttackSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Melee/Power/RelicFragment_MeleeAttackSpeed.RelicFragment_MeleeAttackSpeed_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Melee Speed"
   },
   {
     "Id": "RelicFragment_MeleeDamage",
@@ -10672,7 +10669,8 @@
     "Id": "RelicFragment_CastSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_CastSpeed.RelicFragment_CastSpeed_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Casting Speed"
   },
   {
     "Id": "RelicFragment_ChargeMeleeCost",
@@ -10708,7 +10706,8 @@
     "Id": "RelicFragment_StaminaCosts",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_StaminaCosts.RelicFragment_StaminaCosts_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Stamina Cost"
   },
   {
     "Id": "RelicFragment_StaminaRecoveryDelay",
@@ -10726,7 +10725,8 @@
     "Id": "RelicFragment_WeaponSwapSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_WeaponSwapSpeed.RelicFragment_WeaponSwapSpeed_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Weapon Swap"
   },
   {
     "Id": "RelicFragment_ArmorEffectiveness",
@@ -10816,13 +10816,15 @@
     "Id": "RelicFragment_RangedCritChance",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/CritChance/RelicFragment_RangedCritChance.RelicFragment_RangedCritChance_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Ranged Critical Chance"
   },
   {
     "Id": "RelicFragment_RangedCritDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/CritChance/RelicFragment_RangedCritDamage.RelicFragment_RangedCritDamage_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Ranged Critical Damage"
   },
   {
     "Id": "RelicFragment_ElementalDamage",
@@ -10852,7 +10854,8 @@
     "Id": "RelicFragment_RangedWeakspotDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_RangedWeakspotDamage.RelicFragment_RangedWeakspotDamage_C",
     "Type": "fragment",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Weakspot Damage"
   },
   {
     "Id": "RelicFragment_SkillDamage",
@@ -11103,22 +11106,482 @@
   {
     "Id": "Armor_Body_Nude",
     "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Body_Nude.Armor_Body_Nude_C",
-    "Type": "armor",
+    "Type": "armorspecial",
     "World": "World_Base",
     "Name": "Default Body"
   },
   {
     "Id": "Armor_Gloves_Nude",
     "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Gloves_Nude.Armor_Gloves_Nude_C",
-    "Type": "armor",
+    "Type": "armorspecial",
     "World": "World_Base",
     "Name": "Default Gloves"
   },
   {
     "Id": "Armor_Legs_Nude",
     "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Legs_Nude.Armor_Legs_Nude_C",
-    "Type": "armor",
+    "Type": "armorspecial",
     "World": "World_Base",
     "Name": "Default Legs"
+  },
+  {
+    "Id": "Consumable_BarkExtract",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/BarkExtract/Consumable_BarkExtract.Consumable_BarkExtract_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_BottledShaedberry",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/BottledShaedberry/Consumable_BottledShaedberry.Consumable_BottledShaedberry_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_ChilledSteam",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/ChilledSteam/Consumable_ChilledSteam.Consumable_ChilledSteam_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_DarkCider",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/DarkCider/Consumable_DarkCider.Consumable_DarkCider_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_DarkFluid",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/DarkFluid/Consumable_DarkFluid.Consumable_DarkFluid_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_EggDrink",
+    "ProfileId": "/Game/World_DLC2/Items/Consumables/EggDrink/Consumable_EggDrink.Consumable_EggDrink_C",
+    "Type": "concoction",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Consumable_MeatShake",
+    "ProfileId": "/Game/World_DLC1/Items/Consumables/Meat_Shake/Consumable_MeatShake.Consumable_MeatShake_C",
+    "Type": "concoction",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Consumable_MudToothsElixir",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/MudToothsElixir/Consumable_MudToothsElixir.Consumable_MudToothsElixir_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_MudToothsStew",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/MudToothsStew/Consumable_MudToothsStew.Consumable_MudToothsStew_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_MudToothsTonic",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/MudToothsTonic/Consumable_MudToothsTonic.Consumable_MudToothsTonic_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_RootWater",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/RootWater/Consumable_RootWater.Consumable_RootWater_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_SacredLakewater",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/SacredLakewater/Consumable_SacredLakewater.Consumable_SacredLakewater_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_SanguineVapor",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/SanguineVapor/Consumable_SanguineVapor.Consumable_SanguineVapor_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_StrongDrink",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/StrongDrink/Consumable_StrongDrink.Consumable_StrongDrink_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_TranquilityFont",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/TranquilityFont/Consumable_TranquilityFont.Consumable_TranquilityFont_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_VerdantTea",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/VerdantTea/Consumable_VerdantTea.Consumable_VerdantTea_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_Xenoplasm",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/Xenoplasm/Consumable_Xenoplasm.Consumable_Xenoplasm_C",
+    "Type": "concoction",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_AllSeeingEye",
+    "ProfileId": "/Game/World_Fae/Items/Consumables/All-SeeingEye/Consumable_AllSeeingEye.Consumable_AllSeeingEye_C",
+    "Type": "consumable",
+    "World": "World_Fae"
+  },
+  {
+    "Id": "Consumable_Spice",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Concoctions/LiquidSpice/Consumable_Spice.Consumable_Spice_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_AmmoBox",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/AmmoBox/Consumable_AmmoBox.Consumable_AmmoBox_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_Antidote",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/Antidote/Consumable_Antidote.Consumable_Antidote_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_Bandage",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/Bandage/Consumable_Bandage.Consumable_Bandage_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_BindingOrb",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Aimables/BindingOrb/Consumable_BindingOrb.Consumable_BindingOrb_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_BlackTar",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Aimables/BlackTar/Consumable_BlackTar.Consumable_BlackTar_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_BloodRoot",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/Bloodwort/Consumable_BloodRoot.Consumable_BloodRoot_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_Brightstone",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Aimables/Brightstone/Consumable_Brightstone.Consumable_Brightstone_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_ConfidenceBooster",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/ConfidenceBooster/Consumable_ConfidenceBooster.Consumable_ConfidenceBooster_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_DriedFruit",
+    "ProfileId": "/Game/World_DLC1/Items/Consumables/Dried_Fruit/Consumable_DriedFruit.Consumable_DriedFruit_C",
+    "Type": "consumable",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Consumable_EtherealOrb",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/EtherealOrb/Consumable_EtherealOrb.Consumable_EtherealOrb_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_FaerieNeedle",
+    "ProfileId": "/Game/World_Fae/Items/Consumables/FaerieNeedle/Consumable_FaerieNeedle.Consumable_FaerieNeedle_C",
+    "Type": "consumable",
+    "World": "World_Fae"
+  },
+  {
+    "Id": "Consumable_GulSerum",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/GulSerum/Consumable_GulSerum.Consumable_GulSerum_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_KoaraPellet",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/KoaraPellet/Consumable_KoaraPellet.Consumable_KoaraPellet_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_MudRub",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/MudRub/Consumable_MudRub.Consumable_MudRub_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_MysteryJerky",
+    "ProfileId": "/Game/World_DLC1/Items/Consumables/Mystery_Jerky/Consumable_MysteryJerky.Consumable_MysteryJerky_C",
+    "Type": "consumable",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Consumable_OilskinBalm",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/OilskinTonic/Consumable_OilskinBalm.Consumable_OilskinBalm_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_PipeBomb",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Aimables/PipeBomb/Consumable_PipeBomb.Consumable_PipeBomb_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_PoisonedSpiceCapsule",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Aimables/PoisonedSpiceCapsule/Consumable_PoisonedSpiceCapsule.Consumable_PoisonedSpiceCapsule_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_ProcessedKoara",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/ProcessedKoara/Consumable_ProcessedKoara.Consumable_ProcessedKoara_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_PurifiedSalve",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/PurifiedSalve/Consumable_PurifiedSalve.Consumable_PurifiedSalve_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_RocketFuel",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/RocketFuel/Consumable_RocketFuel.Consumable_RocketFuel_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_SweetLeaf",
+    "ProfileId": "/Game/World_DLC2/Items/Consumables/SweetLeaf/Consumable_SweetLeaf.Consumable_SweetLeaf_C",
+    "Type": "consumable",
+    "World": "World_DLC2"
+  },
+  {
+    "Id": "Consumable_TimewornUnguent",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Potions/TimewormUnguent/Consumable_TimewornUnguent.Consumable_TimewornUnguent_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_ThaenFruit_Mature",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/ThaenFruit/02_ThaenFruit_Mature/Consumable_ThaenFruit_Mature.Consumable_ThaenFruit_Mature_C",
+    "Type": "consumable",
+    "World": "World_Base",
+    "Name": "Mature Thaen Fruit"
+  },
+  {
+    "Id": "Consumable_ThaenFruit_Elder",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/ThaenFruit/03_ThaenFruit_Elder/Consumable_ThaenFruit_Elder.Consumable_ThaenFruit_Elder_C",
+    "Type": "consumable",
+    "World": "World_Base",
+    "Name": "Elder Thaen Fruit"
+  },
+  {
+    "Id": "Consumable_ThaenFruit_Celestial",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/ThaenFruit/04_ThaenFruit_Celestial/Consumable_ThaenFruit_Celestial.Consumable_ThaenFruit_Celestial_C",
+    "Type": "consumable",
+    "World": "World_Base",
+    "Name": "Celestial Thaen Fruit"
+  },
+  {
+    "Id": "Consumable_LiquidEscape",
+    "ProfileId": "/Game/World_Base/Items/Consumables/Misc/LiquidEscape/Consumable_LiquidEscape.Consumable_LiquidEscape_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_OrbOfUndoing",
+    "ProfileId": "/Game/World_Base/Items/Consumables/OrbOfUndoing/Consumable_OrbOfUndoing.Consumable_OrbOfUndoing_C",
+    "Type": "consumable",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Consumable_DransDream",
+    "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Consumable_Item_DLC_DransDream/Consumable_DransDream.Consumable_DransDream_C",
+    "Type": "dream",
+    "World": "World_DLC1"
+  },
+  {
+    "Id": "Consumable_NimuesDream",
+    "ProfileId": "/Game/World_Fae/Quests/Quest_Injectable_GoldenHall_Nimue/Items/Consumable_NimuesDream.Consumable_NimuesDream_C",
+    "Type": "dream",
+    "World": "World_Fae"
+  },
+  {
+    "Id": "Consumable_HuntersDream",
+    "ProfileId": "/Game/World_Fae/Quests/Quest_OverworldPOI_TheHunter/Items/Consumable_HuntersDream.Consumable_HuntersDream_C",
+    "Type": "dream",
+    "World": "World_Fae"
+  },
+  {
+    "Id": "Consumable_RootWalkerDream",
+    "ProfileId": "/Game/Campaign_Main/Quests/Quest_RootEarth_Zone2/Item/Consumable_RootWalkerDream.Consumable_RootWalkerDream_C",
+    "Type": "dream",
+    "World": "World_Root"
+  },
+  {
+    "Id": "Material_RelicDust",
+    "ProfileId": "/Game/World_Base/Items/Materials/GemFragments/Material_RelicDust.Material_RelicDust_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_Iron",
+    "ProfileId": "/Game/World_Base/Items/Materials/Irons/01_Iron/Material_Iron.Material_Iron_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_ForgedIron",
+    "ProfileId": "/Game/World_Base/Items/Materials/Irons/02_ForgedIron/Material_ForgedIron.Material_ForgedIron_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_GalvanizedIron",
+    "ProfileId": "/Game/World_Base/Items/Materials/Irons/03_GalvanizedIron/Material_GalvanizedIron.Material_GalvanizedIron_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_HardenedIron",
+    "ProfileId": "/Game/World_Base/Items/Materials/Irons/04_HardenedIron/Material_HardenedIron.Material_HardenedIron_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_CorruptedShard",
+    "ProfileId": "/Game/World_Base/Items/Materials/LumeniteCrystal/Material_CorruptedShard.Material_CorruptedShard_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_LumeniteCorrupted",
+    "ProfileId": "/Game/World_Base/Items/Materials/LumeniteCrystal/Material_LumeniteCorrupted.Material_LumeniteCorrupted_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_LumeniteCrystal",
+    "ProfileId": "/Game/World_Base/Items/Materials/LumeniteCrystal/Material_LumeniteCrystal.Material_LumeniteCrystal_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_Scraps",
+    "ProfileId": "/Game/World_Base/Items/Materials/Scraps/Material_Scraps.Material_Scraps_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Material_BloodMoonEssence",
+    "ProfileId": "/Game/World_Jungle/Items/Materials/World/BloodMoonEssence/Material_BloodMoonEssence.Material_BloodMoonEssence_C",
+    "Type": "currency",
+    "World": "World_Jungle"
+  },
+  {
+    "Id": "Material_Simulacrum",
+    "ProfileId": "/Game/World_Base/Items/Materials/Simulacrum/Material_Simulacrum.Material_Simulacrum_C",
+    "Type": "currency",
+    "World": "World_Base"
+  },
+  {
+    "Id": "Award_Medic",
+    "Type": "award",
+    "Name": "Unlock Medic"
+  },
+  {
+    "Id": "Award_Hunter",
+    "Type": "award",
+    "Name": "Unlock Hunter"
+  },
+  {
+    "Id": "Award_Challenger",
+    "Type": "award",
+    "Name": "Unlock Challanger"
+  },
+  {
+    "Id": "Award_Handler",
+    "Type": "award",
+    "Name": "Unlock Handler"
+  },
+  {
+    "Id": "Award_AdventureMode_Nerud",
+    "Type": "award",
+    "Name": "Unlock N'Erud Adventure"
+  },
+  {
+    "Id": "Award_AdventureMode_Fae",
+    "Type": "award",
+    "Name": "Unlock Losomn Adventure"
+  },
+  {
+    "Id": "Award_Alchemist",
+    "Type": "award",
+    "Name": "Unlock Alchemist"
+  },
+  {
+    "Id": "Award_AdventureMode_Jungle",
+    "Type": "award",
+    "Name": "Unlock Yaesha Adventure"
+  },
+  {
+    "Id": "Award_Summoner",
+    "Type": "award",
+    "Name": "Unlock Summoner"
+  },
+  {
+    "Id": "Award_Engineer",
+    "Type": "award",
+    "Name": "Unlock Engineer"
+  },
+  {
+    "Id": "Award_Invader",
+    "Type": "award",
+    "Name": "Unlock Invader"
+  },
+  {
+    "Id": "Award_Gunslinger",
+    "Type": "award",
+    "Name": "Unlock Gunslinger"
+  },
+  {
+    "Id": "Award_Difficulty_Apocalypse",
+    "Type": "award",
+    "Name": "Unlock Apocalypse Difficulty"
+  },
+  {
+    "Id": "Award_Explorer",
+    "Type": "award",
+    "Name": "Unlock Exporer"
+  },
+  {
+    "Id": "Award_Arcanist",
+    "Type": "award",
+    "Name": "Unlock Arcanist"
+  },
+  {
+    "Id": "Award_Ritualist",
+    "Type": "award",
+    "Name": "Unlock Ritualist"
+  },
+  {
+    "Id": "Award_Invoker",
+    "Type": "award",
+    "Name": "Unlock Invoker"
   }
 ]

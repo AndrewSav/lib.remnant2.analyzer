@@ -3,27 +3,36 @@ using Serilog;
 
 namespace lib.remnant2.analyzer.Model;
 
-public class LoadoutRecord(string id, string typeId, int level)
+public class LoadoutRecord
 {
     private static readonly ILogger Logger = Log.Logger
         .ForContext(Log.Category, Log.UnknownItems)
         .ForContext("RemnantNotificationType", "Warning")
         .ForContext(typeof(LoadoutRecord));
 
-    public string Id { get; init; } = id;
-    public string TypeId { get; init; } = typeId;
-    public int Level { get; init; } = level;
+    public LoadoutRecord(string id, string typeId, int level)
+    {
+        Id = id;
+        TypeId = typeId;
+        Level = level;
+        _lootItem = new(() => ItemDb.GetItemByProfileId(Id));
+    }
+
+    public string Id { get; init; }
+    public string TypeId { get; init; }
+    public int Level { get; init; }
+    private readonly Lazy<LootItem?> _lootItem;
+    public LootItem? LootItem => _lootItem.Value;
 
     public string Name
     {
         get
         {
-            LootItem? item = ItemDb.GetItemByProfileId(Id);
-            if (item == null)
+            if (LootItem == null)
             {
                 Logger.Warning($"Loadout item '{Id}' found in the save but is absent from the database");
             }
-            return item == null ? "Unknown" : item.Name;
+            return LootItem == null ? "Unknown" : LootItem.Name;
         }
     }
 

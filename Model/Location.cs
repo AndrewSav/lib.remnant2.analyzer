@@ -67,7 +67,7 @@ public class Location
                 "Fae" => "Losomn",
                 "Jungle" => "Yaesha",
                 "RootEarth" => "Root Earth",
-                "Ward 13" => "Ward 13",
+                "Ward 13" => "Ward 13", // This is ours, not from the save files
                 _ => throw new UnreachableException($"Unexpected category '{Category}'")
             };
         }

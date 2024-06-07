@@ -18,6 +18,8 @@ namespace lib.remnant2.analyzer;
 public partial class Analyzer
 {
 
+    // We are not tracking consumables, concoctions and relic fragments
+    // perhaps we should
     public static string[] InventoryTypes =>
     [
         "amulet",
@@ -46,7 +48,6 @@ public partial class Analyzer
         { "World_Jungle", "Yaesha" },
         { "World_Root", "Root Earth" },
     };
-
 
     public static Dataset Analyze(string? folderPath = null, Dataset? oldDataset = null)
     {
@@ -121,6 +122,7 @@ public partial class Analyzer
                 List<PropertyBag> itemObjects = profileNavigator.GetProperty("Items", inventoryComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
+
                 List<InventoryItem> items = itemObjects.Select(GetInventoryItem).ToList();
                 operation.Complete();
 
@@ -129,37 +131,26 @@ public partial class Analyzer
                 List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
-                List<string> traits = traitObjects.Select(x => x["TraitBP"].ToStringValue()!).ToList();
+                List<InventoryItem> traits = traitObjects.Select(GetInventoryItem).ToList(); ;
                 operation.Complete();
 
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory (items+traits)");
-                List<InventoryItem> inventory = items.Union(traits.Select(x => new InventoryItem {Name = x})).ToList();
+                List<InventoryItem> inventory = items.Union(traits).ToList();
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
-                List<Dictionary<string, string>> inventoryDb =
-                    ItemDb.Db.Where(x => InventoryTypes.Contains(x["Type"])).ToList();
-                List<Dictionary<string, string>> traitsDb =
-                    ItemDb.Db.Where(x => x.GetValueOrDefault("Type") == "trait").ToList();
-                List<Dictionary<string, string>> missingItems = inventoryDb.Where(x =>
-                    !items.Select(y => y.Name.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
-                List<Dictionary<string, string>> missingTraits = traitsDb.Where(x =>
-                    !traits.Select(y => y.ToLowerInvariant()).Contains(x["ProfileId"].ToLowerInvariant())).ToList();
-                missingItems = missingItems.Union(missingTraits).ToList();
+                IEnumerable<string> inventoryTypes = InventoryTypes.Union(["trait"]);
+                List<Dictionary<string, string>> missingItems = ItemDb.GetMissing(inventory.Select(x => x.ProfileId.ToLowerInvariant()), d => inventoryTypes.Contains(d["Type"])).ToList();
+
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory ids, db items only");
-                IEnumerable<Dictionary<string, string>> pdb = ItemDb.Db.Where(y => y.ContainsKey("ProfileId")).ToList();
-                List<string> inventoryIds = inventory.Where(x =>
-                        pdb.Any(y => y["ProfileId"].Equals(x.Name, StringComparison.InvariantCultureIgnoreCase)))
-                    .Select(x =>
-                        pdb.Single(y => y["ProfileId"].Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))["Id"])
-                    .ToList();
+                List<string> inventoryIds = inventory.Select( x=> x.LootItem?.Id).Where( x => x != null).ToList()!;
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) unknown inventory items warnings");
-                WarnUnknownInventoryItems(inventory.Select(x => x.Name).ToList(), pdb, result, charSlotInternal, "character inventory");
+                WarnUnknownInventoryItems(inventory, result, charSlotInternal, "character inventory");
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) objectives");
@@ -293,7 +284,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load campaign");
                 RolledWorld campaign = GetRolledWorld(navigator,"campaign");
-                WarnUnknownInventoryItems(campaign.QuestInventory, pdb, result, charSlotInternal, "campaign inventory");
+                WarnUnknownInventoryItems(campaign.QuestInventory, result, charSlotInternal, "campaign inventory");
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load adventure");
@@ -302,7 +293,7 @@ public partial class Analyzer
                 if (adventureSlot != null)
                 {
                     adventure = GetRolledWorld(navigator, "adventure");
-                    WarnUnknownInventoryItems(adventure.QuestInventory, pdb, result, charSlotInternal, "adventure inventory");
+                    WarnUnknownInventoryItems(adventure.QuestInventory, result, charSlotInternal, "adventure inventory");
                 }
                 operation.Complete();
 
@@ -473,7 +464,7 @@ public partial class Analyzer
         return save;
     }
     
-    private static void WarnUnknownInventoryItems(List<string> inventory, IEnumerable<Dictionary<string, string>> pdb, Dataset result, int charSlotInternal, string mode)
+    private static void WarnUnknownInventoryItems(List<InventoryItem> inventory, Dataset result, int charSlotInternal, string mode)
     {
         ILogger logger = Log.Logger
             .ForContext(Log.Category, Log.UnknownItems)
@@ -481,21 +472,73 @@ public partial class Analyzer
             .ForContext<Analyzer>();
 
         List<string> unknownInventoryItems = inventory
-            .Where(x => pdb.All(y => !y["ProfileId"].Equals(x, StringComparison.InvariantCultureIgnoreCase)))
-            .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x)))
+            .Where(x => ItemDb.GetItemByProfileId(x.ProfileId) == null)
+            .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x.ProfileId)))
             .Select(x => $"Character {result.Characters.Count} (save_{charSlotInternal}), mode: {mode}, Unknown item: {x}")
             .ToList();
         
         foreach (string s in unknownInventoryItems)
         {
-            logger.Warning(s); }
+            logger.Warning(s);
+        }
 
     }
 
     private static InventoryItem GetInventoryItem(PropertyBag pb)
     {
-        InventoryItem result = new() { Name = pb["ItemBP"].ToStringValue()! };
-        if (pb.Contains("InstanceData"))
+        InventoryItem? result = null;
+        
+        if (pb.Contains("ItemBP"))
+        {
+            result = new() { ProfileId = pb["ItemBP"].ToStringValue()!, IsTrait = false };
+        }
+        
+        if (pb.Contains("TraitBP"))
+        {
+            result = new() { ProfileId = pb["TraitBP"].ToStringValue()!, IsTrait = true };
+        }
+        
+        if (result == null)
+        {
+            throw new InvalidOperationException("Inventory item has neither ItemBP nor TraitBP property");
+        }
+
+        if (pb.Contains("ID"))
+        {
+            result.Id = pb["ID"].Get<int>();
+        }
+
+        if (pb.Contains("New"))
+        {
+            result.New =  pb["New"].Get<byte>() != 0;
+        }
+
+        if (pb.Contains("Favorited"))
+        {
+            result.Favorited = pb["Favorited"].Get<byte>() != 0;
+        }
+
+        if (pb.Contains("EquipmentSlotIndex"))
+        {
+            int index = pb["EquipmentSlotIndex"].Get<int>();
+            if (index >= 0)
+            {
+                result.IsEquipped = true;
+                result.EquippedSlot = (EquipmentSlot)index;
+            }
+        }
+    
+        if (pb.Contains("SlotIndex"))
+        {
+            //int index = pb["SlotIndex"].Get<int>();
+            result.Level = (byte)pb["Level"].Get<int>();
+            if (result.ProfileId.Contains("Trait") && result.Level > 0)
+            {
+                result.IsEquipped = true;
+            }
+        }
+
+        if (pb.Contains("InstanceData") && pb["InstanceData"].Value is ObjectProperty)
         {
             PropertyBag instance = pb["InstanceData"].Get<ObjectProperty>().Object!.Properties!;
             if (instance.Contains("Quantity"))
@@ -505,6 +548,10 @@ public partial class Analyzer
             if (instance.Contains("Level"))
             {
                 result.Level = instance["Level"].Get<ByteProperty>().EnumByte;
+            }
+            if (instance.Contains("EquippedModItemID"))
+            {
+                result.EquippedModItemId = instance["EquippedModItemID"].Get<int>();
             }
         }
         return result;

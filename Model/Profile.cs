@@ -33,10 +33,15 @@ public class Profile
         return ItemDb.GetItemById(i["Material"]).Name;
     }
 
-    public List<string> FilteredInventory => Inventory.Where(x => ItemDb.Db
-            .Where(y => Analyzer.InventoryTypes.Contains(y["Type"]) || y["Type"] == "trait")
-            .Select(y => y.GetValueOrDefault("ProfileId")?.ToLowerInvariant()).Contains(x.Name.ToLowerInvariant()))
-            .Select(x => x.Name)
+    public List<string> FilteredInventory => Inventory.Where(x =>
+        {
+            LootItem? l = ItemDb.GetItemByProfileId(x.ProfileId);
+            if (l == null) return false;
+            if (l.Type == "trait") return true;
+            if (!Analyzer.InventoryTypes.Contains(l.Type)) return false;
+            return true;
+        })
+        .Select(x => x.ProfileId)
         .ToList();
 
     public int AcquiredItems => FilteredInventory.Count;
@@ -46,7 +51,7 @@ public class Profile
     public required int CharacterDataCount;
 
     // Profile string for RSG Analyzer dropdown
-    public string ProfileString => Archetype + (string.IsNullOrEmpty(SecondaryArchetype) ? "" : $", {SecondaryArchetype}") + $" ({CharacterDataCount})";
+    public string ProfileString => Archetype + (string.IsNullOrEmpty(SecondaryArchetype) ? "" : $", {SecondaryArchetype}") + $" ({AcquiredItems})";
 
     public bool IsObjectiveAchieved(string objectiveId)
     {

@@ -289,14 +289,14 @@ public partial class Analyzer
         {
             Type = "Craftable",
             // Quest Inventory is for Wooden Box that grants Effigy Pendant
-            Items = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Select(x => x.Name).Union(world.QuestInventory)).ToList()
+            Items = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Union(world.QuestInventory)).ToList()
         };
         world.AdditionalItems.Add(craftable);
 
         operation.Complete();
     }
 
-    internal static IEnumerable<LootItem> GetItemsWithMaterials(IEnumerable<string> inventory)
+    internal static IEnumerable<LootItem> GetItemsWithMaterials(IEnumerable<InventoryItem> inventory)
     {
         Dictionary<string, List<Dictionary<string, string>>> materials = ItemDb.Db.Where(x => x.ContainsKey("Material"))
             .GroupBy(x => x["Material"])
@@ -306,9 +306,9 @@ public partial class Analyzer
             .ToDictionary(x => x.Key, x => x.ToList());
         Dictionary<string, List<Dictionary<string, string>>> combined = new[] {materials,consumables}.SelectMany(dict => dict).ToDictionary();
 
-        foreach (string item in inventory)
+        foreach (InventoryItem item in inventory)
         {
-            string name = Utils.GetNameFromProfileId(item);
+            string name = Utils.GetNameFromProfileId(item.ProfileId);
             if (combined.TryGetValue(name, out List<Dictionary<string, string>>? mat))
             {
                 foreach (Dictionary<string, string> d in mat)
@@ -376,13 +376,13 @@ public partial class Analyzer
 
             string itemProfileId = currentItem.Properties["ProfileId"];
 
-            if (profile.Inventory.Select(y => y.Name.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            if (profile.Inventory.Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
             {
                 prerequisiteLogger.Information($"  Have '{cur}'");
                 return true;
             }
 
-            if (world.QuestInventory.Select(y => y.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            if (world.QuestInventory.Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
             {
                 prerequisiteLogger.Information($"   Have '{cur}'");
                 return true;

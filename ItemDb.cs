@@ -4,32 +4,26 @@ using System.Reflection;
 
 namespace lib.remnant2.analyzer;
 
-public class ItemDb
+public static class ItemDb
 {
-    private ItemDb()
-    {
-    }
+    private static readonly Lazy<List<Dictionary<string, string>>> Instance = new(()=> [
+        ..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json"))
+            .Select(ConvertItem)
+            .Where(x => !x.ContainsKey("Disabled") || !x["Disabled"]
+                .Equals("true", StringComparison.InvariantCultureIgnoreCase))
+    ]);
 
-    private static List<Dictionary<string, string>>? _instance;
-    private static readonly object Lock = new();
+    private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> LookupByProfileId = new(() =>
+        Db.Where(x => x.ContainsKey("ProfileId")).ToDictionary(x => x["ProfileId"].ToLowerInvariant()));
 
-    public static List<Dictionary<string,string>> Db
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                lock (Lock)
-                {
-                    _instance ??= [..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json"))
-                        .Select(ConvertItem)
-                        .Where( x=> !x.ContainsKey("Disabled") || !x["Disabled"].Equals("true", StringComparison.InvariantCultureIgnoreCase))
-                    ];
-                }
-            }
-            return _instance;
-        }
-    }
+    private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> LookupById = new(() =>
+        Db.ToDictionary(x => x["Id"]));
+
+    private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> LookupByEventId = new(() =>
+        Db.Where(x => x.ContainsKey("EventId")).ToDictionary(x => x["EventId"]));
+
+
+    public static List<Dictionary<string,string>> Db => Instance.Value;
 
     private static string ReadResourceFile(string filename)
     {
@@ -76,48 +70,40 @@ public class ItemDb
     }
     public static LootItem? GetItemByProfileId(string id)
     {
-        Dictionary<string, string>? item = Db.SingleOrDefault(x => x.ContainsKey("ProfileId") && string.Compare(x["ProfileId"],id,StringComparison.InvariantCultureIgnoreCase) == 0);
-        return item == null ? null : new LootItem
+        if (!LookupByProfileId.Value.TryGetValue(id.ToLowerInvariant(), out Dictionary<string, string>? result))
         {
-            Properties = item
-        };
+            return null;
+        }
+        return new() { Properties = result };
     }
     public static LootItem GetItemById(string id)
     {
-        return new LootItem
-        {
-            Properties = Db.Single(x =>
-                x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id)
-        };
-
+        return GetItemByIdOrDefault(id)!;
     }
 
     public static LootItem? GetItemByIdOrDefault(string id)
     {
-        var item = Db.SingleOrDefault(x =>
-            x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id);
-
-        return item == null ? null : new LootItem
+        if (LookupById.Value.TryGetValue(id, out Dictionary<string, string>? result))
         {
-            Properties = item
-        };
-
+            return new() { Properties = result };
+        }
+        if (!LookupByEventId.Value.TryGetValue(id, out result))
+        {
+            return null;
+        }
+        return new() { Properties = result };
     }
 
     public static LootItem GetItemById(DropReference dr)
     {
-        return new LootItem
-        {
-            Properties = Db.Single(x =>
-                x["Id"] == dr.Name || x.ContainsKey("EventId") && x["EventId"] == dr.Name),
-            IsLooted = dr.IsLooted
-        };
+        LootItem result = GetItemById(dr.Name);
+        result.IsLooted = dr.IsLooted;
+        return result;
     }
 
     public static bool HasItem(string id)
     {
-        return Db.Any(x =>
-            x["Id"] == id || x.ContainsKey("EventId") && x["EventId"] == id);
+        return LookupById.Value.ContainsKey(id) || LookupByEventId.Value.ContainsKey(id);
     }
 
     public static List<LootItem> GetItemsByReference(string dropType)
@@ -138,5 +124,10 @@ public class ItemDb
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"] == dropReference.Name
                         && x["DropType"] == dropType).Select(x => new LootItem { Properties = x, IsLooted = dropReference.IsLooted && propagateLooted }).ToList();
+    }
+
+    public static IEnumerable<Dictionary<string, string>> GetMissing(IEnumerable<string> select, Func<Dictionary<string, string>, bool> filter)
+    {
+        return LookupByProfileId.Value.Keys.Except(select).Select(x => LookupByProfileId.Value[x]).Where(filter);
     }
 }
