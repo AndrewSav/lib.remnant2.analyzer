@@ -30,6 +30,10 @@ public partial class Analyzer
         "ring",
         "weapon",
         "engram"
+        //"consumable",
+        //"concoction",
+        //"fragment",
+        //"dream"
     ];
 
     public static string[] Difficulties => [
@@ -141,7 +145,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
                 IEnumerable<string> inventoryTypes = InventoryTypes.Union(["trait"]);
-                List<Dictionary<string, string>> missingItems = ItemDb.GetMissing(inventory.Select(x => x.ProfileId.ToLowerInvariant()), d => inventoryTypes.Contains(d["Type"])).ToList();
+                List<Dictionary<string, string>> missingItems = ItemDb.GetMissing(inventory.Where(x => x.Quantity is not 0).Select(x => x.ProfileId.ToLowerInvariant()), d => inventoryTypes.Contains(d["Type"])).ToList();
 
                 operation.Complete();
 
@@ -160,8 +164,7 @@ public partial class Analyzer
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) has mats");
-                StructProperty characterData = (StructProperty)character.Properties!.Properties
-                    .Single(x => x.Key == "CharacterData").Value.Value!;
+                StructProperty characterData = (StructProperty)character.Properties!.Lookup["CharacterData"].Value!;
                 List<ObjectiveProgress> objectives = 
                     GetObjectives((ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", characterData)!.Value!, 
                         result.Characters.Count, charSlotInternal);
@@ -191,6 +194,15 @@ public partial class Analyzer
                     }
                 }
                 operation.Complete();
+                
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) quick slots");
+                Component? radialShortcutsComponent = profileNavigator.GetComponent("RadialShortcuts", characterData);
+                List<PropertyBag> quickSlotItems = profileNavigator.GetProperty("Items", radialShortcutsComponent)!
+                    .Get<ArrayStructProperty>().Items
+                    .Select(x => (PropertyBag)x!).ToList();
+                List<InventoryItem> quickSlots = quickSlotItems.Select(GetInventoryItem).ToList(); 
+
+                operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) create profile");
                 var traitRank = profileNavigator.GetProperty("TraitRank", character);
@@ -218,7 +230,8 @@ public partial class Analyzer
                     Gender = gender != null && gender.Get<EnumProperty>().EnumValue.Name == "EGender::Female"
                         ? "Female"
                         : "Male",
-                    Loadouts = loadouts
+                    Loadouts = loadouts,
+                    QuickSlots = quickSlots
                 };
                 operation.Complete();
 
@@ -397,14 +410,15 @@ public partial class Analyzer
         if (inventoryList is { Count: > 0 })
         {
             PropertyBag pb = inventoryList[0].Properties!;
+            if (!pb.Contains("Items")) return cassLoot;
             ArrayStructProperty aspItems = (ArrayStructProperty)pb["Items"].Value!;
 
             foreach (object? o in aspItems.Items)
             {
                 PropertyBag itemProperties = (PropertyBag)o!;
 
-                Property inventoryItem = itemProperties.Properties.Single(x => x.Key == "ItemBP").Value;
-                Property inventoryHidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
+                Property inventoryItem = itemProperties.Lookup["ItemBP"];
+                Property inventoryHidden = itemProperties.Lookup["Hidden"];
 
                 bool hidden = (byte)inventoryHidden.Value! != 0;
                 if (hidden) continue;
@@ -553,6 +567,22 @@ public partial class Analyzer
             {
                 result.EquippedModItemId = instance["EquippedModItemID"].Get<int>();
             }
+        }
+        return result;
+    }
+
+    private static InventoryItem GetInventoryItemMinimal(PropertyBag pb)
+    {
+        InventoryItem result = new() { ProfileId = pb["ItemBP"].ToStringValue()!, IsTrait = false };
+
+        if (!pb.Lookup.TryGetValue("InstanceData", out Property? value)) return result;
+
+        if (value.Value is not ObjectProperty op) return result;
+
+        PropertyBag instance = op.Object!.Properties!;
+        if (instance.Contains("Quantity"))
+        {
+            result.Quantity = instance["Quantity"].Get<int>();
         }
         return result;
     }

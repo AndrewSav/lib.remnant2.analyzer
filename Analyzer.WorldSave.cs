@@ -114,7 +114,7 @@ public partial class Analyzer
             foreach (object? o in inventory.Items)
             {
                 PropertyBag itemProperties = (PropertyBag)o!;
-                Property hidden = itemProperties.Properties.Single(x => x.Key == "Hidden").Value;
+                Property hidden = itemProperties.Lookup["Hidden"];
 
                 if ((byte)hidden.Value! != 0)
                 {

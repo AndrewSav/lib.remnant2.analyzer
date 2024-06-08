@@ -36,7 +36,7 @@ public partial class Analyzer
         operation.Complete();
 
         operation = performance.OperationAt(LogEventLevel.Debug).Begin("Get quick profile data");
-        ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Properties
+        ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Lookup
             .Single(x => x.Key == "Characters").Value.Value!;
         for (int index = 0; index < ap.Items.Count; index++)
         {
@@ -45,16 +45,18 @@ public partial class Analyzer
             if (ch.ClassName == null) continue;
             UObject character = ch.Object!;
 
-            string? archPath = character.Properties!.Properties.SingleOrDefault(x => x.Key == "Archetype").Value
-                ?.ToStringValue();
-            string? secondaryArchPath = character.Properties!.Properties
-                .SingleOrDefault(x => x.Key == "SecondaryArchetype").Value?.ToStringValue();
+
+            character.Properties!.Lookup.TryGetValue("Archetype", out Property? archetypeProperty);
+            character.Properties!.Lookup.TryGetValue("SecondaryArchetype", out Property? secondaryArchetypeProperty);
+
+            string? archPath = archetypeProperty?.ToStringValue();
+            string? secondaryArchPath = secondaryArchetypeProperty?.ToStringValue();
 
             Regex rArchetype = RegexArchetype();
             string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
             string secondaryArchetype = rArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
 
-            Property? characterData = character.Properties!.Properties
+            Property? characterData = character.Properties!.Lookup
                 .SingleOrDefault(x => x.Key == "CharacterData").Value;
 
             int objectCount = 0;
@@ -62,36 +64,25 @@ public partial class Analyzer
             // with a proper save immediately after
             if (characterData != null)
             {
-                //objectCount = ((SaveData)((StructProperty)characterData.Value!).Value!).Objects.Count;
-
-                var components = ((SaveData)((StructProperty)characterData.Value!).Value!)
+                List<Component>? components = ((SaveData)((StructProperty)characterData.Value!).Value!)
                     .Objects[0]
                     .Components;
-                var items1 =
+                
+                object? itemsProperty =
                     components?.SingleOrDefault(x => x.ComponentKey == "Inventory")?
-                    .Properties?.Properties.SingleOrDefault(x => x.Key == "Items").Value.Value;
+                    .Properties?.Lookup.SingleOrDefault(x => x.Key == "Items").Value.Value;
 
-                var items2 = (items1 as ArrayStructProperty)?.Items.Select(x => ((x as PropertyBag)?.Properties.SingleOrDefault(y => y.Key == "ItemBP").Value.Value as ObjectProperty)?.ClassName);
+                IEnumerable<string?>? itemIds = (itemsProperty as ArrayStructProperty)?.Items.Select(x => GetInventoryItemMinimal((PropertyBag)x!)).Where( x => x.Quantity is not 0).Select(x => x.ProfileId);
 
-                var traits1 =
+                object? traitsProperty =
                     components?.SingleOrDefault(x => x.ComponentKey == "Traits")?
-                        .Properties?.Properties.SingleOrDefault(x => x.Key == "Traits").Value.Value;
+                        .Properties?.Lookup.SingleOrDefault(x => x.Key == "Traits").Value.Value;
 
-                var traits2 = (traits1 as ArrayStructProperty)?.Items.Select(x => ((x as PropertyBag)?.Properties.SingleOrDefault(y => y.Key == "TraitBP").Value.Value as ObjectProperty)?.ClassName);
+                IEnumerable<string?>? traitIds = (traitsProperty as ArrayStructProperty)?.Items.Select(x => (((PropertyBag)x!).Lookup.SingleOrDefault(y => y.Key == "TraitBP").Value.Value as ObjectProperty)?.ClassName);
 
-                var all = items2?.Union(traits2 ?? []);
+                IEnumerable<string?>? all = itemIds?.Union(traitIds ?? []);
 
-                objectCount = all?.Count(x =>
-                {
-                    if (x == null) return false;
-                    LootItem? l = ItemDb.GetItemByProfileId(x);
-                    if (l == null) return false;
-                    if (l.Type == "trait") return true;
-                    if (!InventoryTypes.Contains(l.Type)) return false;
-                    return true;
-                }) ?? 0;
-
-
+                objectCount = all?.Count(x => x!=null && Utils.ItemAcquiredFilter(x)) ?? 0;
             }
 
             if (string.IsNullOrEmpty(archetype))

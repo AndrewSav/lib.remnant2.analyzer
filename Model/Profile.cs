@@ -1,4 +1,6 @@
-﻿namespace lib.remnant2.analyzer.Model;
+﻿using System.Diagnostics;
+
+namespace lib.remnant2.analyzer.Model;
 
 // Represents data in profile.sav that correspond to a single character
 public class Profile
@@ -10,6 +12,7 @@ public class Profile
     public required string Archetype;
     public required string SecondaryArchetype;
     public required List<ObjectiveProgress> Objectives;
+    public required List<InventoryItem> QuickSlots;
 
     public required int TraitRank;
     private string? _gender;
@@ -33,14 +36,7 @@ public class Profile
         return ItemDb.GetItemById(i["Material"]).Name;
     }
 
-    public List<string> FilteredInventory => Inventory.Where(x =>
-        {
-            LootItem? l = ItemDb.GetItemByProfileId(x.ProfileId);
-            if (l == null) return false;
-            if (l.Type == "trait") return true;
-            if (!Analyzer.InventoryTypes.Contains(l.Type)) return false;
-            return true;
-        })
+    public List<string> FilteredInventory => Inventory.Where(x => x.Quantity is not 0 && Utils.ItemAcquiredFilter(x.ProfileId))
         .Select(x => x.ProfileId)
         .ToList();
 

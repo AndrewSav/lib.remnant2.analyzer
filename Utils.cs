@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using lib.remnant2.analyzer.Enums;
+using lib.remnant2.analyzer.Model;
 
 namespace lib.remnant2.analyzer;
 
@@ -131,6 +132,15 @@ public partial class Utils
             sb.Append($" +{itemLevel}");
         }
         return sb.ToString();
+    }
+
+    public static bool ItemAcquiredFilter(string profileId)
+    {
+            LootItem? l = ItemDb.GetItemByProfileId(profileId);
+            if (l == null) return false;
+            if (l.Type == "trait") return true;
+            if (!Analyzer.InventoryTypes.Contains(l.Type)) return false;
+            return true;
     }
 
     [GeneratedRegex("(?<!^)(?=[A-Z])")]
