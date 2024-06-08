@@ -29,11 +29,11 @@ public partial class Analyzer
         "relic",
         "ring",
         "weapon",
-        "engram"
-        //"consumable",
-        //"concoction",
-        //"fragment",
-        //"dream"
+        "engram",
+        "consumable",
+        "concoction",
+        "fragment",
+        "dream"
     ];
 
     public static string[] Difficulties => [

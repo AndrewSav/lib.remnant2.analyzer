@@ -162,6 +162,7 @@ internal static partial class CustomScripts
 
         string counterItemProfileId = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
         InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == counterItemProfileId);
+        LootItem dransDream = ItemDb.GetItemById("Consumable_DransDream");
 
         if (counterItem == null)
         {
@@ -172,6 +173,7 @@ internal static partial class CustomScripts
 
             // If we have it, add Anguish to it
             etherealManor?.Items.Add(lic.LootItem);
+            etherealManor?.Items.Add(dransDream);
 
             // remove Anguish form the Progression Loot Group
             return false;
@@ -185,28 +187,38 @@ internal static partial class CustomScripts
                 lic.World.Ward13.Locations[0].LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
                 break;
             case 1:
-                lic.World.Zones
+                List<LootItem>? items = lic.World.Zones
                     .SingleOrDefault(x => x.Name == "Yaesha")?.Locations
-                    .SingleOrDefault(x => x.Name == "The Red Throne")?.LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                    .SingleOrDefault(x => x.Name == "The Red Throne")?.LootGroups.Single(x => x.Type == "Location").Items;
+                items?.Add(lic.LootItem);
+                items?.Add(dransDream);
                 break;
             case 2:
-                lic.World.Zones
-                    .SingleOrDefault(x => x.Name == "Labyrinth")?.Locations[0].LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                items = lic.World.Zones
+                    .SingleOrDefault(x => x.Name == "Labyrinth")?.Locations[0].LootGroups.Single(x => x.Type == "Location").Items;
+                items?.Add(lic.LootItem);
+                items?.Add(dransDream);
                 break;
             case 3:
-                lic.World.Zones
+                items = lic.World.Zones
                     .SingleOrDefault(x => x.Name == "N'Erud")?.Locations.SelectMany(x => x.LootGroups)
-                    .SingleOrDefault(x => x.EventDropReference == "Quest_Boss_TalRatha")?.Items.Add(lic.LootItem);
+                    .SingleOrDefault(x => x.EventDropReference == "Quest_Boss_TalRatha")?.Items;
+                items?.Add(lic.LootItem);
+                items?.Add(dransDream);
                 break;
             case 4:
-                lic.World.Zones
+                items = lic.World.Zones
                     .SingleOrDefault(x => x.Name == "Root Earth")?.Locations.SelectMany(x => x.LootGroups)
-                    .SingleOrDefault(x => x.EventDropReference == "Quest_RootEarth_Zone1")?.Items.Add(lic.LootItem);
+                    .SingleOrDefault(x => x.EventDropReference == "Quest_RootEarth_Zone1")?.Items;
+                items?.Add(lic.LootItem);
+                items?.Add(dransDream);
                 break;
             case 5:
-                lic.World.Zones
+                items = lic.World.Zones
                     .SingleOrDefault(x => x.Name == "Losomn")?.Locations
-                    .SingleOrDefault(x => x.Name == "The Tormented Asylum")?.LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
+                    .SingleOrDefault(x => x.Name == "The Tormented Asylum")?.LootGroups.Single(x => x.Type == "Location").Items;
+                items?.Add(lic.LootItem);
+                items?.Add(dransDream);
                 break;
         }
 

@@ -1,10 +1,10 @@
 # Changelog
 
-## v0.0.19 (Unreleased)
+## v0.0.19 (8 June 2024)
 - Added support for respawn points orther then Worldstones
-- Added support for loadouts. Had to add non-removable weapon mods, archetype skills and relic fragments to the DB because of that. At this stage I have not gone through every item to check if the names are correct, this will have to be done at a later stage
+- Added support for loadouts. Had to add non-removable weapon mods, archetype skills and relic fragments to the DB because of that. Outstanding: non-removable weapon mods and archetype skills have to be verified
 - Added equipment
-- Added concoctions, consumables, currencies, and remaining awards to the databases, these are needing a review
+- Added concoctions, consumables, currencies, and remaining awards to the databases
 - Make the number next to character archetype correspond to the number of aquired items instead of being abstract
 - Add New/Favourite marker to inventory items
 - Another pass of performance optimizations
