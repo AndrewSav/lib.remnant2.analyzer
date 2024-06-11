@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.20 (Unreleased)
+- Added names for unremovable weapon mods and archetype skills
+- Fixed a crash on new character creation
+
 ## v0.0.19 (8 June 2024)
 - Added support for respawn points orther then Worldstones
 - Added support for loadouts. Had to add non-removable weapon mods, archetype skills and relic fragments to the DB because of that. Outstanding: non-removable weapon mods and archetype skills have to be verified

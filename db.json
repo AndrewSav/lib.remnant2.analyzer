@@ -4780,7 +4780,7 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Quest_Item_OTK_FeastmasterLeftovers",
-    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn. First to The Great Hall location on Losomn and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise and insit on him eating the Leftovers. You will receive the item as the result"
+    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn. Talk to Leywise first long enough for him to tell you his name. Then go to The Great Hall location on Losomn and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise again and insit on him eating the Leftovers. You will receive the item as the result"
   },
   {
     "Id": "Ring_WoodRing",
@@ -5389,7 +5389,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "Crafted from Conflux Prism dropped by Labyrinth Sentinel, the Labyrinth mandatory boss"
+    "Note": "Crafted from Conflux Prism dropped by Labyrinth Sentinel, the Labyrinth mandatory boss",
+    "WeaponOrMod": "Mod_CubeShield"
   },
   {
     "Id": "Weapon_Enigma",
@@ -5400,7 +5401,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
-    "Note": "Found in The Labyrinth location, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, the Cipher Rod will be at the feet of a statue"
+    "Note": "Found in The Labyrinth location, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, the Cipher Rod will be at the feet of a statue",
+    "WeaponOrMod": "Mod_ChaosDriver"
   },
   {
     "Id": "Weapon_Hellfire",
@@ -5410,7 +5412,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. When first entering the area, proceed forward and when you get into the open area with broken cars and trucks, follow the wall to your right until you come to a think root going up, follow the root until you get to the deadend. Right before that there will be a gap on your right where you you could jump down on the roof of a truck. The item is under the truck once you jumped off its roof"
+    "Note": "Found in Ashen Wasteland location on Root Earth. When first entering the area, proceed forward and when you get into the open area with broken cars and trucks, follow the wall to your right until you come to a think root going up, follow the root until you get to the deadend. Right before that there will be a gap on your right where you you could jump down on the roof of a truck. The item is under the truck once you jumped off its roof",
+    "WeaponOrMod": "Mod_ExplosiveShot"
   },
   {
     "Id": "Weapon_Meridian",
@@ -5420,7 +5423,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_RisingTides",
-    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocket some detructable shelves and pots, which will lead to a room with platforms. There will be a bloat blocking a pipe that you will need to shoot, this will cause the water to rise, but very slowly. You will have to return here in 90 minutes, and then jump on a floating platform on the raised water an over to the hole in a wall. The item will be there"
+    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocket some detructable shelves and pots, which will lead to a room with platforms. There will be a bloat blocking a pipe that you will need to shoot, this will cause the water to rise, but very slowly. You will have to return here in 90 minutes, and then jump on a floating platform on the raised water an over to the hole in a wall. The item will be there",
+    "WeaponOrMod": "Mod_Screamer"
   },
   {
     "Id": "Weapon_Nebula",
@@ -5431,7 +5435,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_TalRatha",
-    "Note": "Crafted from Spiced Bile dropped by Tal'Ratha, one of the two N'Erud world bosses, if you chose not to be eaten before starting the fight"
+    "Note": "Crafted from Spiced Bile dropped by Tal'Ratha, one of the two N'Erud world bosses, if you chose not to be eaten before starting the fight",
+    "WeaponOrMod": "Mod_NanoSwarm"
   },
   {
     "Id": "Weapon_RunePistol",
@@ -5443,7 +5448,8 @@
     "DropType": "Location",
     "DropReference": "The Tormented Asylum",
     "Prerequisite": "Quest_Item_RavenousMedallion",
-    "Note": "Feed the Nightweaver's Web the Ravenous Medallion found in the Great Hall location on Losomn. This will give you the Decrepit Rune. You can then later trade it for the Rune Pistol at Nimue"
+    "Note": "Feed the Nightweaver's Web the Ravenous Medallion found in the Great Hall location on Losomn. This will give you the Decrepit Rune. You can then later trade it for the Rune Pistol at Nimue",
+    "WeaponOrMod": "Mod_Soulbrand"
   },
   {
     "Id": "Weapon_Sorrow",
@@ -5454,7 +5460,8 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_Meidra",
     "Prerequisite": "Ring_TearOfKaeula",
-    "Note": "Give Meidra in an overworld area on Losomn the Tear of Kaeula ring obtained in Kaeula's Rest location on Losomn"
+    "Note": "Give Meidra in an overworld area on Losomn the Tear of Kaeula ring obtained in Kaeula's Rest location on Losomn",
+    "WeaponOrMod": "Mod_Eulogy"
   },
   {
     "Id": "Weapon_StarShot",
@@ -5464,7 +5471,8 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Extraction",
-    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated five coffins, you can find the item at the bottom area outside of Dark  Conduit entrance in a crate"
+    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated five coffins, you can find the item at the bottom area outside of Dark  Conduit entrance in a crate",
+    "WeaponOrMod": "Mod_BigBang"
   },
   {
     "Id": "Weapon_BoltDriver",
@@ -5593,7 +5601,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_TowerBoss",
-    "Note": "Crafted from Forgotten Memory dropped by Annihilation, the final campaign bosses"
+    "Note": "Crafted from Forgotten Memory dropped by Annihilation, the final campaign bosses",
+    "WeaponOrMod": "Mod_BetaRay"
   },
   {
     "Id": "Weapon_Aphelion",
@@ -5604,7 +5613,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_NerudGuardian",
-    "Note": "Crafted from Void Cinder dropped by Sha'Hala, one of the two N'Erud world bosses, if the Override Pin is inserted in the diamond-shaped hole on the right of the terminal before interacting with the terminal itself. The Override Pin is found inside an unnamed tower in Timeless Horizon. The tower has an elevator that leads to a fixture that resembles the ones that have seekers keys, but has Ionic Crystal instead. There is an inconspicuous opening you can enter on the right side of the room as you emerge from the elevator that leads to the Override Pin"
+    "Note": "Crafted from Void Cinder dropped by Sha'Hala, one of the two N'Erud world bosses, if the Override Pin is inserted in the diamond-shaped hole on the right of the terminal before interacting with the terminal itself. The Override Pin is found inside an unnamed tower in Timeless Horizon. The tower has an elevator that leads to a fixture that resembles the ones that have seekers keys, but has Ionic Crystal instead. There is an inconspicuous opening you can enter on the right side of the room as you emerge from the elevator that leads to the Override Pin",
+    "WeaponOrMod": "Mod_Supernova"
   },
   {
     "Id": "Weapon_CrescentMoon",
@@ -5618,7 +5628,8 @@
     "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Crafted from Anamy's Echo, which you can obtain attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide consumable  Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
     "Undetectable": true,
-    "Consumable": "Consumable_NimuesDream"
+    "Consumable": "Consumable_NimuesDream",
+    "WeaponOrMod": "Mod_MoonlightBarrage"
   },
   {
     "Id": "Weapon_Deceit",
@@ -5630,7 +5641,8 @@
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faelin",
     "Note": "Crafted from Imposter's Heart, dropped by Faelin world boss n Beatific Gallery location on Losomn",
-    "CustomScript": true
+    "CustomScript": true,
+    "WeaponOrMod": "Mod_Ouroboros"
   },
   {
     "Id": "Weapon_Merciless",
@@ -5641,7 +5653,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead and allow him to consume the Doe during the fight to get Crimson Membrane "
+    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead and allow him to consume the Doe during the fight to get Crimson Membrane ",
+    "WeaponOrMod": "Mod_Bloodline"
   },
   {
     "Id": "Weapon_Nightfall",
@@ -5652,7 +5665,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_NightWeaver",
-    "Note": "Crafted from Cursed Dream Silks, dropped by the Nightweaver world boss in Tormented asylum location on Losomn"
+    "Note": "Crafted from Cursed Dream Silks, dropped by the Nightweaver world boss in Tormented asylum location on Losomn",
+    "WeaponOrMod": "Mod_Dreadwalker"
   },
   {
     "Id": "Weapon_PlasmaCutter",
@@ -5663,7 +5677,8 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_IronGiant",
     "Prerequisite": "Armor_Head_PilotsHelm",
-    "Note": "Found in an overworld location on N'Erud. Near the Titan's Reach world stone find an entrance to the crashed ship, you will need to crawl under some cables. Wear Navigator's Helmet for the compartment with the weapon to open"
+    "Note": "Found in an overworld location on N'Erud. Near the Titan's Reach world stone find an entrance to the crashed ship, you will need to crawl under some cables. Wear Navigator's Helmet for the compartment with the weapon to open",
+    "WeaponOrMod": "Mod_HeatSink"
   },
   {
     "Id": "Weapon_Repulsor",
@@ -5676,7 +5691,8 @@
     "DropType": "Vendor",
     "DropReference": "Brabus",
     "Prerequisite": "AccountAward_FinishCampaign_Nightmare",
-    "Note": "Buy from Brabus at Ward 13 after Nightmare Difficulty Playthrough"
+    "Note": "Buy from Brabus at Ward 13 after Nightmare Difficulty Playthrough",
+    "WeaponOrMod": "Mod_Banish"
   },
   {
     "Id": "Weapon_Sagittarius",
@@ -5686,7 +5702,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CathedralOfSeason",
-    "Note": "Found in Cathedral of Omens location on Yaesha. From the position where the door that leads to trap door with Ring of Omens is open, pull the left (from the dungeon entrance) lever 2 time, then the middle lever 3 times and then the right lever 4 times"
+    "Note": "Found in Cathedral of Omens location on Yaesha. From the position where the door that leads to trap door with Ring of Omens is open, pull the left (from the dungeon entrance) lever 2 time, then the middle lever 3 times and then the right lever 4 times",
+    "WeaponOrMod": "Mod_Starfall"
   },
   {
     "Id": "Weapon_Savior",
@@ -5700,7 +5717,8 @@
     "DropType": "Vendor",
     "DropReference": "Brabus",
     "Prerequisite": "AccountAward_FinishCampaign_Hardcore_Veteran",
-    "Note": "Buy from Brabus at Ward 13 after Hardcore Veteran Difficulty Playthrough"
+    "Note": "Buy from Brabus at Ward 13 after Hardcore Veteran Difficulty Playthrough",
+    "WeaponOrMod": "Mod_Shatterstar"
   },
   {
     "Id": "Weapon_Sporebloom",
@@ -5713,7 +5731,8 @@
     "DropType": "Vendor",
     "DropReference": "Brabus",
     "Prerequisite": "AccountAward_FinishCampaign_Veteran",
-    "Note": "Buy from Brabus at Ward 13 after Veteran Difficulty Playthrough"
+    "Note": "Buy from Brabus at Ward 13 after Veteran Difficulty Playthrough",
+    "WeaponOrMod": "Mod_SporeShot"
   },
   {
     "Id": "Weapon_Starkiller",
@@ -5726,7 +5745,8 @@
     "DropType": "Vendor",
     "DropReference": "Brabus",
     "Prerequisite": "AccountAward_FinishCampaign_Apocalypse",
-    "Note": "Buy from Brabus at Ward 13 after Apocalypse Difficulty Playthrough"
+    "Note": "Buy from Brabus at Ward 13 after Apocalypse Difficulty Playthrough",
+    "WeaponOrMod": "Mod_GravityCore"
   },
   {
     "Id": "Weapon_TwistedArbalest",
@@ -5737,7 +5757,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_ManyFaces",
-    "Note": "Crafted from Twisted Lazurite dropped by the Corruptor, one of the two Yaesha world bosses, if you knock down the golem at least once during the fight"
+    "Note": "Crafted from Twisted Lazurite dropped by the Corruptor, one of the two Yaesha world bosses, if you knock down the golem at least once during the fight",
+    "WeaponOrMod": "Mod_GuardiansCall"
   },
   {
     "Id": "Weapon_AssaultRifle",
@@ -5921,7 +5942,8 @@
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faerlin",
     "Note": "Crafted from Melded Hilt, dropped by Faerin world boss in Malefic Gallery location on Losomn",
-    "CustomScript": true
+    "CustomScript": true,
+    "WeaponOrMod": "Mod_Fracture"
   },
   {
     "Id": "Weapon_HerosSword",
@@ -6283,7 +6305,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Aphelion",
-    "Note": "Crafted By Dwell from Aphelion weapon"
+    "Note": "Crafted By Dwell from Aphelion weapon",
+    "WeaponOrMod": "Mod_Micronova"
   },
   {
     "Id": "Weapon_CorruptedDeceit",
@@ -6294,7 +6317,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Deceit",
-    "Note": "Crafted By Dwell from Deceit weapon"
+    "Note": "Crafted By Dwell from Deceit weapon",
+    "WeaponOrMod": "Mod_Windfall"
   },
   {
     "Id": "Weapon_CorruptedMerciless",
@@ -6305,7 +6329,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Merciless",
-    "Note": "Crafted By Dwell from Merciless weapon"
+    "Note": "Crafted By Dwell from Merciless weapon",
+    "WeaponOrMod": "Mod_Bloodshot"
   },
   {
     "Id": "Weapon_CorruptedMeridian",
@@ -6316,7 +6341,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Meridian",
-    "Note": "Crafted By Dwell from Meredian weapon"
+    "Note": "Crafted By Dwell from Meridian weapon",
+    "WeaponOrMod": "Mod_Mortar"
   },
   {
     "Id": "Weapon_CorruptedRunePistol",
@@ -6327,7 +6353,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_RunePistol",
-    "Note": "Crafted By Dwell from Rune Pistol weapon"
+    "Note": "Crafted By Dwell from Rune Pistol weapon",
+    "WeaponOrMod": "Mod_DeathBrand"
   },
   {
     "Id": "Weapon_Anguish",
@@ -6339,7 +6366,8 @@
     "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
     "CustomScript": true,
     "Undetectable": true,
-    "Consumable": "Consumable_DransDream"
+    "Consumable": "Consumable_DransDream",
+    "WeaponOrMod": "Mod_LoathTheWeak"
   },
   {
     "Id": "Weapon_Sparkfire",
@@ -6403,7 +6431,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
-    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn defore destroying his weapon even once"
+    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn defore destroying his weapon even once",
+    "WeaponOrMod": "Mod_ChainOfCommand"
   },
   {
     "Id": "Weapon_CorruptedSavior",
@@ -6413,7 +6442,8 @@
     "Subtype": "Long Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
-    "Note": "Crafted By Dwell from Savior weapon"
+    "Note": "Crafted By Dwell from Savior weapon",
+    "WeaponOrMod": "Mod_FusionCannon"
   },
   {
     "Id": "Weapon_CorruptedCubeGun",
@@ -6424,7 +6454,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_CubeGun",
-    "Note": "Crafted By Dwell from Cube Gun weapon"
+    "Note": "Crafted By Dwell from Cube Gun weapon",
+    "WeaponOrMod": "Mod_CubeRoom"
   },
   {
     "Id": "Weapon_CorruptedNebula",
@@ -6435,7 +6466,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Nebula",
-    "Note": "Crafted By Dwell from Aphelion weapon"
+    "Note": "Crafted By Dwell from Aphelion weapon",
+    "WeaponOrMod": "Mod_NanoPhase"
   },
   {
     "Id": "Weapon_CorruptedSorrow",
@@ -6446,7 +6478,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_Sorrow",
-    "Note": "Crafted By Dwell from Sorrow weapon"
+    "Note": "Crafted By Dwell from Sorrow weapon",
+    "WeaponOrMod": "Mod_WillOfTheWisp"
   },
   {
     "Id": "Weapon_CorruptedTwistedArbalest",
@@ -6458,7 +6491,8 @@
     "DropType": "Vendor",
     "DropReference": "Dwell",
     "Prerequisite": "Weapon_TwistedArbalest",
-    "Note": "Crafted By Dwell from Twisted Arbalest weapon"
+    "Note": "Crafted By Dwell from Twisted Arbalest weapon",
+    "WeaponOrMod": "Mod_GuardiansVigil"
   },
   {
     "Id": "Weapon_BasicShovel",
@@ -6502,7 +6536,8 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Lydusa",
-    "Note": "Crafted from Eye of Lydusa, which is obtained by defeating Lydusa in Bloodless Throne location on Yaesha"
+    "Note": "Crafted from Eye of Lydusa, which is obtained by defeating Lydusa in Bloodless Throne location on Yaesha",
+    "WeaponOrMod": "Mod_Sandstorm"
   },
   {
     "Id": "Weapon_Polygun",
@@ -6513,7 +6548,8 @@
     "DropType": "Location",
     "DropReference": "The Labyrinth",
     "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
-    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype"
+    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype",
+    "WeaponOrMod": "Mod_Polyactuator"
   },
   {
     "Id": "Weapon_Thorn",
@@ -6524,7 +6560,8 @@
     "Subtype": "Long Gun",
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
-    "Note": "Crafted from Regurgitated Spiny Sac, found in Ancient Canopy location on Yaesha. From the Glittering Grotto worldstone follow the path up but turn right before reaching Walt to get to the Kuri Kuri nest. Look at the egg in the nest but do not collect it. Once you've reached the Luminous Vale location later, return back to the nest to find the egg hatched, and pick up the item"
+    "Note": "Crafted from Regurgitated Spiny Sac, found in Ancient Canopy location on Yaesha. From the Glittering Grotto worldstone follow the path up but turn right before reaching Walt to get to the Kuri Kuri nest. Look at the egg in the nest but do not collect it. Once you've reached the Luminous Vale location later, return back to the nest to find the egg hatched, and pick up the item",
+    "WeaponOrMod": "Mod_Deadwood"
   },
   {
     "Id": "Weapon_TrinityCrossbow",
@@ -10400,223 +10437,265 @@
     "Id": "Mod_FusionCannon",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/Corrupted_Savior/Mod_FusionCannon.Mod_FusionCannon_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedSavior"
   },
   {
     "Id": "Mod_CubeRoom",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedCubeGun/Mod_CubeRoom/Mod_CubeRoom.Mod_CubeRoom_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedCubeGun"
   },
   {
     "Id": "Mod_NanoPhase",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedNebula/Mod_NanoPhase/Mod_NanoPhase.Mod_NanoPhase_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedNebula"
   },
   {
     "Id": "Mod_WillOfTheWisp",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedSorrow/Mod_WillOfTheWisp/Mod_WillOfTheWisp.Mod_WillOfTheWisp_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Will of the Wisp",
+    "WeaponOrMod": "Weapon_CorruptedSorrow"
   },
   {
     "Id": "Mod_GuardiansVigil",
     "ProfileId": "/Game/Events/Valentines/Items/Weapons/CorruptedTwistedArbalest/Mod_GaurdiansVigil/Mod_GuardiansVigil.Mod_GuardiansVigil_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Guardian's Fury",
+    "WeaponOrMod": "Weapon_CorruptedTwistedArbalest"
   },
   {
     "Id": "Mod_Mortar",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CorruptedMeridian/Mod_Mortar/Mod_Mortar.Mod_Mortar_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Deadpoint",
+    "WeaponOrMod": "Weapon_CorruptedMeridian"
   },
   {
     "Id": "Mod_DeathBrand",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CorruptedRunePistol/Mod_DeathBrand/Mod_DeathBrand.Mod_DeathBrand_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedRunePistol"
   },
   {
     "Id": "Mod_CubeShield",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CubeGun/Mod_CubeShield/Mod_CubeShield.Mod_CubeShield_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CubeGun"
   },
   {
     "Id": "Mod_ChaosDriver",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Enigma/Mod_ChaosDriver/Mod_ChaosDriver.Mod_ChaosDriver_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Enigma"
   },
   {
     "Id": "Mod_ExplosiveShot",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Hellfire/Mod_ExplosiveShot/Mod_ExplosiveShot.Mod_ExplosiveShot_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Hellfire"
   },
   {
     "Id": "Mod_Screamer",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Meridian/Mod_Screamer/Mod_Screamer.Mod_Screamer_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Meridian"
   },
   {
     "Id": "Mod_NanoSwarm",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Nebula/Mod_NanoSwarm/Mod_NanoSwarm.Mod_NanoSwarm_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Nebula"
   },
   {
     "Id": "Mod_Soulbrand",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/RunePistol/Mod_Soulbrand/Mod_Soulbrand.Mod_Soulbrand_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Soul Brand",
+    "WeaponOrMod": "Weapon_RunePistol"
   },
   {
     "Id": "Mod_Eulogy",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/Sorrow/Mod_Eulogy/Mod_Eulogy.Mod_Eulogy_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Sorrow"
   },
   {
     "Id": "Mod_BigBang",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/StarShot/Mod_BigBang/Mod_BigBang.Mod_BigBang_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_StarShot"
   },
   {
     "Id": "Mod_BetaRay",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/AlphaOmega/Mod_BetaRay/Mod_BetaRay.Mod_BetaRay_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_AlphaOmega"
   },
   {
     "Id": "Mod_Supernova",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Aphelion/Mod_Supernova/Mod_Supernova.Mod_Supernova_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Aphelion"
   },
   {
     "Id": "Mod_Micronova",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedAphelion/Mod_Micronova/Mod_Micronova.Mod_Micronova_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedAphelion"
   },
   {
     "Id": "Mod_Windfall",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedDeceit/Mod_Windfall/Mod_Windfall.Mod_Windfall_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedDeceit"
   },
   {
     "Id": "Mod_Bloodshot",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CorruptedMerciless/Mod_Bloodshot/Mod_Bloodshot.Mod_Bloodshot_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CorruptedMerciless"
   },
   {
     "Id": "Mod_MoonlightBarrage",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/CrescentMoon/Mod_MoonlightBarrage/Mod_MoonlightBarrage.Mod_MoonlightBarrage_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_CrescentMoon"
   },
   {
     "Id": "Mod_Fracture",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Fracture/Mod_Fracture.Mod_Fracture_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Godsplitter"
   },
   {
     "Id": "Mod_Ouroboros",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Ouroboros/Mod_Ouroboros.Mod_Ouroboros_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Deceit"
   },
   {
     "Id": "Mod_Bloodline",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Merciless/Mod_Bloodline/Mod_Bloodline.Mod_Bloodline_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Merciless"
   },
   {
     "Id": "Mod_Dreadwalker",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Nightfall/Mod_Dreadwalker/Mod_Dreadwalker.Mod_Dreadwalker_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Nightfall"
   },
   {
     "Id": "Mod_HeatSink",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/PlasmaCutter/Mod_HeatSink/Mod_HeatSink.Mod_HeatSink_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_PlasmaCutter"
   },
   {
     "Id": "Mod_Banish",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Repulsor/Mod_Banish/Mod_Banish.Mod_Banish_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Repulsor"
   },
   {
     "Id": "Mod_Starfall",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Sagittarius/Mod_Starfall/Mod_Starfall.Mod_Starfall_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Sagittarius"
   },
   {
     "Id": "Mod_Shatterstar",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Savior/Mod_Shatterstar/Mod_Shatterstar.Mod_Shatterstar_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Savior"
   },
   {
     "Id": "Mod_SporeShot",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Sporebloom/Mod_SporeShot/Mod_SporeShot.Mod_SporeShot_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Sporebloom"
   },
   {
     "Id": "Mod_GravityCore",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Starkiller/Mod_GravityCore/Mod_GravityCore.Mod_GravityCore_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "WeaponOrMod": "Weapon_Starkiller"
   },
   {
     "Id": "Mod_GuardiansCall",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/TwistedArbalest/Mod_GuardiansCall/Mod_GuardiansCall.Mod_GuardiansCall_C",
     "Type": "specialmod",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Guardian's Call",
+    "WeaponOrMod": "Weapon_TwistedArbalest"
   },
   {
     "Id": "Mod_LoathTheWeak",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Anguish/Mod/Mod_LoathTheWeak.Mod_LoathTheWeak_C",
     "Type": "specialmod",
-    "World": "World_DLC1"
+    "World": "World_DLC1",
+    "WeaponOrMod": "Weapon_Anguish"
   },
   {
     "Id": "Mod_ChainOfCommand",
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Monarch/Mod_Monarch/Mod_ChainOfCommand.Mod_ChainOfCommand_C",
     "Type": "specialmod",
-    "World": "World_DLC1"
+    "World": "World_DLC1",
+    "WeaponOrMod": "Weapon_Monarch"
   },
   {
     "Id": "Mod_Sandstorm",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Monolith/Mod_Sandstorm/Mod_Sandstorm.Mod_Sandstorm_C",
     "Type": "specialmod",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "WeaponOrMod": "Weapon_Monolith"
   },
   {
     "Id": "Mod_Polyactuator",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Polygun/Mod/Mod_Polyactuator.Mod_Polyactuator_C",
     "Type": "specialmod",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "WeaponOrMod": "Weapon_Polygun"
   },
   {
     "Id": "Mod_Deadwood",
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Thorn/Mod/Mod_Deadwood.Mod_Deadwood_C",
     "Type": "specialmod",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "WeaponOrMod": "Weapon_Thorn"
   },
   {
     "Id": "Consumable_DragonHeart",
@@ -10952,19 +11031,22 @@
     "Id": "Skill_AlchemistVial_ElixirOfLife",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/ElixirOfLife/Skill_AlchemistVial_ElixirOfLife.Skill_AlchemistVial_ElixirOfLife_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Vial: Elixir Of Life"
   },
   {
     "Id": "Skill_AlchemistVial_FrenzyDust",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/FrenzyDust/Skill_AlchemistVial_FrenzyDust.Skill_AlchemistVial_FrenzyDust_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Vial: Frenzy Dust"
   },
   {
     "Id": "Skill_AlchemistVial_StoneMist",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Skills/StoneMist/Skill_AlchemistVial_StoneMist.Skill_AlchemistVial_StoneMist_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Vial: Stone Mist"
   },
   {
     "Id": "Skill_ChaosGate",
@@ -10988,7 +11070,8 @@
     "Id": "Skill_Battlecry_Juggernaut",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Skills/Battlecry_Juggernaut/Skill_Battlecry_Juggernaut.Skill_Battlecry_Juggernaut_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Juggernaut"
   },
   {
     "Id": "Skill_Rampage",
@@ -11006,19 +11089,22 @@
     "Id": "Skill_Deployable_FlameThrower",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_FlameThrower/Skill_Deployable_FlameThrower.Skill_Deployable_FlameThrower_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Heavy Weapon: Flamethrower"
   },
   {
     "Id": "Skill_Deployable_Gatling",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_Gatling/Skill_Deployable_Gatling.Skill_Deployable_Gatling_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Heavy Weapon: Vulcan"
   },
   {
     "Id": "Skill_Deployable_ImpactCannon",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Skills/Skill_ImpactCannon/Skill_Deployable_ImpactCannon.Skill_Deployable_ImpactCannon_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Heavy Weapon: Impact Cannon"
   },
   {
     "Id": "Skill_FortuneHunter",
@@ -11048,7 +11134,8 @@
     "Id": "Skill_Aimable_QuickDraw",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Skills/QuickDraw/Skill_Aimable_QuickDraw.Skill_Aimable_QuickDraw_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Quick Draw"
   },
   {
     "Id": "Skill_Sidewinder",
@@ -11072,25 +11159,29 @@
     "Id": "Skill_SupportDog_Command",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Skills/Skill_SupportDog/Skill_SupportDog_Command.Skill_SupportDog_Command_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Support Dog"
   },
   {
     "Id": "Skill_HuntersFocus",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersFocus/Skill_HuntersFocus.Skill_HuntersFocus_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Hunter's Focus"
   },
   {
     "Id": "Skill_HuntersMark",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersMark/Skill_HuntersMark.Skill_HuntersMark_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Hunter's Mark"
   },
   {
     "Id": "Skill_HuntersShroud",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Skills/HuntersShroud/Skill_HuntersShroud.Skill_HuntersShroud_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Hunter's Shroud"
   },
   {
     "Id": "Skill_Reboot",
@@ -11114,7 +11205,8 @@
     "Id": "Skill_HealingSurge",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Skills/HealingSurge/Skill_HealingSurge.Skill_HealingSurge_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Healing Shield"
   },
   {
     "Id": "Skill_Redemption",
@@ -11132,19 +11224,22 @@
     "Id": "Skill_SummonBruteMinion",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionBrute/Skill_SummonBruteMinion.Skill_SummonBruteMinion_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Minion: Reaver"
   },
   {
     "Id": "Skill_SummonFlyerMinion",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionFlyer/Skill_SummonFlyerMinion.Skill_SummonFlyerMinion_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Minion: Flyer"
   },
   {
     "Id": "Skill_SummonHollowMinion",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Skills/MinionHollow/Skill_SummonHollowMinion.Skill_SummonHollowMinion_C",
     "Type": "skill",
-    "World": "World_Base"
+    "World": "World_Base",
+    "Name": "Minion: Hollow"
   },
   {
     "Id": "Skill_Deathwish",
@@ -11168,19 +11263,22 @@
     "Id": "Skill_WayOfForest",
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfForest/Skill_WayOfForest.Skill_WayOfForest_C",
     "Type": "skill",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Name": "Way of Meidra"
   },
   {
     "Id": "Skill_WayOfSand",
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfSand/Skill_WayOfSand.Skill_WayOfSand_C",
     "Type": "skill",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Name": "Way of Lydusa"
   },
   {
     "Id": "Skill_WayOfWater",
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Skills/WayOfWater/Skill_WayOfWater.Skill_WayOfWater_C",
     "Type": "skill",
-    "World": "World_DLC2"
+    "World": "World_DLC2",
+    "Name": "Way of Kaeula"
   },
   {
     "Id": "Armor_Body_Nude",
@@ -11256,7 +11354,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Consumables/Meat_Shake/Consumable_MeatShake.Consumable_MeatShake_C",
     "Type": "concoction",
     "World": "World_DLC1",
-    "Note": "Can be bought from Mudtooth in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane. Return to Dunane 45 minutes after you gave him leftovers. Now every time he walks to the table, spam \"E\" to interact with him every minute, while he is at the table. For most people the item was given after 4-5 times Duane returned to the table from his chair",
+    "Note": "Can be bought from Mudtooth in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Talk to Leywise first long enough for him to tell you his name. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane. Return to Dunane 45 minutes after you gave him leftovers. Now every time he walks to the table, spam \"E\" to interact with him every minute, while he is at the table. For most people the item was given after 4-5 times Duane returned to the table from his chair",
     "Undetectable": true
   },
   {
@@ -11345,6 +11443,7 @@
     "ProfileId": "/Game/World_Fae/Items/Consumables/All-SeeingEye/Consumable_AllSeeingEye.Consumable_AllSeeingEye_C",
     "Type": "consumable",
     "World": "World_Fae",
+    "Name": "All-Seeing Eye",
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_DranOracle",
     "Note": "Found in an overworld location on Losomn. To get this you need to complete twelve Losomn \"quests\" across all your rolled campaign and adventures, you will need to reroll in order to get them all. Then you need to interact with a Dran kid in the overworld area, you might need to follow them a bit before you are able to do that. After that climb the ladder next to Oracle's Refuge world stone and speak with the Oracle. The quests are: Postulant's Parlor, The Nightweaver (Morrow Parish), Harvester's Reach, Bloat King (The Great Sewers), Magister Dullain (Shattered Gallery), Council Chambers, Tiller's Rest, Gwentdil The Unburnt (Cotton's Kiln), Faelin/Faerin (Beatific/Malefic Gallery), The Great Hall, The Red Prince (Gilded Chambers), Butchers Quarter"
@@ -11463,7 +11562,6 @@
     "Type": "consumable",
     "World": "World_Base",
     "DropType": "Event",
-    "DropReference": "OverworldPOI_KoaraKuri",
     "Note": "Found near Koara Kuri Nest on Yaesha"
   },
   {
@@ -11479,7 +11577,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Consumables/Mystery_Jerky/Consumable_MysteryJerky.Consumable_MysteryJerky_C",
     "Type": "consumable",
     "World": "World_DLC1",
-    "Note": "Can be bought from Reggie in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane.",
+    "Note": "Can be bought from Reggie in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Talk to Leywise long enough for him to tell you his name. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane.",
     "Undetectable": true
   },
   {

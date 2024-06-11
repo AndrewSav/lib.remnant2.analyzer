@@ -98,7 +98,7 @@ public partial class Analyzer
 
         for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
         {
-            using (performance.TimeOperation($"Character {result.Characters.Count+1} (save_{charSlotInternal})"))
+            using (performance.TimeOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal})"))
             {
                 ObjectProperty ch = (ObjectProperty)ap.Items[charSlotInternal]!;
                 if (ch.ClassName == null) continue;
@@ -135,7 +135,7 @@ public partial class Analyzer
                 List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
-                List<InventoryItem> traits = traitObjects.Select(GetInventoryItem).ToList(); ;
+                List<InventoryItem> traits = traitObjects.Select(GetInventoryItem).ToList();
                 operation.Complete();
 
 
@@ -150,7 +150,7 @@ public partial class Analyzer
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) inventory ids, db items only");
-                List<string> inventoryIds = inventory.Select( x=> x.LootItem?.Id).Where( x => x != null).ToList()!;
+                List<string> inventoryIds = inventory.Select(x => x.LootItem?.Id).Where(x => x != null).ToList()!;
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) unknown inventory items warnings");
@@ -165,7 +165,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) has mats");
                 StructProperty characterData = (StructProperty)character.Properties!.Lookup["CharacterData"].Value!;
-                List<ObjectiveProgress> objectives = 
+                List<ObjectiveProgress> objectives =
                     GetObjectives((ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", characterData)!.Value!, 
                         result.Characters.Count, charSlotInternal);
                 operation.Complete();
@@ -193,14 +193,23 @@ public partial class Analyzer
                         }
                     }
                 }
+
                 operation.Complete();
-                
+
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) quick slots");
+                List<InventoryItem> quickSlots = [];
                 Component? radialShortcutsComponent = profileNavigator.GetComponent("RadialShortcuts", characterData);
-                List<PropertyBag> quickSlotItems = profileNavigator.GetProperty("Items", radialShortcutsComponent)!
-                    .Get<ArrayStructProperty>().Items
-                    .Select(x => (PropertyBag)x!).ToList();
-                List<InventoryItem> quickSlots = quickSlotItems.Select(GetInventoryItem).ToList(); 
+                if (radialShortcutsComponent != null)
+                {
+                    var shortcutItems = profileNavigator.GetProperty("Items", radialShortcutsComponent);
+                    if (shortcutItems != null)
+                    {
+                        List<PropertyBag> quickSlotItems = shortcutItems
+                            .Get<ArrayStructProperty>().Items
+                            .Select(x => (PropertyBag)x!).ToList();
+                        quickSlots = quickSlotItems.Select(GetInventoryItem).ToList();
+                    }
+                }
 
                 operation.Complete();
 
