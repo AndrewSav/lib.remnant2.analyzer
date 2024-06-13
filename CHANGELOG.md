@@ -1,8 +1,9 @@
 # Changelog
 
-## v0.0.20 (Unreleased)
-- Added names for unremovable weapon mods and archetype skills
+## v0.0.20 (13 Jube 2024)
+- Fixed a crash when an load out has one archetype only
 - Fixed a crash on new character creation
+- Added names for unremovable weapon mods and archetype skills
 
 ## v0.0.19 (8 June 2024)
 - Added support for respawn points orther then Worldstones

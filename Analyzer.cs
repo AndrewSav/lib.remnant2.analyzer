@@ -185,11 +185,14 @@ public partial class Analyzer
                         foreach (object? aspItem in asp.Items)
                         {
                             PropertyBag pb = (PropertyBag)aspItem!;
-                            loadout.Add(new(
-                                id: pb["ItemClass"].Get<string>(),
-                                level: pb["Level"].Get<int>(),
-                                typeId: pb["Slot"].Get<ObjectProperty>().ClassName!
-                            ));
+                            if (pb["ItemClass"].Value != null)
+                            {
+                                loadout.Add(new(
+                                    id: pb["ItemClass"].Get<string>(),
+                                    level: pb["Level"].Get<int>(),
+                                    typeId: pb["Slot"].Get<ObjectProperty>().ClassName!
+                                ));
+                            }
                         }
                     }
                 }
