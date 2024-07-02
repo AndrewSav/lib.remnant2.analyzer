@@ -1,6 +1,10 @@
 # Changelog
 
-## v0.0.20 (13 Jube 2024)
+## v0.0.21 (2 July 2024)
+- Fix regression with connections showing x2 for non-Yaesha zones
+- Formatting and typo fixes
+
+## v0.0.20 (13 June 2024)
 - Fixed a crash when an load out has one archetype only
 - Fixed a crash on new character creation
 - Added names for unremovable weapon mods and archetype skills

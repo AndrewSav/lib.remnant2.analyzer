@@ -62,7 +62,8 @@ public class Exporter
                     "ReadLength",
                     "WriteLength",
                     "ExtraComponentsData",
-                    "ExtraPropertiesData"
+                    "ExtraPropertiesData",
+                    "Number"
                 ]),
                 NullValueHandling = NullValueHandling.Ignore
             };

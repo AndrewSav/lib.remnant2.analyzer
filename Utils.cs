@@ -113,17 +113,18 @@ public partial class Utils
         slotType = FormatCamelAsWords(slotType);
         StringBuilder sb = new();
         sb.Append(slotType);
+        if (!string.IsNullOrEmpty(slotType)) sb.Append(' ');
         if (itemType == "specialmod" || itemType == "mod" || itemType == "mutator" || itemType == "fragment")
         {
             // If this is an attachment, add the attachment type to the slot type
             string formatted = itemType == "specialmod" ? "Special Mod" : Capitalize(itemType);
-            sb.Append($" {formatted}");
+            sb.Append($"{formatted}");
         }
         sb.Append(": ");
         if (itemType == "fragment")
         {
             sb.Append(FormatRelicFragmentLevel(itemName, itemLevel));
-            sb.Append($" ({itemLevel})");
+            sb.Append($" (lvl {itemLevel})");
             return sb.ToString();
         }
         sb.Append(itemName);

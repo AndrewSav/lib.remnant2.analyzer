@@ -2649,7 +2649,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Underworld_LurkerVents",
-    "Note": "Drops from W.D. 109 Aberration found in an indoor location on N'erud. "
+    "Note": "Drops from W.D. 109 Aberration found in an indoor location on N'erud"
   },
   {
     "Id": "MetaGem_TwistingWounds",
@@ -2660,7 +2660,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Oink",
-    "Note": "Drops from Gorge Aberration found in an outdoor location on Losomn. In the area where you found Shiny Hog Lure, keep following the path until the end and climb the wooden structure, to fall off to the sewers Move along and you will find a lever, activate it. and you will find Gorge"
+    "Note": "Drops from W.D. 109 Aberration found in an indoor location on N'erud"
   },
   {
     "Id": "MetaGem_Edgelord",
@@ -5653,7 +5653,7 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead and allow him to consume the Doe during the fight to get Crimson Membrane ",
+    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead and allow him to consume the Doe during the fight to get Crimson Membrane",
     "WeaponOrMod": "Mod_Bloodline"
   },
   {
@@ -5930,7 +5930,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead then kill the Doe before Ravager can consume it to get Ravager's Maw "
+    "Note": "One of possible rewards for Corrupter Ravager one of the two Yaesha world bosses. When asked to kill the Doe shoot the Ravager instead then kill the Doe before Ravager can consume it to get Ravager's Maw"
   },
   {
     "Id": "Weapon_Godsplitter",
@@ -8423,7 +8423,7 @@
   {
     "Id": "BC708029-4DF5524B-43F4D9BA-08ABF269",
     "Type": "achievement",
-    "Name": "A Foul Feast - Deliver Leftovers to a Reluctant Recipient "
+    "Name": "A Foul Feast - Deliver Leftovers to a Reluctant Recipient"
   },
   {
     "Id": "CF93A734-4E89E4BF-87E4DE97-16E547D6",
@@ -8438,7 +8438,7 @@
   {
     "Id": "C6796EC7-4BB35105-23CA4380-EA9E3124",
     "Type": "achievement",
-    "Name": "You Shall Pass - Acquire a Reward from the Bridge Warden "
+    "Name": "You Shall Pass - Acquire a Reward from the Bridge Warden"
   },
   {
     "Id": "DE960209-46229D7A-14337296-143905F1",
@@ -9302,7 +9302,7 @@
     "Id": "Char_Dran_F_Rifle_Aberration",
     "Type": "aberration",
     "World": "World_Fae",
-    "Name": "Mournshot ",
+    "Name": "Mournshot",
     "SpawnType": "World"
   },
   {
@@ -9412,7 +9412,7 @@
     "Id": "Char_Root_Cultist_Crypt_Aberration",
     "Type": "aberration",
     "World": "World_Jungle",
-    "Name": "Deceitful Augur ",
+    "Name": "Deceitful Augur",
     "SpawnType": "World"
   },
   {
@@ -9755,7 +9755,7 @@
     "Id": "Char_Pan_NobleSwordsman_Aberration",
     "Type": "aberration",
     "World": "World_DLC2",
-    "Name": "The Bloodless Heir ",
+    "Name": "The Bloodless Heir",
     "SpawnType": "SideD",
     "SpawnReference": "Quest_SideD_LydusaTemple"
   },

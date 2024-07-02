@@ -57,4 +57,7 @@ public class Profile
         if (!item.Properties.TryGetValue("ChallengeCount", out string? goal)) return true;
         return objective.Progress >= int.Parse(goal);
     }
+
+    // Relic charges
+    // "/Game/Items/Common/Item_DragonHeartUpgrade.Item_DragonHeartUpgrade_C"
 }

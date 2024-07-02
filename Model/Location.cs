@@ -37,7 +37,7 @@ public class Location
     public string Category;
     public List<string> WorldStones => _worldStoneIdMap.Select(x => x.waypointName).ToList();
     public List<string> Connections => _connectionsIdMap.GroupBy(x => x.destinationName)
-        .Select(g => g.Count() > 1 ? $"{g.Key} x{g.Count()}" : g.Key).ToList();
+        .Select(g => g.Count() > 1 && World == "Yaesha" ? $"{g.Key} x{g.Count()}" : g.Key).ToList();
 
     public bool TraitBook;
     public bool TraitBookLooted;
