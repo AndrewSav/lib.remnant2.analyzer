@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.22 (2 July 2024)
+- Update dependencies
+
 ## v0.0.21 (2 July 2024)
 - Fix regression with connections showing x2 for non-Yaesha zones
 - Formatting and typo fixes
