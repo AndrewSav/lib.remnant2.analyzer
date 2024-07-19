@@ -15,11 +15,11 @@ internal class LootItemContext
     public Actor GetActor(string name)
     {
         Navigator navigator = World.ParentCharacter.WorldNavigator!;
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
+        UObject main = navigator.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
         string selector = World.IsCampaign ? "Quest_Campaign" : "Quest_AdventureMode";
         UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(selector)).Archive.Objects[0];
         int? id = meta.Properties!["ID"].Get<int>();
-        UObject? obj = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{id}_Container.Quest_Container:PersistentLevel");
+        UObject? obj = navigator.GetObjects($"pc:/Game/Quest_{id}_Container.Quest_Container:PersistentLevel").SingleOrDefault();
         return navigator.GetActor(name, obj)!;
     }
 }

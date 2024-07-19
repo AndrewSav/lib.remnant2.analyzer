@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.23 (Unreleased)
+- Fix compatibility with changes in the saves library
+- Add Relic Charges
+- Fixed notes for Game Master's Pride
+
 ## v0.0.22 (2 July 2024)
 - Update dependencies
 
@@ -8,12 +13,12 @@
 - Formatting and typo fixes
 
 ## v0.0.20 (13 June 2024)
-- Fixed a crash when an load out has one archetype only
+- Fixed a crash when a load out has one archetype only
 - Fixed a crash on new character creation
 - Added names for unremovable weapon mods and archetype skills
 
 ## v0.0.19 (8 June 2024)
-- Added support for respawn points orther then Worldstones
+- Added support for respawn points orther than Worldstones
 - Added support for loadouts. Had to add non-removable weapon mods, archetype skills and relic fragments to the DB because of that. Outstanding: non-removable weapon mods and archetype skills have to be verified
 - Added equipment
 - Added concoctions, consumables, currencies, and remaining awards to the databases

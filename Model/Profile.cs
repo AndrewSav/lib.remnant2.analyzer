@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace lib.remnant2.analyzer.Model;
+﻿namespace lib.remnant2.analyzer.Model;
 
 // Represents data in profile.sav that correspond to a single character
 public class Profile
@@ -58,6 +56,22 @@ public class Profile
         return objective.Progress >= int.Parse(goal);
     }
 
-    // Relic charges
-    // "/Game/Items/Common/Item_DragonHeartUpgrade.Item_DragonHeartUpgrade_C"
+    public int RelicCharges
+    {
+        get
+        {
+            int baseValue = 3;
+            int upgrades = Inventory.Count(x => x.ProfileId == "/Game/Items/Common/Item_DragonHeartUpgrade.Item_DragonHeartUpgrade_C");
+            bool tearOfKaeula = Inventory.SingleOrDefault(x => x.ProfileId == "/Game/World_Jungle/Items/Trinkets/Rings/TearOfKaeula/Ring_TearOfKaeula.Ring_TearOfKaeula_C")?.IsEquipped ?? false;
+            bool enlargedHeart = Inventory.SingleOrDefault(x => x.ProfileId == "/Game/World_Base/Items/Armor/Base/RelicTesting/EnlargedHeart/Relic_Consumable_EnlargedHeart.Relic_Consumable_EnlargedHeart_C")?.IsEquipped ?? false;
+            bool lifelessHeart = Inventory.SingleOrDefault(x => x.ProfileId == "/Game/World_Base/Items/Armor/Base/RelicTesting/LifelessHeart/Relic_Consumable_LifelessHeart.Relic_Consumable_LifelessHeart_C")?.IsEquipped ?? false;
+
+            int result = baseValue + upgrades;
+            if (tearOfKaeula) result += 2;
+            if (enlargedHeart) result /= 2;
+            if (lifelessHeart) result *= 2;
+
+            return result;
+        }
+    }
 }

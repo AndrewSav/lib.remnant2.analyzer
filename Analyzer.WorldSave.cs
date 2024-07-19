@@ -26,12 +26,12 @@ public partial class Analyzer
     {
         RolledData data = Rolled[mode];
         
-        UObject main = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == "/Game/Maps/Main.Main:PersistentLevel");
+        UObject main = navigator.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
 
         UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(data.Selector)).Archive.Objects[0];
 
         int rollId = meta.Properties!["ID"].Get<int>();
-        UObject rollObject = navigator.GetObjects("PersistenceContainer").SingleOrDefault(x => x.KeySelector == $"/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel")!;
+        UObject rollObject = navigator.GetObjects($"pc:/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel").Single();
 
         int[] worldIds;
         try

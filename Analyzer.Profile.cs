@@ -1,7 +1,6 @@
 ﻿using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Model;
 using System.Text.RegularExpressions;
-using lib.remnant2.analyzer.Model;
 using Serilog;
 using Serilog.Events;
 using SerilogTimings.Extensions;

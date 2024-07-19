@@ -3575,7 +3575,7 @@
     "Coop": true,
     "DropType": "Event",
     "DropReference": "Quest_SideD_ThreeMenMorris",
-    "Note": "Found in the Postulant's Parlor location on Losomn. This is a co-op item. Challenge the Postulant to a game and position one of your (white) pieces in the bottom left corner, while you still have a path from tje top middle position there via either empty or  your (white) piece rooms. The white pieces open rooms behind you, while black pieces lock them. Go to the room"
+    "Note": "One player challenges the Postulant to a game and position one of their (white) pieces in the bottom left corner, while the other player enters the door this action opens in the bottom left room. Then the first player needs to move the white piece out of that corner so that the doors flip, which allows the second play access to the room with the itemout of that corner so that the doors flip, which allows the second play access to the room with the item"
   },
   {
     "Id": "Ring_GroundingStone",

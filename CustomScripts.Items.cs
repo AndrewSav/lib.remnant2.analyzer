@@ -298,7 +298,7 @@ internal static partial class CustomScripts
         // Player has not been there yet
         if (key == "None") return;
 
-        UObject zone = navigator.GetObjects("PersistenceContainer").Single(x => x.KeySelector == key);
+        UObject zone = navigator.GetObjects($"pc:{key}").Single();
         List<KeyValuePair<ulong, Actor>> actors = ((PersistenceContainer)zone.Properties!.Properties[1].Value.Get<StructProperty>().Value!).Actors;
 
         const int chestId = 86; // Let's pray to god it never changes
