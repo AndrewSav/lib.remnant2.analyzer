@@ -228,8 +228,9 @@ internal static partial class CustomScripts
     }
 
     // Additional Prerequisites detection ----------------------------------------------------------------------------------------------------------
+    // Return true if additional check passes, returns false if additional prerequisites are missing
 
-    private static void EchoOfTheForest(LootItemContext lic)
+    private static bool EchoOfTheForest(LootItemContext lic)
     {
         string counterItemProfileId = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Hidden_Item_Trinity_Counter.Quest_Hidden_Item_Trinity_Counter_C";
 
@@ -252,11 +253,18 @@ internal static partial class CustomScripts
         string mementoItemName = "/Game/World_DLC2/Quests/Quest_Story_DLC2/Items/Quest_Item_Story_DwellsItem/Quest_Item_Story_DwellsItem.Quest_Item_Story_DwellsItem_C";
         bool hasMemento = lic.World.QuestInventory.Any(x => x.ProfileId == mementoItemName);
 
-        lic.LootItem.IsPrerequisiteMissing = counter < 2 || counter < 3 && !(hasMemento || mementoAvailable);
+        return !(counter < 2 || counter < 3 && !(hasMemento || mementoAvailable));
     }
-    
+
+    private static bool CorruptedWeapon(LootItemContext lic)
+    {
+        string corruptedShardProfileId = "/Game/World_Base/Items/Materials/LumeniteCrystal/Material_CorruptedShard.Material_CorruptedShard_C";
+        InventoryItem? corruptedShardItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == corruptedShardProfileId);
+        return corruptedShardItem?.Quantity >= 10;
+    }
+
     // Additional IsLooted detection ----------------------------------------------------------------------------------------------------------
-    
+
     private static void Deceit(LootItemContext lic)
     {
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either

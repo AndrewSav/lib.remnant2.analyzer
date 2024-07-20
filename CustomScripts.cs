@@ -42,9 +42,19 @@ internal static partial class CustomScripts
         { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } }
     };
 
-    public static Dictionary<string, Action<LootItemContext>> PrerequisitesScripts = new()
+    public static Dictionary<string, Func<LootItemContext, bool>> PrerequisitesScripts = new()
     {
         { "Amulet_EchoOfTheForest", EchoOfTheForest },
+        { "Weapon_CorruptedAphelion", CorruptedWeapon },
+        { "Weapon_CorruptedDeceit", CorruptedWeapon },
+        { "Weapon_CorruptedMerciless", CorruptedWeapon },
+        { "Weapon_CorruptedMeridian", CorruptedWeapon },
+        { "Weapon_CorruptedRunePistol", CorruptedWeapon },
+        { "Weapon_CorruptedSavior", CorruptedWeapon },
+        { "Weapon_CorruptedCubeGun", CorruptedWeapon },
+        { "Weapon_CorruptedNebula", CorruptedWeapon },
+        { "Weapon_CorruptedSorrow", CorruptedWeapon },
+        { "Weapon_CorruptedTwistedArbalest", CorruptedWeapon }
     };
 
     public static Dictionary<string, Func<RolledWorld, string, bool>> CanGetChallengeFunctions = new()

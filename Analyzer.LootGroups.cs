@@ -1,4 +1,5 @@
-﻿using lib.remnant2.analyzer.Model;
+﻿using System.Runtime.InteropServices;
+using lib.remnant2.analyzer.Model;
 using System.Text.RegularExpressions;
 using Serilog;
 using SerilogTimings.Extensions;
@@ -213,7 +214,8 @@ public partial class Analyzer
 
         void ProcessPrerequisitesAndScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
         {
-            if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite))
+            if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite) ||
+                CustomScripts.PrerequisitesScripts.ContainsKey(lootItem.Id))
             {
                 bool res = CheckPrerequisites(world, lootItem, prerequisite);
 
@@ -319,7 +321,7 @@ public partial class Analyzer
         }
     }
 
-    internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string prerequisite, bool checkHave = true, bool checkCanGet = true)
+    internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string? prerequisite, bool checkHave = true, bool checkCanGet = true)
     {
         if (!checkHave && !checkCanGet) return true;
 
@@ -332,11 +334,52 @@ public partial class Analyzer
             .ForContext(Log.Category, Log.Prerequisites)
             .ForContext("SourceContext", "Analyzer:LootGroups");
 
+        bool CheckAdditionalPrerequisite(string cur)
+        {
+            if (CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Func<LootItemContext, bool>? script))
+            {
+                prerequisiteLogger.Information($"  Running custom prerequisite script for '{cur}'");
+                var li = world.AllZones
+                    .SelectMany(x => x.Locations.Select(y => new { Zone = x, Location = y }))
+                    .SelectMany(x => x.Location.LootGroups.Select(y => new { x.Zone, x.Location, LootGroup = y }))
+                    .SelectMany(x =>
+                        x.LootGroup.Items.Select(y => new { x.Zone, x.Location, x.LootGroup, LootItem = y }))
+                    .Single(x => x.LootItem.Id == cur);
+
+                // If we already determined that a prerequisite is missing, do not check again
+                if (li.LootItem.IsPrerequisiteMissing)
+                {
+                    prerequisiteLogger.Information($"  Skip custom prerequisite script for '{cur}' since it is marked with IsPrerequisiteMissing already");
+                    return false;
+                }
+
+                LootItemContext lic = new()
+                {
+                    LootItem = li.LootItem,
+                    Location = li.Location,
+                    LootGroup = li.LootGroup,
+                    World = world,
+                    Zone = li.Zone
+                };
+                bool ok = script(lic);
+                prerequisiteLogger.Information($"  Custom prerequisite script for '{cur}' returned '{ok}'. (true - ok, false - missing prerequisite detected)");
+                if (!ok)
+                {
+                    li.LootItem.IsPrerequisiteMissing = true;
+                }
+                return ok;
+            }
+            return true;
+        }
+
+        if (!CheckAdditionalPrerequisite(item.Id)) return false;
+
+        if (prerequisite == null) return true;
+
+        prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Processing prerequisites for {item.Name}. '{prerequisite}'");
 
         List<string> prerequisiteExpressionTokens = RegexPrerequisite().Matches(prerequisite)
             .Select(x => x.Value.Trim()).ToList();
-
-        prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Processing prerequisites for {item.Name}. '{prerequisite}'");
 
         bool Check(string cur)
         {
@@ -390,29 +433,10 @@ public partial class Analyzer
 
             if (world.CanGetItem(cur) && checkCanGet)
             {
-                if (CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Action<LootItemContext>? script))
+                if (!CheckAdditionalPrerequisite(cur))
                 {
-                    prerequisiteLogger.Information($"  Running custom prerequisite script for '{cur}'");
-                    var li = world.AllZones
-                        .SelectMany(x => x.Locations.Select(y => new { Zone = x, Location = y }))
-                        .SelectMany(x => x.Location.LootGroups.Select(y => new { x.Zone, x.Location, LootGroup = y }))
-                        .SelectMany(x => x.LootGroup.Items.Select(y => new { x.Zone, x.Location, x.LootGroup, LootItem = y }))
-                        .Single(x => x.LootItem.Id == cur);
-
-                    LootItemContext lic = new()
-                    {
-                        LootItem = li.LootItem,
-                        Location = li.Location,
-                        LootGroup = li.LootGroup,
-                        World = world,
-                        Zone = li.Zone
-                    };
-                    script(lic);
-                    if (li.LootItem.IsPrerequisiteMissing)
-                    {
-                        prerequisiteLogger.Information($"  Cannot get '{cur}' due to custom prerequisite script");
-                        return false;
-                    }
+                    prerequisiteLogger.Information($"  Cannot get '{cur}' due to additional prerequisites");
+                    return false;
                 }
                 prerequisiteLogger.Information($"  Can get '{cur}'");
                 return true;

@@ -1,15 +1,16 @@
 # Changelog
 
-## v0.0.23 (Unreleased)
-- Fix compatibility with changes in the saves library
-- Add Relic Charges
+## v0.0.23 (20 July 2024)
+- Fixed compatibility with changes in the saves library
+- Added Relic Charges
 - Fixed notes for Game Master's Pride
+- Added check for 10 corrupted shards for corrupted weapon prerequisites
 
 ## v0.0.22 (2 July 2024)
-- Update dependencies
+- Updated dependencies
 
 ## v0.0.21 (2 July 2024)
-- Fix regression with connections showing x2 for non-Yaesha zones
+- Fixed regression with connections showing x2 for non-Yaesha zones
 - Formatting and typo fixes
 
 ## v0.0.20 (13 June 2024)
