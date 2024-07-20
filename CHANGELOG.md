@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.24 (20 July 2024)
+- Added missing prerequisite of Savior to Corrupted Savior in the database
+
 ## v0.0.23 (20 July 2024)
 - Fixed compatibility with changes in the saves library
 - Added Relic Charges

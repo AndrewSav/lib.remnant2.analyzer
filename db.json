@@ -6442,6 +6442,7 @@
     "Subtype": "Long Gun",
     "DropType": "Vendor",
     "DropReference": "Dwell",
+    "Prerequisite": "Weapon_Savior",
     "Note": "Crafted By Dwell from Savior weapon",
     "WeaponOrMod": "Mod_FusionCannon"
   },
