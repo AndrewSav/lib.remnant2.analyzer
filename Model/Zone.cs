@@ -28,7 +28,8 @@ public class Zone(RolledWorld parent, DropReference? story)
             if (Name == "Labyrinth") return "The Labyrinth";
             if (Name == "Root Earth") return "Root Earth";
 
-            return ItemDb.GetItemById($"Quest_{story!.Name}").Name;
+            string id = $"Quest_{story!.Name}";
+            return ItemDb.GetItemByIdOrDefault(id)?.Name ?? id;
         }
     }
 

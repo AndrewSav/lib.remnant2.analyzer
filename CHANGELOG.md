@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.25 (12 Oct 2024)
+- Fix a DLC3 crash
+
 ## v0.0.24 (20 July 2024)
 - Added missing prerequisite of Savior to Corrupted Savior in the database
 
