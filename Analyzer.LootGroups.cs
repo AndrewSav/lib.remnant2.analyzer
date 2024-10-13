@@ -256,12 +256,13 @@ public partial class Analyzer
             {
                 foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
                 {
+                    bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
                     foreach (LootItem item in new List<LootItem>(lootGroup.Items))
                     {
                         ProcessPrerequisitesAndScripts(zone, location, lootGroup, item);
                     }
 
-                    if (lootGroup.Items.Count == 0)
+                    if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
                     {
                         location.LootGroups.Remove(lootGroup);
                     }
