@@ -124,6 +124,9 @@ internal static partial class CustomScripts
         { "BCD29B16-4AD4F664-467B11B8-40B71EC6", AnyTime }, // Revive Allies - No Soldier Left Behind
         { "1856B8B3-49AA2901-48AE90B8-B3C89533", ApocalypseDifficulty }, // Die 10 Times - Die 10 Times to Bosses on Apocalypse
         { "D627C628-4F497780-F6BC269E-A815E1FC", LydusaCurse }, // Break 15 Statues - Break X Statues
+        { "A2B810D7-4341BABE-D2BB1C9B-D5F918C8", BossRush },
+        { "115F6BF6-41A6EFA1-344FCFB9-9909A3B4", BossRush },
+        { "F70CDC55-4C3C3957-DC98CCB3-7AAB2E21", BossRush },
         // ReSharper restore StringLiteralTypo
     };
 }

@@ -62,4 +62,15 @@ internal static partial class CustomScripts
         if (lydusaZone == null) return false;
         return !lydusaZone.Finished;
     }
+
+    private static bool BossRush(RolledWorld world, string id)
+    {
+        //LootItem item = ItemDb.GetItemById(id);
+        //int goal = int.Parse(item.Properties["ChallengeCount"]);
+        //ObjectiveProgress? progress = world.ParentCharacter.Profile.Objectives.Find(x => x.Id == id);
+        //int current = progress?.Progress ?? 0;
+        //return goal - current <= 19;
+        
+        return true;
+    }
 }

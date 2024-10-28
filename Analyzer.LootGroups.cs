@@ -179,10 +179,15 @@ public partial class Analyzer
 
 
         // Process additional Looted Markers
-        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process additional loot markers");
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process additional looted markers");
+        // Since we process Looted Markers from the first zone for every location
+        // we do not want to display the missing loot marker message more than once per item. We will keep track of those here
+        HashSet<string> missingLootedMarkers = new();
         foreach (Zone zone in world.AllZones)
         {
-            // Story associated loot items are attached to the first zone location
+            // Story associated loot items are attached to the first zone location in the save,
+            // but we can have them elsewhere in our database so we process the looted markers from the first zone
+            // for each location
             var firstL = zone.Locations.First();
 
             foreach (Location location in zone.Locations)
@@ -192,7 +197,11 @@ public partial class Analyzer
                     LootItem? li = ItemDb.GetItemByProfileId(marker.ProfileId);
                     if (li == null)
                     {
-                        logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Looted marker not found in database: {marker.ProfileId}");
+                        if (!missingLootedMarkers.Contains(marker.ProfileId))
+                        {
+                            logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Looted marker not found in database: {marker.ProfileId}");
+                            missingLootedMarkers.Add(marker.ProfileId);
+                        }
                         continue;
                     }
 
@@ -402,7 +411,7 @@ public partial class Analyzer
                 return false;
             }
 
-            if (currentItem.Type == "challenge")
+            if (currentItem.Type == "challenge" || currentItem.Type == "achievement")
             {
                 if (world.ParentCharacter.Profile.IsObjectiveAchieved(cur) && checkHave)
                 {

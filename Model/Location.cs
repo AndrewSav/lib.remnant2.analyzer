@@ -111,6 +111,8 @@ public class Location
                 result.Add("Dwell");
                 result.Add("Brabus");
                 result.Add("Norah");
+                result.Add("Duane");
+                result.Add("Spark");
             }
 
             if (Name == "Ancient Canopy/Luminous Vale")

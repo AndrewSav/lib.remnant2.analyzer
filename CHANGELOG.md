@@ -1,7 +1,7 @@
 # Changelog
 
-## Unreleased
-- Do not remove a empty loot group if it was already empty before the prerequisites check. This allows us showing loot groups for items that are not yet in the database for easier debugging
+## v0.0.26 (28 Oct 2024)
+- Add DLC3 items
 
 ## v0.0.25 (12 Oct 2024)
 - Fix a DLC3 crash

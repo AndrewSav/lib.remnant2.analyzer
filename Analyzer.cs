@@ -33,7 +33,8 @@ public partial class Analyzer
         "consumable",
         "concoction",
         "fragment",
-        "dream"
+        "dream",
+        "prism"
     ];
 
     public static string[] Difficulties => [
@@ -500,7 +501,7 @@ public partial class Analyzer
         List<string> unknownInventoryItems = inventory
             .Where(x => ItemDb.GetItemByProfileId(x.ProfileId) == null)
             .Where(x => !Utils.IsKnownInventoryItem(Utils.GetNameFromProfileId(x.ProfileId)))
-            .Select(x => $"Character {result.Characters.Count} (save_{charSlotInternal}), mode: {mode}, Unknown item: {x}")
+            .Select(x => $"Character {result.Characters.Count + 1} (save_{charSlotInternal}), mode: {mode}, Unknown item: {x}")
             .ToList();
         
         foreach (string s in unknownInventoryItems)

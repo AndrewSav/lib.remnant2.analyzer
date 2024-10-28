@@ -169,6 +169,7 @@
     "Type": "amulet",
     "World": "World_Fae",
     "Name": "Nimue's Ribbon",
+    "AccountAward": true,
     "DropType": "Vendor",
     "DropReference": "Nimue",
     "Prerequisite": "Amulet_GoldenRibbon, Amulet_SilverRibbon",
@@ -189,6 +190,7 @@
     "ProfileId": "/Game/World_Fae/Items/Trinkets/Amulets/OneTrueKingSigil/Amulet_OneTrueKingSigil.Amulet_OneTrueKingSigil_C",
     "Type": "amulet",
     "World": "World_Fae",
+    "AccountAward": true,
     "DropType": "Vendor",
     "DropReference": "Nimue",
     "Prerequisite": "Ring_FaelinsSigil, Ring_FaerinsSigil",
@@ -407,7 +409,7 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_TheCustodian",
     "Prerequisite": "Quest_Item_Train_AICore | Quest_Item_Extermination_AICore",
-    "Note": "Found in an overworld location on N'Erud. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides. Take the elevator down on the right of Drzyr Replicator. Insert either Decorum Cipher or Memory Core II quest item into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train even crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
+    "Note": "Found in an overworld location on N'Erud. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides. Take the elevator down on the right of Drzyr Replicator. Insert either Decorum Cipher or Memory Core II quest item into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
   },
   {
     "Id": "Amulet_DetonationTrigger",
@@ -461,7 +463,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Train",
-    "Note": "Found in the Terminus Station location on N'Erud. During the train even you will need to climb up a ladder just before you do that on the side of the ladder there is a crawlspace obscured by some canisters. Break them get into the crawlspace, the item will be there"
+    "Note": "Found in the Terminus Station location on N'Erud. During the train event you will need to climb up a ladder just before you do that on the side of the ladder there is a crawlspace obscured by some canisters. Break them get into the crawlspace, the item will be there"
   },
   {
     "Id": "Amulet_InertOvercharger",
@@ -822,6 +824,174 @@
     "ProfileId": "/Game/World_DLC2/Items/Trinkets/Amulets/ZeroDivide/Amulet_ZeroDivide.Amulet_ZeroDivide_C",
     "Type": "amulet",
     "World": "World_DLC2",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud Drop"
+  },
+  {
+    "Id": "Amulet_BrazenAlloy",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/BrazenAlloy/Amulet_BrazenAlloy.Amulet_BrazenAlloy_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "Name": "Brazen Amalgam",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logisitics Bridge location on N'Erud. After the first check point cross the first set of jumps across the train tracks. Before dropping into a hole in the floor acros the last track look down, there will be a cat walk belwo the train level. Drop there and find the item"
+  },
+  {
+    "Id": "Amulet_CanineKeepsake",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/CanineKeepsake/Amulet_CanineKeepsake.Amulet_CanineKeepsake_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
+  },
+  {
+    "Id": "Amulet_CessationBulbel",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/CessationBulbel/Amulet_CessationBulbel.Amulet_CessationBulbel_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Ward 13",
+    "Prerequisite": "Relic_Consumable_ProfaneHeart, Quest_Item_OTK_NimuesBloodWard, Quest_Item_DLC3_CropSample",
+    "Note": "Obtained from root bramble that spawns in Ward 13 if you have the Profane Heart relic. Bring it Crop Sample from the Crop Lab event in NE'erud and Nimue's Blood-Marred Vow, which can be obtained in Losomn by killing One True King after agreeing to kill Nimue and then sparing her"
+  },
+  {
+    "Id": "Amulet_ChefMedal",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ChefMedal/Amulet_ChefMedal.Amulet_ChefMedal_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Duane",
+    "Note": "Obtained from Duane in Ward 13 after acquiring the Meat Shake, Egg Drink, and Numbing Agent",
+    "Undetectable": true
+  },
+  {
+    "Id": "Amulet_CrisisCore",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/CrisisCore/Amulet_CrisisCore.Amulet_CrisisCore_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud Drop"
+  },
+  {
+    "Id": "Amulet_EchoChamber",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/EchoChamber/Amulet_EchoChamber.Amulet_EchoChamber_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_ShiftingCitadel",
+    "Note": "Found in Athenaeum Wek location on N'Erud. Complete the encounter without inserting the House Wek Command Orb quest item into the mechanism before activating the console. The amulet can be picked up at the exit"
+  },
+  {
+    "Id": "Amulet_ExhaustValve",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ExhaustValve/Amulet_ExhaustValve.Amulet_ExhaustValve_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_GasChamber",
+    "Note": "Found in Stagnant Manufactory on N'Erud. In the last section of the gas chamber, you will find a small gap in the floor in the room in which you fight the Amalgam. Drop down there and take it all the way to find the Amulet."
+  },
+  {
+    "Id": "Amulet_HangmansNoose",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/HangmansNoose/Amulet_HangmansNoose.Amulet_HangmansNoose_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "Name": "Hangman's Noose",
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
+  },
+  {
+    "Id": "Amulet_InsipidTalon",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/InsipidTalon/Amulet_InsipidTalon.Amulet_InsipidTalon_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_OneTrueKing",
+    "Note": "Obtained by defeating One True King in Chamber of the Faithless location on Losomn without taking any damage",
+    "Challenge": "36E2312D-49857276-AE2D16B5-729BF8F4"
+  },
+  {
+    "Id": "Amulet_OrnateAmulet",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/OrnateAmulet/Amulet_OrnateAmulet.Amulet_OrnateAmulet_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_OrnateLockbox",
+    "Note": "Get from Spark at Ward 13 in exchange for Ornate Lockbox quest item, after completing Spark's Dark Horizion quest line. Ornate Lockbox is found in the Widow's Court location on Yaesha behind an illusory wall next to a chest under the castle in Widow's Court, indicated by a lit brazier. Area can be reached by jumping down the \"water\" hole just before the exit to the next level, one of the paths leads to a chest next to where you can find the mentioned wall",
+    "MaterialType": "Material_AncientAlloy",
+    "MaterialQuantity": "50"
+  },
+  {
+    "Id": "Amulet_QuantumMemory",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/QuantumMemory/Amulet_QuantumMemory.Amulet_QuantumMemory_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Tower_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be a circular area where you pick up the Crop Sample quest item, and at the side of this are there will be an elevator going down. The amulet is in the room after you exit the elevator"
+  },
+  {
+    "Id": "Amulet_ReactionChain",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ReactionChain/Amulet_ReactionChain.Amulet_ReactionChain_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud Drop"
+  },
+  {
+    "Id": "Amulet_RelayDevice",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/RelayDevice/Amulet_RelayDevice.Amulet_RelayDevice_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in Withered Necropolis location on N'Erud. From the Waylaid Conservatory world stone take the closest glider. Drop down under the first spiked \"arc\" and go to the landing immediately to the right"
+  },
+  {
+    "Id": "Amulet_ShortCircuit",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ShortCircuit/Amulet_ShortCircuit.Amulet_ShortCircuit_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Overload_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yelowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the amulet is behind the last one"
+  },
+  {
+    "Id": "Amulet_TimekeepersForfeit",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/TimekeepersForfeit/Amulet_TimekeepersForfeit.Amulet_TimekeepersForfeit_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "Name": "Timekeeper's Forfeit",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_ClockTower_Flywheel",
+    "Note": "Get from Spark at Ward 13 in exchange for Clockwork Pinion quest item, after completing Spark's Dark Horizion quest line. Clockwork Pinion is found in Lemark District location on Losomn at the very end of the linear path. Set the clock to 11:17 to get it",
+    "MaterialType": "Material_MythrilAlloy",
+    "MaterialQuantity": "50"
+  },
+  {
+    "Id": "Amulet_VolatileCartridge",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/VolatileCartridge/Amulet_VolatileCartridge.Amulet_VolatileCartridge_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_Core_OverridePin",
+    "Note": "Get from Spark at Ward 13 in exchange for Override Pin quest item, after completing Spark's Dark Horizion quest line. Override Pin is found inside an unnamed tower in Timeless Horizon location on N'Erud. The tower has an elevator that leads to a fixture that resembles the ones that have seekers keys, but has Ionic Crystal instead. There is an inconspicuous opening you can enter on the right side of the room as you emerge from the elevator that leads to the Override Pin",
+    "MaterialType": "Material_AlienAlloy",
+    "MaterialQuantity": "50"
+  },
+  {
+    "Id": "Amulet_ZeroHour",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ZeroHour/Amulet_ZeroHour.Amulet_ZeroHour_C",
+    "Type": "amulet",
+    "World": "World_DLC3",
     "DropType": "World",
     "DropReference": "World_Nerud",
     "Note": "Random N'Erud Drop"
@@ -1707,7 +1877,7 @@
     "Name": "Lodestone Crown",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "Inside a tomb opened by Koklets key after the floating pillars trap there is an illusory wall that will lead you up to the crown. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Koklets Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. Inside a tomb opened by Kolket's Key after the floating pillars trap there is an illusory wall that will lead you up to the crown. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Body_RedWidow",
@@ -1717,7 +1887,7 @@
     "Name": "Red Widows Raiment",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Gloves_RedWidow",
@@ -1727,7 +1897,7 @@
     "Name": "Red Widows Bracers",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Head_RedWidow",
@@ -1737,7 +1907,7 @@
     "Name": "Red Widow Headdress",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Legs_RedWidow",
@@ -1747,7 +1917,7 @@
     "Name": "Red Widow Leggings",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. From the checkpoint, behind the puzzle lock, break the pots in the corner that lead you to a passage. Clear all the area until a room full of saw traps, take your time to set the timing of the traps correctly to full sprint it. To solve the puzzle lock find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Head_PilotsHelm",
@@ -2003,6 +2173,95 @@
     "DropReference": "Nimue",
     "Prerequisite": "Armor_Head_RedPrince, Armor_Head_CrimsonGuard",
     "Note": "Crafted at Nimue from the Crimson Guard Shroud and the Crown of the Red Prince"
+  },
+  {
+    "Id": "Armor_Body_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Armor/Armor_Body_Warden.Armor_Body_Warden_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Nanoplated Vestments",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in the Withered Necropolis in N'Erud. Take the path on the left from the Waylaid Conservatory world stone until you reach a glider. Glide towards the lower platform on the right side. Enter the hallway. The Nanoplated set is in the room on the left"
+  },
+  {
+    "Id": "Armor_Gloves_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Armor/Armor_Gloves_Warden.Armor_Gloves_Warden_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Nanoplated Hands",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in the Withered Necropolis in N'Erud. Take the path on the left from the Waylaid Conservatory world stone until you reach a glider. Glide towards the lower platform on the right side. Enter the hallway. The Nanoplated set is in the room on the left"
+  },
+  {
+    "Id": "Armor_Head_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Armor/Armor_Head_Warden.Armor_Head_Warden_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Nanoplated Transmitter",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in the Withered Necropolis in N'Erud. Take the path on the left from the Waylaid Conservatory world stone until you reach a glider. Glide towards the lower platform on the right side. Enter the hallway. The Nanoplated set is in the room on the left"
+  },
+  {
+    "Id": "Armor_Legs_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Armor/Armor_Legs_Warden.Armor_Legs_Warden_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Nanoplated Waist",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in the Withered Necropolis in N'Erud. Take the path on the left from the Waylaid Conservatory world stone until you reach a glider. Glide towards the lower platform on the right side. Enter the hallway. The Nanoplated set is in the room on the left"
+  },
+  {
+    "Id": "Armor_Body_NerudWarrior",
+    "ProfileId": "/Game/World_DLC3/Items/Armor/NErudWarrior/Armor_Body_NerudWarrior.Armor_Body_NerudWarrior_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Phetyr Chassis",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+  },
+  {
+    "Id": "Armor_Gloves_NerudWarrior",
+    "ProfileId": "/Game/World_DLC3/Items/Armor/NErudWarrior/Armor_Gloves_NerudWarrior.Armor_Gloves_NerudWarrior_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Phetyr Crushers",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+  },
+  {
+    "Id": "Armor_Head_NerudWarrior",
+    "ProfileId": "/Game/World_DLC3/Items/Armor/NErudWarrior/Armor_Head_NerudWarrior.Armor_Head_NerudWarrior_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Phetyr Sensor",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+  },
+  {
+    "Id": "Armor_Legs_NerudWarrior",
+    "ProfileId": "/Game/World_DLC3/Items/Armor/NErudWarrior/Armor_Legs_NerudWarrior.Armor_Legs_NerudWarrior_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "Name": "Phetyr Locomotor",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+  },
+  {
+    "Id": "Armor_Head_WeldingGoggles",
+    "ProfileId": "/Game/World_DLC3/Items/Armor/WeldingGoggles/Armor_Head_WeldingGoggles.Armor_Head_WeldingGoggles_C",
+    "Type": "armor",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Whispers",
+    "Note": "Buy from Whispers at Ward 13"
   },
   {
     "Id": "Mod_ConcussiveShot",
@@ -2339,6 +2598,36 @@
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Kiln",
     "Note": "Crafted from Forge Ember dropped by Cinderclad Monolith in Deserted Atelier location on Yaesha"
+  },
+  {
+    "Id": "Mod_HarvesterBots",
+    "ProfileId": "/Game/World_DLC3/Items/Mods/Harvester_Bots/Mod_HarvesterBots.Mod_HarvesterBots_C",
+    "Type": "mod",
+    "World": "World_DLC3",
+    "Material": "Material_ReplicationPod",
+    "DropType": "Event",
+    "DropReference": "Quest_Miniboss_Harvester",
+    "Note": "Crafted from Replication Pod dropped by N'Erudian Reaper in Detritus Foundry location on N'Erud"
+  },
+  {
+    "Id": "Mod_ShieldingShot",
+    "ProfileId": "/Game/World_DLC3/Items/Mods/ShieldingShot/Mod_ShieldingShot.Mod_ShieldingShot_C",
+    "Type": "mod",
+    "World": "World_DLC3",
+    "Material": "Material_IonRod",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_ShiftingCitadel",
+    "Note": "Crafted from Ion Rod found in Athenaeum Wek location on N'Erud underneath the elevator that leads to the top of the tower. Raise the elevator and go underneath into the hidden pathway"
+  },
+  {
+    "Id": "Mod_Voidlight",
+    "ProfileId": "/Game/World_DLC3/Items/Mods/Voidlight/Mod_Voidlight.Mod_Voidlight_C",
+    "Type": "mod",
+    "World": "World_DLC3",
+    "Material": "Material_VoidlightCore",
+    "DropType": "Event",
+    "DropReference": "Quest_Miniboss_Amalgam",
+    "Note": "Crafted from Voidlight Core dropped by Amalgam Kel'Roth and Amalgam Relis in Mucid Terrarium location on N'Erud"
   },
   {
     "Id": "MetaGem_Dervish",
@@ -2955,6 +3244,93 @@
     "Note": "Drops from Protector of the Grove Aberration found in an outdoor location on Yaesha. There will be a big Doe statue, kill all the (regular) does in the area for the abbearion to appear"
   },
   {
+    "Id": "MetaGem_HyperCharger",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Melee/HyperCharger/MetaGem_HyperCharger.MetaGem_HyperCharger_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Aberration": "Void Amalgamate",
+    "Subtype": "Melee",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Drops from Void Amalgamate aberration in Logisitics Bridge location on N'Erud"
+  },
+  {
+    "Id": "MetaGem_VolatileStrike",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Melee/VolatileStrike/MetaGem_VolatileStrike.MetaGem_VolatileStrike_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Subtype": "Melee",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Buy from Dwell at Ward 13"
+  },
+  {
+    "Id": "MetaGem_ChargedWounds",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/ChargedWounds/MetaGem_ChargedWounds.MetaGem_ChargedWounds_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Aberration": "The Prototype",
+    "Subtype": "Ranged",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Drops from The Prototype aberration in Agronomy Sector location on N'Erud. To fight the aberration, four spare parts must first be found: the Prototype Claw, Prototype Head, Prototype Arm, and Prototype Memory Core. The Memory Core must remain switched to the default (red) setting when inserted. Prototype Head is found in Agronomy Sector location on N'Erud. Next to the Quiescent Overlook world stone, directly at the beginning of the story this item can be collected at the crash site of the railcar. Prototype Arm is found in Agronomy Sector location on N'Erud. Take the glider at Anterior Recess world stone and glide down towards a cave on the right of you. You might be able to see a faint red glow from the glider position. Prototype Claw is found in Withered Necropolis location on N'Erud. From the Waylaid Conservatory world stone take the path on the left of the Gardener until you reach a glider. Glide down to the bridge. Go to the left and follow the tunnel to the end of the bridge and collect the Prototype Claw. Prototype Memory Core is found in Withered Necropolis location on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn left there will be a small landing down there where the item is"
+  },
+  {
+    "Id": "MetaGem_Detonator",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/Detonator/MetaGem_Detonator.MetaGem_Detonator_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Aberration": "Astral Harvester",
+    "Subtype": "Ranged",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Drops from Astral Harvester aberration in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommeded. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the righ of you before you hit any wind plumes. The opening is at the water level and cannot be seen well unil you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination to fight the aberration"
+  },
+  {
+    "Id": "MetaGem_HiddenPower",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/HiddenPower/MetaGem_HiddenPower.MetaGem_HiddenPower_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Subtype": "Ranged",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Buy from Dwell at Ward 13"
+  },
+  {
+    "Id": "MetaGem_Insulator",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/Insulator/MetaGem_Insulator.MetaGem_Insulator_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Aberration": "Netherbound Specter",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_ShiftingCitadel",
+    "Note": "Drops from Netherbound Specter aberration in Athenaeum Wek location on N'Erud. House Wek Command Orb quest item needs to be inserted into the console before activating it to summon the aberration. Go up with the first elevator on the right side. Stay right and stand on the only elevator that consists of a single hexagon instead of three hexagons. The single hexagon leads down to a hidden corpse with the House Wek Command Orb"
+  },
+  {
+    "Id": "MetaGem_Repercussion",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/Repercussion/MetaGem_Repercussion.MetaGem_Repercussion_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Aberration": "Inverted Shambler",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Tower_DLC",
+    "Note": "Drops from Inverted Shambler aberration in an indoor location on N'Erud. There will be a circular area where you pick up the Crop Sample quest item, and at the side of this are there will be an elevator going down. In the room after you exist the elevator place the Crop Sample on the red statue. Return when you killed a boss to fight the aberration"
+  },
+  {
+    "Id": "MetaGem_SuperHeated",
+    "ProfileId": "/Game/World_DLC3/Items/Gems/Ranged/SuperHeated/MetaGem_SuperHeated.MetaGem_SuperHeated_C",
+    "Type": "mutator",
+    "World": "World_DLC3",
+    "Name": "Superheated",
+    "Aberration": "V. Sentinel-23",
+    "Subtype": "Ranged",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_GasChamber",
+    "Note": "Drops from V. Sentinel-23 aberration in Stagnant Manufactory location on N'Erud. Finish the dungeon first and then return to the first checkpoint and go through the right door which opens upon the dungeon completion"
+  },
+  {
     "Id": "Relic_Consumable_BloomingHeart",
     "ProfileId": "/Game/World_Base/Items/Armor/Base/RelicTesting/BloomingHeart/Relic_Consumable_BloomingHeart.Relic_Consumable_BloomingHeart_C",
     "Type": "relic",
@@ -3037,6 +3413,7 @@
     "ProfileId": "/Game/World_Base/Items/Armor/Base/RelicTesting/QuiltedHeart/Relic_Consumable_QuiltedHeart.Relic_Consumable_QuiltedHeart_C",
     "Type": "relic",
     "World": "World_Base",
+    "AccountAward": true,
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_DranOracle",
     "Note": "Found in an overworld location on Losomn. To get this you need to complete twelve Losomn \"quests\" across all your rolled campaign and adventures, you will need to reroll in order to get them all. Then you need to interact with a Dran kid in the overworld area, you might need to follow them a bit before you are able to do that. After that climb the ladder next to Oracle's Refuge world stone and speak with the Oracle. The quests are: Postulant's Parlor, The Nightweaver (Morrow Parish), Harvester's Reach, Bloat King (The Great Sewers), Magister Dullain (Shattered Gallery), Council Chambers, Tiller's Rest, Gwentdil The Unburnt (Cotton's Kiln), Faelin/Faerin (Beatific/Malefic Gallery), The Great Hall, The Red Prince (Gilded Chambers), Butchers Quarter",
@@ -3142,6 +3519,7 @@
     "ProfileId": "/Game/World_Base/Items/Armor/Base/RelicTesting/VoidHeart/Relic_Consumable_VoidHeart.Relic_Consumable_VoidHeart_C",
     "Type": "relic",
     "World": "World_Base",
+    "AccountAward": true,
     "DropType": "Location",
     "DropReference": "Alepsis-Taura",
     "Note": "Found in Alepsis-Taura location on N'Erud. You need to defeat Sha'Hala, one of the N'Erud world bosses without using the Override Pin quest item in the console before the fight. Talk to the Custodian after the battle and wait for 24 hours for Alepsis-Taura to unlock",
@@ -3183,6 +3561,25 @@
     "DropReference": "Quest_SideD_RootMadness",
     "Note": "Obtained from Root NPC at the end of the Infested Abyss location on Yaesha. You need to have Profane Soul Stone amulet first. With the amulet go to The Labyrinth and talk to The Keeper. When you end the dialog, the keeper will offer to cleanse. Refuse the offer, and you will hear the voice line to \"return where we first met\". Go to the very end of the Infested Abyss dungeon, talk to the Root NPC and it will exchange your Profane Soul Stone for this item",
     "CustomScript": true
+  },
+  {
+    "Id": "Relic_Consumable_GossamerHeart",
+    "ProfileId": "/Game/World_DLC3/Items/Relics/GossamerHeart/Relic_Consumable_GossamerHeart.Relic_Consumable_GossamerHeart_C",
+    "Type": "relic",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Tower_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be a circular area where you pick up the Crop Sample quest item, and at the side of this are there will be an elevator going down. In the room after you exist the elevator place the Crop Sample on the blue statue. Return when you killed a boss to get the item"
+  },
+  {
+    "Id": "Relic_Consumable_LatentHeart",
+    "ProfileId": "/Game/World_DLC3/Items/Relics/LatentHeart/Relic_Consumable_LatentHeart.Relic_Consumable_LatentHeart_C",
+    "Type": "relic",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Prerequisite": "Quest_Item_Extermination_AICore, Quest_Item_Train_AICore",
+    "Note": "Found in Agronomy Sector location on N'Erud. Go up the ramp from Quiescent Overlook world stone and into the blue glowing passage. Insert both Decorum Cipher and Memory Core II quest items into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
   },
   {
     "Id": "Ring_RingOfTheAdmiral",
@@ -3903,7 +4300,7 @@
     "Name": "Ring of Diversion",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "Found in a tomb opened by Koklets key after the floating pillars trap. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Koklets Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in a tomb opened by Kolket's Key after the floating pillars trap. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Ring_RingOfOmens",
@@ -4250,7 +4647,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_SideD_StasisSiege",
-    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege even there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. To to the right of it you can shoot some breakable item and the vault over to the other side and into a hatch to find the item"
+    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege event there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. To to the right of it you can shoot some breakable item and the vault over to the other side and into a hatch to find the item"
   },
   {
     "Id": "Ring_MeteoriteShardRing",
@@ -5021,6 +5418,314 @@
     "Note": "Found in an outdoor location on Yaesha. There will be a big Doe statue, the item will be on the left of it"
   },
   {
+    "Id": "Ring_BreachAccelerator",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/BreachAccelerator/Ring_BreachAccelerator.Ring_BreachAccelerator_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Found in Agronomy Sector location on N'Erud. At the beginning after talking to the gardener and unlocking the gliders, take the first glider over the short gap and then the second glider down the canyon with the wind plume in the end. Hit the wind plume and land on the platform nearby. Head through the opening on your right and find the item"
+  },
+  {
+    "Id": "Ring_BurdenOfTheExcavator",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/BurdenOfTheExcavator/Ring_BurdenOfTheExcavator.Ring_BurdenOfTheExcavator_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Burden of the Excavator",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Located at the very end of the dungeon in the room with the final checkpoint"
+  },
+  {
+    "Id": "Ring_BurdenOfTheProtector",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/BurdenOfTheProtector/Ring_BurdenOfTheProtector.Ring_BurdenOfTheProtector_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Burden of the Protector",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_SecurityDrone_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interactiving with the console unlocks the door to the elevator down to that area. The chanllenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. There will be another door nearby that leads to the item. If the event is failed and the alarm sounds that door will seal making the item inaccessible without re-rolling the campaign or adventure you are currently in"
+  },
+  {
+    "Id": "Ring_BypassPrimer",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/BypassPrimer/Ring_BypassPrimer.Ring_BypassPrimer_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_SecurityDrone_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interactiving with the console unlocks the door to the elevator down to that area. The chanllenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. The item is in the end"
+  },
+  {
+    "Id": "Ring_ClearHalo",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/ClearHalo/Ring_ClearHalo.Ring_ClearHalo_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_ShiftingCitadel",
+    "Note": "Found in Athenaeum Wek location on N'Erud. Complete the encounter by inserting the House Wek Command Orb quest item into the mechanism before activating the console. The amulet can be picked up at the exit. To find House Wek Command orb go up with the first elevator on the right side. Stay right and stand on the only elevator that consists of a single hexagon instead of three hexagons. The single hexagon leads down to a hidden corpse with the House Wek Command Orb"
+  },
+  {
+    "Id": "Ring_CombatShieldGenerator",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/CombatShieldGenerator/Ring_CombatShieldGenerator.Ring_CombatShieldGenerator_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Overload_DLC",
+    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yelowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the ring is behind the second to last one"
+  },
+  {
+    "Id": "Ring_CustodiansBastion",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/CustodiansBastion/Ring_CustodiansBastion.Ring_CustodiansBastion_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Custodian's Bastion",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in Withered Necropolis location on N'Erud. Exhaust the Gardener's dialogue after destroying at least one of the Black Diamonds, and again after defeating the world boss"
+  },
+  {
+    "Id": "Ring_DemolitionCoil",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/DemolitionCoil/Ring_DemolitionCoil.Ring_DemolitionCoil_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_DetonatingCord",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/DetonatingCord/Ring_DetonatingCord.Ring_DetonatingCord_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_DisasterConverter",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/DisasterConverter/Ring_DisasterConverter.Ring_DisasterConverter_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Found in Agronomy Sector location on N'Erud. Fast travel back to the Devoid Quietus world stone after interacting with gondola at beginning of map and trace back to the gondola location"
+  },
+  {
+    "Id": "Ring_EmpoweringLoop",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/EmpoweringLoop/Ring_EmpoweringLoop.Ring_EmpoweringLoop_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
+  },
+  {
+    "Id": "Ring_FeedingTube",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/FeedingTube/Ring_FeedingTube.Ring_FeedingTube_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_ForceMultiplier",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/ForceMultiplier/Ring_ForceMultiplier.Ring_ForceMultiplier_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_Train_AICore",
+    "Note": "Get from Spark at Ward 13 in exchange for Decorum Cipher quest item, after completing Spark's Dark Horizion quest line. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there",
+    "MaterialType": "Material_AlienAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
+    "Id": "Ring_ImpactAugment",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/ImpactAugment/Ring_ImpactAugment.Ring_ImpactAugment_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_InfinityPocket",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/InfinityPocket/Ring_InfinityPocket.Ring_InfinityPocket_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_MortalCoil",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/MortalCoil/Ring_MortalCoil.Ring_MortalCoil_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_Consumable_01_FruitOfDeath",
+    "Note": "Get from Spark at Ward 13 in exchange for Fruit of Death quest item, after completing Spark's Dark Horizion quest line. Fruit of Death in the Forbidden Grove location on Yaesha. Equip Ravager's Mark amulet and go to the start of the Forbidden Grove location, go past Bedel of the Vaunnt and to the Ravager and the Doe statue. A trap door next to the statue will open and will grant you access to the Fruit of Death quest item",
+    "MaterialType": "Material_AncientAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
+    "Id": "Ring_NanoFiberStrand",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/NanoFiberStrand/Ring_NanoFiberStrand.Ring_NanoFiberStrand_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Nanofiber Strand",
+    "EventId": "Ring_NanofiberStrand",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_NightmareSigil",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/NightmareSigil/Ring_NightmareSigil.Ring_NightmareSigil_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
+  },
+  {
+    "Id": "Ring_RingOfAshes",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/RingOfAshes/Ring_RingOfAshes.Ring_RingOfAshes_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Ring of Ashes",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_CrimsonKingCoin",
+    "Note": "Get from Spark at Ward 13 in exchange for Crimson King Coin quest item, after completing Spark's Dark Horizion quest line. Crimson King Coin is found in Chamber of the Faithless location on Losomn. It drops from the teleport Fae, and there are ususally zero, one or two of this enemy spawn each run",
+    "MaterialType": "Material_MythrilAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
+    "Id": "Ring_RingOfBones",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/RingOfBones/Ring_RingOfBones.Ring_RingOfBones_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Ring of Bones",
+    "DropType": "World",
+    "DropReference": "World_Jungle",
+    "Note": "Random Yaesha Drop"
+  },
+  {
+    "Id": "Ring_PhantomPain",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/RingOfPhantomPain/Ring_PhantomPain.Ring_PhantomPain_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Ring Of Phantom Pain",
+    "DropType": "Vendor",
+    "DropReference": "Reggie",
+    "Note": "Buy from Reggie at Ward 13"
+  },
+  {
+    "Id": "Ring_SecurityHalfMeasure",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/SecurityHalfMeasure/Ring_SecurityHalfMeasure.Ring_SecurityHalfMeasure_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in Withered Necropolis location on N'Erud. Somewhat tricky to find, watching a video is recommended. From the Waylaid Conservatory world stone follow the wall on the left until you get to a glider. Take a glider to the bridge you see downwards, and fight your way to the left of the bridge until the very end, there will be a drop there and a platform with the glider station across that drop. You won't be able to jump across from there but that platform is where you need to go, so you could orient yourslef on the minimap. Backtrack along the bridge, take first right and then there will be an elevator up on the left. Take the elevator, and hug the left wall until you get to a glider. Take the glider and take sharp left until you arrive to the wind plume next to your target platform and get over there. There will be a short corridor from there a room where the item can be found"
+  },
+  {
+    "Id": "Ring_ShieldAlternator",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/ShieldAlternator/Ring_ShieldAlternator.Ring_ShieldAlternator_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Drops from The Prototype aberration in Agronomy Sector location on N'Erud. To fight the aberration, four spare parts must first be found: the Prototype Claw, Prototype Head, Prototype Arm, and Prototype Memory Core. The Memory Core must remain switched to the default (red) setting when inserted. Prototype Head is found in Agronomy Sector location on N'Erud. Next to the Quiescent Overlook world stone, directly at the beginning of the story this item can be collected at the crash site of the railcar. Prototype Arm is found in Agronomy Sector location on N'Erud. Take the glider at Anterior Recess world stone and glide down towards a cave on the right of you. You might be able to see a faint red glow from the glider position. Prototype Claw is found in Withered Necropolis location on N'Erud. From the Waylaid Conservatory world stone take the path on the left of the Gardener until you reach a glider. Glide down to the bridge. Go to the left and follow the tunnel to the end of the bridge and collect the Prototype Claw. Prototype Memory Core is found in Withered Necropolis location on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn left there will be a small landing down there where the item is"
+  },
+  {
+    "Id": "Ring_SiphonFilter",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/SiphonFilter/Ring_SiphonFilter.Ring_SiphonFilter_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_CargoBelt",
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the left actoss the platforms the will be an opening obscured by some distuctable canister. Shoot the canister and jump to where it used to be. The ring is next to it"
+  },
+  {
+    "Id": "Ring_SpiritAlternator",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/SpiritAlternator/Ring_SpiritAlternator.Ring_SpiritAlternator_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Given by The Prototype NPC in Agronomy Sector location on N'Erud. Four spare parts must first be found: the Prototype Claw, Prototype Head, Prototype Arm, and Prototype Memory Core. The Prototype Memory Core must be in it's blue state when installed, it can be toggled by interacting with it in the inspect menu. Prototype Head is found in Agronomy Sector location on N'Erud. Next to the Quiescent Overlook world stone, directly at the beginning of the story this item can be collected at the crash site of the railcar. Prototype Arm is found in Agronomy Sector location on N'Erud. Take the glider at Anterior Recess world stone and glide down towards a cave on the right of you. You might be able to see a faint red glow from the glider position. Prototype Claw is found in Withered Necropolis location on N'Erud. From the Waylaid Conservatory world stone take the path on the left of the Gardener until you reach a glider. Glide down to the bridge. Go to the left and follow the tunnel to the end of the bridge and collect the Prototype Claw. Prototype Memory Core is found in Withered Necropolis location on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn left there will be a small landing down there where the item is"
+  },
+  {
+    "Id": "Ring_StoneOfRevelation",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/StoneOfRevelation/Ring_StoneOfRevelation.Ring_StoneOfRevelation_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Stone of Revelation",
+    "DropType": "World",
+    "DropReference": "World_Fae",
+    "Note": "Random Losomn Drop"
+  },
+  {
+    "Id": "Ring_StrandOfSinew",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/StrandOfSinew/Ring_StrandOfSinew.Ring_StrandOfSinew_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Strand of Sinew",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_Asylum_StoneDoll_Final",
+    "Note": "Get from Spark at Ward 13 in exchange for Nightweaver Stone Doll quest item, after completing Spark's Dark Horizion quest line. Nightweaver Stone Doll is found in Morrow Parish location on Losomn. You get it by opening the door with the Prison Cell Key in the Asylum basement. The Prison Cell Key is found on the third floor balcony of the Asylum",
+    "MaterialType": "Material_MythrilAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
+    "Id": "Ring_SymbolOfRoyalty",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/SymbolOfRoyalty/Ring_SymbolOfRoyalty.Ring_SymbolOfRoyalty_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "Name": "Symbol of Royalty",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_KolketsKey",
+    "Note": "Get from Spark at Ward 13 in exchange for Kolket's Key quest item, after completing Spark's Dark Horizion quest line. Kolket's Key is found in The Lament location on Yaesha. Get it by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly",
+    "MaterialType": "Material_AncientAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
+    "Id": "Ring_ToleranceBand",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/ToleranceBand/Ring_ToleranceBand.Ring_ToleranceBand_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_TransientCord",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/TransientCord/Ring_TransientCord.Ring_TransientCord_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "World",
+    "DropReference": "World_Nerud",
+    "Note": "Random N'Erud drop"
+  },
+  {
+    "Id": "Ring_WiredInhibitor",
+    "ProfileId": "/Game/World_DLC3/Items/Trinkets/Rings/WiredInhibitor/Ring_WiredInhibitor.Ring_WiredInhibitor_C",
+    "Type": "ring",
+    "World": "World_DLC3",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Quest_Item_StasisSiege_Keycard",
+    "Note": "Get from Spark at Ward 13 in exchange for House Lythla Glyph quest item, after completing Spark's Dark Horizion quest line. House Lythla Glyph is found in the Vault of the Formless location on N'Erud. As you progress through the siege even there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item.",
+    "MaterialType": "Material_AlienAlloy",
+    "MaterialQuantity": "25"
+  },
+  {
     "Id": "Trait_AmmoReserves",
     "ProfileId": "/Game/World_Base/Items/Traits/Archetype/AmmoReserves/Trait_AmmoReserves.Trait_AmmoReserves_C",
     "Type": "trait",
@@ -5381,6 +6086,43 @@
     "Challenge": "D627C628-4F497780-F6BC269E-A815E1FC"
   },
   {
+    "Id": "Trait_Barrier",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Traits/Trait_Barrier.Trait_Barrier_C",
+    "Type": "trait",
+    "World": "World_DLC3",
+    "DropType": "Progression",
+    "Prerequisite": "Engram_Warden",
+    "Note": "Reach Warden level 10 to unlock this trait for use in any build",
+    "Undetectable": true
+  },
+  {
+    "Id": "Trait_Insight",
+    "ProfileId": "/Game/World_DLC3/Items/Traits/Insight/Trait_Insight.Trait_Insight_C",
+    "Type": "trait",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_AlepsisTaura",
+    "Note": "Obtained by defeating Alepsis-Taura boss in The Convergence location on N'Erud. You need to destroy one or no black diamonds before the fight to get this item"
+  },
+  {
+    "Id": "Trait_Perception",
+    "ProfileId": "/Game/World_DLC3/Items/Traits/Perception/Trait_Perception.Trait_Perception_C",
+    "Type": "trait",
+    "World": "World_DLC3",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_GasChamber",
+    "Note": "Found in the Stagnant Manufactory location on N'Erud. Obtained by activating the console at the end of the dungeon"
+  },
+  {
+    "Id": "Trait_Preservation",
+    "ProfileId": "/Game/World_DLC3/Items/Traits/Preservation/Trait_Preservation.Trait_Preservation_C",
+    "Type": "trait",
+    "World": "World_DLC3",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Found in the Agronomy Sector and Withered Necropolis location on N'Erud. Obtained by activating consoles next to all three of the purple pillars, two in Agronomy Sector and another one in Withered Necropolis. You can get to the first pillar from the Anterior Recess world stone, head outside and follow the right path, continue until you reach a glider spot, hop onto the glider and drop straight down. For the first pillat start at the Propogation Field world stone, hang in immediate left and work your way through the corn field on your left, continue to the glider spot and you'll see the second pillar acros the chasm. Take the glider to reach it. For the third pillar take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, and then the next one in the same direction. The small platform (with a sort of short broken bridge sticking out of it) will be immediately next to that last plume. Land on it go under the arch and to the right until you reach the pillar"
+  },
+  {
     "Id": "Weapon_CubeGun",
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Special/CubeGun/Weapon_CubeGun.Weapon_CubeGun_C",
     "Type": "weapon",
@@ -5558,7 +6300,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_SideD_StasisSiege",
-    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege even there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. Use this item after the final battle in the location to unlock path to the item"
+    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege event there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. Use this item after the final battle in the location to unlock path to the item"
   },
   {
     "Id": "Weapon_ServicePistol",
@@ -5802,7 +6544,7 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_TheCustodian",
     "Prerequisite": "Quest_Item_Train_AICore, Quest_Item_Extermination_AICore",
-    "Note": "Found in an overworld location on N'Erud. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides. Take the lift down on the right of Drzyr Replicator. Insert both Decorum Cipher and Memory Core II quest items into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train even crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
+    "Note": "Found in an overworld location on N'Erud. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides. Take the lift down on the right of Drzyr Replicator. Insert both Decorum Cipher and Memory Core II quest items into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
   },
   {
     "Id": "Weapon_CoachGun",
@@ -5942,8 +6684,7 @@
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faerlin",
     "Note": "Crafted from Melded Hilt, dropped by Faerin world boss in Malefic Gallery location on Losomn",
-    "CustomScript": true,
-    "WeaponOrMod": "Mod_Fracture"
+    "CustomScript": true
   },
   {
     "Id": "Weapon_HerosSword",
@@ -6154,7 +6895,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Train",
-    "Note": "Found in the Terminus Station location on N'Erud. After you finished the train even crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, the item will be there"
+    "Note": "Found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, the item will be there"
   },
   {
     "Id": "Weapon_Hammer",
@@ -6361,6 +7102,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Weapons/Anguish/Weapon_Anguish.Weapon_Anguish_C",
     "Type": "weapon",
     "World": "World_DLC1",
+    "AccountAward": true,
     "Subtype": "Hand Gun",
     "DropType": "Progression",
     "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
@@ -6545,6 +7287,7 @@
     "ProfileId": "/Game/World_DLC2/Items/Weapons/Polygun/Weapon_Polygun.Weapon_Polygun_C",
     "Type": "weapon",
     "World": "World_DLC2",
+    "AccountAward": true,
     "Subtype": "Long Gun",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
@@ -6569,6 +7312,7 @@
     "ProfileId": "/Game/World_DLC2/Items/Weapons/TrinityCrossbow/Weapon_TrinityCrossbow.Weapon_TrinityCrossbow_C",
     "Type": "weapon",
     "World": "World_DLC2",
+    "AccountAward": true,
     "Subtype": "Long Gun",
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
@@ -6576,10 +7320,92 @@
     "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the  Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item"
   },
   {
+    "Id": "Weapon_BlackGreatsword",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/BlackGreatsword/Weapon_BlackGreatsword.Weapon_BlackGreatsword_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "Material": "Material_BlackMetalBars",
+    "Subtype": "Melee Weapon",
+    "DropType": "Location",
+    "DropReference": "Ward 13",
+    "Prerequisite": "AccountAward_FinishCampaign_Survivor",
+    "Note": "Found in Ward 13 by buying all the weapons from Brabus, including Alpha-Omega which only appears after finishing the campaign and then exhausting all his dialogs. He will give Black Metal Bars which need to be brought to McCabe in Ward 13. Give the bars to her via dialog (not via the craft panel). You will have to return to her later to get the sword"
+  },
+  {
+    "Id": "Weapon_DarkMatterGauntlets",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/DarkMatterGauntlets/Weapon_DarkMatterGauntlets.Weapon_DarkMatterGauntlets_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "Material": "Material_BlackMass",
+    "Subtype": "Melee Weapon",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_AlepsisTaura",
+    "Note": "Crafted from Black Mass dropped by Alepsis-Taura boss in The Convergence location on N'Erud. You need to destroy one or both black diamonds before the fight to get this item"
+  },
+  {
+    "Id": "Weapon_Genesis",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Genesis/Weapon_Genesis.Weapon_Genesis_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "AccountAward": true,
+    "Subtype": "Long Gun",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Found in Withered Necropolis area on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, immediately turn around a cave hidden in the mountain will reveal itself on your left. Glide towards it. Enter the cave and approach the console. The top line shows what the bottom line was an hour ago. You need to enter into the bottom line what the top line will display in an hour. Either find a website that displays the solution, change the system time an hour back, and enter what you saw previously on the top line to the bottom line.",
+    "WeaponOrMod": "Mod_MegaDrive"
+  },
+  {
+    "Id": "Weapon_HarvesterScythe",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/HarvesterScythe/Weapon_HarvesterScythe.Weapon_HarvesterScythe_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "Subtype": "Melee Weapon",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Note": "Found in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommeded. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the righ of you before you hit any wind plumes. The opening is at the water level and cannot be seen well unil you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination platoe, where the item is"
+  },
+  {
+    "Id": "Weapon_Monorail",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Monorail/Weapon_Monorail.Weapon_Monorail_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "Material": "Material_EternityChamber",
+    "Subtype": "Long Gun",
+    "DropType": "Event",
+    "DropReference": "Quest_Boss_AlepsisTaura",
+    "Note": "Crafted from Eternity Chamber dropped by Alepsis-Taura boss in The Convergence location on N'Erud. You need to defeat Alepsis-Taura without destroying either of the black diamonds",
+    "WeaponOrMod": "Mod_RecoilDampener"
+  },
+  {
+    "Id": "Weapon_Redeemer",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Redeemer/Weapon_Redeemer.Weapon_Redeemer_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "AccountAward": true,
+    "Subtype": "Hand Gun",
+    "DropType": "Vendor",
+    "DropReference": "Spark",
+    "Prerequisite": "Amulet_OrnateAmulet, Amulet_TimekeepersForfeit, Amulet_VolatileCartridge, Ring_ForceMultiplier, Ring_MortalCoil, Ring_RingOfAshes, Ring_StrandOfSinew, Ring_SymbolOfRoyalty, Ring_WiredInhibitor",
+    "Note": "Given by Spark at Ward 13 after buying all the amulets and rings from her",
+    "WeaponOrMod": "Mod_Aftermath"
+  },
+  {
+    "Id": "Weapon_RepairTool",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/RepairTool/Weapon_RepairTool.Weapon_RepairTool_C",
+    "Type": "weapon",
+    "World": "World_DLC3",
+    "Subtype": "Hand Gun",
+    "DropType": "Location",
+    "DropReference": "Agronomy Sector",
+    "Prerequisite": "Quest_Item_Extermination_AICore | Quest_Item_Train_AICore",
+    "Note": "Found in Agronomy Sector location on N'Erud. Go up the ramp from Quiescent Overlook world stone and into the blue glowing passage. Insert either Decorum Cipher or Memory Core II quest item into the fixture in front of you, which will open a screen leading you to the item. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there. Memory Core II is found in the Dormant N'Erudian Facility location on N'Erud. There will be an area with the railing, where a part of railing will be missing. If you look down from the gap you will see the ledge you can drop on. Follow the path to the elevator and take the elevator. Soon you will reach a control room with Biome-Control Glyph quest item inside. Take it to the door at the very entrance of the location near the world stone, that can be open with the Biome-Control Glyph. Memory Core II is behind that door"
+  },
+  {
     "Id": "Engram_Alchemist",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Alchemist/Engram_Alchemist.Engram_Alchemist_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Philosopher's Stone",
     "Material": "Material_Engram_Alchemist",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_FaeCity_BoneHarvesterLair",
@@ -6590,6 +7416,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Engram_Archon.Engram_Archon_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Hexahedron",
     "Material": "Material_Engram_Archon",
     "DropType": "Location",
     "DropReference": "The Labyrinth",
@@ -6601,6 +7428,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Challenger/Engram_Challenger.Engram_Challenger_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Steel Enswell",
     "Material": "Material_Engram_Challenger",
     "DropType": "Vendor",
     "DropReference": "Reggie",
@@ -6611,6 +7439,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Engineer/Engram_Engineer.Engram_Engineer_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Drzyr Caliper",
     "Material": "Material_Engram_Engineer",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_OverworldFog",
@@ -6621,6 +7450,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Explorer/Engram_Explorer.Engram_Explorer_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Golden Compass",
     "Material": "Material_Engram_Explorer",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_TowerBoss",
@@ -6631,6 +7461,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Gunslinger/Engram_Gunslinger.Engram_Gunslinger_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Iron Cylinder",
     "Material": "Material_Engram_Gunslinger",
     "DropType": "Vendor",
     "DropReference": "Mudtooth",
@@ -6641,6 +7472,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Handler/Engram_Handler.Engram_Handler_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Silent Whistle",
     "Material": "Material_Engram_Handler",
     "DropType": "Vendor",
     "DropReference": "Mudtooth",
@@ -6651,6 +7483,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Hunter/Engram_Hunter.Engram_Hunter_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Sniper War Medal",
     "Material": "Material_Engram_Hunter",
     "DropType": "Vendor",
     "DropReference": "Brabus",
@@ -6661,6 +7494,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Invader/Engram_Invader.Engram_Invader_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Serrated Root Blade",
     "Material": "Material_Engram_Invader",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
@@ -6673,6 +7507,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Medic/Engram_Medic.Engram_Medic_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Caduceus Idol",
     "Material": "Material_Engram_Medic",
     "DropType": "Vendor",
     "DropReference": "Norah",
@@ -6683,6 +7518,7 @@
     "ProfileId": "/Game/World_Base/Items/Archetypes/Summoner/Engram_Summoner.Engram_Summoner_C",
     "Type": "engram",
     "World": "World_Base",
+    "Name": "Tome of The Bringer",
     "Material": "Material_Engram_Summoner",
     "DropType": "Vendor",
     "DropReference": "Blood Moon Altar",
@@ -6693,6 +7529,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Engram/Engram_Ritualist.Engram_Ritualist_C",
     "Type": "engram",
     "World": "World_DLC1",
+    "Name": "Cursed Effigy",
     "Material": "Material_Engram_Ritualist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
@@ -6703,10 +7540,22 @@
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Engram/Engram_Invoker.Engram_Invoker_C",
     "Type": "engram",
     "World": "World_DLC2",
+    "Name": "Spirit Flute",
     "Material": "Material_Engram_Invoker",
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
     "Note": "Old Flute is found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. You need get there after having spoken to Lydusa and received her curse. In the sand room there will be two sand hills close to each other. You need to maneuver yourself between them so that you do not get killed by the traps. Then you need to stand in place for about 5 minutes gradually sinking into the sand. In the end you will fall through into the room below and get the Old Flute."
+  },
+  {
+    "Id": "Engram_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Engram_Warden.Engram_Warden_C",
+    "Type": "engram",
+    "World": "World_DLC3",
+    "Name": "Command Module",
+    "Material": "Material_Engram_Warden",
+    "DropType": "Location",
+    "DropReference": "Withered Necropolis",
+    "Note": "Weathered Mechanism is found in Withered Necropolis area on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, and then the next one in the same direction. The small platform (with a sort of short broken bridge sticking out of it) will be immediately next to that last plume. Land on it go under the arch and to the left over the bridge Weathered Mechanism is in a room just after the bridge"
   },
   {
     "Id": "Quest_Item_Matchbook",
@@ -6732,7 +7581,9 @@
     "Id": "Quest_Item_CrimsonKingCoin",
     "ProfileId": "/Game/World_Fae/Items/CrimsonKingCoin/Quest_Item_CrimsonKingCoin.Quest_Item_CrimsonKingCoin_C",
     "Type": "quest_item",
-    "World": "World_Fae"
+    "World": "World_Fae",
+    "DropType": "Event",
+    "DropReference": "Quest_Miniboss_RedPrince"
   },
   {
     "Id": "Quest_Item_Rookery_WoodenBox",
@@ -6758,7 +7609,9 @@
     "ProfileId": "/Game/World_Fae/Quests/Quest_OverworldPOI_ClockTower/Items/Quest_Item_ClockTower_Flywheel/Quest_Item_ClockTower_Flywheel.Quest_Item_ClockTower_Flywheel_C",
     "Type": "quest_item",
     "World": "World_Fae",
-    "Name": "Clockwork Pinion"
+    "Name": "Clockwork Pinion",
+    "DropType": "Event",
+    "DropReference": "Quest_OverworldPOI_ClockTower"
   },
   {
     "Id": "Quest_Item_CharnelHouse_Anklet",
@@ -6924,7 +7777,9 @@
     "ProfileId": "/Game/World_Jungle/Quests/Quest_SideD_WailingField/Items/KolketsKey/Quest_Item_KolketsKey.Quest_Item_KolketsKey_C",
     "Type": "quest_item",
     "World": "World_Jungle",
-    "Name": "Kolket's Key"
+    "Name": "Kolket's Key",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_TheLament"
   },
   {
     "Id": "Quest_Item_KolketsRazor",
@@ -6940,7 +7795,10 @@
     "ProfileId": "/Game/World_Jungle/Quests/Quest_Story_Empress/Items/FruitOfDeath/Quest_Item_Consumable_01_FruitOfDeath.Quest_Item_Consumable_01_FruitOfDeath_C",
     "Type": "quest_item",
     "World": "World_Jungle",
-    "Name": "Fruit of Death"
+    "Name": "Fruit of Death",
+    "DropType": "Location",
+    "DropReference": "Forbidden Grove",
+    "Prerequisite": "Amulet_RavagersMark"
   },
   {
     "Id": "Quest_Item_Consumable_02_FruitOfDeath_OneThird_Eaten",
@@ -6960,7 +7818,9 @@
     "Id": "Quest_Item_OrnateLockbox",
     "ProfileId": "/Game/World_Jungle/Quests/Quest_Story_Empress/Items/OrnateLockbox/Quest_Item_OrnateLockbox.Quest_Item_OrnateLockbox_C",
     "Type": "quest_item",
-    "World": "World_Jungle"
+    "World": "World_Jungle",
+    "DropType": "Location",
+    "DropReference": "The Widow's Court"
   },
   {
     "Id": "Quest_Item_OrnateLockbox_Key",
@@ -7050,7 +7910,9 @@
     "ProfileId": "/Game/World_Nerud/Quests/Quest_SideD_StasisSiege/Items/Quest_Item_StasisSiege_Keycard.Quest_Item_StasisSiege_Keycard_C",
     "Type": "quest_item",
     "World": "World_Nerud",
-    "Name": "House Lythla Glyph"
+    "Name": "House Lythla Glyph",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_StasisSiege"
   },
   {
     "Id": "Quest_Item_DreamlessSleep_SmallKey",
@@ -7253,6 +8115,71 @@
     "Type": "quest_item",
     "World": "World_DLC2",
     "Name": "Cherished Fracture"
+  },
+  {
+    "Id": "Quest_Item_DLC3_CropSample",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Injectable_Tower_DLC/Items/Quest_Item_DLC3_CropSample.Quest_Item_DLC3_CropSample_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Crop Sample",
+    "DropType": "Event",
+    "DropReference": "Quest_Injectable_Tower_DLC"
+  },
+  {
+    "Id": "Quest_Item_DLC3_CargoBelt_Key",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_SideD_CargoBelt/Items/Quest_Item_DLC3_CargoBelt_Key.Quest_Item_DLC3_CargoBelt_Key_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "House Rigol Glyph"
+  },
+  {
+    "Id": "Quest_Item_DLC3_LightBeamKey",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_SideD_ShiftingCitadel/Items/Quest_Item_DLC3_LightBeamKey/Quest_Item_DLC3_LightBeamKey.Quest_Item_DLC3_LightBeamKey_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "House Wek Command Orb"
+  },
+  {
+    "Id": "Quest_Item_Story_BicentennialManHead",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_BicentennialManHead/Quest_Item_Story_BicentennialManHead.Quest_Item_Story_BicentennialManHead_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Prototype Head"
+  },
+  {
+    "Id": "Quest_Item_Story_BicentennialManPart1_A",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_BicentennialManPart1/Quest_Item_Story_BicentennialManPart1_A.Quest_Item_Story_BicentennialManPart1_A_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Prototype Memory Core (red)"
+  },
+  {
+    "Id": "Quest_Item_Story_BicentennialManPart1_B",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_BicentennialManPart1/Quest_Item_Story_BicentennialManPart1_B.Quest_Item_Story_BicentennialManPart1_B_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Prototype Memory Core (blue)"
+  },
+  {
+    "Id": "Quest_Item_Story_BicentennialManPart2",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_BicentennialManPart2/Quest_Item_Story_BicentennialManPart2.Quest_Item_Story_BicentennialManPart2_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Prototype Arm"
+  },
+  {
+    "Id": "Quest_Item_Story_BicentennialManPart3",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_BicentennialManPart3/Quest_Item_Story_BicentennialManPart3.Quest_Item_Story_BicentennialManPart3_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "Prototype Claw"
+  },
+  {
+    "Id": "Quest_Item_Story_GlidePermission",
+    "ProfileId": "/Game/World_DLC3/Quests/Quest_Story_DLC3/Items/Quest_Item_Story_GlidePermission/Quest_Item_Story_GlidePermission.Quest_Item_Story_GlidePermission_C",
+    "Type": "quest_item",
+    "World": "World_DLC3",
+    "Name": "D.H. Transit Glyph"
   },
   {
     "Id": "Material_RootGanglia",
@@ -7651,6 +8578,13 @@
     "Name": "Old Flute"
   },
   {
+    "Id": "Material_Engram_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Material_Engram_Warden.Material_Engram_Warden_C",
+    "Type": "material",
+    "World": "World_DLC3",
+    "Name": "Weathered Mechanism"
+  },
+  {
     "Id": "Material_ShinningEssenceEcho",
     "ProfileId": "/Game/World_Nerud/Items/Materials/Boss/ShinningEssenceEcho/Material_ShinningEssenceEcho.Material_ShinningEssenceEcho_C",
     "Type": "material",
@@ -7695,6 +8629,42 @@
     "Type": "material",
     "World": "World_DLC1",
     "Name": "Tormentor's Pommel"
+  },
+  {
+    "Id": "Material_ReplicationPod",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/Miniboss/ReplicationPod/Material_ReplicationPod.Material_ReplicationPod_C",
+    "Type": "material",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_VoidlightCore",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/Miniboss/VoidlightCore/Material_VoidlightCore.Material_VoidlightCore_C",
+    "Type": "material",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_BlackMetalBars",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/World/BlackGreatswordPart/Material_BlackMetalBars.Material_BlackMetalBars_C",
+    "Type": "material",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_IonRod",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/World/IonRod/Material_IonRod.Material_IonRod_C",
+    "Type": "material",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_BlackMass",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/WorldBoss/BlackMass/Material_BlackMass.Material_BlackMass_C",
+    "Type": "material",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_EternityChamber",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/WorldBoss/EternityChamber/Material_EternityChamber.Material_EternityChamber_C",
+    "Type": "material",
+    "World": "World_DLC3"
   },
   {
     "Id": "3E4C2F02-472BB871-BE76D7A8-E869D8C2",
@@ -8167,6 +9137,79 @@
     "Name": "Break 15 Statues - Break X Statues"
   },
   {
+    "Id": "8B787504-4CE02B79-4CC1B6A1-2D37339E",
+    "Type": "challenge",
+    "Name": "Earth Not Orth - Earth Not Orth"
+  },
+  {
+    "Id": "36E2312D-49857276-AE2D16B5-729BF8F4",
+    "Type": "challenge",
+    "Name": "Defeat the OTK without taking any damage. - Defeat OTK No Hit"
+  },
+  {
+    "Id": "A2B810D7-4341BABE-D2BB1C9B-D5F918C8",
+    "Type": "challenge",
+    "Name": "Defeat 50 Boss Rush Bosses - Defeat 50 Boss Rush Bosses",
+    "ChallengeCount": "50"
+  },
+  {
+    "Id": "115F6BF6-41A6EFA1-344FCFB9-9909A3B4",
+    "Type": "challenge",
+    "Name": "Defeat 200 Boss Rush Bosses - Defeat 200 Boss Rush Bosses",
+    "ChallengeCount": "200"
+  },
+  {
+    "Id": "F70CDC55-4C3C3957-DC98CCB3-7AAB2E21",
+    "Type": "challenge",
+    "Name": "Defeat 500 Boss Rush Bosses - Defeat 500 Boss Rush Bosses",
+    "ChallengeCount": "500"
+  },
+  {
+    "Id": "ECD1D243-4D0074C1-CACC2493-4C238A0E",
+    "Type": "challenge",
+    "Name": "Finish the Polygun puzzle and pick up the Polygun. - Polygun Pick Up"
+  },
+  {
+    "Id": "62E8ECE8-417B4007-9A9CA7B3-4CA31B84",
+    "Type": "challenge",
+    "Name": "Finish the Dranception puzzle and pick up the Anguish. - Anguish Pick Up"
+  },
+  {
+    "Id": "49FB7B78-4FF207C3-205B1A9D-AF1DB151",
+    "Type": "challenge",
+    "Name": "Finish the Genesis puzzle and pick up the Genesis. - Genesis Pick Up"
+  },
+  {
+    "Id": "880D2F10-4F7C56FB-2DA007B2-6AA19D16",
+    "Type": "challenge",
+    "Name": "Finish the Redeemer puzzle and pick up the Redeemer. - Redeemer Pick Up"
+  },
+  {
+    "Id": "104253BD-4E2928B5-EEC5CF92-6A473595",
+    "Type": "challenge",
+    "Name": "Finish the QuiltedHeart puzzle and pick up the QuiltedHeart. - Quilted Heart Pick Up"
+  },
+  {
+    "Id": "8942AAF3-4448E2E0-A2AC3ABC-492B2288",
+    "Type": "challenge",
+    "Name": "Finish the VoidHeart puzzle and pick up the VoidHeart. - Void Heart Pick Up"
+  },
+  {
+    "Id": "A84FA162-461582E8-10D542BF-889BE1D1",
+    "Type": "challenge",
+    "Name": "Finish the OTKSigil puzzle and pick up the OTKSigil. - OTK Sigil Pick Up"
+  },
+  {
+    "Id": "11E5C7ED-4669364D-C33790BF-061195FB",
+    "Type": "challenge",
+    "Name": "Finish the NimuesRibbon puzzle and pick up the NimuesRibbon. - Nimues Ribbon Pick Up"
+  },
+  {
+    "Id": "882EA752-4A6AA5C9-E9378693-BEDE54DB",
+    "Type": "challenge",
+    "Name": "Finish the All Seeing Eye puzzle and pick up the All Seeing Eye. - All Seeing Eye Pick Up"
+  },
+  {
     "Id": "95D6799E-449077F7-0969C7AB-8CD29A2C",
     "Type": "achievement",
     "Name": "Blue Goddess - Meet Nimue"
@@ -8467,6 +9510,31 @@
     "Name": "Triple Takeover - Acquire the Trinity Crossbow"
   },
   {
+    "Id": "0F177AA3-4FFFC7FD-019205AC-13559886",
+    "Type": "achievement",
+    "Name": "The Ultimate Doom - Complete The Dark Horizon Story"
+  },
+  {
+    "Id": "8E42D8E3-48F443F9-B816179B-7A4F34A7",
+    "Type": "achievement",
+    "Name": "B.O.T. - Find the Good in the Prototype"
+  },
+  {
+    "Id": "93ECCBB0-454ED99C-4A9F1D93-C6902409",
+    "Type": "achievement",
+    "Name": "The Master Builder - Fulfill Spark's Mission"
+  },
+  {
+    "Id": "4FF54C3D-4E422E31-9C11AD9A-42CC45D9",
+    "Type": "achievement",
+    "Name": "Master of Technology - Acquire the Warden Archetype"
+  },
+  {
+    "Id": "EDBEEF35-49EB3241-14341B81-D5D92498",
+    "Type": "achievement",
+    "Name": "Still Not a Janitor - Hear the Custodian's Confession"
+  },
+  {
     "Id": "Quest_Boss_Faelin",
     "Type": "event",
     "World": "World_Fae",
@@ -8537,6 +9605,14 @@
     "Name": "Lydusa",
     "Subtype": "boss",
     "EventLocation": "The Bloodless Throne"
+  },
+  {
+    "Id": "Quest_Boss_AlepsisTaura",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "Alepsis Taura",
+    "Subtype": "boss",
+    "EventLocation": "The Convergence"
   },
   {
     "Id": "Quest_Injectable_FieryGraveyard",
@@ -8791,6 +9867,27 @@
     "Subtype": "injectable"
   },
   {
+    "Id": "Quest_Injectable_Tower_DLC",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "Crop Lab",
+    "Subtype": "injectable"
+  },
+  {
+    "Id": "Quest_Injectable_Overload_DLC",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "Power Hub",
+    "Subtype": "injectable"
+  },
+  {
+    "Id": "Quest_Injectable_SecurityDrone_DLC",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "Security Drone Maze",
+    "Subtype": "injectable"
+  },
+  {
     "Id": "Quest_Miniboss_Abomination",
     "Type": "event",
     "World": "World_Nerud",
@@ -8917,6 +10014,22 @@
     "Name": "The Stonewarden",
     "Subtype": "miniboss",
     "EventLocation": "Earthen Coliseum"
+  },
+  {
+    "Id": "Quest_Miniboss_Amalgam",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "Amalgam Kel'Roth and Amalgam Relis",
+    "Subtype": "miniboss",
+    "EventLocation": "Mucid Terrarium"
+  },
+  {
+    "Id": "Quest_Miniboss_Harvester",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Name": "N'Erudian Reaper",
+    "Subtype": "miniboss",
+    "EventLocation": "Detritus Foundry"
   },
   {
     "Id": "Quest_OverworldPOI_ClockTower",
@@ -9172,6 +10285,27 @@
     "World": "World_DLC2",
     "Subtype": "dungeon",
     "EventLocation": "Proving Grounds"
+  },
+  {
+    "Id": "Quest_SideD_GasChamber",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Subtype": "dungeon",
+    "EventLocation": "Stagnant Manufactory"
+  },
+  {
+    "Id": "Quest_SideD_CargoBelt",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Subtype": "dungeon",
+    "EventLocation": "Logistics Bridge"
+  },
+  {
+    "Id": "Quest_SideD_ShiftingCitadel",
+    "Type": "event",
+    "World": "World_DLC3",
+    "Subtype": "dungeon",
+    "EventLocation": "Athenaeum Wek"
   },
   {
     "Id": "Char_Forgotten_Jumper_Aberration",
@@ -9769,6 +10903,54 @@
     "SpawnReference": "Quest_SideD_RootMadness"
   },
   {
+    "Id": "Char_Nerud_Amalgam_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "Void Amalgamate",
+    "SpawnType": "SideD",
+    "SpawnReference": "Quest_SideD_CargoBelt"
+  },
+  {
+    "Id": "Char_Nerud_CS_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "The Prototype",
+    "SpawnType": "Location",
+    "SpawnReference": "Agronomy Sector"
+  },
+  {
+    "Id": "Char_Nerud_Harvester_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "Astral Harvester",
+    "SpawnType": "Location",
+    "SpawnReference": "Agronomy Sector"
+  },
+  {
+    "Id": "Char_Nerud_Psyker_Hermit_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "Inverted Shambler",
+    "SpawnType": "Injectable",
+    "SpawnReference": "Quest_Injectable_Tower_DLC"
+  },
+  {
+    "Id": "Char_Nerud_Sentinel_Variant_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "V. Sentinel-23",
+    "SpawnType": "Injectable",
+    "SpawnReference": "Quest_SideD_GasChamber"
+  },
+  {
+    "Id": "Char_DLC3_Phantom_Blackhole_Aberration",
+    "Type": "aberration",
+    "World": "World_DLC3",
+    "Name": "Netherbound Specter",
+    "SpawnType": "SideD",
+    "SpawnReference": "Quest_SideD_ShiftingCitadel"
+  },
+  {
     "Id": "AccountAward_FinishCampaign_Survivor",
     "Type": "award",
     "Name": "Finish Campaign (Survivor)",
@@ -9877,6 +11059,78 @@
     "Challenge": "D8479145-44C2D683-74BE74A1-ADDF77F8"
   },
   {
+    "Id": "AcountAward_SparkWard13_Earth",
+    "Type": "award",
+    "Name": "Earth Not Orth 2",
+    "Challenge": "8B787504-4CE02B79-4CC1B6A1-2D37339E"
+  },
+  {
+    "Id": "AcountAward_SparkWard13",
+    "Type": "award",
+    "Name": "Earth Not Orth 1"
+  },
+  {
+    "Id": "AccountAward_Polygun",
+    "Type": "award",
+    "Name": "Polygun Pick Up",
+    "Challenge": "ECD1D243-4D0074C1-CACC2493-4C238A0E"
+  },
+  {
+    "Id": "AccountAward_Anguish",
+    "Type": "award",
+    "Name": "Anguish Pick Up",
+    "Challenge": "62E8ECE8-417B4007-9A9CA7B3-4CA31B84"
+  },
+  {
+    "Id": "AccountAward_Genesis",
+    "Type": "award",
+    "Name": "Genesis Pick Up",
+    "Challenge": "49FB7B78-4FF207C3-205B1A9D-AF1DB151"
+  },
+  {
+    "Id": "AccountAward_Redeemer",
+    "Type": "award",
+    "Name": "Redeemer Pick Up",
+    "Challenge": "880D2F10-4F7C56FB-2DA007B2-6AA19D16"
+  },
+  {
+    "Id": "AccountAward_QuiltedHeart",
+    "Type": "award",
+    "Name": "Quilted Heart Pick Up",
+    "Challenge": "104253BD-4E2928B5-EEC5CF92-6A473595"
+  },
+  {
+    "Id": "AccountAward_VoidHeart",
+    "Type": "award",
+    "Name": "Void Heart Pick Up",
+    "Challenge": "8942AAF3-4448E2E0-A2AC3ABC-492B2288"
+  },
+  {
+    "Id": "AccountAward_OneTrueKingSigil",
+    "Type": "award",
+    "Name": "OTK Sigil Pick Up",
+    "Challenge": "A84FA162-461582E8-10D542BF-889BE1D1"
+  },
+  {
+    "Id": "AccountAward_NimuesRibbon",
+    "Type": "award",
+    "Name": "Nimues Ribbon Pick Up",
+    "Challenge": "11E5C7ED-4669364D-C33790BF-061195FB"
+  },
+  {
+    "Id": "AccountAward_AllSeeingEye",
+    "Type": "award",
+    "Name": "All Seeing Eye Pick Up",
+    "AccountAward": true,
+    "Challenge": "882EA752-4A6AA5C9-E9378693-BEDE54DB"
+  },
+  {
+    "Id": "AccountAward_TrinityCrossbow",
+    "Type": "award",
+    "Name": "Acquire the Trinity Crossbow",
+    "Challenge": "AD07B72B-4D493F13-C91F2E91-8A1F9D17"
+  },
+  {
     "Id": "Quest_MainCampaign",
     "Type": "quest",
     "World": "World_Base",
@@ -9909,6 +11163,13 @@
     "Type": "quest",
     "World": "World_DLC2",
     "Name": "The Forgotten Kingdom",
+    "Subtype": "story"
+  },
+  {
+    "Id": "Quest_Quest_Story_DLC3",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "The Dark Horizon",
     "Subtype": "story"
   },
   {
@@ -10061,6 +11322,14 @@
     "EventLocation": "Forgotten Prison"
   },
   {
+    "Id": "Quest_Quest_Boss_AlepsisTaura",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Alepsis Taura",
+    "Subtype": "boss",
+    "EventLocation": "The Convergence"
+  },
+  {
     "Id": "Quest_Quest_Miniboss_Abomination",
     "Type": "quest",
     "World": "World_Nerud",
@@ -10187,6 +11456,22 @@
     "Name": "Sunken Witch",
     "Subtype": "miniboss",
     "EventLocation": "Sunken Haunt"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Amalgam",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Amalgam Kel'Roth and Amalgam Relis",
+    "Subtype": "miniboss",
+    "EventLocation": "Mucid Terrarium"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Harvester",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "N'Erudian Reaper",
+    "Subtype": "miniboss",
+    "EventLocation": "Detritus Foundry"
   },
   {
     "Id": "Quest_Quest_SideD_CathedralOfSeasons",
@@ -10357,6 +11642,244 @@
     "Subtype": "dungeon"
   },
   {
+    "Id": "Quest_Quest_SideD_GasChamber",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Stagnant Manufactory",
+    "Subtype": "dungeon"
+  },
+  {
+    "Id": "Quest_Quest_SideD_CargoBelt",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Logistics Bridge",
+    "Subtype": "dungeon"
+  },
+  {
+    "Id": "Quest_Quest_SideD_ShiftingCitadel",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Athenaeum Wek",
+    "Subtype": "dungeon"
+  },
+  {
+    "Id": "Quest_Quest_RootEarth_TowerBoss_BR",
+    "Type": "quest",
+    "World": "World_Root",
+    "Name": "Annihilation",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_Faelin_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Faelin",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_Faerlin_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Faerin",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_NightWeaver_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Nightweaver",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_BloatKing_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Bloat King",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_DranGrenadier_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Gwentdil The Unburnt",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_FaeArchon_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "Magister Dullain",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_RedPrince_BR",
+    "Type": "quest",
+    "World": "World_Fae",
+    "Name": "The Red Prince",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_ManyFaces_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Corruptor",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_Ravager_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Corrupted Ravager",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_MotherMind_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Mother Mind",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_RootCultist_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Legion",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_RootHorror_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Kaeula's Shadow",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Shrewd_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Shrewd",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_NerudGuardian_Alt_BR",
+    "Type": "quest",
+    "World": "World_Jungle",
+    "Name": "Sha'Hala (Alt)",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_NerudGuardian_Normal_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "Sha'Hala",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_TalRatha_Meta_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "Tal'Ratha (Meta)",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_TalRatha_Normal_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "Tal'Ratha",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Abomination_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "Abomination",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_CustodianEye_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "The Custodian's Eye",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Hatchery_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "Primogenitor",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Phantom_BR",
+    "Type": "quest",
+    "World": "World_Nerud",
+    "Name": "The Astropath",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_OneTrueKing_BR",
+    "Type": "quest",
+    "World": "World_DLC1",
+    "Name": "The One True King",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Impaler_BR",
+    "Type": "quest",
+    "World": "World_DLC1",
+    "Name": "Bruin, Blade of The King",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Witch_BR",
+    "Type": "quest",
+    "World": "World_DLC1",
+    "Name": "Sunken Witch",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_Lydusa_BR",
+    "Type": "quest",
+    "World": "World_DLC2",
+    "Name": "Lydusa",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Kiln_BR",
+    "Type": "quest",
+    "World": "World_DLC2",
+    "Name": "Cinderclad Monolith",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_ShiftingSoldier_BR",
+    "Type": "quest",
+    "World": "World_DLC2",
+    "Name": "The Stonewarden",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Boss_AlepsisTaura_BR",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Alepsis Taura",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Amalgam_BR",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "Amalgam Kel'Roth and Amalgam Relis",
+    "Subtype": "boss rush"
+  },
+  {
+    "Id": "Quest_Quest_Miniboss_Harvester_BR",
+    "Type": "quest",
+    "World": "World_DLC3",
+    "Name": "N'Erudian Reaper",
+    "Subtype": "boss rush"
+  },
+  {
     "Id": "Archetype_Invoker",
     "ProfileId": "/Game/World_DLC2/Items/Archetypes/Invoker/Archetype_Invoker.Archetype_Invoker_C",
     "Type": "archetype",
@@ -10433,6 +11956,12 @@
     "ProfileId": "/Game/World_DLC1/Items/Archetypes/Ritualist/Archetype_Ritualist.Archetype_Ritualist_C",
     "Type": "archetype",
     "World": "World_DLC1"
+  },
+  {
+    "Id": "Archetype_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Archetype_Warden.Archetype_Warden_C",
+    "Type": "archetype",
+    "World": "World_DLC3"
   },
   {
     "Id": "Mod_FusionCannon",
@@ -10586,13 +12115,6 @@
     "WeaponOrMod": "Weapon_CrescentMoon"
   },
   {
-    "Id": "Mod_Fracture",
-    "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Fracture/Mod_Fracture.Mod_Fracture_C",
-    "Type": "specialmod",
-    "World": "World_Base",
-    "WeaponOrMod": "Weapon_Godsplitter"
-  },
-  {
     "Id": "Mod_Ouroboros",
     "ProfileId": "/Game/World_Base/Items/Weapons/LongGuns/Special/Deceit/Mod_Ouroboros/Mod_Ouroboros.Mod_Ouroboros_C",
     "Type": "specialmod",
@@ -10699,6 +12221,27 @@
     "WeaponOrMod": "Weapon_Thorn"
   },
   {
+    "Id": "Mod_MegaDrive",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Genesis/Mod_MegaDrive.Mod_MegaDrive_C",
+    "Type": "specialmod",
+    "World": "World_DLC3",
+    "WeaponOrMod": "Weapon_Genesis"
+  },
+  {
+    "Id": "Mod_RecoilDampener",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Monorail/Mod_RecoilDampener.Mod_RecoilDampener_C",
+    "Type": "specialmod",
+    "World": "World_DLC3",
+    "WeaponOrMod": "Weapon_Monorail"
+  },
+  {
+    "Id": "Mod_Aftermath",
+    "ProfileId": "/Game/World_DLC3/Items/Weapons/Redeemer/Mod_Aftermath.Mod_Aftermath_C",
+    "Type": "specialmod",
+    "World": "World_DLC3",
+    "WeaponOrMod": "Weapon_Redeemer"
+  },
+  {
     "Id": "Consumable_DragonHeart",
     "ProfileId": "/Game/Items/Common/Consumable_DragonHeart.Consumable_DragonHeart_C",
     "Type": "relic",
@@ -10723,7 +12266,8 @@
     "World": "World_Base",
     "Name": "Melee Critical Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_MeleeAttackSpeed",
@@ -10748,7 +12292,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_AmmoReserves",
@@ -10773,7 +12318,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_ConsumableDuration",
@@ -10797,7 +12343,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_SpreadRecovery",
@@ -10805,7 +12352,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_StaminaCosts",
@@ -10814,7 +12362,8 @@
     "World": "World_Base",
     "Name": "Stamina Cost",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_StaminaRecoveryDelay",
@@ -10822,7 +12371,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_WeaponSpread",
@@ -10855,7 +12405,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_DamageReduction",
@@ -10871,7 +12422,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_GreyHealthRate",
@@ -10903,7 +12455,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_ModDuration",
@@ -10969,7 +12522,8 @@
     "World": "World_Base",
     "Name": "Ranged Critical Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_ElementalDamage",
@@ -10977,7 +12531,8 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_ModDamage",
@@ -11010,7 +12565,8 @@
     "World": "World_Base",
     "Name": "Weakspot Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "Disabled": true
   },
   {
     "Id": "RelicFragment_SkillDamage",
@@ -11025,6 +12581,187 @@
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Power/RelicFragment_StaggerDamage.RelicFragment_StaggerDamage_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Note": "Random drop",
+    "Undetectable": true,
+    "Disabled": true
+  },
+  {
+    "Id": "RelicFragment_ArmorFlat",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ArmorFlat.RelicFragment_ArmorFlat_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Base Armor",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_CriticalDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_CriticalDamage.RelicFragment_CriticalDamage_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Critical Damage",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_EvadeDistance",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_EvadeDistance.RelicFragment_EvadeDistance_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Evade Distance",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_EvadeSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_EvadeSpeed.RelicFragment_EvadeSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Evade Speed",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ExplosiveDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ExplosiveDamage.RelicFragment_ExplosiveDamage_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Explosive Damage",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_HealthFlat",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_HealthFlat.RelicFragment_HealthFlat_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Base Health",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_HealthRegen",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_HealthRegen.RelicFragment_HealthRegen_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Health Regeneration",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_HeatGenReduction",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_HeatGenReduction.RelicFragment_HeatGenReduction_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Heat Generation",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_IdealRange",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_IdealRange.RelicFragment_IdealRange_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Weapon Ideal Range",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ModCritChance",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ModCritChance.RelicFragment_ModCritChance_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Mod Critical Chance",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ModGeneration",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ModGeneration.RelicFragment_ModGeneration_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Mod Generation",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_MovementSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_MovementSpeed.RelicFragment_MovementSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Movement Speed",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ProjectileSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ProjectileSpeed.RelicFragment_ProjectileSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Projectile Speed",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_RangedChargeSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_RangedChargeSpeed.RelicFragment_RangedChargeSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Firearm Charge Time",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ReloadSpeed",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ReloadSpeed.RelicFragment_ReloadSpeed_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Reload Speed",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_ShieldDuration",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ShieldDuration.RelicFragment_ShieldDuration_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Shield Duration",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_SkillCritChance",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_SkillCritChance.RelicFragment_SkillCritChance_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Skill Critical Chance",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_StaminaFlat",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_StaminaFlat.RelicFragment_StaminaFlat_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Base Stamina",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_StatusDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_StatusDamage.RelicFragment_StatusDamage_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Status Damage",
+    "Note": "Random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "RelicFragment_WeakspotDamage",
+    "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_WeakspotDamage.RelicFragment_WeakspotDamage_C",
+    "Type": "fragment",
+    "World": "World_Base",
+    "Name": "Weakspot Damage",
     "Note": "Random drop",
     "Undetectable": true
   },
@@ -11282,6 +13019,27 @@
     "Name": "Way of Kaeula"
   },
   {
+    "Id": "Skill_SummonCombatDrone",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Skills/CombatDrone/Skill_SummonCombatDrone.Skill_SummonCombatDrone_C",
+    "Type": "skill",
+    "World": "World_DLC3",
+    "Name": "Drone: Combat"
+  },
+  {
+    "Id": "Skill_SummonHealDrone",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Skills/HealDrone/Skill_SummonHealDrone.Skill_SummonHealDrone_C",
+    "Type": "skill",
+    "World": "World_DLC3",
+    "Name": "Drone: Heal"
+  },
+  {
+    "Id": "Skill_SummonShieldDrone",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Skills/ShieldDrone/Skill_SummonShieldDrone.Skill_SummonShieldDrone_C",
+    "Type": "skill",
+    "World": "World_DLC3",
+    "Name": "Drone: Shield"
+  },
+  {
     "Id": "Armor_Body_Nude",
     "ProfileId": "/Game/World_Base/Items/Armor/Nude/Armor_Body_Nude.Armor_Body_Nude_C",
     "Type": "armorspecial",
@@ -11437,6 +13195,23 @@
     "Type": "concoction",
     "World": "World_Base",
     "Note": "Can be bought from Mudtooth in Ward 13, or Drzyr Replicator on N'Erud, once you found the item in the world on N'Erud as random drop",
+    "Undetectable": true
+  },
+  {
+    "Id": "Consumable_MudtoothsSnakeOil",
+    "ProfileId": "/Game/World_DLC3/Items/Consumables/MudtoothSnakeOil/Consumable_MudtoothsSnakeOil.Consumable_MudtoothsSnakeOil_C",
+    "Type": "concoction",
+    "World": "World_DLC3",
+    "Name": "Mudtooth's Snake Oil",
+    "Note": "Can be bought from Mudtooth in Ward 13, once you obtained the following items and heard the Mudtooth's story: Nebula, Spectral Blade, Twisted Arbalest, Stonebreaker, Feral Judgement, Merciless, Red Doe Staff, Monolith, Mirage, Cube Gun, Alpha/Omega, Trinity Crossbow, Godsplitter, Polygun, Thorn, Anguish, Mudtooth's Hat, Monorail, Dark Matter, Gauntlets, Genesis, Nightfall, Nightshade, Deceit, Monarch, Wrathbringer, Aphelion, Gas Giant",
+    "Undetectable": true
+  },
+  {
+    "Id": "Consumable_NumbingAgent",
+    "ProfileId": "/Game/World_DLC3/Items/Consumables/NumbingAgent/Consumable_NumbingAgent.Consumable_NumbingAgent_C",
+    "Type": "concoction",
+    "World": "World_DLC3",
+    "Note": "Can be bought from Mudtooth in Ward 13, once you obtained it from Duane for the first time by giving Duane Crop Sample from the Crop Lab event",
     "Undetectable": true
   },
   {
@@ -11692,6 +13467,14 @@
     "Undetectable": true
   },
   {
+    "Id": "Consumable_LightExtract",
+    "ProfileId": "/Game/World_DLC3/Items/Consumables/LightExtract/Consumable_LightExtract.Consumable_LightExtract_C",
+    "Type": "consumable",
+    "World": "World_DLC3",
+    "Note": "Can be bought from Reggies in Ward 13, once you found the item in the world on N'Erud as random drop",
+    "Undetectable": true
+  },
+  {
     "Id": "Consumable_DransDream",
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Injectable_BurningCity_DLC/Items/Consumable_Item_DLC_DransDream/Consumable_DransDream.Consumable_DransDream_C",
     "Type": "dream",
@@ -11798,6 +13581,24 @@
     "ProfileId": "/Game/World_Base/Items/Materials/Simulacrum/Material_Simulacrum.Material_Simulacrum_C",
     "Type": "currency",
     "World": "World_Base"
+  },
+  {
+    "Id": "Material_AlienAlloy",
+    "ProfileId": "/Game/World_DLC3/Items/Special/AlienAlloy/Material_AlienAlloy.Material_AlienAlloy_C",
+    "Type": "currency",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_MythrilAlloy",
+    "ProfileId": "/Game/World_DLC3/Items/Special/MythrilAlloy/Material_MythrilAlloy.Material_MythrilAlloy_C",
+    "Type": "currency",
+    "World": "World_DLC3"
+  },
+  {
+    "Id": "Material_AncientAlloy",
+    "ProfileId": "/Game/World_DLC3/Items/Special/AncientAlloy/Material_AncientAlloy.Material_AncientAlloy_C",
+    "Type": "currency",
+    "World": "World_DLC3"
   },
   {
     "Id": "Award_Medic",
@@ -11917,5 +13718,112 @@
     "Type": "award",
     "World": "World_DLC2",
     "Name": "Unlock Invoker"
+  },
+  {
+    "Id": "Award_Warden",
+    "ProfileId": "/Game/World_DLC3/Items/Archetypes/Warden/Award_Warden.Award_Warden_C",
+    "Type": "award",
+    "World": "World_DLC3",
+    "Name": "Unlock Warden"
+  },
+  {
+    "Id": "Item_AlloyExtractor",
+    "ProfileId": "/Game/World_DLC3/Items/Special/AlloyExtractor/Item_AlloyExtractor.Item_AlloyExtractor_C",
+    "Type": "special",
+    "World": "World_DLC3",
+    "Name": "Alloy Extractor"
+  },
+  {
+    "Id": "PrismOfGreed",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfGreed.PrismOfGreed_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Greed",
+    "DropType": "Vendor",
+    "DropReference": "Cass",
+    "Note": "Buy from Cass at Ward 13"
+  },
+  {
+    "Id": "PrismOfHatred",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfHatred.PrismOfHatred_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Hatred",
+    "DropType": "Progression",
+    "Prerequisite": "A2B810D7-4341BABE-D2BB1C9B-D5F918C8",
+    "Note": "Defeat 50 bosses in boss rush",
+    "Undetectable": true
+  },
+  {
+    "Id": "PrismOfJealousy",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfJealousy.PrismOfJealousy_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Jealousy",
+    "DropType": "Progression",
+    "Note": "Get from Wallace in exchange for yellow, blue and red Prismatic Stones.Dig them out by using the shovel bought from Brabus. The yellow stone is in the back left corner of the firegin range in Ward 13. The red stone is on the Root Earth not far from the second checkpoint in the Ashen Wasteland. Once you reach the check point turn back where you came from and go to the left back corner and dig. The blue stone is in thee Labyrinth in general vicinity of the glitching portal where you get cipher rod for Enigma, not far from the spot where you drop from the cycling portal into the area"
+  },
+  {
+    "Id": "PrismOfLethargy",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfLethargy.PrismOfLethargy_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Lethargy",
+    "DropType": "Vendor",
+    "DropReference": "Dwell",
+    "Note": "Buy from Dwell at Ward 13"
+  },
+  {
+    "Id": "PrismOfPassion",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfPassion.PrismOfPassion_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Passion",
+    "DropType": "Progression",
+    "Prerequisite": "115F6BF6-41A6EFA1-344FCFB9-9909A3B4",
+    "Note": "Defeat 200 bosses in boss rush",
+    "Undetectable": true
+  },
+  {
+    "Id": "PrismOfPride",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfPride.PrismOfPride_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Pride",
+    "DropType": "Progression",
+    "Prerequisite": "F70CDC55-4C3C3957-DC98CCB3-7AAB2E21",
+    "Note": "Defeat 500 bosses in boss rush",
+    "Undetectable": true
+  },
+  {
+    "Id": "PrismOfVoracity",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/UniquePrisms/PrismOfVoracity.PrismOfVoracity_C",
+    "Type": "prism",
+    "World": "World_Base",
+    "Name": "Prism of Voracity",
+    "DropType": "Progression",
+    "Note": "Kill a world boss",
+    "Undetectable": true
+  },
+  {
+    "Id": "Material_PrismaticStone_1",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/World/PrismaticStone/Material_PrismaticStone_1.Material_PrismaticStone_1_C",
+    "Type": "material",
+    "World": "World_DLC3",
+    "Name": "Prismatic Stone (yellow)"
+  },
+  {
+    "Id": "Material_PrismaticStone_2",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/World/PrismaticStone/Material_PrismaticStone_2.Material_PrismaticStone_2_C",
+    "Type": "material",
+    "World": "World_DLC3",
+    "Name": "Prismatic Stone (blue)"
+  },
+  {
+    "Id": "Material_PrismaticStone_3",
+    "ProfileId": "/Game/World_DLC3/Items/CraftingMaterial/World/PrismaticStone/Material_PrismaticStone_3.Material_PrismaticStone_3_C",
+    "Type": "material",
+    "World": "World_DLC3",
+    "Name": "Prismatic Stone (red)"
   }
 ]
