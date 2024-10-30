@@ -862,8 +862,7 @@
     "ProfileId": "/Game/World_DLC3/Items/Trinkets/Amulets/ChefMedal/Amulet_ChefMedal.Amulet_ChefMedal_C",
     "Type": "amulet",
     "World": "World_DLC3",
-    "DropType": "Vendor",
-    "DropReference": "Duane",
+    "DropType": "Progression",
     "Note": "Obtained from Duane in Ward 13 after acquiring the Meat Shake, Egg Drink, and Numbing Agent",
     "Undetectable": true
   },
@@ -7797,7 +7796,7 @@
     "World": "World_Jungle",
     "Name": "Fruit of Death",
     "DropType": "Location",
-    "DropReference": "Forbidden Grove",
+    "DropReference": "The Forbidden Grove",
     "Prerequisite": "Amulet_RavagersMark"
   },
   {

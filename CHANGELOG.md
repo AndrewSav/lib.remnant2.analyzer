@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.27 (30 Oct 2024)
+- Improved looted detection for Repair tool
+- Fixed Mortal Coil not detecting when Forbidden Grove is rolled
+- Fixed prerequisite detectction counting zero quantity items as present
+
 ## v0.0.26 (28 Oct 2024)
 - Add DLC3 items
 

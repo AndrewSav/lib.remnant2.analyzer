@@ -182,7 +182,7 @@ public partial class Analyzer
         operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process additional looted markers");
         // Since we process Looted Markers from the first zone for every location
         // we do not want to display the missing loot marker message more than once per item. We will keep track of those here
-        HashSet<string> missingLootedMarkers = new();
+        HashSet<string> missingLootedMarkers = [];
         foreach (Zone zone in world.AllZones)
         {
             // Story associated loot items are attached to the first zone location in the save,
@@ -194,6 +194,9 @@ public partial class Analyzer
             {
                 foreach (LootedMarker marker in location.LootedMarkers.Union(firstL.LootedMarkers))
                 {
+                    if (marker.ProfileId == "/Game/World_DLC3/Items/Weapons/RepairTool/Weapon_RepairTool.Weapon_RepairTool_C" && marker.SpawnPointTags[0] == "Reward_SingleCore")
+                        continue;
+
                     LootItem? li = ItemDb.GetItemByProfileId(marker.ProfileId);
                     if (li == null)
                     {
@@ -429,13 +432,13 @@ public partial class Analyzer
 
             string itemProfileId = currentItem.Properties["ProfileId"];
 
-            if (profile.Inventory.Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            if (profile.Inventory.Where(y => y.Quantity is null or > 0).Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
             {
                 prerequisiteLogger.Information($"  Have '{cur}'");
                 return true;
             }
 
-            if (world.QuestInventory.Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
+            if (world.QuestInventory.Where(y => y.Quantity is null or > 0).Select(y => y.ProfileId.ToLowerInvariant()).Contains(itemProfileId.ToLowerInvariant()) && checkHave)
             {
                 prerequisiteLogger.Information($"   Have '{cur}'");
                 return true;
