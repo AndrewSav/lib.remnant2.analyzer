@@ -1,5 +1,9 @@
 # Changelog
 
+
+## v0.0.28 (2 Nov 2024)
+- Fix Cessation Bulbel detection
+
 ## v0.0.27 (30 Oct 2024)
 - Improved looted detection for Repair tool
 - Fixed Mortal Coil not detecting when Forbidden Grove is rolled

@@ -8056,7 +8056,9 @@
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_NimuesWard/Quest_Item_OTK_NimuesBloodWard.Quest_Item_OTK_NimuesBloodWard_C",
     "Type": "quest_item",
     "World": "World_DLC1",
-    "Name": "Nimue's Blood-Marred Vow"
+    "Name": "Nimue's Blood-Marred Vow",
+    "DropType": "Location",
+    "DropReference": "Forlorn Coast"
   },
   {
     "Id": "Quest_Item_OTK_NimuesWard",
