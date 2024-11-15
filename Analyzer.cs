@@ -114,11 +114,11 @@ public partial class Analyzer
                 }
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) archetypes");
-                Regex rArchetype = RegexArchetype();
-                string archetype = rArchetype
+                Regex regexArchetype = RegexArchetype();
+                string archetype = regexArchetype
                     .Match(profileNavigator.GetProperty("Archetype", character)?.Get<string>() ?? "")
                     .Groups["archetype"].Value;
-                string secondaryArchetype = rArchetype
+                string secondaryArchetype = regexArchetype
                     .Match(profileNavigator.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "")
                     .Groups["archetype"].Value;
                 operation.Complete();

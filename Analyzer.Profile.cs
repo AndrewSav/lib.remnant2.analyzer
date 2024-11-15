@@ -51,9 +51,9 @@ public partial class Analyzer
             string? archPath = archetypeProperty?.ToStringValue();
             string? secondaryArchPath = secondaryArchetypeProperty?.ToStringValue();
 
-            Regex rArchetype = RegexArchetype();
-            string archetype = rArchetype.Match(archPath ?? "").Groups["archetype"].Value;
-            string secondaryArchetype = rArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
+            Regex regexArchetype = RegexArchetype();
+            string archetype = regexArchetype.Match(archPath ?? "").Groups["archetype"].Value;
+            string secondaryArchetype = regexArchetype.Match(secondaryArchPath ?? "").Groups["archetype"].Value;
 
             Property? characterData = character.Properties!.Lookup
                 .SingleOrDefault(x => x.Key == "CharacterData").Value;

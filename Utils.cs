@@ -82,7 +82,8 @@ public partial class Utils
             "^Quest_Hidden_Item_.*",
             "^Quest_Item_DLC_DreamLevel$",
             "^SkillTrait_.*",
-            "^Weapon_Unarmed$"
+            "^Weapon_Unarmed$",
+            "^Relic_Charge_Pickup$"
         ];
         Regex r = new(string.Join('|',patterns));
         return r.IsMatch(item);
