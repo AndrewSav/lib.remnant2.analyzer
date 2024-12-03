@@ -2586,7 +2586,7 @@
     "Material": "Material_CeramicFlask",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Crafted from Ceramic Flask found in Proving Grounds location on Yaesha. After the forth and last checkpoint and finishing the final saw blades area, when you reach the lever, once you are ready turn left and jump through the whole in the floor"
+    "Note": "Crafted from Ceramic Flask found in Proving Grounds location on Yaesha. After the forth and last checkpoint and finishing the final saw blades area, when you reach the lever, once you are ready turn left and jump through the hole in the floor"
   },
   {
     "Id": "Mod_Heatwave",

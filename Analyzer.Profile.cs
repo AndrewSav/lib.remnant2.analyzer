@@ -99,4 +99,72 @@ public partial class Analyzer
 
         return [.. result];
     }
+
+    public static void CheckBuildNumber(string? folderPath = null)
+    {
+        ILogger logger = Log.Logger
+            .ForContext(Log.Category, "Analyze")
+            .ForContext("SourceContext", "Analyzer:Profile");
+
+        ILogger notifier = Log.Logger
+            .ForContext(Log.Category, "Analyze")
+            .ForContext("RemnantNotificationType", "Warning")
+            .ForContext("SourceContext", "Analyzer:Profile");
+
+        ILogger performance = Log.Logger
+            .ForContext(Log.Category, Log.Performance)
+            .ForContext("SourceContext", "Analyzer:Profile");
+
+        var qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Check build number {folderPath}");
+
+        string folder = folderPath ?? Utils.GetSteamSavePath();
+        string profilePath = Path.Combine(folder, "profile.sav");
+        List<string> result = [];
+
+        Operation operation = performance.OperationAt(LogEventLevel.Debug).Begin("Load Save file");
+        SaveFile profileSf = ReadWithRetry(profilePath);
+        operation.Complete();
+
+        if (profileSf.FileHeader.BuildNumber < BuildLevel)
+        {
+            notifier.Warning($"Profile save build number is {profileSf.FileHeader.BuildNumber}, supported build number is {BuildLevel}, Analyser might not work correctly, please update the game and touch the stone with each character");
+        }
+
+        ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Lookup
+            .Single(x => x.Key == "Characters").Value.Value!;
+        
+        for (int index = 0; index < ap.Items.Count; index++)
+        {
+            object? item = ap.Items[index];
+            ObjectProperty ch = (ObjectProperty)item!;
+            if (ch.ClassName == null) continue;
+
+            operation = performance.BeginOperation($"Character {result.Count + 1} (save_{index}) save load");
+
+            string savePath = Path.Combine(folder, $"save_{index}.sav");
+
+            SaveFile sf;
+            try
+            {
+                sf = ReadWithRetry(savePath);
+            }
+            catch (IOException e)
+            {
+                logger.Information($"Could not load {savePath}, {e}");
+                continue;
+            }
+
+
+            if (sf.FileHeader.BuildNumber < BuildLevel)
+            {
+                notifier.Warning($"Character {result.Count + 1} (save_{index}) save build number is {sf.FileHeader.BuildNumber}, supported build number is {BuildLevel}, Analyser might not work correctly, please update the game and touch the stone with each character");
+            }
+
+            result.Add(sf.FileHeader.BuildNumber.ToString());
+            operation.Complete();
+        }
+
+        qpOperation.Complete();
+
+    }
 }

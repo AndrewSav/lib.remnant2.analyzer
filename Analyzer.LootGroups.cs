@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using lib.remnant2.analyzer.Model;
+﻿using lib.remnant2.analyzer.Model;
 using System.Text.RegularExpressions;
 using Serilog;
 using SerilogTimings.Extensions;

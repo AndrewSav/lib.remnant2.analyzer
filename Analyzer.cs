@@ -17,6 +17,7 @@ namespace lib.remnant2.analyzer;
 
 public partial class Analyzer
 {
+    private const int BuildLevel = 453438;
 
     // We are not tracking consumables, concoctions and relic fragments
     // perhaps we should
@@ -166,6 +167,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) has mats");
                 StructProperty characterData = (StructProperty)character.Properties!.Lookup["CharacterData"].Value!;
+
                 List<ObjectiveProgress> objectives =
                     GetObjectives((ArrayStructProperty)profileNavigator.GetProperty("ObjectiveProgressList", characterData)!.Value!, 
                         result.Characters.Count, charSlotInternal);

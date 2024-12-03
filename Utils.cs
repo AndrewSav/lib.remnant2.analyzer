@@ -10,9 +10,11 @@ public partial class Utils
 {
     private static readonly Guid SavedGamesGuid = new("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
 
-    [DllImport("shell32.dll")]
+#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
+    [DllImport("shell32.dll")]
     private static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags,
+#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
         IntPtr hToken,
         out IntPtr pszPath);
 
@@ -83,7 +85,8 @@ public partial class Utils
             "^Quest_Item_DLC_DreamLevel$",
             "^SkillTrait_.*",
             "^Weapon_Unarmed$",
-            "^Relic_Charge_Pickup$"
+            "^Relic_Charge_Pickup$",
+            "^Armor_.*_Default$"
         ];
         Regex r = new(string.Join('|',patterns));
         return r.IsMatch(item);
