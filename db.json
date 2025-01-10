@@ -4454,7 +4454,7 @@
     "Name": "Zohee's Ring",
     "DropType": "Location",
     "DropReference": "The Red Throne",
-    "Note": "Found in the Tower of the Unseen location on N'erud. After you reach the checkpoint remove a Stellar-Powered Cells from a nearby door. Follow the path up to another door and unlock it with the Stellar-Powered Cells. Take the elevator up. Remove a Stellar-Powered Cells from a nearby door on the left and go down the elevator you came in on. Step on the elevator again but leave it before it goes up. Jump into the hole in the floor the gone elevator reveals. You will see a socket across the narrow bridge in front of you. Cross the bridge and insert the Stellar-Powered Cells, this will open a door to the elevator to your right. Jump off the bridge and take the elevator. The item will be in the room the elevator arrives to"
+    "Note": "Rewarded by Zohee in the Red Throne location on Yaesha. Decline The Eternal Empress' offer and let the guards arrest you. After defeating the Corruptor, return to Zohee at The Red Throne to receive this ring"
   },
   {
     "Id": "Ring_BisectedRing",
@@ -12363,8 +12363,7 @@
     "World": "World_Base",
     "Name": "Stamina Cost",
     "Note": "Random drop",
-    "Undetectable": true,
-    "Disabled": true
+    "Undetectable": true
   },
   {
     "Id": "RelicFragment_StaminaRecoveryDelay",
