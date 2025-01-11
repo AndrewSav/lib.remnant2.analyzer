@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 using lib.remnant2.analyzer.Enums;
 using lib.remnant2.analyzer.Model;
@@ -8,41 +7,6 @@ namespace lib.remnant2.analyzer;
 
 public partial class Utils
 {
-    private static readonly Guid SavedGamesGuid = new("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
-
-#pragma warning disable IDE0079 // Remove unnecessary suppression
-#pragma warning disable SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-    [DllImport("shell32.dll")]
-    private static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags,
-#pragma warning restore SYSLIB1054 // Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time
-        IntPtr hToken,
-        out IntPtr pszPath);
-
-    private static string GetSavePath()
-    {
-        IntPtr path = IntPtr.Zero;
-
-        try
-        {
-            int hr = SHGetKnownFolderPath(SavedGamesGuid, 0, IntPtr.Zero, out path);
-            Marshal.ThrowExceptionForHR(hr);
-            return $@"{Marshal.PtrToStringUni(path)}\Remnant2";
-        }
-        finally
-        {
-            Marshal.FreeCoTaskMem(path);
-        }
-    }
-
-    public static string GetSteamSavePath()
-    {
-        string? envPath = Environment.GetEnvironmentVariable("DEBUG_REMNANT_FOLDER");
-        if (envPath != null) return envPath;
-        string generalPath = GetSavePath();
-        string[] possiblePaths = Directory.GetDirectories($@"{generalPath}\Steam");
-        return possiblePaths[0];
-    }
-
     // ReSharper disable UnusedMember.Global
     public static string Capitalize(string word)
     {

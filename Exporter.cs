@@ -4,6 +4,7 @@ using lib.remnant2.saves.Navigation;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using System.Reflection;
+using lib.remnant2.analyzer.SaveLocation;
 
 namespace lib.remnant2.analyzer;
 
@@ -77,8 +78,9 @@ public class Exporter
 
     public static void Export(string targetFolder, string? folderPath, bool exportCopy, bool exportDecoded, bool exportJson)
     {
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        SaveFile profileSf = ExportFile(targetFolder, Path.Combine(folder, "profile.sav"), exportCopy, exportDecoded, exportJson);
+        string folder = folderPath ?? SaveUtils.GetSaveFolder();
+        string profilePath = SaveUtils.GetSavePath(folder, "profile")!;
+        SaveFile profileSf = ExportFile(targetFolder, profilePath, exportCopy, exportDecoded, exportJson);
 
         Navigator profile = new(profileSf);
         ArrayProperty ap = profile.GetProperty("Characters")!.Get<ArrayProperty>();
@@ -87,8 +89,9 @@ public class Exporter
         {
             object? item = ap.Items[index];
             ObjectProperty ch = (ObjectProperty)item!;
-            string path = Path.Combine(folder, $"save_{profile.Lookup(ch).Path[^1].Index}.sav");
-            if (File.Exists(path))
+            string? path = SaveUtils.GetSavePath(folder, $"save_{profile.Lookup(ch).Path[^1].Index}");
+
+            if (path !=null && File.Exists(path))
             {
                 ExportFile(targetFolder, path, exportCopy, exportDecoded, exportJson);
             }

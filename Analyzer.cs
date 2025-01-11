@@ -11,6 +11,8 @@ using Serilog;
 using SerilogTimings;
 using SerilogTimings.Extensions;
 using lib.remnant2.analyzer.Enums;
+using lib.remnant2.analyzer.SaveLocation;
+using System;
 
 
 namespace lib.remnant2.analyzer;
@@ -58,7 +60,6 @@ public partial class Analyzer
     public static Dataset Analyze(string? folderPath = null, Dataset? oldDataset = null)
     {
         ILogger logger = Log.Logger
-            .ForContext<Analyzer>()
             .ForContext(Log.Category, "Analyze")
             .ForContext<Analyzer>();
 
@@ -75,8 +76,8 @@ public partial class Analyzer
             AccountAwards = []
         };
 
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        string profilePath = Path.Combine(folder, "profile.sav");
+        string folder = folderPath ?? SaveUtils.GetSaveFolder();
+        string profilePath = SaveUtils.GetSavePath(folder,"profile")!;
         SaveFile profileSf = ReadWithRetry(profilePath);
         result.ProfileSaveFile = profileSf;
         operation.Complete();
@@ -180,7 +181,7 @@ public partial class Analyzer
                 {
                     loadouts = [];
                     List<Property> loadoutEntries = profileNavigator.GetProperties("Entries", profileLoadoutRecords);
-                    foreach (var loadoutEntry in loadoutEntries)
+                    foreach (Property loadoutEntry in loadoutEntries)
                     {
                         List<LoadoutRecord> loadout = [];
                         loadouts.Add(loadout);
@@ -207,7 +208,7 @@ public partial class Analyzer
                 Component? radialShortcutsComponent = profileNavigator.GetComponent("RadialShortcuts", characterData);
                 if (radialShortcutsComponent != null)
                 {
-                    var shortcutItems = profileNavigator.GetProperty("Items", radialShortcutsComponent);
+                    Property? shortcutItems = profileNavigator.GetProperty("Items", radialShortcutsComponent);
                     if (shortcutItems != null)
                     {
                         List<PropertyBag> quickSlotItems = shortcutItems
@@ -220,12 +221,12 @@ public partial class Analyzer
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) create profile");
-                var traitRank = profileNavigator.GetProperty("TraitRank", character);
-                var gender = profileNavigator.GetProperty("Gender", character);
-                var characterType = profileNavigator.GetProperty("CharacterType", character);
-                var powerLevel = profileNavigator.GetProperty("PowerLevel", character);
-                var itemLevel = profileNavigator.GetProperty("ItemLevel", character);
-                var lastSavedTraitPoints = profileNavigator.GetProperty("LastSavedTraitPoints", character);
+                Property? traitRank = profileNavigator.GetProperty("TraitRank", character);
+                Property? gender = profileNavigator.GetProperty("Gender", character);
+                Property? characterType = profileNavigator.GetProperty("CharacterType", character);
+                Property? powerLevel = profileNavigator.GetProperty("PowerLevel", character);
+                Property? itemLevel = profileNavigator.GetProperty("ItemLevel", character);
+                Property? lastSavedTraitPoints = profileNavigator.GetProperty("LastSavedTraitPoints", character);
 
                 Profile profile = new()
                 {
@@ -252,8 +253,8 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) save load");
 
-                string savePath = Path.Combine(folder, $"save_{charSlotInternal}.sav");
-                DateTime saveDateTime = File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
+                string? savePath = SaveUtils.GetSavePath(folder, $"save_{charSlotInternal}");
+                DateTime saveDateTime = savePath != null && File.Exists(savePath) ? File.GetLastWriteTime(savePath) : DateTime.MinValue;
 
                 // If this is not the first load, some saves might not have changed, so no point parsing them again
                 Character? oldCharacter = null;
@@ -277,6 +278,12 @@ public partial class Analyzer
                     };
                     result.Characters.Add(oldNewCharacter);
                     oldNewCharacter.Save.Campaign.ParentCharacter = oldNewCharacter;
+                    continue;
+                }
+
+                if (savePath == null)
+                {
+                    logger.Information($"Could not find save for index {charSlotInternal}");
                     continue;
                 }
 

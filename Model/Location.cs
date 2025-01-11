@@ -124,7 +124,7 @@ public class Location
 
     public static Location GetWard13()
     {
-        return new Location(
+        return new(
             name: "Ward 13",
             category: "Ward 13",
             worldStoneIdMap: [( "2_Waypoint_Town", "Ward 13" )],

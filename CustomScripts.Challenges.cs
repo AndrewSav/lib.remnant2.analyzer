@@ -58,7 +58,7 @@ internal static partial class CustomScripts
 
     private static bool LydusaCurse(RolledWorld world, string id)
     {
-        var lydusaZone = world.Zones.SingleOrDefault(x => x.Story == "The Forgotten Kingdom");
+        Zone? lydusaZone = world.Zones.SingleOrDefault(x => x.Story == "The Forgotten Kingdom");
         if (lydusaZone == null) return false;
         return !lydusaZone.Finished;
     }

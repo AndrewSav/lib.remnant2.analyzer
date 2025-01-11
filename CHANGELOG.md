@@ -1,6 +1,9 @@
 # Changelog
 
 
+## v0.0.33 (12 Jan 2025)
+- Add support for Microsoft Game pass saves
+
 ## v0.0.32 (11 Jan 2025)
 - Fix Zohee's Ring description, add back stamina cost fragment
 

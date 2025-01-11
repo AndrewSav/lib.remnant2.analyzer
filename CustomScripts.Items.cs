@@ -104,7 +104,7 @@ internal static partial class CustomScripts
             }
         }
 
-        var refs = lic.Zone!.Locations.SelectMany(x => x.DropReferences).ToList();
+        List<DropReference> refs = lic.Zone!.Locations.SelectMany(x => x.DropReferences).ToList();
 
         // Quests we can do in this save
         foreach (DropReference dropReference in refs)

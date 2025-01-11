@@ -8,7 +8,7 @@ public class Log
     public const string Performance = "Performance";
     public const string UnknownItems = "UnknownItems";
     public const string Prerequisites = "Prerequisites";
-    //public const string Misc = "Miscellaneous";
+    public const string SavesLocation = "SaveLocation";
 
     private static ILogger? _logger;
 

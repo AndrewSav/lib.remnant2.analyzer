@@ -5,6 +5,7 @@ using Serilog;
 using Serilog.Events;
 using SerilogTimings.Extensions;
 using SerilogTimings;
+using lib.remnant2.analyzer.SaveLocation;
 
 namespace lib.remnant2.analyzer;
 
@@ -24,10 +25,10 @@ public partial class Analyzer
             .ForContext(Log.Category, Log.Performance)
             .ForContext("SourceContext", "Analyzer:Profile");
 
-        var qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Quick profile {folderPath}");
+        Operation qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Quick profile {folderPath}");
 
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        string profilePath = Path.Combine(folder, "profile.sav");
+        string folder = folderPath ?? SaveUtils.GetSaveFolder();
+        string profilePath = SaveUtils.GetSavePath(folder, "profile")!;
         List<string> result = [];
 
         Operation operation = performance.OperationAt(LogEventLevel.Debug).Begin("Load Save file");
@@ -115,10 +116,10 @@ public partial class Analyzer
             .ForContext(Log.Category, Log.Performance)
             .ForContext("SourceContext", "Analyzer:Profile");
 
-        var qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Check build number {folderPath}");
+        Operation qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Check build number {folderPath}");
 
-        string folder = folderPath ?? Utils.GetSteamSavePath();
-        string profilePath = Path.Combine(folder, "profile.sav");
+        string folder = folderPath ?? SaveUtils.GetSaveFolder();
+        string profilePath = SaveUtils.GetSavePath(folder,"profile")!;
         List<string> result = [];
 
         Operation operation = performance.OperationAt(LogEventLevel.Debug).Begin("Load Save file");
@@ -141,7 +142,12 @@ public partial class Analyzer
 
             operation = performance.BeginOperation($"Character {result.Count + 1} (save_{index}) save load");
 
-            string savePath = Path.Combine(folder, $"save_{index}.sav");
+            string? savePath = SaveUtils.GetSavePath(folder, $"save_{index}");
+            if (savePath == null)
+            {
+                logger.Information($"Could not find save for index {index}");
+                continue;
+            }
 
             SaveFile sf;
             try

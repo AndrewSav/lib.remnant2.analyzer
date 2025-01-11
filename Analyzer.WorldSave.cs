@@ -18,8 +18,8 @@ public partial class Analyzer
 
     private static readonly Dictionary<string, RolledData> Rolled = new()
     {
-        { "campaign", new RolledData { Selector = "Quest_Campaign", Worlds = ["World1", "Labyrinth","World2","World3","RootEarth"]}},
-        { "adventure", new RolledData { Selector = "Quest_AdventureMode", Worlds = ["Quest"] } }
+        { "campaign", new() { Selector = "Quest_Campaign", Worlds = ["World1", "Labyrinth","World2","World3","RootEarth"]}},
+        { "adventure", new() { Selector = "Quest_AdventureMode", Worlds = ["Quest"] } }
     };
 
     private static RolledWorld GetRolledWorld(Navigator navigator, string mode)
@@ -55,7 +55,7 @@ public partial class Analyzer
             .Where(
                 x =>
                 {
-                    var obj = x.Archive.Objects[0];
+                    UObject obj = x.Archive.Objects[0];
                     return obj.Name != "ZoneActor" && obj.Properties!.Contains("ID");
                 })
             .ToList();
@@ -74,7 +74,7 @@ public partial class Analyzer
         string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
         if (respawnLinkNameId != null)
         {
-            var respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
+            RespawnPoint? respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
             rolledWorld.RespawnPoint = respawnPoint;
         }
 
@@ -83,18 +83,18 @@ public partial class Analyzer
 
     private static RespawnPoint? FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
     {
-        var worldStoneName = zones.SelectMany(x => x.Locations)
+        string? worldStoneName = zones.SelectMany(x => x.Locations)
                 .Select(x => x.GetWorldStoneById(respawnLinkNameId))
                 .SingleOrDefault(x => x != null);
-        if (worldStoneName is not null) return new RespawnPoint(worldStoneName, RespawnPointType.WorldStone);
+        if (worldStoneName is not null) return new(worldStoneName, RespawnPointType.WorldStone);
 
-        var checkpointName = zones.SelectMany(x => x.Locations)
+        string? checkpointName = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
-        if (checkpointName is not null) return new RespawnPoint(checkpointName, RespawnPointType.Checkpoint);
+        if (checkpointName is not null) return new(checkpointName, RespawnPointType.Checkpoint);
         
-        var targetLocation = zones.SelectMany(x => x.Locations)
+        Location? targetLocation = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
-        if (targetLocation is not null) return new RespawnPoint($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
+        if (targetLocation is not null) return new($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
 
         // Nothing is found
         return null;
@@ -231,7 +231,7 @@ public partial class Analyzer
                 }
             }
 
-            var l = new Location(
+            Location l = new(
                 name: label,
                 category: category,
                 worldStoneIdMap: waypointIdMap,

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Serilog;
 using SerilogTimings.Extensions;
 using lib.remnant2.analyzer.Enums;
+using SerilogTimings;
 
 namespace lib.remnant2.analyzer;
 
@@ -32,7 +33,7 @@ public partial class Analyzer
 
 
         // Add items to locations
-        var operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, add items to locations");
+        Operation operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, add items to locations");
         foreach (Zone zone in world.AllZones)
         {
 
@@ -96,7 +97,7 @@ public partial class Analyzer
                     if (ev == null)
                     {
                         logger.Warning($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Event: Drop reference '{dropReference.Name}' found in the save but is absent from the database");
-                        lg = new LootGroup
+                        lg = new()
                         {
                             Items = [],
                             EventDropReference = dropReference.Name,
@@ -120,7 +121,7 @@ public partial class Analyzer
                         type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone")
                         || type == "dungeon"
                         );
-                    lg = new LootGroup
+                    lg = new()
                     {
                         Items = ItemDb.GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").ToList(),
                         EventDropReference = dropReference.Name,
@@ -151,7 +152,7 @@ public partial class Analyzer
 
                 if (worldDrops.Count > 0)
                 {
-                    lg = new LootGroup
+                    lg = new()
                     {
                         Type = "World Drop",
                         Items = worldDrops,
@@ -164,7 +165,7 @@ public partial class Analyzer
                 // Part 4 : Drop Type : Vendor
                 foreach (string vendor in location.Vendors)
                 {
-                    lg = new LootGroup
+                    lg = new()
                     {
                         Type = "Vendor",
                         Name = vendor,
@@ -187,7 +188,7 @@ public partial class Analyzer
             // Story associated loot items are attached to the first zone location in the save,
             // but we can have them elsewhere in our database so we process the looted markers from the first zone
             // for each location
-            var firstL = zone.Locations.First();
+            Location firstL = zone.Locations.First();
 
             foreach (Location location in zone.Locations)
             {
@@ -327,7 +328,7 @@ public partial class Analyzer
             {
                 foreach (Dictionary<string, string> d in mat)
                 {
-                    yield return new LootItem { Properties = d };
+                    yield return new() { Properties = d };
                 }
             }
         }
