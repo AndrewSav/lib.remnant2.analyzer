@@ -224,24 +224,8 @@ public partial class Analyzer
         operation.Complete();
 
 
-        void ProcessPrerequisitesAndScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
+        void ProcessScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
         {
-            if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite) ||
-                CustomScripts.PrerequisitesScripts.ContainsKey(lootItem.Id))
-            {
-                bool res = CheckPrerequisites(world, lootItem, prerequisite);
-
-                if (!res)
-                {
-                    lootItem.IsPrerequisiteMissing = true;
-                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
-                }
-                else
-                {
-                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
-                }
-            }
-
             if (CustomScripts.Scripts.TryGetValue(lootItem.Id, out Func<LootItemContext, bool>? func))
             {
                 LootItemContext lic = new()
@@ -259,9 +243,29 @@ public partial class Analyzer
             }
         }
 
-        // Mark items that cannot be obtained because no prerequisite
+        void ProcessPrerequisites(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
+        {
+            if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite) ||
+                CustomScripts.PrerequisitesScripts.ContainsKey(lootItem.Id))
+            {
+                bool res = CheckPrerequisites(world, lootItem, prerequisite);
+
+                if (!res)
+                {
+                    lootItem.IsPrerequisiteMissing = true;
+                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check NEGATIVE for '{prerequisite}'");
+                }
+                else
+                {
+                    prerequisiteLogger.Information($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, Prerequisite check POSITIVE for '{prerequisite}'");
+                }
+            }
+        }
+
+
+
         // Process item custom scripts
-        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process prerequisites and scripts");
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process scripts");
         foreach (Zone zone in world.AllZones)
         {
             foreach (Location location in zone.Locations)
@@ -271,7 +275,7 @@ public partial class Analyzer
                     bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
                     foreach (LootItem item in new List<LootItem>(lootGroup.Items))
                     {
-                        ProcessPrerequisitesAndScripts(zone, location, lootGroup, item);
+                        ProcessScripts(zone, location, lootGroup, item);
                     }
 
                     if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
@@ -282,7 +286,30 @@ public partial class Analyzer
             }
         }
         operation.Complete();
-        
+
+        // Mark items that cannot be obtained because no prerequisite
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process prerequisites");
+        foreach (Zone zone in world.AllZones)
+        {
+            foreach (Location location in zone.Locations)
+            {
+                foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
+                {
+                    bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
+                    foreach (LootItem item in new List<LootItem>(lootGroup.Items))
+                    {
+                        ProcessPrerequisites(zone, location, lootGroup, item);
+                    }
+
+                    if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
+                    {
+                        location.LootGroups.Remove(lootGroup);
+                    }
+                }
+            }
+        }
+        operation.Complete();
+
         // Progression items are the items that are not tied to any particular location
         operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, progression items");
         LootGroup progression = new()
@@ -293,7 +320,8 @@ public partial class Analyzer
         world.AdditionalItems.Add(progression);
         foreach (LootItem item in new List<LootItem>(progression.Items))
         {
-            ProcessPrerequisitesAndScripts(null, null, progression, item);
+            ProcessScripts(null, null, progression, item);
+            ProcessPrerequisites(null, null, progression, item);
         }
         operation.Complete();
 

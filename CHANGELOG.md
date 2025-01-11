@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v0.0.34 (12 Jan 2025)
+- Fixed a bunch of game pass issues
+- Fixed a subtle issue with evaluation oreder which caused Nimue Ribbon to be detected incorrectly in case both dark and light potential hosts for the ribbon event injectable spawn
+
 ## v0.0.33 (12 Jan 2025)
 - Add support for Microsoft Game pass saves
 

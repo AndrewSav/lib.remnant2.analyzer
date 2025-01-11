@@ -42,6 +42,8 @@ internal static partial class CustomScripts
         { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } }
     };
 
+    // These are for the purpose of IsPrerequisiteMissing flag
+    // Unlike scripts above, these will cause the flag to be set, instead of removing the item from the detected list
     public static Dictionary<string, Func<LootItemContext, bool>> PrerequisitesScripts = new()
     {
         { "Amulet_EchoOfTheForest", EchoOfTheForest },
