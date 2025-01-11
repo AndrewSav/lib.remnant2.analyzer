@@ -95,8 +95,9 @@ public static class SaveUtils
         return GetSaveFolders()[0];
     }
 
-    private static string? GetWgsFolderFromWgsBaseFolder(string baseFolder)
+    public static string? GetWgsFolderFromWgsBaseFolder(string baseFolder)
     {
+        if (!Directory.Exists(baseFolder)) return null;
         string?[] wgsDataFolders = Directory.GetDirectories(baseFolder).Select(Path.GetFileName).ToArray();
         if (wgsDataFolders.Length != 2 && wgsDataFolders is not ["t", _] and not [_, "t"])
         {
@@ -113,6 +114,12 @@ public static class SaveUtils
         if (File.Exists(s))
         {
             return s;
+        }
+
+        if (!folder.ToLower().EndsWith("\\wgs"))
+        {
+            Logger.Information($"Could not find '{s}', and this is not a wgs");
+            return null;
         }
 
         // Wgs

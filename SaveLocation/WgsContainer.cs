@@ -19,7 +19,7 @@ public sealed record WgsContainer(WgsBlob[] Blobs)
             var name = BinaryReaderExtensions.Utf16.GetString(buf).TrimEnd('\0');
             var guid1 = reader.ReadGuid();
             var guid2 = reader.ReadGuid();
-            if (guid1 != guid2) throw new InvalidDataException($"Expected both guids to be the same in blob #{i}");
+            //if (guid1 != guid2) throw new InvalidDataException($"Expected both guids to be the same in blob #{i}");
 
             entries[i] = new(name, guid2);
         }

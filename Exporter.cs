@@ -37,14 +37,17 @@ public class Exporter
         }
     }
 
-    private static SaveFile ExportFile(string targetFolder, string sourcePath, bool exportCopy, bool exportDecoded, bool exportJson)
+    private static SaveFile ExportFile(string targetFolder, string sourcePath, string saveName, bool exportCopy, bool exportDecoded, bool exportJson)
     {
+
+        string targetPath = Path.Combine(targetFolder, $"{saveName}.sav");
+
         if (exportCopy)
         {
-            File.Copy(sourcePath, Path.Combine(targetFolder, Path.GetFileName(sourcePath)), true);
+            File.Copy(sourcePath, targetPath, true);
         }
 
-        string fileName = Path.GetFileNameWithoutExtension(sourcePath);
+        string fileName = Path.GetFileNameWithoutExtension(targetPath);
         SaveFile sf = SaveFile.Read(sourcePath);
 
         if (exportDecoded)
@@ -80,7 +83,7 @@ public class Exporter
     {
         string folder = folderPath ?? SaveUtils.GetSaveFolder();
         string profilePath = SaveUtils.GetSavePath(folder, "profile")!;
-        SaveFile profileSf = ExportFile(targetFolder, profilePath, exportCopy, exportDecoded, exportJson);
+        SaveFile profileSf = ExportFile(targetFolder, profilePath, "profile", exportCopy, exportDecoded, exportJson);
 
         Navigator profile = new(profileSf);
         ArrayProperty ap = profile.GetProperty("Characters")!.Get<ArrayProperty>();
@@ -89,11 +92,12 @@ public class Exporter
         {
             object? item = ap.Items[index];
             ObjectProperty ch = (ObjectProperty)item!;
+            string filename = $"save_{profile.Lookup(ch).Path[^1].Index}";
             string? path = SaveUtils.GetSavePath(folder, $"save_{profile.Lookup(ch).Path[^1].Index}");
 
             if (path !=null && File.Exists(path))
             {
-                ExportFile(targetFolder, path, exportCopy, exportDecoded, exportJson);
+                ExportFile(targetFolder, path, filename, exportCopy, exportDecoded, exportJson);
             }
         }
     }
