@@ -12,7 +12,6 @@ using SerilogTimings;
 using SerilogTimings.Extensions;
 using lib.remnant2.analyzer.Enums;
 using lib.remnant2.analyzer.SaveLocation;
-using System;
 
 
 namespace lib.remnant2.analyzer;
