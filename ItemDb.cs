@@ -106,6 +106,12 @@ public static class ItemDb
         return LookupById.Value.ContainsKey(id) || LookupByEventId.Value.ContainsKey(id);
     }
 
+    public static List<LootItem> GetItemsByProperty(string propertyName, string propertyValue)
+    {
+        return Db.Where(x => x.ContainsKey(propertyName)
+                             && x[propertyName] == propertyValue).Select(x => new LootItem { Properties = x }).ToList();
+    }
+
     public static List<LootItem> GetItemsByReference(string dropType)
     {
         return Db.Where(x => x.ContainsKey("DropType")

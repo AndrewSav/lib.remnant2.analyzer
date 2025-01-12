@@ -173,7 +173,9 @@
     "DropType": "Vendor",
     "DropReference": "Nimue",
     "Prerequisite": "Amulet_GoldenRibbon, Amulet_SilverRibbon",
-    "Note": "Crafted at Nimue from Golder Ribbon amulet and Silver Ribbon amulet"
+    "Note": "Crafted at Nimue from Golder Ribbon amulet and Silver Ribbon amulet",
+    "AccountAwardVendor": "Reggie",
+    "AccountAwardAward": "AccountAward_NimuesRibbon"
   },
   {
     "Id": "Amulet_OneEyedJokerIdol",
@@ -194,7 +196,10 @@
     "DropType": "Vendor",
     "DropReference": "Nimue",
     "Prerequisite": "Ring_FaelinsSigil, Ring_FaerinsSigil",
-    "Note": "Crafted at Nimue from Faelin's Sigil ring and Faerin's Sigil ring"
+    "Note": "Crafted at Nimue from Faelin's Sigil ring and Faerin's Sigil ring",
+    "CustomScript": true,
+    "AccountAwardVendor": "Reggie",
+    "AccountAwardAward": "AccountAward_OneTrueKingSigil"
   },
   {
     "Id": "Amulet_ShadeBloomCrystal",
@@ -3416,7 +3421,9 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_DranOracle",
     "Note": "Found in an overworld location on Losomn. To get this you need to complete twelve Losomn \"quests\" across all your rolled campaign and adventures, you will need to reroll in order to get them all. Then you need to interact with a Dran kid in the overworld area, you might need to follow them a bit before you are able to do that. After that climb the ladder next to Oracle's Refuge world stone and speak with the Oracle. The quests are: Postulant's Parlor, The Nightweaver (Morrow Parish), Harvester's Reach, Bloat King (The Great Sewers), Magister Dullain (Shattered Gallery), Council Chambers, Tiller's Rest, Gwentdil The Unburnt (Cotton's Kiln), Faelin/Faerin (Beatific/Malefic Gallery), The Great Hall, The Red Prince (Gilded Chambers), Butchers Quarter",
-    "CustomScript": true
+    "CustomScript": true,
+    "AccountAwardVendor": "Reggie",
+    "AccountAwardAward": "AccountAward_QuiltedHeart"
   },
   {
     "Id": "Relic_Consumable_ReprocessedHeart",
@@ -3522,7 +3529,9 @@
     "DropType": "Location",
     "DropReference": "Alepsis-Taura",
     "Note": "Found in Alepsis-Taura location on N'Erud. You need to defeat Sha'Hala, one of the N'Erud world bosses without using the Override Pin quest item in the console before the fight. Talk to the Custodian after the battle and wait for 24 hours for Alepsis-Taura to unlock",
-    "CustomScript": true
+    "CustomScript": true,
+    "AccountAwardVendor": "Reggie",
+    "AccountAwardAward": "AccountAward_VoidHeart"
   },
   {
     "Id": "Relic_Consumable_BrokenHeart",
@@ -3914,7 +3923,8 @@
     "Name": "Faelin's Sigil",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faelin",
-    "Note": "Found in Beatific Gallery location on Losomn, given by Faelin as a reward for killing Faerin, a world boss in Malefic Gallery location on Losomn"
+    "Note": "Found in Beatific Gallery location on Losomn, given by Faelin as a reward for killing Faerin, a world boss in Malefic Gallery location on Losomn",
+    "CustomScript": true
   },
   {
     "Id": "Ring_FaeProtectorSignet",
@@ -3933,7 +3943,8 @@
     "Name": "Faerin's Sigil",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Faerlin",
-    "Note": "Found in Malefic Gallery location on Losomn, given by Faerin as a reward for killing Faelin, a world boss in Beatific Gallery location on Losomn"
+    "Note": "Found in Malefic Gallery location on Losomn, given by Faerin as a reward for killing Faelin, a world boss in Beatific Gallery location on Losomn",
+    "CustomScript": true
   },
   {
     "Id": "Ring_FaeWarriorRing",
@@ -7108,7 +7119,9 @@
     "CustomScript": true,
     "Undetectable": true,
     "Consumable": "Consumable_DransDream",
-    "WeaponOrMod": "Mod_LoathTheWeak"
+    "WeaponOrMod": "Mod_LoathTheWeak",
+    "AccountAwardVendor": "Brabus",
+    "AccountAwardAward": "AccountAward_Anguish"
   },
   {
     "Id": "Weapon_Sparkfire",
@@ -7292,7 +7305,9 @@
     "DropReference": "The Labyrinth",
     "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
     "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype",
-    "WeaponOrMod": "Mod_Polyactuator"
+    "WeaponOrMod": "Mod_Polyactuator",
+    "AccountAwardVendor": "Brabus",
+    "AccountAwardAward": "AccountAward_Polygun"
   },
   {
     "Id": "Weapon_Thorn",
@@ -7316,7 +7331,9 @@
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
     "Prerequisite": "Amulet_EchoOfTheForest",
-    "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the  Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item"
+    "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the  Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item",
+    "AccountAwardVendor": "Brabus",
+    "AccountAwardAward": "AccountAward_TrinityCrossbow"
   },
   {
     "Id": "Weapon_BlackGreatsword",
@@ -7351,7 +7368,9 @@
     "DropType": "Location",
     "DropReference": "Withered Necropolis",
     "Note": "Found in Withered Necropolis area on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, immediately turn around a cave hidden in the mountain will reveal itself on your left. Glide towards it. Enter the cave and approach the console. The top line shows what the bottom line was an hour ago. You need to enter into the bottom line what the top line will display in an hour. Either find a website that displays the solution, change the system time an hour back, and enter what you saw previously on the top line to the bottom line.",
-    "WeaponOrMod": "Mod_MegaDrive"
+    "WeaponOrMod": "Mod_MegaDrive",
+    "AccountAwardVendor": "Brabus",
+    "AccountAwardAward": "AccountAward_Genesis"
   },
   {
     "Id": "Weapon_HarvesterScythe",
@@ -7386,7 +7405,9 @@
     "DropReference": "Spark",
     "Prerequisite": "Amulet_OrnateAmulet, Amulet_TimekeepersForfeit, Amulet_VolatileCartridge, Ring_ForceMultiplier, Ring_MortalCoil, Ring_RingOfAshes, Ring_StrandOfSinew, Ring_SymbolOfRoyalty, Ring_WiredInhibitor",
     "Note": "Given by Spark at Ward 13 after buying all the amulets and rings from her",
-    "WeaponOrMod": "Mod_Aftermath"
+    "WeaponOrMod": "Mod_Aftermath",
+    "AccountAwardVendor": "Brabus",
+    "AccountAwardAward": "AccountAward_Redeemer"
   },
   {
     "Id": "Weapon_RepairTool",

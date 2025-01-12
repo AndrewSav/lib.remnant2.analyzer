@@ -171,6 +171,16 @@ public partial class Analyzer
                         Name = vendor,
                         Items = ItemDb.GetItemsByReference("Vendor", vendor)
                     };
+
+                    IEnumerable<LootItem> awardItems = ItemDb.GetItemsByProperty("AccountAwardVendor", vendor)
+                        .Where(x => world.ParentCharacter.ParentDataset.AccountAwards.Contains(x.Properties["AccountAwardAward"])).ToList();
+                    foreach (LootItem awardItem in awardItems)
+                    {
+                        awardItem.IsVendoredAccountAward = true;
+                    }
+
+                    lg.Items = [..lg.Items,..awardItems];
+
                     location.LootGroups.Add(lg);
                 }
             }
@@ -275,7 +285,10 @@ public partial class Analyzer
                     bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
                     foreach (LootItem item in new List<LootItem>(lootGroup.Items))
                     {
-                        ProcessScripts(zone, location, lootGroup, item);
+                        if (!item.IsVendoredAccountAward)
+                        {
+                            ProcessScripts(zone, location, lootGroup, item);
+                        }
                     }
 
                     if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
@@ -298,7 +311,10 @@ public partial class Analyzer
                     bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
                     foreach (LootItem item in new List<LootItem>(lootGroup.Items))
                     {
-                        ProcessPrerequisites(zone, location, lootGroup, item);
+                        if (!item.IsVendoredAccountAward)
+                        {
+                            ProcessPrerequisites(zone, location, lootGroup, item);
+                        }
                     }
 
                     if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
@@ -380,12 +396,13 @@ public partial class Analyzer
             if (checkCustom && CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Func<LootItemContext, bool>? script))
             {
                 prerequisiteLogger.Information($"  Running custom prerequisite script for '{cur}'");
+
                 var li = world.AllZones
                     .SelectMany(x => x.Locations.Select(y => new { Zone = x, Location = y }))
                     .SelectMany(x => x.Location.LootGroups.Select(y => new { x.Zone, x.Location, LootGroup = y }))
                     .SelectMany(x =>
                         x.LootGroup.Items.Select(y => new { x.Zone, x.Location, x.LootGroup, LootItem = y }))
-                    .Single(x => x.LootItem.Id == cur);
+                    .Single(x => x.LootItem.Id == cur && !x.LootItem.IsVendoredAccountAward);
 
                 // If we already determined that a prerequisite is missing, do not check again
                 if (li.LootItem.IsPrerequisiteMissing)

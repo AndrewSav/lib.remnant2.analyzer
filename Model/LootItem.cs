@@ -29,5 +29,8 @@ public class LootItem
     // ReSharper disable once UnusedMember.Global
     // Used by WPF designer
     public string ItemNotes => Properties.TryGetValue("Note", out string? value) ? value : string.Empty;
+    // Account Awards items at vendors do not require prerequisite check, we use this flag to distinguish
+    // between the account award vendor item and the real item with the same name obtained in the world
+    public bool IsVendoredAccountAward { get; set; }
 
 }

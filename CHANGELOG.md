@@ -5,6 +5,7 @@
 - Band Of The Fanatic is now detected as present but missing prerequisite for Forlorn coast if you do not have the cultist outfit
 - Added IsLooted detection for Faelin / Faerin sigil
 - Improved detection for One True King Sigil
+- Allow detection of Nimue's Ribbon, One True King Sigil, Quilted Heart, Void Heart, Anguish, Polygun, Trinity Crossbow, Genesis and Redeemer at Ward 13 vendors when they are unlocked as account award
 
 ## v0.0.34 (12 Jan 2025)
 - Fixed a bunch of game pass issues
