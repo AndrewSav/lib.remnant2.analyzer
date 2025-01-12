@@ -7990,8 +7990,9 @@
     "ProfileId": "/Game/World_Nerud/Quests/Quest_Story_TheCore/Items/Quest_Item_Core_OverridePin/Quest_Item_Core_OverridePin.Quest_Item_Core_OverridePin_C",
     "Type": "quest_item",
     "World": "World_Nerud",
-    "DropType": "Event",
-    "DropReference": "Quest_Boss_NerudGuardian"
+    "Name": "Override Pin",
+    "DropType": "Location",
+    "DropReference": "Timeless Horizon"
   },
   {
     "Id": "Quest_Item_DLCInjectable_BloodyMedallion_Stage1",

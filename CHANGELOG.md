@@ -1,6 +1,9 @@
 # Changelog
 
 
+## v0.0.36 (13 Jan 2025)
+- Fix Override Pin name and location
+
 ## v0.0.35 (12 Jan 2025)
 - Band Of The Fanatic is now detected as present but missing prerequisite for Forlorn coast if you do not have the cultist outfit
 - Added IsLooted detection for Faelin / Faerin sigil
