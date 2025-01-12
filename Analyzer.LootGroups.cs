@@ -362,7 +362,7 @@ public partial class Analyzer
         }
     }
 
-    internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string? prerequisite, bool checkHave = true, bool checkCanGet = true)
+    internal static bool CheckPrerequisites(RolledWorld world, LootItem item, string? prerequisite, bool checkHave = true, bool checkCanGet = true, bool checkCustom = true)
     {
         if (!checkHave && !checkCanGet) return true;
 
@@ -377,7 +377,7 @@ public partial class Analyzer
 
         bool CheckAdditionalPrerequisite(string cur)
         {
-            if (CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Func<LootItemContext, bool>? script))
+            if (checkCustom && CustomScripts.PrerequisitesScripts.TryGetValue(cur, out Func<LootItemContext, bool>? script))
             {
                 prerequisiteLogger.Information($"  Running custom prerequisite script for '{cur}'");
                 var li = world.AllZones

@@ -16,8 +16,10 @@ public class Zone(RolledWorld parent, DropReference? story)
     public bool CanGetItem(string item)
     {
         return Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items)
-            .Any(x => x.Id == item && (!x.Properties.ContainsKey("Prerequisite")
-                                               || Parent.CanGetItem(x.Properties["Prerequisite"])));
+            .Any(x => x.Id == item
+                      && !x.IsLooted
+                      && (!x.Properties.ContainsKey("Prerequisite") || Parent.CanGetItem(x.Properties["Prerequisite"]))
+            );
     }
 
     public string Story

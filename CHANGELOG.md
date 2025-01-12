@@ -1,6 +1,11 @@
 # Changelog
 
 
+## v0.0.35 (12 Jan 2025)
+- Band Of The Fanatic is now detected as present but missing prerequisite for Forlorn coast if you do not have the cultist outfit
+- Added IsLooted detection for Faelin / Faerin sigil
+- Improved detection for One True King Sigil
+
 ## v0.0.34 (12 Jan 2025)
 - Fixed a bunch of game pass issues
 - Fixed a subtle issue with evaluation oreder which caused Nimue Ribbon to be detected incorrectly in case both dark and light potential hosts for the ribbon event injectable spawn

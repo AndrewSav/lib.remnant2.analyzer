@@ -151,12 +151,6 @@ internal static partial class CustomScripts
         return exists;
     }
 
-    private static bool BandOfTheFanatic(LootItemContext lic)
-    {
-        // It is not possible to get it unless you *already* have the ritualist set
-        return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, lic.LootItem.Properties["Prerequisite"], checkCanGet: false);
-    }
-
     private static bool Anguish(LootItemContext lic)
     {
 
@@ -229,6 +223,19 @@ internal static partial class CustomScripts
 
     // Additional Prerequisites detection ----------------------------------------------------------------------------------------------------------
     // Return true if additional check passes, returns false if additional prerequisites are missing
+
+    private static bool BandOfTheFanatic(LootItemContext lic)
+    {
+        // It is not possible to get it unless you *already* have the ritualist set
+        return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, lic.LootItem.Properties["Prerequisite"], checkCanGet: false, checkCustom: false);
+    }
+
+    private static bool OneTrueKingSigil(LootItemContext lic)
+    {
+        // Since you need both sigils, and you cannot get both on a single playthrough, you need at least one *already*
+        return Analyzer.CheckPrerequisites(lic.World, lic.LootItem, "Ring_FaelinsSigil", checkCanGet: false, checkCustom: false) ||
+               Analyzer.CheckPrerequisites(lic.World, lic.LootItem, "Ring_FaerinsSigil", checkCanGet: false, checkCustom: false);
+    }
 
     private static bool EchoOfTheForest(LootItemContext lic)
     {
@@ -322,6 +329,18 @@ internal static partial class CustomScripts
         if (!itemOnTheFloor)
         {
             lic.LootItem.IsLooted = true;
+        }
+    }
+    
+    private static void FaerlinsSigil(LootItemContext lic, string propertyName)
+    {
+        Actor crypt = lic.GetActor("Quest_Boss_Faerlin_C");
+        Component? component = crypt.GetFirstObjectComponents()?.FirstOrDefault(x => x.ComponentKey == "Variables");
+        if (component == null) return;
+        var value = component.Variables?.Items.FirstOrDefault(x => x.Key == propertyName).Value?.Value?.ToString();
+        if (value == "1")
+        {
+                lic.LootItem.IsLooted = true;
         }
     }
 }
