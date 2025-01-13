@@ -1,4 +1,6 @@
-﻿namespace lib.remnant2.analyzer.Model;
+﻿using lib.remnant2.analyzer.Model.Mechanics;
+
+namespace lib.remnant2.analyzer.Model;
 
 // Represents part of the data from a single save_N.sav: either adventure data or campaign data
 public class RolledWorld
@@ -42,4 +44,5 @@ public class RolledWorld
     }
     
     public bool IsCampaign => Zones.Exists(x => x.Name == "Labyrinth");
+    public BloodMoon? BloodMoon;
 }

@@ -11,6 +11,7 @@ using Serilog;
 using SerilogTimings;
 using SerilogTimings.Extensions;
 using lib.remnant2.analyzer.Enums;
+using lib.remnant2.analyzer.Model.Mechanics;
 using lib.remnant2.analyzer.SaveLocation;
 
 
@@ -331,6 +332,9 @@ public partial class Analyzer
                 }
                 operation.Complete();
 
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) get thaen fruit data");
+                ThaenFruit? thaenFruit = ThaenFruit.Read(navigator);
+                operation.Complete();
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) campaign loot groups");
                 int slot = (int)navigator.GetProperty("LastActiveRootSlot")!.Value!;
                 WorldSlot mode = slot == 0 ? WorldSlot.Campaign : WorldSlot.Adventure;
@@ -343,7 +347,8 @@ public partial class Analyzer
                         Adventure = adventure,
                         QuestCompletedLog = questCompletedLog,
                         Playtime = tp,
-                        CassShop = cassLoot
+                        CassShop = cassLoot,
+                        ThaenFruit = thaenFruit 
                     },
                     Profile = profile,
                     Index = charSlotInternal,

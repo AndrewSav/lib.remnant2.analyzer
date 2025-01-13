@@ -1,5 +1,6 @@
 ﻿using lib.remnant2.analyzer.Enums;
 using lib.remnant2.analyzer.Model;
+using lib.remnant2.analyzer.Model.Mechanics;
 using lib.remnant2.saves.Model.Parts;
 using lib.remnant2.saves.Model.Properties;
 using lib.remnant2.saves.Model;
@@ -68,6 +69,7 @@ public partial class Analyzer
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
+            BloodMoon = BloodMoon.Read(navigator)
         };
         rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
 

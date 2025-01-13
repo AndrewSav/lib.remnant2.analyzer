@@ -1,5 +1,7 @@
 # Changelog
 
+## v0.0.37 (13 Jan 2025)
+- Add Thaen fruit and Blood moon data
 
 ## v0.0.36 (13 Jan 2025)
 - Fix Override Pin name and location
