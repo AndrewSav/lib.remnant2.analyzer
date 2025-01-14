@@ -343,4 +343,11 @@ internal static partial class CustomScripts
                 lic.LootItem.IsLooted = true;
         }
     }
+
+    private static void Preacher(LootItemContext lic)
+    {
+        UObject o = lic.GetMeta();
+        KeyValuePair<string, Variable> vv = o.Components!.Single(x => x.ComponentKey == "Variables").Variables!.Items.SingleOrDefault(x => x.Key == "OTKDockAggro");
+        lic.LootItem.IsLooted = vv.Key == "OTKDockAggro" && vv.Value.Value!.ToString() != "0";
+    }
 }

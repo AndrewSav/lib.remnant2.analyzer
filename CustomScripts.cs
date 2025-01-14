@@ -40,7 +40,9 @@ internal static partial class CustomScripts
         { "Relic_Consumable_VoidHeart", lic => { VoidHeart(lic); return true; } },
         { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } },
         { "Ring_FaelinsSigil", lic => { FaerlinsSigil(lic,"ReceivedFaelinReward"); return true; } },
-        { "Ring_FaerinsSigil", lic => { FaerlinsSigil(lic,"ReceivedFaerinReward"); return true; } }
+        { "Ring_FaerinsSigil", lic => { FaerlinsSigil(lic,"ReceivedFaerinReward"); return true; } },
+        { "Ring_BandOfTheFanatic", lic => { Preacher(lic); return true; } },
+        { "Armor_Head_TopHat", lic => { Preacher(lic); return true; } }
     };
 
     // These are for the purpose of IsPrerequisiteMissing flag

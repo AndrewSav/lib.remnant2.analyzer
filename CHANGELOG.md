@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.38 (Unreleased)
+- Add Band of The Fanatic and Dandy Tooper IsLooted detection
+
 ## v0.0.37 (13 Jan 2025)
 - Add Thaen fruit and Blood moon data
 
