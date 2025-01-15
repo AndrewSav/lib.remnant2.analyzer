@@ -344,10 +344,21 @@ internal static partial class CustomScripts
         }
     }
 
-    private static void Preacher(LootItemContext lic)
+    private static void Preacher(LootItemContext lic, string variable)
     {
         UObject o = lic.GetMeta();
         KeyValuePair<string, Variable> vv = o.Components!.Single(x => x.ComponentKey == "Variables").Variables!.Items.SingleOrDefault(x => x.Key == "OTKDockAggro");
         lic.LootItem.IsLooted = vv.Key == "OTKDockAggro" && vv.Value.Value!.ToString() != "0";
+    }
+
+    private static void LittleGorge(LootItemContext lic)
+    {
+        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        UObject? o = lic.GetRollObject();
+        if (o == null) return;
+        Property? p =navigator.GetProperty("isRitualPigAberrationDead", o);
+        if (p == null) return;
+        lic.LootItem.IsLooted = true;
+        return;
     }
 }

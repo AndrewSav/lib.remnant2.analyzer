@@ -41,8 +41,11 @@ internal static partial class CustomScripts
         { "Amulet_NecklaceOfFlowingLife", lic => { NecklaceOfFlowingLife(lic); return true; } },
         { "Ring_FaelinsSigil", lic => { FaerlinsSigil(lic,"ReceivedFaelinReward"); return true; } },
         { "Ring_FaerinsSigil", lic => { FaerlinsSigil(lic,"ReceivedFaerinReward"); return true; } },
-        { "Ring_BandOfTheFanatic", lic => { Preacher(lic); return true; } },
-        { "Armor_Head_TopHat", lic => { Preacher(lic); return true; } }
+        { "Ring_BandOfTheFanatic", lic => { Preacher(lic,"OTKDockAggro"); return true; } },
+        { "Armor_Head_TopHat", lic => { Preacher(lic,"OTKDockAggro"); return true; } },
+        { "MetaGem_Dreadful", lic => { Preacher(lic,"OTKDockPreacherDead"); return true; } },
+        { "MetaGem_Executor", lic => { LittleGorge(lic); return true; } }
+
     };
 
     // These are for the purpose of IsPrerequisiteMissing flag

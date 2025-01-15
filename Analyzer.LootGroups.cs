@@ -204,6 +204,7 @@ public partial class Analyzer
             {
                 foreach (LootedMarker marker in location.LootedMarkers.Union(firstL.LootedMarkers))
                 {
+                    // There may be two Weapon_RepairTool_C in a save, so we ignore one of them
                     if (marker.ProfileId == "/Game/World_DLC3/Items/Weapons/RepairTool/Weapon_RepairTool.Weapon_RepairTool_C" && marker.SpawnPointTags[0] == "Reward_SingleCore")
                         continue;
 
@@ -225,6 +226,12 @@ public partial class Analyzer
                             // This might need to be dealt with in custom scripts
                             // Sometimes finished location means that the item is looted, and sometimes it does not
                             //item.IsLooted = item.IsLooted || marker.IsLooted;
+                            item.IsLooted = marker.IsLooted;
+                            continue;
+                        }
+
+                        if (item.Type == "engram" && item.Properties["Material"] == li.Id)
+                        {
                             item.IsLooted = marker.IsLooted;
                         }
                     }

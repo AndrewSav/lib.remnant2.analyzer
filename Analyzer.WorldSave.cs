@@ -1,4 +1,5 @@
-﻿using lib.remnant2.analyzer.Enums;
+﻿using System.Diagnostics;
+using lib.remnant2.analyzer.Enums;
 using lib.remnant2.analyzer.Model;
 using lib.remnant2.analyzer.Model.Mechanics;
 using lib.remnant2.saves.Model.Parts;
@@ -293,6 +294,7 @@ public partial class Analyzer
                 // Trait, Simulacrum, Injectable, Ring, Amulet, 
                 events.Remove(e);
                 string ev = e.ToString()!;
+
                 l.LootedMarkers.AddRange(GetLootedMarkers(e));
 
                 if (ev.EndsWith("_C"))
@@ -307,31 +309,32 @@ public partial class Analyzer
 
                 // this works for Ring, Amulet, Trait, Simulacrum
                 Component? cmp = navigator.GetComponent("Loot", e);
-                Property? ds = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
+                Property? destroyed = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
 
                 if (ev.StartsWith("Quest_Event_Trait"))
                 {
                     l.TraitBook = true;
-                    l.TraitBookLooted = ds != null && ds.Get<byte>() == 1;
+                    l.TraitBookLooted = destroyed != null && destroyed.Get<byte>() == 1;
                     continue;
                 }
 
                 if (ev.Contains("Simulacrum"))
                 {
                     l.Simulacrum = true;
-                    l.SimulacrumLooted = ds != null && ds.Get<byte>() == 1;
+                    l.SimulacrumLooted = destroyed != null && destroyed.Get<byte>() == 1;
                     continue;
                 }
 
                 // Ring, Amulet
                 if (ev.StartsWith("Quest_Event_"))
                 {
-                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], IsLooted = ds != null && ds.Get<byte>() == 1 });
+                    l.WorldDrops.Add(new() { Name = ev["Quest_Event_".Length..], IsLooted = destroyed != null && destroyed.Get<byte>() == 1 });
                     continue;
                 }
 
+
                 // Injectable
-                l.DropReferences.Add(new() { Name = ev, IsLooted = ds != null && ds.Get<byte>() == 1 });
+                l.DropReferences.Add(new() { Name = ev, IsLooted = destroyed != null && destroyed.Get<byte>() == 1 });
 
             }
 

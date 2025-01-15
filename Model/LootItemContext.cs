@@ -20,11 +20,16 @@ internal class LootItemContext
         return main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(selector)).Archive.Objects[0];
     }
 
-    public Actor GetActor(string name)
+    public UObject? GetRollObject()
     {
         Navigator navigator = World.ParentCharacter.WorldNavigator!;
         int? id = GetMeta().Properties!["ID"].Get<int>();
-        UObject? obj = navigator.GetObjects($"pc:/Game/Quest_{id}_Container.Quest_Container:PersistentLevel").SingleOrDefault();
-        return navigator.GetActor(name, obj)!;
+        return navigator.GetObjects($"pc:/Game/Quest_{id}_Container.Quest_Container:PersistentLevel").SingleOrDefault();
+    }
+
+    public Actor GetActor(string name)
+    {
+        Navigator navigator = World.ParentCharacter.WorldNavigator!;
+        return navigator.GetActor(name, GetRollObject())!;
     }
 }

@@ -1,7 +1,9 @@
 # Changelog
 
-## v0.0.38 (Unreleased)
+## v0.0.38 (15 Jan 2025)
 - Add Band of The Fanatic and Dandy Tooper IsLooted detection
+- Add IsLooted detection for Executioner, Dreadful and all engrams found in the world (e.g Ritualist, Engeneer, etc)
+- Reverted stamina cost fragment change from v0.0.32, as I cannot remember where I saw that fragment. It should not appear in up-to-date saves
 
 ## v0.0.37 (13 Jan 2025)
 - Add Thaen fruit and Blood moon data
