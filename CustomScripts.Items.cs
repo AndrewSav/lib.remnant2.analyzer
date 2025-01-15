@@ -358,7 +358,10 @@ internal static partial class CustomScripts
         if (o == null) return;
         Property? p =navigator.GetProperty("isRitualPigAberrationDead", o);
         if (p == null) return;
-        lic.LootItem.IsLooted = true;
+        if (p.Get<byte>() != 0)
+        {
+            lic.LootItem.IsLooted = true;
+        }
         return;
     }
 }
