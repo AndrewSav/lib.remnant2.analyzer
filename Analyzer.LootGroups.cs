@@ -75,7 +75,7 @@ public partial class Analyzer
                 LootGroup lg = new()
                 {
                     Type = "Location",
-                    Items = ItemDb.GetItemsByReference("Location", location.Name),
+                    Items = ItemDb.GetItemsByReference("Location", location.Name).Select(x =>  new LootItemExtended(x)).ToList()
                 };
                 if (lg.Items.Count > 0)
                 {
@@ -115,15 +115,18 @@ public partial class Analyzer
                     {
                         name = ev["Name"];
                     }
+                    static List<LootItemExtended> GetItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
+                    {
+                        return ItemDb.Db.Where(x => x.ContainsKey("DropReference"))
+                            .Where(x => x["DropReference"] == dropReference.Name && x["DropType"] == dropType)
+                            .Select(x => new LootItemExtended{ Properties = x, IsLooted = dropReference.IsLooted && propagateLooted}).ToList();
+                    }
 
                     // This is not a boss-only zone so if zone is complete does not mean all items are looted
-                    bool propagateLooted = !(
-                        type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone")
-                        || type == "dungeon"
-                        );
+                    bool propagateLooted = !(type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone") || type == "dungeon");
                     lg = new()
                     {
-                        Items = ItemDb.GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").ToList(),
+                        Items = GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").Select(x => new LootItemExtended(x)).ToList(),
                         EventDropReference = dropReference.Name,
                         Type = type,
                         Name = name
@@ -132,9 +135,10 @@ public partial class Analyzer
                 }
 
                 // Part 3 : Drop Type : World Drop
-                List<LootItem> worldDrops = location.WorldDrops
+                List<LootItemExtended> worldDrops = location.WorldDrops
                     .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
-                    .Select(ItemDb.GetItemById).ToList();
+                    .Select(x => new LootItemExtended(ItemDb.GetItemById(x.Name)){ IsLooted = x.IsLooted }).ToList();
+
 
                 UnknownData unknown = UnknownData.None;
                 foreach (DropReference s in location.WorldDrops.Where(x => x.Name != "Bloodmoon" && !ItemDb.HasItem(x.Name)))
@@ -146,7 +150,7 @@ public partial class Analyzer
                         { "Id", "unknown" },
                         { "Type", "unknown" }
                     };
-                    worldDrops.Add(new() { Properties = unknownItem });
+                    worldDrops.Add(new(new() { Properties = unknownItem }));
                     unknown = UnknownData.WorldDrop;
                 }
 
@@ -169,12 +173,12 @@ public partial class Analyzer
                     {
                         Type = "Vendor",
                         Name = vendor,
-                        Items = ItemDb.GetItemsByReference("Vendor", vendor)
+                        Items = ItemDb.GetItemsByReference("Vendor", vendor).Select(x => new LootItemExtended(x)).ToList()
                     };
 
-                    IEnumerable<LootItem> awardItems = ItemDb.GetItemsByProperty("AccountAwardVendor", vendor)
+                    IEnumerable<LootItemExtended> awardItems = ItemDb.GetItemsByProperty("AccountAwardVendor", vendor).Select(x => new LootItemExtended(x))
                         .Where(x => world.ParentCharacter.ParentDataset.AccountAwards.Contains(x.Properties["AccountAwardAward"])).ToList();
-                    foreach (LootItem awardItem in awardItems)
+                    foreach (LootItemExtended awardItem in awardItems)
                     {
                         awardItem.IsVendoredAccountAward = true;
                     }
@@ -219,7 +223,7 @@ public partial class Analyzer
                         continue;
                     }
 
-                    foreach (LootItem item in location.LootGroups.SelectMany(x => x.Items))
+                    foreach (LootItemExtended item in location.LootGroups.SelectMany(x => x.Items))
                     {
                         if (item.Id == li.Id)
                         {
@@ -241,7 +245,7 @@ public partial class Analyzer
         operation.Complete();
 
 
-        void ProcessScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
+        void ProcessScripts(Zone? zone, Location? location, LootGroup lootGroup, LootItemExtended lootItem)
         {
             if (CustomScripts.Scripts.TryGetValue(lootItem.Id, out Func<LootItemContext, bool>? func))
             {
@@ -260,7 +264,7 @@ public partial class Analyzer
             }
         }
 
-        void ProcessPrerequisites(Zone? zone, Location? location, LootGroup lootGroup, LootItem lootItem)
+        void ProcessPrerequisites(LootItemExtended lootItem)
         {
             if (lootItem.Properties.TryGetValue("Prerequisite", out string? prerequisite) ||
                 CustomScripts.PrerequisitesScripts.ContainsKey(lootItem.Id))
@@ -290,37 +294,11 @@ public partial class Analyzer
                 foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
                 {
                     bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
-                    foreach (LootItem item in new List<LootItem>(lootGroup.Items))
+                    foreach (LootItemExtended item in new List<LootItemExtended>(lootGroup.Items))
                     {
                         if (!item.IsVendoredAccountAward)
                         {
                             ProcessScripts(zone, location, lootGroup, item);
-                        }
-                    }
-
-                    if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
-                    {
-                        location.LootGroups.Remove(lootGroup);
-                    }
-                }
-            }
-        }
-        operation.Complete();
-
-        // Mark items that cannot be obtained because no prerequisite
-        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process prerequisites");
-        foreach (Zone zone in world.AllZones)
-        {
-            foreach (Location location in zone.Locations)
-            {
-                foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
-                {
-                    bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
-                    foreach (LootItem item in new List<LootItem>(lootGroup.Items))
-                    {
-                        if (!item.IsVendoredAccountAward)
-                        {
-                            ProcessPrerequisites(zone, location, lootGroup, item);
                         }
                     }
 
@@ -338,28 +316,71 @@ public partial class Analyzer
         LootGroup progression = new()
         {
             Type = "Progression",
-            Items = ItemDb.GetItemsByReference("Progression"),
+            Items = ItemDb.GetItemsByReference("Progression").Select(x => new LootItemExtended(x)).ToList()
         };
         world.AdditionalItems.Add(progression);
-        foreach (LootItem item in new List<LootItem>(progression.Items))
+        foreach (LootItemExtended item in new List<LootItemExtended>(progression.Items))
         {
             ProcessScripts(null, null, progression, item);
-            ProcessPrerequisites(null, null, progression, item);
+            ProcessPrerequisites(item);
         }
         operation.Complete();
 
         // Show items that can be obtained because the character already has the material in their inventory
         operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, craftable items");
+        // Quest Inventory is for Wooden Box that grants Effigy Pendant
+        var itemsWithMaterials = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Union(world.QuestInventory))
+            .DistinctBy(x => x.Properties["ProfileId"])
+            .ToDictionary(x => x.Properties["ProfileId"]);
 
         LootGroup craftable = new()
         {
             Type = "Craftable",
-            // Quest Inventory is for Wooden Box that grants Effigy Pendant
-            Items = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Union(world.QuestInventory)).ToList()
+            Items = []
         };
         world.AdditionalItems.Add(craftable);
-
         operation.Complete();
+
+        // Mark items that cannot be obtained because no prerequisite
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, process prerequisites");
+        foreach (Zone zone in world.AllZones)
+        {
+            foreach (Location location in zone.Locations)
+            {
+                foreach (LootGroup lootGroup in new List<LootGroup>(location.LootGroups))
+                {
+                    bool emptyBeforePrerequisitesCheck = lootGroup.Items.Count == 0;
+                    foreach (LootItemExtended item in new List<LootItemExtended>(lootGroup.Items))
+                    {
+                        if (itemsWithMaterials.ContainsKey(item.Properties["ProfileId"]))
+                        {
+                            item.HasRequiredMaterial = true;
+                            craftable.Items.Add(item);
+                            itemsWithMaterials.Remove(item.Properties["ProfileId"]);
+                        }
+                        if (!item.IsVendoredAccountAward)
+                        {
+                            ProcessPrerequisites(item);
+                        }
+                    }
+
+                    if (lootGroup.Items.Count == 0 && !emptyBeforePrerequisitesCheck)
+                    {
+                        location.LootGroups.Remove(lootGroup);
+                    }
+                }
+            }
+        }
+        operation.Complete();
+
+        operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, remaining craftable items (not present in other loot groups)");
+        foreach (KeyValuePair<string, LootItem> kvp in itemsWithMaterials)
+        {
+            craftable.Items.Add(new(kvp.Value));
+        }
+        operation.Complete();
+
+
     }
 
     internal static IEnumerable<LootItem> GetItemsWithMaterials(IEnumerable<InventoryItem> inventory)
@@ -367,6 +388,7 @@ public partial class Analyzer
         Dictionary<string, List<Dictionary<string, string>>> materials = ItemDb.Db.Where(x => x.ContainsKey("Material"))
             .GroupBy(x => x["Material"])
             .ToDictionary(x => x.Key, x => x.ToList());
+        // This is for dreams
         Dictionary<string, List<Dictionary<string, string>>> consumables = ItemDb.Db.Where(x => x.ContainsKey("Consumable"))
             .GroupBy(x => x["Consumable"])
             .ToDictionary(x => x.Key, x => x.ToList());

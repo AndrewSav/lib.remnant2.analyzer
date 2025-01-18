@@ -156,7 +156,7 @@ internal static partial class CustomScripts
 
         string counterItemProfileId = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
         InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == counterItemProfileId);
-        LootItem dransDream = ItemDb.GetItemById("Consumable_DransDream");
+        LootItemExtended dransDream =  new(ItemDb.GetItemById("Consumable_DransDream"));
 
         if (counterItem == null)
         {
@@ -181,7 +181,7 @@ internal static partial class CustomScripts
                 lic.World.Ward13.Locations[0].LootGroups.Single(x => x.Type == "Location").Items.Add(lic.LootItem);
                 break;
             case 1:
-                List<LootItem>? items = lic.World.Zones
+                List<LootItemExtended>? items = lic.World.Zones
                     .SingleOrDefault(x => x.Name == "Yaesha")?.Locations
                     .SingleOrDefault(x => x.Name == "The Red Throne")?.LootGroups.Single(x => x.Type == "Location").Items;
                 items?.Add(lic.LootItem);
@@ -347,8 +347,8 @@ internal static partial class CustomScripts
     private static void Preacher(LootItemContext lic, string variable)
     {
         UObject o = lic.GetMeta();
-        KeyValuePair<string, Variable> vv = o.Components!.Single(x => x.ComponentKey == "Variables").Variables!.Items.SingleOrDefault(x => x.Key == "OTKDockAggro");
-        lic.LootItem.IsLooted = vv.Key == "OTKDockAggro" && vv.Value.Value!.ToString() != "0";
+        KeyValuePair<string, Variable> vv = o.Components!.Single(x => x.ComponentKey == "Variables").Variables!.Items.SingleOrDefault(x => x.Key == variable);
+        lic.LootItem.IsLooted = vv.Key == variable && vv.Value.Value!.ToString() != "0";
     }
 
     private static void LittleGorge(LootItemContext lic)

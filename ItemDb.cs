@@ -94,13 +94,6 @@ public static class ItemDb
         return new() { Properties = result };
     }
 
-    public static LootItem GetItemById(DropReference dr)
-    {
-        LootItem result = GetItemById(dr.Name);
-        result.IsLooted = dr.IsLooted;
-        return result;
-    }
-
     public static bool HasItem(string id)
     {
         return LookupById.Value.ContainsKey(id) || LookupByEventId.Value.ContainsKey(id);
@@ -123,13 +116,6 @@ public static class ItemDb
         return Db.Where(x => x.ContainsKey("DropReference"))
             .Where(x => x["DropReference"].Split('|').Select(y => y.Trim()).Contains(dropReference)
                         && x["DropType"] == dropType).Select(x => new LootItem { Properties = x }).ToList();
-    }
-
-    public static List<LootItem> GetItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
-    {
-        return Db.Where(x => x.ContainsKey("DropReference"))
-            .Where(x => x["DropReference"] == dropReference.Name
-                        && x["DropType"] == dropType).Select(x => new LootItem { Properties = x, IsLooted = dropReference.IsLooted && propagateLooted }).ToList();
     }
 
     public static IEnumerable<Dictionary<string, string>> GetMissing(IEnumerable<string> select, Func<Dictionary<string, string>, bool> filter)

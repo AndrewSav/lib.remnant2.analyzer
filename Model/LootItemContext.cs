@@ -10,7 +10,7 @@ internal class LootItemContext
     public required Zone? Zone { get; set; }
     public required Location? Location { get; set; }
     public required LootGroup LootGroup { get; set; }
-    public required LootItem LootItem { get; set; }
+    public required LootItemExtended LootItem { get; set; }
 
     public UObject GetMeta()
     {
