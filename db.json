@@ -2567,7 +2567,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Mods/Mod_RingOfSpears/Mod_RingOfSpears.Mod_RingOfSpears_C",
     "Type": "mod",
     "World": "World_DLC1",
-    "Name": "Ring Of Spears",
+    "Name": "Ring of Spears",
     "Material": "Material_WretchedSkull",
     "DropType": "Event",
     "DropReference": "Quest_Miniboss_Impaler",
