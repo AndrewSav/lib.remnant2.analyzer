@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.39 (21 Jan 2025)
+- Add HasRequiredMaterial propery to loot items, which is set if the Weapon/Mod has the required crafted material in the inventory
+- Fixed a crash when an inventory item does not have an associated object in save data
+
 ## v0.0.38 (15 Jan 2025)
 - Add Band of The Fanatic and Dandy Tooper IsLooted detection
 - Add IsLooted detection for Executioner, Dreadful and all engrams found in the world (e.g Ritualist, Engeneer, etc)
