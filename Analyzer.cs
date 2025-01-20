@@ -130,7 +130,7 @@ public partial class Analyzer
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
 
-                List<InventoryItem> items = itemObjects.Select(GetInventoryItem).ToList();
+                List<InventoryItem> items = itemObjects.Select(GetInventoryItem).Where(x => x != null).ToList()!;
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) traits");
@@ -138,7 +138,7 @@ public partial class Analyzer
                 List<PropertyBag> traitObjects = profileNavigator.GetProperty("Traits", traitsComponent)!
                     .Get<ArrayStructProperty>().Items
                     .Select(x => (PropertyBag)x!).ToList();
-                List<InventoryItem> traits = traitObjects.Select(GetInventoryItem).ToList();
+                List<InventoryItem> traits = traitObjects.Select(GetInventoryItem).Where(x => x != null).ToList()!;
                 operation.Complete();
 
 
@@ -148,6 +148,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
                 IEnumerable<string> inventoryTypes = InventoryTypes.Union(["trait"]);
+
                 List<Dictionary<string, string>> missingItems = ItemDb.GetMissing(inventory.Where(x => x.Quantity is not 0).Select(x => x.ProfileId.ToLowerInvariant()), d => inventoryTypes.Contains(d["Type"])).ToList();
 
                 operation.Complete();
@@ -214,7 +215,7 @@ public partial class Analyzer
                         List<PropertyBag> quickSlotItems = shortcutItems
                             .Get<ArrayStructProperty>().Items
                             .Select(x => (PropertyBag)x!).ToList();
-                        quickSlots = quickSlotItems.Select(GetInventoryItem).ToList();
+                        quickSlots = quickSlotItems.Select(GetInventoryItem).Where(x => x != null).ToList()!;
                     }
                 }
 
@@ -307,10 +308,7 @@ public partial class Analyzer
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read Cass loot");
                 TimeSpan tp = TimeSpan.FromSeconds((float)navigator.GetProperty("TimePlayed")!.Value!);
 
-                //var css = navigator.GetActor("Character_NPC_Cass_C")!;
-                //var tmp = navigator.GetComponent("Inventory", css);
-
-                List <LootItem> cassLoot = GetCassShop(navigator.GetComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!), result.Characters.Count, charSlotInternal);
+                List <LootItem> cassLoot = GetCassShop(navigator.GetComponents("Inventory", navigator.GetActor("Character_NPC_Cass_C")!), result.Characters.Count+1, charSlotInternal);
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) read quest log");
@@ -446,6 +444,8 @@ public partial class Analyzer
                 Property inventoryItem = itemProperties.Lookup["ItemBP"];
                 Property inventoryHidden = itemProperties.Lookup["Hidden"];
 
+                if (inventoryItem.ToStringValue() == null) continue;
+
                 bool hidden = (byte)inventoryHidden.Value! != 0;
                 if (hidden) continue;
                 string longName = ((ObjectProperty)inventoryItem.Value!).ClassName!;
@@ -524,18 +524,23 @@ public partial class Analyzer
 
     }
 
-    private static InventoryItem GetInventoryItem(PropertyBag pb)
+    private static InventoryItem? GetInventoryItem(PropertyBag pb)
     {
         InventoryItem? result = null;
         
         if (pb.Contains("ItemBP"))
         {
-            result = new() { ProfileId = pb["ItemBP"].ToStringValue()!, IsTrait = false };
+            string? profileId = pb["ItemBP"].ToStringValue();
+            // Apparently sometimes there are items that are not items
+            if (profileId == null) return null;
+            result = new() { ProfileId = profileId, IsTrait = false };
         }
-        
+
         if (pb.Contains("TraitBP"))
         {
-            result = new() { ProfileId = pb["TraitBP"].ToStringValue()!, IsTrait = true };
+            string? profileId = pb["TraitBP"].ToStringValue();
+            if (profileId == null)return null;
+            result = new() { ProfileId = profileId, IsTrait = true };
         }
         
         if (result == null)

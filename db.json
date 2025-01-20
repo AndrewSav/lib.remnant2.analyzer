@@ -12822,6 +12822,12 @@
     "World": "World_Base"
   },
   {
+    "Id": "Skill_Trait_HavocForm",
+    "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Skills/HavocForm/Skill_Trait_HavocForm.Skill_Trait_HavocForm_C",
+    "Type": "skill",
+    "World": "World_Base"
+  },
+  {
     "Id": "Skill_RealityRune",
     "ProfileId": "/Game/World_Base/Items/Archetypes/Archon/Skills/StasisField/Skill_RealityRune.Skill_RealityRune_C",
     "Type": "skill",

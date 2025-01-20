@@ -123,7 +123,7 @@ public partial class Analyzer
                     continue;
                 }
 
-                result.Add(GetInventoryItem(itemProperties));
+                result.Add(GetInventoryItem(itemProperties)!);
             }
         }
 
