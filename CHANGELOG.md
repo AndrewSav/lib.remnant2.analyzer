@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.40 (28 Jun 2025)
+- Add Wallace and account-unlocked archetypes that he offers
+
 ## v0.0.39 (21 Jan 2025)
 - Add HasRequiredMaterial propery to loot items, which is set if the Weapon/Mod has the required crafted material in the inventory
 - Fixed a crash when an inventory item does not have an associated object in save data

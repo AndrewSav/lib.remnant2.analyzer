@@ -112,6 +112,7 @@ public class Location
                 result.Add("Brabus");
                 result.Add("Norah");
                 result.Add("Spark");
+                result.Add("Wallace");
             }
 
             if (Name == "Ancient Canopy/Luminous Vale")

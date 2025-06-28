@@ -7429,7 +7429,9 @@
     "DropType": "Event",
     "DropReference": "Quest_Injectable_FaeCity_BoneHarvesterLair",
     "Note": "Approach every sewer drain on the edge of the Dran overland areas until you get grabbed by a Manticora. Once you load into the new area, defeat the Manticora that drops Mysterious Stone",
-    "EngramName": "Philosopher's Stone"
+    "EngramName": "Philosopher's Stone",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Alchemist"
   },
   {
     "Id": "Engram_Archon",
@@ -7441,7 +7443,9 @@
     "DropReference": "The Labyrinth",
     "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_ZaniasMalice",
     "Note": "Equip: Fortune Hunter skill of Explorer, Wormhole skill of Invader, Realmwalker armor set, Void Heart relic, Ford's Scattergun, Cube Gun, Labyrinth Staff, Leto's Amulet, Amber Moonstone, Black Cat Band, Anastasija's Inspiration, Zania's Malice. In the Labyrinth, head to the cycling portal. Wait until you see the scene in which you will drop into nothingness, and after two seconds enter. A bridge will appear, granting you safe passage. Move to the back of the area, you will have to fight some enemies, and turn right to find the Corrupted door. Open it using the biome portal key. Go through the gate, you'll be at \"The Backrooms\". Explore the backrooms until you find the Strange Box. The Fortune Hunter skill of the explorer, can help finding it before the timer expires",
-    "EngramName": "Hexahedron"
+    "EngramName": "Hexahedron",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Arcanist"
   },
   {
     "Id": "Engram_Challenger",
@@ -7452,7 +7456,9 @@
     "DropType": "Vendor",
     "DropReference": "Reggie",
     "Note": "Buy Old Metal Tool from Reggie at Ward 13",
-    "EngramName": "Steel Enswell"
+    "EngramName": "Steel Enswell",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Challenger"
   },
   {
     "Id": "Engram_Engineer",
@@ -7463,7 +7469,9 @@
     "DropType": "Event",
     "DropReference": "Quest_Injectable_OverworldFog",
     "Note": "Alien Device found just out of bounds in the overland area on N'Erud in poisoned fog. The Explorer Archetype skill \"Fortune Hunter\" can help find the item",
-    "EngramName": "Drzyr Caliper"
+    "EngramName": "Drzyr Caliper",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Engineer"
   },
   {
     "Id": "Engram_Explorer",
@@ -7474,7 +7482,9 @@
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_TowerBoss",
     "Note": "Broken Compass drops as a final campaign boss reward",
-    "EngramName": "Golden Compass"
+    "EngramName": "Golden Compass",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Explorer"
   },
   {
     "Id": "Engram_Gunslinger",
@@ -7485,7 +7495,9 @@
     "DropType": "Vendor",
     "DropReference": "Mudtooth",
     "Note": "Buy Worn Cylinder from Mudtooth at Ward 13 after exhausting his stories after getting to Root Earth in campaign mode",
-    "EngramName": "Iron Cylinder"
+    "EngramName": "Iron Cylinder",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Gunslinger"
   },
   {
     "Id": "Engram_Handler",
@@ -7496,7 +7508,9 @@
     "DropType": "Vendor",
     "DropReference": "Mudtooth",
     "Note": "Buy Old Whistle from Mudtooth at Ward 13",
-    "EngramName": "Silent Whistle"
+    "EngramName": "Silent Whistle",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Handler"
   },
   {
     "Id": "Engram_Hunter",
@@ -7507,7 +7521,9 @@
     "DropType": "Vendor",
     "DropReference": "Brabus",
     "Note": "Buy Rusty Medal from Brabus at Ward 13",
-    "EngramName": "Sniper War Medal"
+    "EngramName": "Sniper War Medal",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Hunter"
   },
   {
     "Id": "Engram_Invader",
@@ -7520,7 +7536,9 @@
     "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the the boiler room arena between the the first and the second checkpoint. Use the \"Walker's Dream\" item, that will drop and defeat the Bane aberration that drops Wooden Shiv",
     "Consumable": "Consumable_RootWalkerDream",
-    "EngramName": "Serrated Root Blade"
+    "EngramName": "Serrated Root Blade",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Invader"
   },
   {
     "Id": "Engram_Medic",
@@ -7531,7 +7549,9 @@
     "DropType": "Vendor",
     "DropReference": "Norah",
     "Note": "Buy Medic Pin from Norah at Ward 13",
-    "EngramName": "Caduceus Idol"
+    "EngramName": "Caduceus Idol",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Invoker"
   },
   {
     "Id": "Engram_Summoner",
@@ -7542,7 +7562,9 @@
     "DropType": "Vendor",
     "DropReference": "Blood Moon Altar",
     "Note": "Buy Faded Grimoire from Blood Moon Altar in an overworld location on Yaesha",
-    "EngramName": "Tome of The Bringer"
+    "EngramName": "Tome of The Bringer",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Medic"
   },
   {
     "Id": "Engram_Ritualist",
@@ -7553,7 +7575,9 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Note": "Found in Forlorn Coast location on Losomn, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig. The Ragged Poppet will be near the witch",
-    "EngramName": "Cursed Effigy"
+    "EngramName": "Cursed Effigy",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Ritualist"
   },
   {
     "Id": "Engram_Invoker",
@@ -7564,7 +7588,9 @@
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
     "Note": "Old Flute is found in Ancient Canopy area on Yaesha. Once you reach Abandoned Citadel world stone and lower the round fixture by flipping a lever near by get back on the fixture and the go to the very bottom of it, you will have to take three ladders before you reach the bottom.There will be an entrance and short trapped path, with a sand room with more traps in the end. You need get there after having spoken to Lydusa and received her curse. In the sand room there will be two sand hills close to each other. You need to maneuver yourself between them so that you do not get killed by the traps. Then you need to stand in place for about 5 minutes gradually sinking into the sand. In the end you will fall through into the room below and get the Old Flute.",
-    "EngramName": "Spirit Flute"
+    "EngramName": "Spirit Flute",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Summoner"
   },
   {
     "Id": "Engram_Warden",
@@ -7575,7 +7601,9 @@
     "DropType": "Location",
     "DropReference": "Withered Necropolis",
     "Note": "Weathered Mechanism is found in Withered Necropolis area on N'Erud. Take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, and then the next one in the same direction. The small platform (with a sort of short broken bridge sticking out of it) will be immediately next to that last plume. Land on it go under the arch and to the left over the bridge Weathered Mechanism is in a room just after the bridge",
-    "EngramName": "Command Module"
+    "EngramName": "Command Module",
+    "AccountAwardVendor": "Wallace",
+    "AccountAwardAward": "Award_Warden"
   },
   {
     "Id": "Quest_Item_Matchbook",
