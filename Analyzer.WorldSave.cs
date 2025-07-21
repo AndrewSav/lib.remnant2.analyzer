@@ -69,7 +69,7 @@ public partial class Analyzer
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
-            BloodMoon = BloodMoon.Read(navigator)
+            BloodMoon = BloodMoon.Read(navigator, rollObject)
         };
         rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
 
