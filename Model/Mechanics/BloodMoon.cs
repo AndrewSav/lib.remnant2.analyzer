@@ -12,9 +12,9 @@ public class BloodMoon
     public int ZoneLoadCount { get; set; }
     public Dictionary<string, string> StringifiedRawData = [];
 
-    public static BloodMoon? Read(Navigator n, UObject campaignObject)
+    public static BloodMoon? Read(Navigator n, UObject rollObject)
     {
-        List<UObject> oo = n.FindObjects("Quest_Event_Bloodmoon_C", campaignObject);
+        List<UObject> oo = n.FindObjects("Quest_Event_Bloodmoon_C", rollObject);
         if (oo.Count == 0) return null;
         Component? c =oo[0].Components?.FirstOrDefault(x => x.ComponentKey == "BloodMoon");
         if (c == null) return null;
