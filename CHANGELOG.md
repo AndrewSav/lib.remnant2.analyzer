@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.42 (25 Jan 2026)
+- Fix crash with Necklace of Flowing Life
+
 ## v0.0.40 (28 Jun 2025)
 - Add Wallace and account-unlocked archetypes that he offers
 

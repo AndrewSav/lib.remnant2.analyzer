@@ -313,7 +313,11 @@ internal static partial class CustomScripts
         // Player has not been there yet
         if (key == "None") return;
 
-        UObject zone = navigator.GetObjects($"pc:{key}").Single();
+        UObject? zone = navigator.GetObjects($"pc:{key}").SingleOrDefault();
+        
+        // Player has not been there yet
+        if (zone == null) return;
+        
         List<KeyValuePair<ulong, Actor>> actors = ((PersistenceContainer)zone.Properties!.Properties[1].Value.Get<StructProperty>().Value!).Actors;
 
         const int chestId = 86; // Let's pray to god it never changes
