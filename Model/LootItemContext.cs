@@ -17,7 +17,7 @@ internal class LootItemContext
         Navigator navigator = World.ParentCharacter.WorldNavigator!;
         UObject main = navigator.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
         string selector = World.IsCampaign ? "Quest_Campaign" : "Quest_AdventureMode";
-        return main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(selector)).Archive.Objects[0];
+        return main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Last(x => x.ToString()!.StartsWith(selector)).Archive.Objects[0];
     }
 
     public UObject? GetRollObject()

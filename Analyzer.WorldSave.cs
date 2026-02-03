@@ -29,7 +29,7 @@ public partial class Analyzer
         
         UObject main = navigator.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
 
-        UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Single(x => x.ToString()!.StartsWith(data.Selector)).Archive.Objects[0];
+        UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Last(x => x.ToString()!.StartsWith(data.Selector)).Archive.Objects[0];
 
         int rollId = meta.Properties!["ID"].Get<int>();
         UObject rollObject = navigator.GetObjects($"pc:/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel").Single();
