@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.43 (4 Feb 2026)
+- Fix crash when save file has two adventure blocks instead of expected one
+
 ## v0.0.42 (25 Jan 2026)
 - Fix crash with Necklace of Flowing Life
 
