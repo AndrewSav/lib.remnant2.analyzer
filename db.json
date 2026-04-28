@@ -94,7 +94,7 @@
     "World": "World_Fae",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_BurningCity_Rookery",
-    "Note": "There is a secret path, a  hole in a wall, covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find the item in the next area"
+    "Note": "There is a secret path, a hole in a wall, covered with a wood pallet. After breaking the pallet, crouch through the passage, you will find the item in the next area"
   },
   {
     "Id": "Amulet_ShockDevice",
@@ -122,7 +122,7 @@
     "World": "World_Fae",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_GoldenHall_SilverGold",
-    "Note": "Find Plain Ribbon quest item in the area. Interact with a statue of two Fae holding hands and place Plain Ribbon in it. Leave the location and then return back to it. Return to the statue and get Golder Ribbon from it",
+    "Note": "Find Plain Ribbon quest item in the area. Interact with a statue of two Fae holding hands and place Plain Ribbon in it. Leave the location and then return back to it. Return to the statue and get Golden Ribbon from it",
     "CustomScript": true
   },
   {
@@ -161,7 +161,7 @@
     "DropType": "Location",
     "DropReference": "The Tormented Asylum",
     "Prerequisite": "Quest_Item_KolketsRazor",
-    "Note": "Feed the Nightweaver's Web the Kolkets Razor quest items that drops from Wither Aberration found in the Lament location on Yaesha. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Feed the Nightweaver's Web the Kolket's Razor quest items that drops from Wither Aberration found in the Lament location on Yaesha. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Amulet_NimuesRibbon",
@@ -173,7 +173,7 @@
     "DropType": "Vendor",
     "DropReference": "Nimue",
     "Prerequisite": "Amulet_GoldenRibbon, Amulet_SilverRibbon",
-    "Note": "Crafted at Nimue from Golder Ribbon amulet and Silver Ribbon amulet",
+    "Note": "Crafted at Nimue from Golden Ribbon amulet and Silver Ribbon amulet",
     "AccountAwardVendor": "Reggie",
     "AccountAwardAward": "AccountAward_NimuesRibbon"
   },
@@ -209,7 +209,7 @@
     "Name": "Shaed Bloom Crystal",
     "DropType": "Location",
     "DropReference": "Malefic Palace",
-    "Note": "Found in Malefic Palace location on Losomn on a bone pile corresponding to the place in the Beautifc Palace where you got the Magic Quill from the jester"
+    "Note": "Found in Malefic Palace location on Losomn on a bone pile corresponding to the place in the Beatific Palace where you got the Magic Quill from the jester"
   },
   {
     "Id": "Amulet_SilverRibbon",
@@ -432,7 +432,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Extraction",
-    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated four coffins, you can find the item at the bottom area outside of Dark  Conduit entrance in a crate"
+    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated four coffins, you can find the item at the bottom area outside of Dark Conduit entrance in a crate"
   },
   {
     "Id": "Amulet_EffluviumEnhancer",
@@ -553,7 +553,7 @@
     "DropType": "Vendor",
     "DropReference": "Drzyr Replicator",
     "Prerequisite": "Material_ShinningEssenceEcho",
-    "Note": "Crafted at Drzyr Replicator in an overworld location on N'Erud, form Shining Essense Echo, which drops after defeating one of the two N'Erud world bosses, Tal'Rasha. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides, to find Drzyr Replicator"
+    "Note": "Crafted at Drzyr Replicator in an overworld location on N'Erud, form Shining Essence Echo, which drops after defeating one of the two N'Erud world bosses, Tal'Rasha. Drop to the hole in the ground on the left of the entrance of Ascension Spire where The Custodian resides, to find Drzyr Replicator"
   },
   {
     "Id": "Amulet_AbrasiveWhetstone",
@@ -599,7 +599,7 @@
     "World": "World_Root",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
-    "Note": "Found in Corrupted Harbor location on Root Earth. It just off the main path from the the boiler room arena between the first and second checkpoints. Go to the left from the entrance of the boiler room arena and follow the path, the item will be on a blue glowing fixture"
+    "Note": "Found in Corrupted Harbor location on Root Earth. It just off the main path from the boiler room arena between the first and second checkpoints. Go to the left from the entrance of the boiler room arena and follow the path, the item will be on a blue glowing fixture"
   },
   {
     "Id": "Amulet_BirthrightOfTheLost",
@@ -637,7 +637,7 @@
     "World": "World_DLC1",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_BurningCity_DLC",
-    "Note": "Found in an outdoor side path location on Losomn, there will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". You will be teleported to Ethereal Manor location with five locked door, you can open any of these but only one. You need to peer through the window or use Explorer's treasure hunter skill to detect a room with an item, unlock it and take the item in the room, you will be, again teleported to the start. You need to do this five times, you will get in order,  Strange Talisman, Bloody Talisman, Bloody Talisman (again), Bloody Talisman (again), and finally the Death-Soaked Idol"
+    "Note": "Found in an outdoor side path location on Losomn, there will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". You will be teleported to Ethereal Manor location with five locked door, you can open any of these but only one. You need to peer through the window or use Explorer's treasure hunter skill to detect a room with an item, unlock it and take the item in the room, you will be, again teleported to the start. You need to do this five times, you will get in order, Strange Talisman, Bloody Talisman, Bloody Talisman (again), Bloody Talisman (again), and finally the Death-Soaked Idol"
   },
   {
     "Id": "Amulet_GiftOfEuphoria",
@@ -647,7 +647,7 @@
     "Name": "Gift of Euphoria",
     "DropType": "Location",
     "DropReference": "Walk of Remembrance",
-    "Note": "After defeating Wraithliege in Pathway of the Fallen location on Losomn and obtaining Memoriam Medallion Key quest item from it proceed to the room behind it and destroy the picture hiding passage to the next room. Go through the mirror there to travel to Walk of Rememberance location. Use the quest item to open the pavillion in the middle of the level to get Gift of Euphoria"
+    "Note": "After defeating Wraithliege in Pathway of the Fallen location on Losomn and obtaining Memoriam Medallion Key quest item from it proceed to the room behind it and destroy the picture hiding passage to the next room. Go through the mirror there to travel to Walk of Remembrance location. Use the quest item to open the pavilion in the middle of the level to get Gift of Euphoria"
   },
   {
     "Id": "Amulet_GiftOfMelancholy",
@@ -657,7 +657,7 @@
     "Name": "Gift of Melancholy",
     "DropType": "Event",
     "DropReference": "Quest_SideD_GardenMaze",
-    "Note": "After defeating Wraithliege in Pathway of the Fallen location on Losomn and obtaining Memoriam Medallion Key quest item from it return the pavillion in the middle of the level and use the the quest item to open it to get Gift of Melancholy"
+    "Note": "After defeating Wraithliege in Pathway of the Fallen location on Losomn and obtaining Memoriam Medallion Key quest item from it return the pavilion in the middle of the level and use the quest item to open it to get Gift of Melancholy"
   },
   {
     "Id": "Amulet_GiftOfTheUnbound",
@@ -774,7 +774,7 @@
     "World": "World_DLC2",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Ziggurat_DLC",
-    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current poisiton. Left, forward, forward, left, forward. As you move forward on the last leg you will fall down to the room with the item"
+    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current position. Left, forward, forward, left, forward. As you move forward on the last leg you will fall down to the room with the item"
   },
   {
     "Id": "Amulet_ProfaneSoulStone",
@@ -803,7 +803,7 @@
     "DropType": "Location",
     "DropReference": "The Labyrinth",
     "Prerequisite": "Amulet_ProfaneSoulStone",
-    "Note": "Obtained from The Keeper found in The Labyrinth, near the Inner Sanctum world stone. You have to have Profane Soul Stone in your inventory and initiate a dialog with The Keeper. When you finish the dialog the Keeper will propmt you if you want to cleanse the amulet. Choose to agree to replace Profance Soul Stone with the item"
+    "Note": "Obtained from The Keeper found in The Labyrinth, near the Inner Sanctum world stone. You have to have Profane Soul Stone in your inventory and initiate a dialog with The Keeper. When you finish the dialog the Keeper will prompt you if you want to cleanse the amulet. Choose to agree to replace Profane Soul Stone with the item"
   },
   {
     "Id": "Amulet_StoneshapersChisel",
@@ -813,7 +813,7 @@
     "Name": "Stoneshaper's Chisel",
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
-    "Note": "Obtained from Uuqul found in Ancient Canopy location on Yaesha. You need to progress through the Lydusa quest enough to having spoken to Lydusa and obtaining the curse. After that talk to Uuqul found in a recess outside the round fixture you jump onto after meeting Walt for the first time. Exhause the dialog with Uuqul to receive the item"
+    "Note": "Obtained from Uuqul found in Ancient Canopy location on Yaesha. You need to progress through the Lydusa quest enough to having spoken to Lydusa and obtaining the curse. After that talk to Uuqul found in a recess outside the round fixture you jump onto after meeting Walt for the first time. Exhaust the dialog with Uuqul to receive the item"
   },
   {
     "Id": "Amulet_WornDogTags",
@@ -822,7 +822,7 @@
     "World": "World_DLC2",
     "DropType": "Location",
     "DropReference": "Luminous Vale",
-    "Note": "Found in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Return to Jack's hidout, after finishing the Lydusa quest line to get the item"
+    "Note": "Found in Luminous Vale location on Yaesha. When you explored the Luminous Vale enough you should see a narrow ramp up the map that goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Return to Jack's hideout, after finishing the Lydusa quest line to get the item"
   },
   {
     "Id": "Amulet_ZeroDivide",
@@ -841,7 +841,7 @@
     "Name": "Brazen Amalgam",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logisitics Bridge location on N'Erud. After the first check point cross the first set of jumps across the train tracks. Before dropping into a hole in the floor acros the last track look down, there will be a cat walk belwo the train level. Drop there and find the item"
+    "Note": "Found in Logistics Bridge location on N'Erud. After the first check point cross the first set of jumps across the train tracks. Before dropping into a hole in the floor across the last track look down, there will be a cat walk below the train level. Drop there and find the item"
   },
   {
     "Id": "Amulet_CanineKeepsake",
@@ -926,7 +926,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_OrnateLockbox",
-    "Note": "Get from Spark at Ward 13 in exchange for Ornate Lockbox quest item, after completing Spark's Dark Horizion quest line. Ornate Lockbox is found in the Widow's Court location on Yaesha behind an illusory wall next to a chest under the castle in Widow's Court, indicated by a lit brazier. Area can be reached by jumping down the \"water\" hole just before the exit to the next level, one of the paths leads to a chest next to where you can find the mentioned wall",
+    "Note": "Get from Spark at Ward 13 in exchange for Ornate Lockbox quest item, after completing Spark's Dark Horizon quest line. Ornate Lockbox is found in the Widow's Court location on Yaesha behind an illusory wall next to a chest under the castle in Widow's Court, indicated by a lit brazier. Area can be reached by jumping down the \"water\" hole just before the exit to the next level, one of the paths leads to a chest next to where you can find the mentioned wall",
     "MaterialType": "Material_AncientAlloy",
     "MaterialQuantity": "50"
   },
@@ -964,7 +964,7 @@
     "World": "World_DLC3",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Overload_DLC",
-    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yelowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the amulet is behind the last one"
+    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yellowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the amulet is behind the last one"
   },
   {
     "Id": "Amulet_TimekeepersForfeit",
@@ -975,7 +975,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_ClockTower_Flywheel",
-    "Note": "Get from Spark at Ward 13 in exchange for Clockwork Pinion quest item, after completing Spark's Dark Horizion quest line. Clockwork Pinion is found in Lemark District location on Losomn at the very end of the linear path. Set the clock to 11:17 to get it",
+    "Note": "Get from Spark at Ward 13 in exchange for Clockwork Pinion quest item, after completing Spark's Dark Horizon quest line. Clockwork Pinion is found in Lemark District location on Losomn at the very end of the linear path. Set the clock to 11:17 to get it",
     "MaterialType": "Material_MythrilAlloy",
     "MaterialQuantity": "50"
   },
@@ -987,7 +987,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_Core_OverridePin",
-    "Note": "Get from Spark at Ward 13 in exchange for Override Pin quest item, after completing Spark's Dark Horizion quest line. Override Pin is found inside an unnamed tower in Timeless Horizon location on N'Erud. The tower has an elevator that leads to a fixture that resembles the ones that have seekers keys, but has Ionic Crystal instead. There is an inconspicuous opening you can enter on the right side of the room as you emerge from the elevator that leads to the Override Pin",
+    "Note": "Get from Spark at Ward 13 in exchange for Override Pin quest item, after completing Spark's Dark Horizon quest line. Override Pin is found inside an unnamed tower in Timeless Horizon location on N'Erud. The tower has an elevator that leads to a fixture that resembles the ones that have seekers keys, but has Ionic Crystal instead. There is an inconspicuous opening you can enter on the right side of the room as you emerge from the elevator that leads to the Override Pin",
     "MaterialType": "Material_AlienAlloy",
     "MaterialQuantity": "50"
   },
@@ -1396,7 +1396,7 @@
     "Name": "Dendroid Chest",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that falled down on the entrance. Follow the path to find the item"
+    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that fell down on the entrance. Follow the path to find the item"
   },
   {
     "Id": "Armor_Gloves_Invader",
@@ -1406,7 +1406,7 @@
     "Name": "Dendroid Grips",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that falled down on the entrance. Follow the path to find the item"
+    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that fell down on the entrance. Follow the path to find the item"
   },
   {
     "Id": "Armor_Head_Invader",
@@ -1416,7 +1416,7 @@
     "Name": "Dendroid Mask",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that falled down on the entrance. Follow the path to find the item"
+    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that fell down on the entrance. Follow the path to find the item"
   },
   {
     "Id": "Armor_Legs_Invader",
@@ -1426,7 +1426,7 @@
     "Name": "Dendroid Leggings",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that falled down on the entrance. Follow the path to find the item"
+    "Note": "Found in Ashen Wasteland location on Root Earth. From the world stone proceed forward via the overpass and then inside a tree trunk until you get to the bottom open area. Follow the wall to your left until you come to a wooden hole, proceed through and go up the rubble at the end of the room. Follow the path, you will have to jump to get to the second landing, there will be a hole in the corner that you can drop down into. At the end of the hallway where Reaping Stone can be found jump over the gap onto the column that fell down on the entrance. Follow the path to find the item"
   },
   {
     "Id": "Armor_Body_Summoner",
@@ -1881,7 +1881,7 @@
     "Name": "Lodestone Crown",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "Found in The Lament location on Yaesha. Inside a tomb opened by Kolket's Key after the floating pillars trap there is an illusory wall that will lead you up to the crown. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in The Lament location on Yaesha. Inside a tomb opened by Kolket's Key after the floating pillars trap there is an illusory wall that will lead you up to the crown. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolket's Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Armor_Body_RedWidow",
@@ -2021,7 +2021,7 @@
     "Name": "Crimson Guard Plate",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are usually zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -2032,7 +2032,7 @@
     "Name": "Crimson Guard Gauntlets",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are usually zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -2043,7 +2043,7 @@
     "Name": "Crimson Guard Shroud",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are usually zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -2054,7 +2054,7 @@
     "Name": "Crimson Guard Sabatons",
     "DropType": "Location",
     "DropReference": "Chamber of the Faithless",
-    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are ususally zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
+    "Note": "Found in Chamber of the Faithless location on Losomn. Kill One True King, go to Gilded Chambers location and clear it enough times to get three Crimson King Coins, they drop from the teleport Fae, and there are usually zero one or two spawn each run. Once you get three coins talk to the Red Prince and choose to pay tribute. Go back to Chamber of the Faithless, talk to Red Prince and receive the reward",
     "CustomScript": true
   },
   {
@@ -2105,7 +2105,7 @@
     "Name": "Battle Shirt",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you circle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Gloves_Army",
@@ -2115,7 +2115,7 @@
     "Name": "Battle Gloves",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you circle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Head_Army",
@@ -2125,7 +2125,7 @@
     "Name": "Battle Helmet",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you circle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Legs_Army",
@@ -2135,7 +2135,7 @@
     "Name": "Battle Slacks",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you cicrle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
+    "Note": "Found in Proving Grounds location on Yaesha. After the first checkpoint, finish the first are where you need to time your jumps and reach the lever. Flip the lever, continue forward once you circle back to the beginning. Enter the area again and jump down. The item will be there on the floor near the exit"
   },
   {
     "Id": "Armor_Head_BloodlessCrown",
@@ -2145,7 +2145,7 @@
     "Name": "Bloodless Crown",
     "DropType": "Event",
     "DropReference": "Quest_SideD_LydusaTemple",
-    "Note": "Found in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, the item can be seen towards the rear wall"
+    "Note": "Found in Goddess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, the item can be seen towards the rear wall"
   },
   {
     "Id": "Armor_Head_MudtoothsHat",
@@ -2165,7 +2165,7 @@
     "Name": "Dandy Topper",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Shoot the preacher in the head to get the item"
+    "Note": "Found in Forlorn Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Shoot the preacher in the head to get the item"
   },
   {
     "Id": "Armor_Head_TrueCrimsonCrown",
@@ -2226,7 +2226,7 @@
     "Name": "Phetyr Chassis",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some destructable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
   },
   {
     "Id": "Armor_Gloves_NerudWarrior",
@@ -2236,7 +2236,7 @@
     "Name": "Phetyr Crushers",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some destructable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
   },
   {
     "Id": "Armor_Head_NerudWarrior",
@@ -2246,7 +2246,7 @@
     "Name": "Phetyr Sensor",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some destructable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
   },
   {
     "Id": "Armor_Legs_NerudWarrior",
@@ -2256,7 +2256,7 @@
     "Name": "Phetyr Locomotor",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some disctuctable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the right of the platforms the will be some destructable canisters. Destroy them and follow the path jumping across some more tracks. At the end you will find the Phetyr set"
   },
   {
     "Id": "Armor_Head_WeldingGoggles",
@@ -2275,7 +2275,7 @@
     "Material": "Material_RootGanglia",
     "DropType": "Vendor",
     "DropReference": "McCabe",
-    "Note": "Buy from McCabe at  Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
+    "Note": "Buy from McCabe at Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
   },
   {
     "Id": "Mod_CorrosiveRounds",
@@ -2295,7 +2295,7 @@
     "Material": "Material_RootGanglia",
     "DropType": "Vendor",
     "DropReference": "McCabe",
-    "Note": "Buy from McCabe at  Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
+    "Note": "Buy from McCabe at Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
   },
   {
     "Id": "Mod_Hotshot",
@@ -2305,7 +2305,7 @@
     "Material": "Material_RootGanglia",
     "DropType": "Vendor",
     "DropReference": "McCabe",
-    "Note": "Buy from McCabe at  Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
+    "Note": "Buy from McCabe at Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
   },
   {
     "Id": "Mod_ScrapShot",
@@ -2315,7 +2315,7 @@
     "Material": "Material_RootGanglia",
     "DropType": "Vendor",
     "DropReference": "McCabe",
-    "Note": "Buy from McCabe at  Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
+    "Note": "Buy from McCabe at Ward 13. Make sure to select the \"Buy\" tab, if you've already spent Root Ganglia from the character creation"
   },
   {
     "Id": "Mod_BloodDraw",
@@ -2468,7 +2468,7 @@
     "Material": "Material_IonicCrystal",
     "DropType": "Location",
     "DropReference": "Timeless Horizon",
-    "Note": "Crafted from Ionic Crystal found in Timeless Horizon location on Yaesha.There is an unnamed tower, that has similar looking stairs to the tower(s) where you found  Seeker's Key(s). But instead of a seeker key there is this reward on top of the stairs"
+    "Note": "Crafted from Ionic Crystal found in Timeless Horizon location on Yaesha.There is an unnamed tower, that has similar looking stairs to the tower(s) where you found Seeker's Key(s). But instead of a seeker key there is this reward on top of the stairs"
   },
   {
     "Id": "Mod_Helix",
@@ -2560,7 +2560,7 @@
     "DropType": "Location",
     "DropReference": "Walk of Remembrance",
     "Prerequisite": "Armor_Head_RedPrince",
-    "Note": "Found in the tomb in Walk Of Rememberance location on Losomn. First find and defeat Warithliege aberration at the end of the maze in the Path of the Fallen location. The Memoriam Medallion Key quest item drops. Do not use it on the tomb in the Path of the Fallen, go through the room where Warithliege used to be and destroy the picutre in the next room to reveal a door. Go through the door and then through the mirror to the Walk of Rememberance. Find the tomb there and use the Memoriam Medallion Key to enter it. Wear the Red Prince's Crown to reveal a hidden passage where you collect Cremated Soul Ash, which this item is crafted from"
+    "Note": "Found in the tomb in Walk Of Remembrance location on Losomn. First find and defeat Wraithliege aberration at the end of the maze in the Path of the Fallen location. The Memoriam Medallion Key quest item drops. Do not use it on the tomb in the Path of the Fallen, go through the room where Wraithliege used to be and destroy the picture in the next room to reveal a door. Go through the door and then through the mirror to the Walk of Remembrance. Find the tomb there and use the Memoriam Medallion Key to enter it. Wear the Red Prince's Crown to reveal a hidden passage where you collect Cremated Soul Ash, which this item is crafted from"
   },
   {
     "Id": "Mod_RingOfSpears",
@@ -2663,7 +2663,7 @@
     "Subtype": "Melee",
     "DropType": "Location",
     "DropReference": "Malefic Palace",
-    "Note": "Drops from The Firth The Oathkeeper found in Malefic Palace location on Losomn.  During the Jester event chose the devil card. Choose a wrong card if the devil card initially does not appear"
+    "Note": "Drops from The Firth The Oathkeeper found in Malefic Palace location on Losomn. During the Jester event chose the devil card. Choose a wrong card if the devil card initially does not appear"
   },
   {
     "Id": "MetaGem_Overdrive",
@@ -2876,7 +2876,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CharnelHouse",
-    "Note": "Drops from Braghest the Vile Aberration found in the Harvester's Reach location on Losomn"
+    "Note": "Drops from Barghest the Vile Aberration found in the Harvester's Reach location on Losomn"
   },
   {
     "Id": "MetaGem_Momentum",
@@ -2919,7 +2919,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
-    "Note": "Drops from Bane Aberration found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the the boiler room arena between the the first and the second checkpoint. Use the \"Walker's Dream\" item, that will drop and you will get teleported to Bane",
+    "Note": "Drops from Bane Aberration found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the boiler room arena between the first and the second checkpoint. Use the \"Walker's Dream\" item, that will drop and you will get teleported to Bane",
     "Consumable": "Consumable_RootWalkerDream"
   },
   {
@@ -2931,7 +2931,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Towers_RemainsBelow",
-    "Note": "Drops from Restless Spirit Aberration Found in a tower location on N'erud. There will be a circular indoor area where you can drop down to a lower level, then a sentry appears that you defeat, dropping further down will get you to the Constant Variable Ring item, and then followig along the path will get you to a blue machine, after interacting with which you will get teleproted to the Restless Spirit aberration area"
+    "Note": "Drops from Restless Spirit Aberration Found in a tower location on N'erud. There will be a circular indoor area where you can drop down to a lower level, then a sentry appears that you defeat, dropping further down will get you to the Constant Variable Ring item, and then following along the path will get you to a blue machine, after interacting with which you will get teleported to the Restless Spirit aberration area"
   },
   {
     "Id": "MetaGem_Transpose",
@@ -3084,7 +3084,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Dire Fiend aberration in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
+    "Note": "Drops from Dire Fiend aberration in Forlorn Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Attack the bystander Dran and the preacher will turn into the Dire Fiend"
   },
   {
     "Id": "MetaGem_FetidWounds",
@@ -3105,7 +3105,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Mangled Atoner aberration in Forlon Coast location on Losomn, at the top of Nimue tower"
+    "Note": "Drops from Mangled Atoner aberration in Forlorn Coast location on Losomn, at the top of Nimue tower"
   },
   {
     "Id": "MetaGem_Prophecy",
@@ -3138,7 +3138,7 @@
     "Subtype": "Melee",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Drops from Little Gorge aberration in Forlon Coast location on Losomn, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig"
+    "Note": "Drops from Little Gorge aberration in Forlorn Coast location on Losomn, that spawns if you do not get too close to a pig ritual in the Drowned Wen area. From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) drop down to where the boats are and follow a side path from boat to boat until you can see a breach in the wall, follow a short path inside and see a witch performing a ritual on a pig"
   },
   {
     "Id": "MetaGem_Guts",
@@ -3149,7 +3149,7 @@
     "Subtype": "Melee",
     "DropType": "Event",
     "DropReference": "Quest_SideD_SewerChamber",
-    "Note": "Drops from Cursed Wretch aberration in The Forgotten Commune location on Losomn. There will be NPC called Elowen in the area. Talk to her and then return to her after destroying the Befouled Altars. She will trasform to the Cursed Wretch"
+    "Note": "Drops from Cursed Wretch aberration in The Forgotten Commune location on Losomn. There will be NPC called Elowen in the area. Talk to her and then return to her after destroying the Befouled Altars. She will transform to the Cursed Wretch"
   },
   {
     "Id": "MetaGem_TaintedBlade",
@@ -3180,7 +3180,7 @@
     "Subtype": "Melee",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Drops from The Fractured aberration in Proving Grounds location on Yaesha. After the third checkpoint stand on the centre pressure plate in the next saw blades area that opens the way forward, but go backward and to your right (left if backtracking) to a newly opened passage to find the abberation in the end. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returing back to the third via the shortcut next to the lever"
+    "Note": "Drops from The Fractured aberration in Proving Grounds location on Yaesha. After the third checkpoint stand on the centre pressure plate in the next saw blades area that opens the way forward, but go backward and to your right (left if backtracking) to a newly opened passage to find the aberration in the end. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returning back to the third via the shortcut next to the lever"
   },
   {
     "Id": "MetaGem_FarSighted",
@@ -3191,7 +3191,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Luminous Vale",
-    "Note": "Drops from Stonewing Lurker aberration in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. Return to this spot after competing Lydusa quest line for the aberration to spawn"
+    "Note": "Drops from Stonewing Lurker aberration in Luminous Vale location on Yaesha. When you explored the Luminous Vale enough you should see a narrow ramp up the map that goes sort of diagonally from a corner. In the game world these are some tree roots going up. Return to this spot after competing Lydusa quest line for the aberration to spawn"
   },
   {
     "Id": "MetaGem_NearSighted",
@@ -3224,7 +3224,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_SideD_LydusaTemple",
-    "Note": "Drops from The Bloodless Heir aberration in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
+    "Note": "Drops from The Bloodless Heir aberration in Goddess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
   },
   {
     "Id": "MetaGem_Spellweaver",
@@ -3245,7 +3245,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Island_DLC",
-    "Note": "Drops from Protector of the Grove Aberration found in an outdoor location on Yaesha. There will be a big Doe statue, kill all the (regular) does in the area for the abbearion to appear"
+    "Note": "Drops from Protector of the Grove Aberration found in an outdoor location on Yaesha. There will be a big Doe statue, kill all the (regular) does in the area for the aberration to appear"
   },
   {
     "Id": "MetaGem_HyperCharger",
@@ -3256,7 +3256,7 @@
     "Subtype": "Melee",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Drops from Void Amalgamate aberration in Logisitics Bridge location on N'Erud"
+    "Note": "Drops from Void Amalgamate aberration in Logistics Bridge location on N'Erud"
   },
   {
     "Id": "MetaGem_VolatileStrike",
@@ -3288,7 +3288,7 @@
     "Subtype": "Ranged",
     "DropType": "Location",
     "DropReference": "Agronomy Sector",
-    "Note": "Drops from Astral Harvester aberration in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommeded. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the righ of you before you hit any wind plumes. The opening is at the water level and cannot be seen well unil you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination to fight the aberration"
+    "Note": "Drops from Astral Harvester aberration in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommended. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the right of you before you hit any wind plumes. The opening is at the water level and cannot be seen well until you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination to fight the aberration"
   },
   {
     "Id": "MetaGem_HiddenPower",
@@ -3341,7 +3341,7 @@
     "World": "World_Base",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Islands_Tower",
-    "Note": "Found in an outdoor location on Yaesha. There will be a tower with an elevator in the area. if you step on and off the elevator. it will raise revealing symbols you will need to enter to the puzzle lock. Go downstairs to the foot of the tower from the elevator and through the illusory wall in fron of the tower, enter the symbols (in any order) on the lock and the door to the item will get unlocked"
+    "Note": "Found in an outdoor location on Yaesha. There will be a tower with an elevator in the area. if you step on and off the elevator. it will raise revealing symbols you will need to enter to the puzzle lock. Go downstairs to the foot of the tower from the elevator and through the illusory wall in front of the tower, enter the symbols (in any order) on the lock and the door to the item will get unlocked"
   },
   {
     "Id": "Relic_Consumable_ConstrainedHeart",
@@ -3488,7 +3488,7 @@
     "DropType": "Event",
     "DropReference": "Quest_OverworldPOI_TheCustodian",
     "Prerequisite": "Material_ShinningEssenceEcho",
-    "Note": "Found in the first overworld location pon N'Erud. Given by the Custodian in exchange for the shining essence echo which is acquired by killing Tal'Ratha. You might need to talk to the Custodian before you defeat Tal'Ratha to get the item after that battle"
+    "Note": "Found in the first overworld location on N'Erud. Given by the Custodian in exchange for the shining essence echo which is acquired by killing Tal'Ratha. You might need to talk to the Custodian before you defeat Tal'Ratha to get the item after that battle"
   },
   {
     "Id": "Relic_Consumable_TormentedHeart",
@@ -3558,7 +3558,7 @@
     "World": "World_DLC2",
     "DropType": "Event",
     "DropReference": "Quest_SideD_LydusaTemple",
-    "Note": "Found in Godess's Rest location on Yaesha. Go left from the main entrance to Lydusa Temple with the 5 blue circles and take the elevator down. Follow the path until you reach a water path with a cave entrance on the left. At the far back of the passage to the left will be a false wall leading to a room containing an elevator. Take the elevator and follow the passage. The heart will be on your right, opposite of the bedchamber."
+    "Note": "Found in Goddess's Rest location on Yaesha. Go left from the main entrance to Lydusa Temple with the 5 blue circles and take the elevator down. Follow the path until you reach a water path with a cave entrance on the left. At the far back of the passage to the left will be a false wall leading to a room containing an elevator. Take the elevator and follow the passage. The heart will be on your right, opposite of the bedchamber."
   },
   {
     "Id": "Relic_Consumable_ProfaneHeart",
@@ -3843,7 +3843,7 @@
     "Name": "Burden of the Divine",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_RisingTides",
-    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocket some detructable shelves and pots, which will lead to a room with platforms. Proceed along the path jumping across as required. The item will be on the other side of the room"
+    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocked some destructable shelves and pots, which will lead to a room with platforms. Proceed along the path jumping across as required. The item will be on the other side of the room"
   },
   {
     "Id": "Ring_BurdenOfTheWarlock",
@@ -3933,7 +3933,7 @@
     "World": "World_Fae",
     "DropType": "Event",
     "DropReference": "Quest_SideD_FaeCouncil",
-    "Note": "Found in the Council Chamber location on Losomn. Talk to the Council and agree to find out the traitor. Complete the level and transition to the Council Tribunal location by interacting with the mirror at the end of the location. There proceed until you reach council seats and interact with them to obtain the council key quest items. Put the keys back into the seats in the correct order from left to right: teal, red and purple. This will open the throne room, go there and climb on the ledge behind the throne, and jump to the back of the throne from there. Pick up the Assassin Dagger quest item, and inspect it, noticing the colour of the jewel on it. Return back to the Council Chamber and when asked to accuse, accuse the wrong person. The  right person corrseponds to the Dagger jewel colour: teal - Savan, red - Oniril, purple - Nyele. The item will be give as the reward for defeating the three council members afterwards"
+    "Note": "Found in the Council Chamber location on Losomn. Talk to the Council and agree to find out the traitor. Complete the level and transition to the Council Tribunal location by interacting with the mirror at the end of the location. There proceed until you reach council seats and interact with them to obtain the council key quest items. Put the keys back into the seats in the correct order from left to right: teal, red and purple. This will open the throne room, go there and climb on the ledge behind the throne, and jump to the back of the throne from there. Pick up the Assassin Dagger quest item, and inspect it, noticing the colour of the jewel on it. Return back to the Council Chamber and when asked to accuse, accuse the wrong person. The right person corresponds to the Dagger jewel colour: teal - Savan, red - Oniril, purple - Nyele. The item will be give as the reward for defeating the three council members afterwards"
   },
   {
     "Id": "Ring_FaerinsSigil",
@@ -3982,7 +3982,7 @@
     "Coop": true,
     "DropType": "Event",
     "DropReference": "Quest_SideD_ThreeMenMorris",
-    "Note": "One player challenges the Postulant to a game and position one of their (white) pieces in the bottom left corner, while the other player enters the door this action opens in the bottom left room. Then the first player needs to move the white piece out of that corner so that the doors flip, which allows the second play access to the room with the itemout of that corner so that the doors flip, which allows the second play access to the room with the item"
+    "Note": "One player challenges the Postulant to a game and position one of their (white) pieces in the bottom left corner, while the other player enters the door this action opens in the bottom left room. Then the first player needs to move the white piece out of that corner so that the doors flip, which allows the second play access to the room with the item out of that corner so that the doors flip, which allows the second play access to the room with the item"
   },
   {
     "Id": "Ring_GroundingStone",
@@ -4019,7 +4019,7 @@
     "Name": "Ring of Grace",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CharnelHouse",
-    "Note": "Give Reiwen NPC Dria's Anklet, both found in the Harvester's Reach location on Losomn. Dria's Anklet drops from Barghest the Vile aberration"
+    "Note": "Give Riewen NPC Dria's Anklet, both found in the Harvester's Reach location on Losomn. Dria's Anklet drops from Barghest the Vile aberration"
   },
   {
     "Id": "Ring_RingOfRetribution",
@@ -4111,7 +4111,7 @@
     "Name": "Ring Of The Damned",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_TheNest",
-    "Note": "Found in a sewer location on Losomn. Destroy some rubble to get to a section with a cages, proceed along the path fighting some Fae enemies. there will be more cages hanging from the floor with Dran in them. The path in linear, along it you will have to go upstairs, climb a letter, cross a wooden bridge. From there you will see a cage with an item glowing inside, also on the minimap. Shoot it an item will drop. Drop to where it landed and pick up the Severed Hand quest item. Insepct it, interact with it to receive the item"
+    "Note": "Found in a sewer location on Losomn. Destroy some rubble to get to a section with a cages, proceed along the path fighting some Fae enemies. there will be more cages hanging from the floor with Dran in them. The path in linear, along it you will have to go upstairs, climb a letter, cross a wooden bridge. From there you will see a cage with an item glowing inside, also on the minimap. Shoot it an item will drop. Drop to where it landed and pick up the Severed Hand quest item. Inspect it, interact with it to receive the item"
   },
   {
     "Id": "Ring_TimekeepersJewel",
@@ -4310,7 +4310,7 @@
     "Name": "Ring of Diversion",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TheLament",
-    "Note": "Found in a tomb opened by Kolket's Key after the floating pillars trap. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
+    "Note": "Found in a tomb opened by Kolket's Key after the floating pillars trap. The way through the trap is marked by the symbol on the first platform, it will repeat in the following platforms and those that have the same symbol are connected by an invisible bridge. Get Kolket's Key by inspecting the Kolket's Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly."
   },
   {
     "Id": "Ring_RingOfOmens",
@@ -4512,7 +4512,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Underworld_Shockwire",
-    "Note": "Found in an indoor location on N'Erud. There's a locked door that you can't access, but you can see the item behind glass. Near it is a small room that you can break the objects and get into a vent under the floor. Once you get through the vent, you climb up a ladder.  Before dropping down at the end, there is a small hole you can aim through and shoot an electric barrel. This powers the door and opens it for you to go through"
+    "Note": "Found in an indoor location on N'Erud. There's a locked door that you can't access, but you can see the item behind glass. Near it is a small room that you can break the objects and get into a vent under the floor. Once you get through the vent, you climb up a ladder. Before dropping down at the end, there is a small hole you can aim through and shoot an electric barrel. This powers the door and opens it for you to go through"
   },
   {
     "Id": "Ring_BlastingCapRing",
@@ -4621,7 +4621,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Extraction",
-    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated three coffins, you can find the item at the bottom area outside of Dark  Conduit entrance in a crate"
+    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated three coffins, you can find the item at the bottom area outside of Dark Conduit entrance in a crate"
   },
   {
     "Id": "Ring_GeneratingBand",
@@ -4657,7 +4657,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_SideD_StasisSiege",
-    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege event there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. To to the right of it you can shoot some breakable item and the vault over to the other side and into a hatch to find the item"
+    "Note": "Found in the Vault of the Formless location on N'Erud. As you progress through the siege event there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item. To the right of it you can shoot some breakable item and the vault over to the other side and into a hatch to find the item"
   },
   {
     "Id": "Ring_MeteoriteShardRing",
@@ -4719,7 +4719,7 @@
     "World": "World_Nerud",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Underworld_Shockwire",
-    "Note": "Found in an indoor location on N'Erud. There's a  locked door that you can't access, but you can see another item behind glass. Near it is a small room that you can break the objects and get into a vent under the floor. Once you get through the vent, you climb up a ladder and there's the item in there"
+    "Note": "Found in an indoor location on N'Erud. There's a locked door that you can't access, but you can see another item behind glass. Near it is a small room that you can break the objects and get into a vent under the floor. Once you get through the vent, you climb up a ladder and there's the item in there"
   },
   {
     "Id": "Ring_ReserveBoostingGem",
@@ -4867,7 +4867,7 @@
     "World": "World_Root",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. From the second checkpoint follow the main path down into the the sewers, until you get into the water. There will be opening on the left of you that leads to a maintenance room, the item will be there"
+    "Note": "Found in Ashen Wasteland location on Root Earth. From the second checkpoint follow the main path down into the sewers, until you get into the water. There will be opening on the left of you that leads to a maintenance room, the item will be there"
   },
   {
     "Id": "Ring_FlyweightsSting",
@@ -4964,7 +4964,7 @@
     "World": "World_DLC1",
     "DropType": "Vendor",
     "DropReference": "Leywise",
-    "Note": "Buy from Leywise in Forlorn Coast location on Losomn. Leywise can be found besides a cooking pot, looking extremely worried and occupied. He denies the player when he is being interacted on, until you try a few more times. After telling him, 'I want something crafted', he will explain that he does not do that because he is a Royal Scribe. After this, we can tell him that we want to buy something. Laywise will offer us the item."
+    "Note": "Buy from Leywise in Forlorn Coast location on Losomn. Leywise can be found besides a cooking pot, looking extremely worried and occupied. He denies the player when he is being interacted on, until you try a few more times. After telling him, 'I want something crafted', he will explain that he does not do that because he is a Royal Scribe. After this, we can tell him that we want to buy something. Leywise will offer us the item."
   },
   {
     "Id": "Ring_BandOfTheFanatic",
@@ -4975,7 +4975,7 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Armor_Body_Ritualist, Armor_Gloves_Ritualist, Armor_Head_Ritualist, Armor_Legs_Ritualist",
-    "Note": "Found in Forlon Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Wear the Zealot set (otherwise you will get attacked once you approach the preacher), do not attack anyone and wait until the end of the preacher's speech. Then interact with the preacher and he will give you the item.",
+    "Note": "Found in Forlorn Coast location on Losomn, at the start of the level when you cross a long bridge to the main area there will be a preacher. Wear the Zealot set (otherwise you will get attacked once you approach the preacher), do not attack anyone and wait until the end of the preacher's speech. Then interact with the preacher and he will give you the item.",
     "CustomScript": true
   },
   {
@@ -5006,7 +5006,7 @@
     "Name": "Bridge Warden's Crest",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn. Aftert getting to Drowened Wen worldstone  you reach a small checkpoint near an iron door leading to the level start. From there you need to cross the water by jumping from boat to boat. Once on the otherside you need to reach the Mournful Promenade world stone without killing any Fae. If you avoid the area where Fae fighting with Dran nearby you should not meet any additional Fae on your way to the worldstone. You will see the big Warden not far from the Worldstone. Do not attack him, talk to him and he will give you the item."
+    "Note": "Found in Forlorn Coast location on Losomn. After getting to Drowned Wen worldstone you reach a small checkpoint near an iron door leading to the level start. From there you need to cross the water by jumping from boat to boat. Once on the other side you need to reach the Mournful Promenade world stone without killing any Fae. If you avoid the area where Fae fighting with Dran nearby you should not meet any additional Fae on your way to the worldstone. You will see the big Warden not far from the Worldstone. Do not attack him, talk to him and he will give you the item."
   },
   {
     "Id": "Ring_BurdenOfTheDeparted",
@@ -5027,7 +5027,7 @@
     "Name": "Burden of the Sciolist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn, Find Misplaced Memoir quest item in Forlon Coast location on Losomn, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn and give him the medallion the first time he asks"
+    "Note": "Found in Forlorn Coast location on Losomn, Find Misplaced Memoir quest item in Forlorn Coast location on Losomn, interact with it to get Bookbound Medallion quest item. Talk to Leywise in Forlorn Coast location on Losomn and give him the medallion the first time he asks"
   },
   {
     "Id": "Ring_CrimsonDreamstone",
@@ -5045,7 +5045,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast loaction on Losomn. Frow the Drowned Wen Worldstone go straight ahead on the first intersection to the anchor statue. Kill all the pigs nearby to get the item"
+    "Note": "Found in Forlorn Coast location on Losomn. Frow the Drowned Wen Worldstone go straight ahead on the first intersection to the anchor statue. Kill all the pigs nearby to get the item"
   },
   {
     "Id": "Ring_DriedClayRing",
@@ -5129,7 +5129,7 @@
     "Name": "Ring of Infinite Damage",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlon Coast location on Losomn, Find Misplaced Memoir quest item in Forlon Coast location on Losomn, interact with it to get Bookbound Medallion quest intem. Talk to Leywise in Forlon Coast location on Losomn do not give him the medallion the first time he asks, but give it to him second time he asks"
+    "Note": "Found in Forlorn Coast location on Losomn, Find Misplaced Memoir quest item in Forlorn Coast location on Losomn, interact with it to get Bookbound Medallion quest item. Talk to Leywise in Forlorn Coast location on Losomn do not give him the medallion the first time he asks, but give it to him second time he asks"
   },
   {
     "Id": "Ring_RingOfTheCastaway",
@@ -5187,7 +5187,7 @@
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
     "Prerequisite": "Quest_Item_OTK_FeastmasterLeftovers",
-    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn. Talk to Leywise first long enough for him to tell you his name. Then go to The Great Hall location on Losomn and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise again and insit on him eating the Leftovers. You will receive the item as the result"
+    "Note": "Obtained from Leywise in Forlorn Coast location on Losomn. Talk to Leywise first long enough for him to tell you his name. Then go to The Great Hall location on Losomn and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Then talk to Leywise again and insist on him eating the Leftovers. You will receive the item as the result"
   },
   {
     "Id": "Ring_WoodRing",
@@ -5215,7 +5215,7 @@
     "Name": "Bloodless King's Vow",
     "DropType": "Event",
     "DropReference": "Quest_SideD_LydusaTemple",
-    "Note": "Drops from The Bloodless Heir aberration in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
+    "Note": "Drops from The Bloodless Heir aberration in Goddess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, interact with a golden bowl and do not put anything in it to summon the aberration"
   },
   {
     "Id": "Ring_BurdenOfTheMason",
@@ -5225,7 +5225,7 @@
     "Name": "Burden of the Mason",
     "DropType": "Location",
     "DropReference": "Luminous Vale",
-    "Note": "Found in Luminous Vale location on Yaesha. There are two elevators in Lumnious Vale, you can see them on a fully explored map as shaded sqares. You need the one that is NOT near the Primal Hollow world stone. While riding the elevator there is a hole in the wall that leads to the room with the item"
+    "Note": "Found in Luminous Vale location on Yaesha. There are two elevators in Luminous Vale, you can see them on a fully explored map as shaded squares. You need the one that is NOT near the Primal Hollow world stone. While riding the elevator there is a hole in the wall that leads to the room with the item"
   },
   {
     "Id": "Ring_BurdenOfTheMesmer",
@@ -5263,7 +5263,7 @@
     "World": "World_DLC2",
     "DropType": "Event",
     "DropReference": "Quest_SideD_TombRaid",
-    "Note": "Found in Proving Grounds location on Yaesha. After the fourth checkpoint stand on the pressure plate in front of the next saw blades area that opens the way forward, once you pass the saws. Instead of going forward there, turn right into the passage that leads back to the area start should you not reach the exit before it closes. If the exit has not closed yet anoher passage to the left will be open with the item in there nearby. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returing back to the third via the shortcut next to the lever"
+    "Note": "Found in Proving Grounds location on Yaesha. After the fourth checkpoint stand on the pressure plate in front of the next saw blades area that opens the way forward, once you pass the saws. Instead of going forward there, turn right into the passage that leads back to the area start should you not reach the exit before it closes. If the exit has not closed yet another passage to the left will be open with the item in there nearby. This is much easier done when the saws are inactive, after flipping the lever after finishing the final saw blades area after the forth checkpoint and returning back to the third via the shortcut next to the lever"
   },
   {
     "Id": "Ring_FeatheryBinding",
@@ -5272,7 +5272,7 @@
     "World": "World_DLC2",
     "DropType": "Location",
     "DropReference": "Ancient Canopy/Luminous Vale",
-    "Note": "Obtained from Walt in Ancient Canopy or Luminous Vale location on Yaesha. Walt stands near different murals in these two areas depending on your quest progression. Exhaust all dialogs with Walt before finally dealing with Lydusa. Do not talk to Walt after obtaining Cherished Fracture. Return to Walt after Lydusa has been delt with and talk to him one last time"
+    "Note": "Obtained from Walt in Ancient Canopy or Luminous Vale location on Yaesha. Walt stands near different murals in these two areas depending on your quest progression. Exhaust all dialogs with Walt before finally dealing with Lydusa. Do not talk to Walt after obtaining Cherished Fracture. Return to Walt after Lydusa has been dealt with and talk to him one last time"
   },
   {
     "Id": "Ring_FloodlitDiamond",
@@ -5318,7 +5318,7 @@
     "Name": "Mark of the Destroyer",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Ziggurat_DLC",
-    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current poisiton. Left, forward, right, forward, right, backward, right backward. At this point you will see an open gateway you will need to go through. The item will be there"
+    "Note": "Found in an indoor location on Yaesha. There will be a mural with moon phases on the wall and a puzzle room with moon phases on the floor. From the moon entrance you need to move from one moon to another in the following directions. The directions are relative to the entrance not to your current position. Left, forward, right, forward, right, backward, right backward. At this point you will see an open gateway you will need to go through. The item will be there"
   },
   {
     "Id": "Ring_MatriarchsRing",
@@ -5338,7 +5338,7 @@
     "Coop": true,
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Crypt_DLC",
-    "Note": "Found in an indoor location on Yaesha. This is a co-op item. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three presure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the nearest pressure plate across the entrance, a pillar on the far side of the room will go down. Your partner need to stand on the pilar, and you will need to step off once they are there. The pillar will raise back gaining access to the room with the item"
+    "Note": "Found in an indoor location on Yaesha. This is a co-op item. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three pressure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the nearest pressure plate across the entrance, a pillar on the far side of the room will go down. Your partner need to stand on the pillar, and you will need to step off once they are there. The pillar will raise back gaining access to the room with the item"
   },
   {
     "Id": "Ring_RallyBand",
@@ -5347,7 +5347,7 @@
     "World": "World_DLC2",
     "DropType": "Location",
     "DropReference": "Luminous Vale",
-    "Note": "Obtained from Private Jack Driver in Luminous Vale location on Yaesha. When you explorerd the Luminous Vale enough you should see a narrow ramp up the map that  goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Talk to Jack, agree to take him back home, and receive the item "
+    "Note": "Obtained from Private Jack Driver in Luminous Vale location on Yaesha. When you explored the Luminous Vale enough you should see a narrow ramp up the map that goes sort of diagonally from a corner. In the game world these are some tree roots going up. When you follow them you will be on one of the three platforms, where you need to jump from one to the next two times, and then the final time into a passage that leads to the room with Jack shortly after. Talk to Jack, agree to take him back home, and receive the item "
   },
   {
     "Id": "Ring_RavagersBargain",
@@ -5377,7 +5377,7 @@
     "Name": "Ring of Spirits",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Crypt_DLC",
-    "Note": "Found in an indoor location on Yaesha. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three presure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the pressure plate on the same side as the entrance a pillar will go down, stand on it and when it move up jump into the nearest wall closer to the ceiling. The item will be there behaind a false wall"
+    "Note": "Found in an indoor location on Yaesha. There will be a chasm and an unreachable statue across it. If you look down the chasm there will be a ledge you can jump onto. In the following room there will be three pressure plates in alcoves: two across the room from the entrance and one of the same side. If you stand on the pressure plate on the same side as the entrance a pillar will go down, stand on it and when it move up jump into the nearest wall closer to the ceiling. The item will be there behind a false wall"
   },
   {
     "Id": "Ring_SealedResinLoop",
@@ -5454,7 +5454,7 @@
     "Name": "Burden of the Protector",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_SecurityDrone_DLC",
-    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interactiving with the console unlocks the door to the elevator down to that area. The chanllenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. There will be another door nearby that leads to the item. If the event is failed and the alarm sounds that door will seal making the item inaccessible without re-rolling the campaign or adventure you are currently in"
+    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interacting with the console unlocks the door to the elevator down to that area. The challenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. There will be another door nearby that leads to the item. If the event is failed and the alarm sounds that door will seal making the item inaccessible without re-rolling the campaign or adventure you are currently in"
   },
   {
     "Id": "Ring_BypassPrimer",
@@ -5463,7 +5463,7 @@
     "World": "World_DLC3",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_SecurityDrone_DLC",
-    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interactiving with the console unlocks the door to the elevator down to that area. The chanllenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. The item is in the end"
+    "Note": "Found in an indoor location on N'Erud. There will be an area with a console next to a window overlooking the area below. Interacting with the console unlocks the door to the elevator down to that area. The challenge is to navigate the \"maze\" across this area to the door at the other side, without triggering an alarm. The item is in the end"
   },
   {
     "Id": "Ring_ClearHalo",
@@ -5481,7 +5481,7 @@
     "World": "World_DLC3",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Overload_DLC",
-    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yelowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the ring is behind the second to last one"
+    "Note": "Found in an indoor location on N'Erud. There will be an area with cut cables glowing white-blue at the cut (as opposed to other similar cables glowing yellowish). Energize the cable with a shock weapon such as Enigma by shooting at them to open nearby doors. There are four doors in total to open, the ring is behind the second to last one"
   },
   {
     "Id": "Ring_CustodiansBastion",
@@ -5546,7 +5546,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_Train_AICore",
-    "Note": "Get from Spark at Ward 13 in exchange for Decorum Cipher quest item, after completing Spark's Dark Horizion quest line. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there",
+    "Note": "Get from Spark at Ward 13 in exchange for Decorum Cipher quest item, after completing Spark's Dark Horizon quest line. Decorum Cipher is found in the Terminus Station location on N'Erud. After you finished the train event crawl under some hanging cables from the checkpoint and take the ladder up. Drop into the train from the hatch in its roof, Decorum Cipher will be there",
     "MaterialType": "Material_AlienAlloy",
     "MaterialQuantity": "25"
   },
@@ -5576,7 +5576,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_Consumable_01_FruitOfDeath",
-    "Note": "Get from Spark at Ward 13 in exchange for Fruit of Death quest item, after completing Spark's Dark Horizion quest line. Fruit of Death in the Forbidden Grove location on Yaesha. Equip Ravager's Mark amulet and go to the start of the Forbidden Grove location, go past Bedel of the Vaunnt and to the Ravager and the Doe statue. A trap door next to the statue will open and will grant you access to the Fruit of Death quest item",
+    "Note": "Get from Spark at Ward 13 in exchange for Fruit of Death quest item, after completing Spark's Dark Horizon quest line. Fruit of Death in the Forbidden Grove location on Yaesha. Equip Ravager's Mark amulet and go to the start of the Forbidden Grove location, go past Bedel of the Vaunnt and to the Ravager and the Doe statue. A trap door next to the statue will open and will grant you access to the Fruit of Death quest item",
     "MaterialType": "Material_AncientAlloy",
     "MaterialQuantity": "25"
   },
@@ -5609,7 +5609,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_CrimsonKingCoin",
-    "Note": "Get from Spark at Ward 13 in exchange for Crimson King Coin quest item, after completing Spark's Dark Horizion quest line. Crimson King Coin is found in Chamber of the Faithless location on Losomn. It drops from the teleport Fae, and there are ususally zero, one or two of this enemy spawn each run",
+    "Note": "Get from Spark at Ward 13 in exchange for Crimson King Coin quest item, after completing Spark's Dark Horizon quest line. Crimson King Coin is found in Chamber of the Faithless location on Losomn. It drops from the teleport Fae, and there are usually zero, one or two of this enemy spawn each run",
     "MaterialType": "Material_MythrilAlloy",
     "MaterialQuantity": "25"
   },
@@ -5640,7 +5640,7 @@
     "World": "World_DLC3",
     "DropType": "Location",
     "DropReference": "Withered Necropolis",
-    "Note": "Found in Withered Necropolis location on N'Erud. Somewhat tricky to find, watching a video is recommended. From the Waylaid Conservatory world stone follow the wall on the left until you get to a glider. Take a glider to the bridge you see downwards, and fight your way to the left of the bridge until the very end, there will be a drop there and a platform with the glider station across that drop. You won't be able to jump across from there but that platform is where you need to go, so you could orient yourslef on the minimap. Backtrack along the bridge, take first right and then there will be an elevator up on the left. Take the elevator, and hug the left wall until you get to a glider. Take the glider and take sharp left until you arrive to the wind plume next to your target platform and get over there. There will be a short corridor from there a room where the item can be found"
+    "Note": "Found in Withered Necropolis location on N'Erud. Somewhat tricky to find, watching a video is recommended. From the Waylaid Conservatory world stone follow the wall on the left until you get to a glider. Take a glider to the bridge you see downwards, and fight your way to the left of the bridge until the very end, there will be a drop there and a platform with the glider station across that drop. You won't be able to jump across from there but that platform is where you need to go, so you could orient yourself on the minimap. Backtrack along the bridge, take first right and then there will be an elevator up on the left. Take the elevator, and hug the left wall until you get to a glider. Take the glider and take sharp left until you arrive to the wind plume next to your target platform and get over there. There will be a short corridor from there a room where the item can be found"
   },
   {
     "Id": "Ring_ShieldAlternator",
@@ -5658,7 +5658,7 @@
     "World": "World_DLC3",
     "DropType": "Event",
     "DropReference": "Quest_SideD_CargoBelt",
-    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the left actoss the platforms the will be an opening obscured by some distuctable canister. Shoot the canister and jump to where it used to be. The ring is next to it"
+    "Note": "Found in Logistics Bridge location on N'Erud. Leave through the side opening from the final checkpoint to see some more platforms to jump. On the left across the platforms the will be an opening obscured by some destructable canister. Shoot the canister and jump to where it used to be. The ring is next to it"
   },
   {
     "Id": "Ring_SpiritAlternator",
@@ -5688,7 +5688,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_Asylum_StoneDoll_Final",
-    "Note": "Get from Spark at Ward 13 in exchange for Nightweaver Stone Doll quest item, after completing Spark's Dark Horizion quest line. Nightweaver Stone Doll is found in Morrow Parish location on Losomn. You get it by opening the door with the Prison Cell Key in the Asylum basement. The Prison Cell Key is found on the third floor balcony of the Asylum",
+    "Note": "Get from Spark at Ward 13 in exchange for Nightweaver Stone Doll quest item, after completing Spark's Dark Horizon quest line. Nightweaver Stone Doll is found in Morrow Parish location on Losomn. You get it by opening the door with the Prison Cell Key in the Asylum basement. The Prison Cell Key is found on the third floor balcony of the Asylum",
     "MaterialType": "Material_MythrilAlloy",
     "MaterialQuantity": "25"
   },
@@ -5701,7 +5701,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_KolketsKey",
-    "Note": "Get from Spark at Ward 13 in exchange for Kolket's Key quest item, after completing Spark's Dark Horizion quest line. Kolket's Key is found in The Lament location on Yaesha. Get it by inspecting the Kolkets Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly",
+    "Note": "Get from Spark at Ward 13 in exchange for Kolket's Key quest item, after completing Spark's Dark Horizon quest line. Kolket's Key is found in The Lament location on Yaesha. Get it by inspecting the Kolket's Razor that drops from Wither Aberration. Often, but not always, you need to solve a puzzle lock in order to encounter Wither. Find a pattern on the first page of a book next to a skeleton, and then find 4 coffins, with shrouds matching the pattern. The symbols over those coffins are the symbols to set on the puzzle lock, they can be entered in any order. They are not pre-set and generated randomly",
     "MaterialType": "Material_AncientAlloy",
     "MaterialQuantity": "25"
   },
@@ -5731,7 +5731,7 @@
     "DropType": "Vendor",
     "DropReference": "Spark",
     "Prerequisite": "Quest_Item_StasisSiege_Keycard",
-    "Note": "Get from Spark at Ward 13 in exchange for House Lythla Glyph quest item, after completing Spark's Dark Horizion quest line. House Lythla Glyph is found in the Vault of the Formless location on N'Erud. As you progress through the siege even there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item.",
+    "Note": "Get from Spark at Ward 13 in exchange for House Lythla Glyph quest item, after completing Spark's Dark Horizon quest line. House Lythla Glyph is found in the Vault of the Formless location on N'Erud. As you progress through the siege even there will be two towers you go through that turn giving your passage. In the second tower do not exit it until it turns again giving you access to a secret area where you find House Lythla Glyph quest item.",
     "MaterialType": "Material_AlienAlloy",
     "MaterialQuantity": "25"
   },
@@ -6053,7 +6053,7 @@
     "World": "World_DLC1",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in the Forlorn Coast location in Losomn. You need to shoot three bells after which the trait is awarded. The first bell is near the Drowned Wen worldstone. The second bell is in the courtyard right before the Palace of the One True King, where there is a big guy with an Axe along along with a lot of hogs. To find the third bell, in Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs. Once you transition outside hug the right  wall till you see the bell"
+    "Note": "Found in the Forlorn Coast location in Losomn. You need to shoot three bells after which the trait is awarded. The first bell is near the Drowned Wen worldstone. The second bell is in the courtyard right before the Palace of the One True King, where there is a big guy with an Axe along along with a lot of hogs. To find the third bell, in Palace of the One True King, you need to go upstairs then drop from a balcony and then go downstairs. Once you transition outside hug the right wall till you see the bell"
   },
   {
     "Id": "Trait_Chakra",
@@ -6130,7 +6130,7 @@
     "World": "World_DLC3",
     "DropType": "Location",
     "DropReference": "Agronomy Sector",
-    "Note": "Found in the Agronomy Sector and Withered Necropolis location on N'Erud. Obtained by activating consoles next to all three of the purple pillars, two in Agronomy Sector and another one in Withered Necropolis. You can get to the first pillar from the Anterior Recess world stone, head outside and follow the right path, continue until you reach a glider spot, hop onto the glider and drop straight down. For the first pillat start at the Propogation Field world stone, hang in immediate left and work your way through the corn field on your left, continue to the glider spot and you'll see the second pillar acros the chasm. Take the glider to reach it. For the third pillar take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, and then the next one in the same direction. The small platform (with a sort of short broken bridge sticking out of it) will be immediately next to that last plume. Land on it go under the arch and to the right until you reach the pillar"
+    "Note": "Found in the Agronomy Sector and Withered Necropolis location on N'Erud. Obtained by activating consoles next to all three of the purple pillars, two in Agronomy Sector and another one in Withered Necropolis. You can get to the first pillar from the Anterior Recess world stone, head outside and follow the right path, continue until you reach a glider spot, hop onto the glider and drop straight down. For the first pillar start at the Propagation Field world stone, hang in immediate left and work your way through the corn field on your left, continue to the glider spot and you'll see the second pillar across the chasm. Take the glider to reach it. For the third pillar take the closest glider from the Waylaid Conservatory world stone, glide all the way down the canyon until you hit the first wind plume, turn right and hit the next wind plume just around the corner, and then the next one in the same direction. The small platform (with a sort of short broken bridge sticking out of it) will be immediately next to that last plume. Land on it go under the arch and to the right until you reach the pillar"
   },
   {
     "Id": "Weapon_CubeGun",
@@ -6164,7 +6164,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone1",
-    "Note": "Found in Ashen Wasteland location on Root Earth. When first entering the area, proceed forward and when you get into the open area with broken cars and trucks, follow the wall to your right until you come to a think root going up, follow the root until you get to the deadend. Right before that there will be a gap on your right where you you could jump down on the roof of a truck. The item is under the truck once you jumped off its roof",
+    "Note": "Found in Ashen Wasteland location on Root Earth. When first entering the area, proceed forward and when you get into the open area with broken cars and trucks, follow the wall to your right until you come to a think root going up, follow the root until you get to the dead end. Right before that there will be a gap on your right where you you could jump down on the roof of a truck. The item is under the truck once you jumped off its roof",
     "WeaponOrMod": "Mod_ExplosiveShot"
   },
   {
@@ -6175,7 +6175,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Sewer_RisingTides",
-    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocket some detructable shelves and pots, which will lead to a room with platforms. There will be a bloat blocking a pipe that you will need to shoot, this will cause the water to rise, but very slowly. You will have to return here in 90 minutes, and then jump on a floating platform on the raised water an over to the hole in a wall. The item will be there",
+    "Note": "Found in a sewer location on Losomn, you will come across a secret passage blocked some destructable shelves and pots, which will lead to a room with platforms. There will be a bloat blocking a pipe that you will need to shoot, this will cause the water to rise, but very slowly. You will have to return here in 90 minutes, and then jump on a floating platform on the raised water an over to the hole in a wall. The item will be there",
     "WeaponOrMod": "Mod_Screamer"
   },
   {
@@ -6223,7 +6223,7 @@
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_SideD_Extraction",
-    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated five coffins, you can find the item at the bottom area outside of Dark  Conduit entrance in a crate",
+    "Note": "Found outside of the Dark Conduit location on N'Erud. First you need finish the Dark Conduit dungeon by finding and fixing the Loose Fuse in the end of it. Then activate the console just outside of the dungeon entrance. You need to find and activate coffins randomly generated in the overworld location of Dark Conduit, they can be anywhere and could take awhile to find. Once you activated five coffins, you can find the item at the bottom area outside of Dark Conduit entrance in a crate",
     "WeaponOrMod": "Mod_BigBang"
   },
   {
@@ -6378,7 +6378,7 @@
     "DropType": "Location",
     "DropReference": "Nimue's Retreat | Beatific Palace",
     "Prerequisite": "Weapon_Dreamcatcher",
-    "Note": "Crafted from Anamy's Echo, which you can obtain attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide consumable  Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
+    "Note": "Crafted from Anamy's Echo, which you can obtain attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide consumable Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
     "Undetectable": true,
     "Consumable": "Consumable_NimuesDream",
     "WeaponOrMod": "Mod_MoonlightBarrage"
@@ -7034,7 +7034,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_SideD_FaeCouncil",
-    "Note": "Found in the Council Chamber location on Losomn. Talk to the Council and agree to find out the traitor. Complete the level and transition to the Council Tribunal location by interacting with the mirror at the end of the location. There proceed until you reach council seats and interact with them to obtain the council key quest items. Put the keys back into the seats in the correct order from left to right: teal, red and purple. This will open the throne room, go there and climb on the ledge behind the throne, and jump to the back of the throne from there. Pick up the Assassin Dagger quest item, and inspect it, noticing the colour of the jewel on it. Return back to the Council Chamber and when asked to accuse, accuse the person corrseponding to the Dagger jewel colour: teal - Savan, red - Oniril, purple - Nyele. The item will be give as the reward for the correct accusation"
+    "Note": "Found in the Council Chamber location on Losomn. Talk to the Council and agree to find out the traitor. Complete the level and transition to the Council Tribunal location by interacting with the mirror at the end of the location. There proceed until you reach council seats and interact with them to obtain the council key quest items. Put the keys back into the seats in the correct order from left to right: teal, red and purple. This will open the throne room, go there and climb on the ledge behind the throne, and jump to the back of the throne from there. Pick up the Assassin Dagger quest item, and inspect it, noticing the colour of the jewel on it. Return back to the Council Chamber and when asked to accuse, accuse the person corresponding to the Dagger jewel colour: teal - Savan, red - Oniril, purple - Nyele. The item will be give as the reward for the correct accusation"
   },
   {
     "Id": "Weapon_Sword",
@@ -7115,7 +7115,7 @@
     "AccountAward": true,
     "Subtype": "Hand Gun",
     "DropType": "Progression",
-    "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
+    "Note": "Crafted from the Occult Vessel material. Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exhaust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or campaign, but they need to be rolled past the DLC1 patch, as pre-patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the Nightweaver's web to the other side of the hallway. At your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
     "CustomScript": true,
     "Undetectable": true,
     "Consumable": "Consumable_DransDream",
@@ -7142,7 +7142,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_SideD_SewerChamber",
-    "Note": "Found in the Forotten Commune location on Losomn. There are two Befouled Altars to defeat in the location, one drops Sythe Hilt quest item, and the other drops Scythe Blade. Inspect Scythe Hilt and interact with it to combine it with Scythe Blade to get the item"
+    "Note": "Found in the Forgotten Commune location on Losomn. There are two Befouled Altars to defeat in the location, one drops Scythe Hilt quest item, and the other drops Scythe Blade. Inspect Scythe Hilt and interact with it to combine it with Scythe Blade to get the item"
   },
   {
     "Id": "Weapon_Scythe",
@@ -7185,7 +7185,7 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_OneTrueKing",
-    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn defore destroying his weapon even once",
+    "Note": "Crafted from Tormentor's Pommel, which is obtained by defeating One True King in Chamber of the Faithless location on Losomn before destroying his weapon even once",
     "WeaponOrMod": "Mod_ChainOfCommand"
   },
   {
@@ -7280,7 +7280,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_SideD_LydusaTemple",
-    "Note": "Crafted from Blossoming Core found in Godess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, you need to put Cherished Fracture quest item that you obtain from the zone quest into the golden bowl. This will complete Lydusa quest line and will grant you the material"
+    "Note": "Crafted from Blossoming Core found in Goddess's Rest location on Yaesha. You need to activate 5 pillars with blue rings for the temple door to open. Once inside, you need to put Cherished Fracture quest item that you obtain from the zone quest into the golden bowl. This will complete Lydusa quest line and will grant you the material"
   },
   {
     "Id": "Weapon_Monolith",
@@ -7304,7 +7304,7 @@
     "DropType": "Location",
     "DropReference": "The Labyrinth",
     "Prerequisite": "Engram_Explorer, Engram_Invader, Armor_Body_Explorer, Armor_Gloves_Explorer, Armor_Head_Explorer, Armor_Legs_Explorer, Relic_Consumable_VoidHeart, Weapon_Shotgun, Weapon_CubeGun, Weapon_LabyrinthStaff, Amulet_LetosAmulet, Ring_AmberMoonstone, Ring_BlackCatBand, Ring_AnastasijasInspiration, Ring_AnastasijasInspiration",
-    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavanger hunt which starts when you finish The Labyrinth zone. On the left of the Farctured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype",
+    "Note": "You gonna have to look that one up. The item is the reward for completing a sort of scavenger hunt which starts when you finish The Labyrinth zone. On the left of the Fractured Ingress world stone as you look at the big portal there is an '+' shaped opening in the wall with a small white cube inside. You need to shoot the cube and then the next one appears somewhere in The Labyrinth. There are 13 in total and they are always in the same locations. The item a few jumps away after the last cube. One of the cubes has the same requirements as obtaining the Archon archetype",
     "WeaponOrMod": "Mod_Polyactuator",
     "AccountAwardVendor": "Brabus",
     "AccountAwardAward": "AccountAward_Polygun"
@@ -7331,7 +7331,7 @@
     "DropType": "Location",
     "DropReference": "Ancient Canopy",
     "Prerequisite": "Amulet_EchoOfTheForest",
-    "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the  Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item",
+    "Note": "Found in Ancient Canopy location on Yaesha. Between the Glittering Grotto world stone and the spot where you meet Walt for the first time at the first mural there is an offshoot to the right leading to a waterfall you can jump through. Wear the Echo of the Forest amulet and before you enter the dungeon at the end of the path there will be a secret descend on the left of you that will lead to the item",
     "AccountAwardVendor": "Brabus",
     "AccountAwardAward": "AccountAward_TrinityCrossbow"
   },
@@ -7380,7 +7380,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Location",
     "DropReference": "Agronomy Sector",
-    "Note": "Found in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommeded. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the righ of you before you hit any wind plumes. The opening is at the water level and cannot be seen well unil you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination platoe, where the item is"
+    "Note": "Found in Agronomy Sector location on N'Erud. Finding its location could be difficult, watching a video recommended. From the Anterior Recess world stone follow the wall on the left until you find a glider. Take it and drop down to an opening on the right of you before you hit any wind plumes. The opening is at the water level and cannot be seen well until you descend. Once in the opening the path will turn to the left, and you will need to hit a couple of wind plumes to arrive to the destination plateau, where the item is"
   },
   {
     "Id": "Weapon_Monorail",
@@ -7534,7 +7534,7 @@
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
     "Prerequisite": "Weapon_Dreamcatcher",
-    "Note": "Found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the the boiler room arena between the the first and the second checkpoint. Use the \"Walker's Dream\" item, that will drop and defeat the Bane aberration that drops Wooden Shiv",
+    "Note": "Found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the boiler room arena between the first and the second checkpoint. Use the \"Walker's Dream\" item, that will drop and defeat the Bane aberration that drops Wooden Shiv",
     "Consumable": "Consumable_RootWalkerDream",
     "EngramName": "Serrated Root Blade",
     "AccountAwardVendor": "Wallace",
@@ -7574,7 +7574,7 @@
     "Material": "Item_HiddenContainer_Material_Engram_Ritualist",
     "DropType": "Location",
     "DropReference": "Forlorn Coast",
-    "Note": "Found in Forlorn Coast location on Losomn, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch perofrming a ritual on a pig. The Ragged Poppet will be near the witch",
+    "Note": "Found in Forlorn Coast location on Losomn, From the first checkpoint after the Drowned Wen world stone (the checkpoint is near the iron door, that when unlocked leads back to the start of Forlorn Coast) world stone follow the boats until you see a breach in the wall, follow a short path inside and see a witch performing a ritual on a pig. The Ragged Poppet will be near the witch",
     "EngramName": "Cursed Effigy",
     "AccountAwardVendor": "Wallace",
     "AccountAwardAward": "Award_Ritualist"
@@ -13170,7 +13170,7 @@
     "ProfileId": "/Game/World_DLC1/Items/Consumables/Meat_Shake/Consumable_MeatShake.Consumable_MeatShake_C",
     "Type": "concoction",
     "World": "World_DLC1",
-    "Note": "Can be bought from Mudtooth in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Talk to Leywise first long enough for him to tell you his name. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane. Return to Dunane 45 minutes after you gave him leftovers. Now every time he walks to the table, spam \"E\" to interact with him every minute, while he is at the table. For most people the item was given after 4-5 times Duane returned to the table from his chair",
+    "Note": "Can be bought from Mudtooth in Ward 13 after acquiring from Duane in Ward 13. First, roll a world that has both Forlorn Coast and Great Hall on Losomn. Talk to Leywise first long enough for him to tell you his name. Go to The Great Hall location and talk to the Feastmaster until he gives you Feast Master's Leftovers quest item. Bring the item to Duane. Duane should be standing, not sitting, and Alice should be sleeping when you talk to Duane. Return to Duane 45 minutes after you gave him leftovers. Now every time he walks to the table, spam \"E\" to interact with him every minute, while he is at the table. For most people the item was given after 4-5 times Duane returned to the table from his chair",
     "Undetectable": true
   },
   {
@@ -13362,7 +13362,7 @@
     "Difficulty": "Apocalypse",
     "DropType": "Progression",
     "Prerequisite": "1856B8B3-49AA2901-48AE90B8-B3C89533",
-    "Note": "Can be bought from Reggie in Ward 13 once aquired for the first time. To aquire die from a boss on apocalypse difficulty 10 times",
+    "Note": "Can be bought from Reggie in Ward 13 once acquired for the first time. To acquire die from a boss on apocalypse difficulty 10 times",
     "Challenge": "1856B8B3-49AA2901-48AE90B8-B3C89533"
   },
   {
@@ -13435,7 +13435,7 @@
     "Type": "consumable",
     "World": "World_Base",
     "Name": "Poisoned Ambit Ember Capsule",
-    "Note": "Found on N'Erud, near the Acension Spire world stone. Given by The Custodian after discussing Tal'Ratha with them.",
+    "Note": "Found on N'Erud, near the Ascension Spire world stone. Given by The Custodian after discussing Tal'Ratha with them.",
     "Undetectable": true
   },
   {
@@ -13511,7 +13511,7 @@
     "Type": "consumable",
     "World": "World_Base",
     "DropType": "Start",
-    "Note": "Unavailable on hardcore, otherwise avilabel from the start",
+    "Note": "Unavailable on hardcore, otherwise available from the start",
     "Undetectable": true
   },
   {
@@ -13528,7 +13528,7 @@
     "ProfileId": "/Game/World_DLC3/Items/Consumables/LightExtract/Consumable_LightExtract.Consumable_LightExtract_C",
     "Type": "consumable",
     "World": "World_DLC3",
-    "Note": "Can be bought from Reggies in Ward 13, once you found the item in the world on N'Erud as random drop",
+    "Note": "Can be bought from Reggie's in Ward 13, once you found the item in the world on N'Erud as random drop",
     "Undetectable": true
   },
   {
@@ -13537,7 +13537,7 @@
     "Type": "dream",
     "World": "World_DLC1",
     "Name": "Dran's Dream",
-    "Note": "Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exahust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or compaign, but they need to be rolled past the DLC1 patch, as pre patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the nightweavers web to the other side of the hallway. At your right should be the last Dran. He will give you the consumable"
+    "Note": "Start in an outdoor side path location on Losomn, that has the Ethereal Manor event. There will be a manor where inside you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward always exhaust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or campaign, but they need to be rolled past the DLC1 patch, as pre-patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs and where the chest is at the other side is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran at the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to the Losomn - Tormented Asylum, go straight past the Nightweaver's web to the other side of the hallway. At your right should be the last Dran. He will give you the consumable"
   },
   {
     "Id": "Consumable_NimuesDream",
@@ -13570,7 +13570,7 @@
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
     "Prerequisite": "Weapon_Dreamcatcher",
-    "Note": "Found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the the boiler room arena between the the first and the second checkpoint"
+    "Note": "Found in Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It just off the main path from the boiler room arena between the first and the second checkpoint"
   },
   {
     "Id": "Material_RelicDust",
@@ -13818,7 +13818,7 @@
     "World": "World_Base",
     "Name": "Prism of Jealousy",
     "DropType": "Progression",
-    "Note": "Get from Wallace in exchange for yellow, blue and red Prismatic Stones.Dig them out by using the shovel bought from Brabus. The yellow stone is in the back left corner of the firegin range in Ward 13. The red stone is on the Root Earth not far from the second checkpoint in the Ashen Wasteland. Once you reach the check point turn back where you came from and go to the left back corner and dig. The blue stone is in thee Labyrinth in general vicinity of the glitching portal where you get cipher rod for Enigma, not far from the spot where you drop from the cycling portal into the area"
+    "Note": "Get from Wallace in exchange for yellow, blue and red Prismatic Stones.Dig them out by using the shovel bought from Brabus. The yellow stone is in the back left corner of the firing range in Ward 13. The red stone is on the Root Earth not far from the second checkpoint in the Ashen Wasteland. Once you reach the check point turn back where you came from and go to the left back corner and dig. The blue stone is in thee Labyrinth in general vicinity of the glitching portal where you get cipher rod for Enigma, not far from the spot where you drop from the cycling portal into the area"
   },
   {
     "Id": "PrismOfLethargy",
