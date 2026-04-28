@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.44 (Unreleased)
+- Fixed over a hundred typos in db.json notes
+
 ## v0.0.43 (4 Feb 2026)
 - Fix crash when save file has two adventure blocks instead of expected one
 
