@@ -1,12 +1,13 @@
 # Changelog
 
-## v0.0.44 (Unreleased)
+## v1.0.0 (2 May 2026)
 - Fixed over a hundred typos in db.json notes
 - Fixed event loot state propagation for completed event drops
 - Rebound cached adventure worlds to the current character during incremental analysis
 - Continue default save discovery when the Steam save root is missing
 - Tightened WGS folder layout validation
 - Fixed nested item prerequisite parsing when determining whether an item can be obtained
+- Updated GitHub Actions to the latest major versions and bumped lib.remnant2.saves to 1.0.0
 
 ## v0.0.43 (4 Feb 2026)
 - Fix crash when save file has two adventure blocks instead of expected one
