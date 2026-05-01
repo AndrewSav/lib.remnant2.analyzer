@@ -115,7 +115,7 @@ public partial class Analyzer
                     {
                         name = ev["Name"];
                     }
-                    static List<LootItemExtended> GetItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
+                    static List<LootItemExtended> GetExtendedItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
                     {
                         return ItemDb.Db.Where(x => x.ContainsKey("DropReference"))
                             .Where(x => x["DropReference"] == dropReference.Name && x["DropType"] == dropType)
@@ -126,7 +126,7 @@ public partial class Analyzer
                     bool propagateLooted = !(type == "location" && ev["Id"].StartsWith("Quest_RootEarth_Zone") || type == "dungeon");
                     lg = new()
                     {
-                        Items = GetItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").Select(x => new LootItemExtended(x)).ToList(),
+                        Items = GetExtendedItemsByReference("Event", dropReference, propagateLooted).Where(x => x.Type != "challenge").ToList(),
                         EventDropReference = dropReference.Name,
                         Type = type,
                         Name = name
