@@ -106,7 +106,7 @@ public static class SaveUtils
     {
         if (!Directory.Exists(baseFolder)) return null;
         string?[] wgsDataFolders = Directory.GetDirectories(baseFolder).Select(Path.GetFileName).ToArray();
-        if (wgsDataFolders.Length != 2 && wgsDataFolders is not ["t", _] and not [_, "t"])
+        if (wgsDataFolders.Length != 2 || wgsDataFolders.Count(x => x == "t") != 1)
         {
             return null;
         }
