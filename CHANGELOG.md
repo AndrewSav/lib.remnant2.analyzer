@@ -2,12 +2,21 @@
 
 ## v0.0.44 (Unreleased)
 - Fixed over a hundred typos in db.json notes
+- Fixed event loot state propagation for completed event drops
+- Rebound cached adventure worlds to the current character during incremental analysis
+- Continue default save discovery when the Steam save root is missing
+- Tightened WGS folder layout validation
+- Fixed nested item prerequisite parsing when determining whether an item can be obtained
 
 ## v0.0.43 (4 Feb 2026)
 - Fix crash when save file has two adventure blocks instead of expected one
 
 ## v0.0.42 (25 Jan 2026)
 - Fix crash with Necklace of Flowing Life
+
+## v0.0.41 (22 Jul 2025)
+- Fixed Blood Moon data for adventure worlds
+- Fixed a parameter name regression in Blood Moon data parsing
 
 ## v0.0.40 (28 Jun 2025)
 - Add Wallace and account-unlocked archetypes that he offers
