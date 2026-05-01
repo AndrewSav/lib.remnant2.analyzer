@@ -279,6 +279,10 @@ public partial class Analyzer
                     };
                     result.Characters.Add(oldNewCharacter);
                     oldNewCharacter.Save.Campaign.ParentCharacter = oldNewCharacter;
+                    if (oldNewCharacter.Save.Adventure != null)
+                    {
+                        oldNewCharacter.Save.Adventure.ParentCharacter = oldNewCharacter;
+                    }
                     continue;
                 }
 
