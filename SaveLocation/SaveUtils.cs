@@ -42,6 +42,7 @@ public static class SaveUtils
         if (!Directory.Exists(steamSaveRoot))
         {
             Logger.Information($"Steam save root is not found at '{steamSaveRoot}'");
+            return [];
         }
 
         string[] result = Directory.GetDirectories(steamSaveRoot);
@@ -92,7 +93,13 @@ public static class SaveUtils
             return envPath;
         }
 
-        return GetSaveFolders()[0];
+        IList<string> saveFolders = GetSaveFolders();
+        if (saveFolders.Count == 0)
+        {
+            throw new InvalidOperationException("Could not find any Remnant 2 save folders");
+        }
+
+        return saveFolders[0];
     }
 
     public static string? GetWgsFolderFromWgsBaseFolder(string baseFolder)
