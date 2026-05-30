@@ -282,7 +282,7 @@
     "World": "World_Jungle",
     "DropType": "Event",
     "DropReference": "OverworldPOI_KoaraKuri",
-    "Note": "Found in an overworld location on Yaesha, in a big bird's nest. You need to return to the nest later (do not fast travel) when the bird is away to get it"
+    "Note": "Found in an overworld location on Yaesha, in a big bird's nest. The bird won't leave unless you first approach it and get knocked over by its wing flaps at least once. After that, roam other corners of the map (do not fast travel) until you hear the bird's call, then return to the empty nest to get it"
   },
   {
     "Id": "Amulet_LaemirCenser",
@@ -331,7 +331,7 @@
     "Name": "Ravager's Mark",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. Received if you kill the Doe when asked"
+    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. Received if you kill the Doe when asked. Play 5-0-4-0-3-4-1-0 on the water harp near The Lost Temple world stone to raise the bridge to the Ravager's Lair. 5 means that the topmost row should have the peg raised in the fifth position from the left. 0 means that the second from the top row does not have the peg raised. 4 means that the third from the top row should have the peg raised in the fourth position from the left, and so on"
   },
   {
     "Id": "Amulet_RedDoeSigil",
@@ -2808,7 +2808,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_Injectable_Ziggurat_Library",
-    "Note": "Drops from Atrophy aberration that randomly spawns in the Endaira's End location on Yaesha. There is a hidden drop behind some pots in a corner to the left of a statue in a niche"
+    "Note": "Drops from Atrophy aberration that randomly spawns in an indoor location on Yaesha. There is a hidden drop behind some pots in a corner to the left of a statue in a niche"
   },
   {
     "Id": "MetaGem_DeadlyCalm",
@@ -4179,7 +4179,7 @@
     "World": "World_Jungle",
     "DropType": "Location",
     "DropReference": "The Forbidden Grove",
-    "Note": "Found in the Forbidden Grove location on Yaesha. From The Lost Temple world stone take the ladder down towards the water. Standing with your back to the ladder go left along the wall until you see a waterfall. The item will be behind it."
+    "Note": "Found in the Forbidden Grove location on Yaesha. From The Lost Temple world stone take the ladder down towards the water. There are two possible spawn points: behind the waterfall on the right, or inside the cave on the left."
   },
   {
     "Id": "Ring_BloodTingedRing",
@@ -5265,7 +5265,7 @@
     "Name": "Conjurer's Circle",
     "DropType": "Event",
     "DropReference": "Quest_SideD_RootMadness",
-    "Note": "Found in the Infested Abyss location on Yaesha. In the area in front of the third Root Nexus, as you walk from the door on the left to the Root Nexus, there will be a short passage on the right and a ledge to drop to at its end. Drop there, follow the path and find the item"
+    "Note": "Found in the Infested Abyss location on Yaesha, in the area in front of the third Root Nexus. If you walk from the backtrack door, which stays on your left, towards the third Root Nexus, you will see a short deadend passage to the right on your minimap. If you face the passage where it forks from the main path, there will be a ledge to drop to on your left. Drop there, follow the short path, and find the item"
   },
   {
     "Id": "Ring_DarkSeaArmadaCrest",
@@ -6418,7 +6418,7 @@
     "Subtype": "Long Gun",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, shoot the Ravager instead, and allow him to consume the Doe during the fight to get Crimson Membrane",
+    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, shoot the Ravager instead, and allow him to consume the Doe during the fight to get Crimson Membrane. Play 5-0-4-0-3-4-1-0 on the water harp near The Lost Temple world stone to raise the bridge to the Ravager's Lair. 5 means that the topmost row should have the peg raised in the fifth position from the left. 0 means that the second from the top row does not have the peg raised. 4 means that the third from the top row should have the peg raised in the fourth position from the left, and so on",
     "WeaponOrMod": "Mod_Bloodline"
   },
   {
@@ -6695,7 +6695,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, shoot the Ravager instead, then kill the Doe before the Ravager can consume it to get Ravager's Maw"
+    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, shoot the Ravager instead, then kill the Doe before the Ravager can consume it to get Ravager's Maw. Play 5-0-4-0-3-4-1-0 on the water harp near The Lost Temple world stone to raise the bridge to the Ravager's Lair. 5 means that the topmost row should have the peg raised in the fifth position from the left. 0 means that the second from the top row does not have the peg raised. 4 means that the third from the top row should have the peg raised in the fourth position from the left, and so on"
   },
   {
     "Id": "Weapon_Godsplitter",
@@ -6764,7 +6764,7 @@
     "Subtype": "Melee Weapon",
     "DropType": "Event",
     "DropReference": "Quest_Boss_Ravager",
-    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, heal it instead, then kill the Ravager to get Doe's Antler"
+    "Note": "One of the possible rewards for the Corrupted Ravager, one of the two Yaesha world bosses. When asked to kill the Doe, heal it instead, then kill the Ravager to get Doe's Antler. Play 5-0-4-0-3-4-1-0 on the water harp near The Lost Temple world stone to raise the bridge to the Ravager's Lair. 5 means that the topmost row should have the peg raised in the fifth position from the left. 0 means that the second from the top row does not have the peg raised. 4 means that the third from the top row should have the peg raised in the fourth position from the left, and so on"
   },
   {
     "Id": "Weapon_Smolder",
