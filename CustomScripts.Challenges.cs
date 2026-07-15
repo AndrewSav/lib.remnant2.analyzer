@@ -70,7 +70,7 @@ internal static partial class CustomScripts
         //ObjectiveProgress? progress = world.ParentCharacter.Profile.Objectives.Find(x => x.Id == id);
         //int current = progress?.Progress ?? 0;
         //return goal - current <= 19;
-        
+
         return true;
     }
 }

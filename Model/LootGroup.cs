@@ -11,7 +11,7 @@ public class LootGroup
 {
     public required string Type;
     // Location and dungeon groups do not have a name (it's the same as the enclosing Location name)
-    public string? Name; 
+    public string? Name;
     // Only events have a drop reference, Location / Vendor / World Drop does not
     public string? EventDropReference;
     public required List<LootItemExtended> Items;

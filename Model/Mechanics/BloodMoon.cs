@@ -1,6 +1,5 @@
 ﻿using lib.remnant2.saves.Model;
 using lib.remnant2.saves.Model.Properties;
-using lib.remnant2.saves.Navigation;
 
 namespace lib.remnant2.analyzer.Model.Mechanics;
 
@@ -12,11 +11,11 @@ public class BloodMoon
     public int ZoneLoadCount { get; set; }
     public Dictionary<string, string> StringifiedRawData = [];
 
-    public static BloodMoon? Read(Navigator n, UObject rollObject)
+    internal static BloodMoon? Read(SaveQuery saveQuery, UObject rollObject)
     {
-        List<UObject> oo = n.FindObjects("Quest_Event_Bloodmoon_C", rollObject);
+        List<UObject> oo = saveQuery.FindObjects("Quest_Event_Bloodmoon_C", rollObject);
         if (oo.Count == 0) return null;
-        Component? c =oo[0].Components?.FirstOrDefault(x => x.ComponentKey == "BloodMoon");
+        Component? c = oo[0].Components?.FirstOrDefault(x => x.ComponentKey == "BloodMoon");
         if (c == null) return null;
         PropertyBag? pb = c.Properties;
         if (pb == null) return null;

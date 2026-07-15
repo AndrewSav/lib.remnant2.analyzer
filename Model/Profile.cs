@@ -1,16 +1,19 @@
-﻿namespace lib.remnant2.analyzer.Model;
+﻿using lib.remnant2.analyzer.Model.Prism;
+
+namespace lib.remnant2.analyzer.Model;
 
 // Represents data in profile.sav that correspond to a single character
 public class Profile
 {
     public required List<InventoryItem> Inventory;
-    public required List<Dictionary<string,string>> MissingItems;
+    public required List<Dictionary<string, string>> MissingItems;
     // List of missing items that can be crafted now because we have the material
     public required List<Dictionary<string, string>> HasMatsItems;
     public required string Archetype;
     public required string SecondaryArchetype;
     public required List<ObjectiveProgress> Objectives;
     public required List<InventoryItem> QuickSlots;
+    public required List<PrismData> Prisms;
 
     public required int TraitRank;
     private string? _gender;

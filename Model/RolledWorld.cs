@@ -7,12 +7,12 @@ public class RolledWorld
 {
     public RolledWorld()
     {
-        Ward13 = new(this, null) { Locations = [ Location.GetWard13() ] };
+        Ward13 = new(this, null) { Locations = [Location.GetWard13()] };
     }
     public List<Zone> Zones = [];
     public required List<InventoryItem> QuestInventory;
     public Zone Ward13;
-    public List<Zone> AllZones => [ Ward13,..Zones ];
+    public List<Zone> AllZones => [Ward13, .. Zones];
 
     private Character? _character;
     public Character ParentCharacter
@@ -25,7 +25,7 @@ public class RolledWorld
     public TimeSpan? Playtime;
     public RespawnPoint? RespawnPoint;
 
-    public List <LootGroup> AdditionalItems =[];
+    public List<LootGroup> AdditionalItems = [];
 
     public bool CanGetItem(string item)
     {
@@ -42,7 +42,7 @@ public class RolledWorld
     {
         return CustomScripts.CanGetChallenge(this, challenge);
     }
-    
+
     public bool IsCampaign => Zones.Exists(x => x.Name == "Labyrinth");
     public BloodMoon? BloodMoon;
 }

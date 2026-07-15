@@ -47,7 +47,7 @@ public partial class Analyzer
                 // we access that first location further down when processing those markers.
                 // Here we make sure not to insert the location at the first position
                 // As Ancient Canopy is the first location in the zone and should remain such
-                zone.Locations.Insert(canopyIndex+1, new(
+                zone.Locations.Insert(canopyIndex + 1, new(
                     name: "Ancient Canopy/Luminous Vale",
                     category: zone.Locations[canopyIndex].Category
                 ));
@@ -75,7 +75,7 @@ public partial class Analyzer
                 LootGroup lg = new()
                 {
                     Type = "Location",
-                    Items = ItemDb.GetItemsByReference("Location", location.Name).Select(x =>  new LootItemExtended(x)).ToList()
+                    Items = ItemDb.GetItemsByReference("Location", location.Name).Select(x => new LootItemExtended(x)).ToList()
                 };
                 if (lg.Items.Count > 0)
                 {
@@ -113,13 +113,13 @@ public partial class Analyzer
                     string? name = null;
                     if (type == "overworld POI" || type == "boss" || type == "miniboss" || type == "injectable")
                     {
-                        name = ev["Name"];
+                        name = new LootItem { Properties = ev }.Name;
                     }
                     static List<LootItemExtended> GetExtendedItemsByReference(string dropType, DropReference dropReference, bool propagateLooted)
                     {
                         return ItemDb.Db.Where(x => x.ContainsKey("DropReference"))
                             .Where(x => x["DropReference"] == dropReference.Name && x["DropType"] == dropType)
-                            .Select(x => new LootItemExtended{ Properties = x, IsLooted = dropReference.IsLooted && propagateLooted}).ToList();
+                            .Select(x => new LootItemExtended { Properties = x, IsLooted = dropReference.IsLooted && propagateLooted }).ToList();
                     }
 
                     // This is not a boss-only zone so if zone is complete does not mean all items are looted
@@ -137,7 +137,7 @@ public partial class Analyzer
                 // Part 3 : Drop Type : World Drop
                 List<LootItemExtended> worldDrops = location.WorldDrops
                     .Where(x => x.Name != "Bloodmoon" && ItemDb.HasItem(x.Name))
-                    .Select(x => new LootItemExtended(ItemDb.GetItemById(x.Name)){ IsLooted = x.IsLooted }).ToList();
+                    .Select(x => new LootItemExtended(ItemDb.GetItemById(x.Name)) { IsLooted = x.IsLooted }).ToList();
 
 
                 UnknownData unknown = UnknownData.None;
@@ -183,7 +183,7 @@ public partial class Analyzer
                         awardItem.IsVendoredAccountAward = true;
                     }
 
-                    lg.Items = [..lg.Items,..awardItems];
+                    lg.Items = [.. lg.Items, .. awardItems];
 
                     location.LootGroups.Add(lg);
                 }
@@ -329,7 +329,7 @@ public partial class Analyzer
         // Show items that can be obtained because the character already has the material in their inventory
         operation = performanceLogger.BeginOperation($"Character {characterIndex} (save_{characterSlot}), mode: {mode}, craftable items");
         // Quest Inventory is for Wooden Box that grants Effigy Pendant
-        var itemsWithMaterials = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Union(world.QuestInventory))
+        Dictionary<string, LootItem> itemsWithMaterials = GetItemsWithMaterials(world.ParentCharacter.Profile.Inventory.Union(world.QuestInventory))
             .DistinctBy(x => x.Properties["ProfileId"])
             .ToDictionary(x => x.Properties["ProfileId"]);
 
@@ -392,7 +392,7 @@ public partial class Analyzer
         Dictionary<string, List<Dictionary<string, string>>> consumables = ItemDb.Db.Where(x => x.ContainsKey("Consumable"))
             .GroupBy(x => x["Consumable"])
             .ToDictionary(x => x.Key, x => x.ToList());
-        Dictionary<string, List<Dictionary<string, string>>> combined = new[] {materials,consumables}.SelectMany(dict => dict).ToDictionary();
+        Dictionary<string, List<Dictionary<string, string>>> combined = new[] { materials, consumables }.SelectMany(dict => dict).ToDictionary();
 
         foreach (InventoryItem item in inventory)
         {

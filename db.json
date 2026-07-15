@@ -6318,7 +6318,6 @@
     "ProfileId": "/Game/World_Base/Items/Weapons/HandGuns/Standard/RuptureCannon/Weapon_RuptureCannon.Weapon_RuptureCannon_C",
     "Type": "weapon",
     "World": "World_Base",
-    "Name": "Rupture Cannon",
     "Subtype": "Hand Gun",
     "DropType": "Event",
     "DropReference": "Quest_SideD_StasisSiege",
@@ -6392,7 +6391,6 @@
     "DropReference": "Nimue's Retreat | Beatific Palace",
     "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Crafted from Anamy's Echo, which you can obtain by attacking sleeping Nimue on Losomn with the Dreamcatcher. That will provide a consumable Nume's Dream, which you will need to consume. That will teleport you to the Nimue Dream location, follow the light until you find the material",
-    "Undetectable": true,
     "Consumable": "Consumable_NimuesDream",
     "WeaponOrMod": "Mod_MoonlightBarrage"
   },
@@ -7130,7 +7128,7 @@
     "DropType": "Progression",
     "Note": "Start in an outdoor side path location on Losomn that has the Ethereal Manor event. Inside the manor, you will be grabbed by a Dran saying \"wake up!\". Use Liquid Escape to die and then use the stone to go to Ward 13. Meet the Dran at the Big Door of the old Ward; always exhaust the dialogue. From now onward you must not die, or you will have to start over. For the locations listed below, they can be either adventure or campaign, but they need to be rolled past the DLC1 patch, as pre-patch worlds won't work. You can freely re-roll them until you find a suitable one. Go to Yaesha - Red Throne, go to the right path where you spawn, down the stairs; on the other side of the chest is another Dran. Go to Labyrinth - Fractured Ingress, from the stone go up the stairs (right or left doesn't matter) until you reach the top. There is another Dran in the middle of the bridge. Go to N'Erud - Tal'Ratha's Refuge and behind you to the left bottom side of the room there is another Dran. Go to Root Earth - Ashen Wasteland, past the train area you will see a checkpoint and another Dran. Go to Losomn - Tormented Asylum, go straight past the Nightweaver's web to the other side of the hallway. To your right should be the last Dran. He will give you a consumable Dran Dream. Use the consumable to get to a location with the material.",
     "CustomScript": true,
-    "Undetectable": true,
+    "Material": "Material_OccultVessel",
     "Consumable": "Consumable_DransDream",
     "WeaponOrMod": "Mod_LoathTheWeak",
     "AccountAwardVendor": "Brabus",
@@ -8108,7 +8106,9 @@
     "ProfileId": "/Game/World_DLC1/Quests/Quest_Story_OneTrueKing/Items/Quest_Item_OTK_FeastmasterLeftovers/Quest_Item_OTK_FeastmasterLeftovers.Quest_Item_OTK_FeastmasterLeftovers_C",
     "Type": "quest_item",
     "World": "World_DLC1",
-    "Name": "Feast Master's Leftovers"
+    "Name": "Feast Master's Leftovers",
+    "DropType": "Event",
+    "DropReference": "Quest_SideD_Ravenous"
   },
   {
     "Id": "Quest_Item_OTK_NimueDeathItem",
@@ -8390,8 +8390,7 @@
     "Id": "Material_TwilightDactylus",
     "ProfileId": "/Game/World_Jungle/Items/Materials/Miniboss/TwilightDactylus/Material_TwilightDactylus.Material_TwilightDactylus_C",
     "Type": "material",
-    "World": "World_Jungle",
-    "Name": "Twilight Dactylus"
+    "World": "World_Jungle"
   },
   {
     "Id": "Material_FaithSeed",
@@ -8483,8 +8482,7 @@
     "Id": "Material_IonicCrystal",
     "ProfileId": "/Game/World_Nerud/Items/Materials/World/IonicCrystal/Material_IonicCrystal.Material_IonicCrystal_C",
     "Type": "material",
-    "World": "World_Nerud",
-    "Name": "Ionic Crystal"
+    "World": "World_Nerud"
   },
   {
     "Id": "Material_StasisCore",
@@ -11074,7 +11072,6 @@
   {
     "Id": "AccountAward_DefeatXWorldBosses",
     "Type": "award",
-    "Name": "Defeat X World Bosses",
     "Challenge": "CD52F7DE-4618D4DD-A1991D94-E48E33C8"
   },
   {
@@ -11104,7 +11101,6 @@
   {
     "Id": "AccountAward_DefeatAllBosses",
     "Type": "award",
-    "Name": "Defeat All Bosses",
     "Challenge": "5BF22894-486F2872-1D9DCE98-03CE36B6, 6C1DCC18-4D8C8A04-BE98AEA5-0DEF0048, 9913D482-413562BC-DCB03C8C-0E20BF21, 21D2C28C-4081DFF6-73E1EEAE-0453659D, 8760D76F-429AE74E-67F6E89F-B7C0F901, 8F77948F-4BE95E4E-31522EB9-D2E4D352, 686A7F08-495846E7-1D2225B5-D35817AD, 4E87628C-4B61F8F0-09E0F988-1D2E0B9A, 6E0A0ACC-4D5BF6C0-8B0E14B8-D7117E00, 8A7975D1-4FA4D9D8-8CB78581-E1F2509B, 741B6FFA-43ABF22D-4A01449C-A280AC76, DEB77A92-46375286-EBB6F080-8E3E82A0, 02D135CF-4D337EBE-C0BC8A8D-07C52DFB, 83620A7C-406BF2EB-BC5CE9A4-2C41C6AF, DED753A5-4DAEBDF5-0B81DCA3-7B8A0DB5, 29985858-4F465A66-79B6B8BF-5A10D18E, 16D6C192-41CE8B04-953577AB-9ACC7747, 10F756CA-4AFDF975-C6C317BE-F36B0705, 13B32649-45C6BD47-CBC226A2-91E5FC25, 38454571-49A3C942-36466797-0BBF4F34"
   },
   {
@@ -11201,7 +11197,6 @@
     "Id": "Quest_MainCampaign",
     "Type": "quest",
     "World": "World_Base",
-    "Name": "Main Campaign",
     "Subtype": "story"
   },
   {
@@ -12313,7 +12308,6 @@
     "ProfileId": "/Game/Items/Common/Consumable_DragonHeart.Consumable_DragonHeart_C",
     "Type": "relic",
     "World": "World_Base",
-    "Name": "Dragon Heart",
     "DropType": "Start",
     "Undetectable": true
   },
@@ -12324,7 +12318,11 @@
     "World": "World_Base",
     "Name": "Melee Critical Chance",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "6",
+    "CustomMaxValue": "7.5",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_MeleeCritDamage",
@@ -12334,7 +12332,11 @@
     "Name": "Melee Critical Damage",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_MeleeAttackSpeed",
@@ -12343,7 +12345,11 @@
     "World": "World_Base",
     "Name": "Melee Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_MeleeDamage",
@@ -12351,7 +12357,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_AmmoPickups",
@@ -12360,7 +12370,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "3",
+    "MaxValue": "25",
+    "CustomMaxValue": "30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_AmmoReserves",
@@ -12368,16 +12382,23 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "3",
+    "MaxValue": "20",
+    "CustomMaxValue": "25",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_CastSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_CastSpeed.RelicFragment_CastSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Cast Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "2",
+    "MaxValue": "15",
+    "CustomMaxValue": "20",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ChargeMeleeCost",
@@ -12386,7 +12407,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "-3",
+    "MaxValue": "-25",
+    "CustomMaxValue": "-30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ConsumableDuration",
@@ -12394,15 +12419,24 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "2",
+    "MaxValue": "15",
+    "CustomMaxValue": "20",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ConsumableSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_ConsumableSpeed.RelicFragment_ConsumableSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Use Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_Recoil",
@@ -12411,7 +12445,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "-3",
+    "MaxValue": "-25",
+    "CustomMaxValue": "-30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_SpreadRecovery",
@@ -12420,7 +12458,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "3",
+    "MaxValue": "25",
+    "CustomMaxValue": "30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_StaminaCosts",
@@ -12430,7 +12472,11 @@
     "Name": "Stamina Cost",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "-2",
+    "MaxValue": "-15",
+    "CustomMaxValue": "-20",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_StaminaRecoveryDelay",
@@ -12439,7 +12485,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "-3",
+    "MaxValue": "-25",
+    "CustomMaxValue": "-30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_WeaponSpread",
@@ -12447,24 +12497,37 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "-1",
+    "MaxValue": "-10",
+    "CustomMaxValue": "-15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_WeaponSwapSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Discipline/RelicFragment_WeaponSwapSpeed.RelicFragment_WeaponSwapSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Weapon Swap Speed",
+    "Name": "Firearm Swap Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "5",
+    "MaxValue": "15",
+    "CustomMaxValue": "20",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ArmorEffectiveness",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ArmorEffectiveness.RelicFragment_ArmorEffectiveness_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Armor Bonus",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_BlightResistance",
@@ -12473,7 +12536,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "3",
+    "MaxValue": "25",
+    "CustomMaxValue": "30",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_DamageReduction",
@@ -12481,7 +12548,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "4",
+    "CustomMaxValue": "5",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ElementalResistance",
@@ -12490,15 +12561,24 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_GreyHealthRate",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_GreyHealthRate.RelicFragment_GreyHealthRate_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Grey Health Conversion",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_HealingEffectiveness",
@@ -12506,15 +12586,24 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_Health",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_Health.RelicFragment_Health_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Health Bonus",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ModCost",
@@ -12523,7 +12612,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "-1",
+    "MaxValue": "-7.5",
+    "CustomMaxValue": "-10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ModDuration",
@@ -12531,7 +12624,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ReviveSpeed",
@@ -12539,15 +12636,24 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "2",
+    "MaxValue": "15",
+    "CustomMaxValue": "20",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ShieldEffectiveness",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_ShieldEffectiveness.RelicFragment_ShieldEffectiveness_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Shield Amount",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_SkillCooldown",
@@ -12555,7 +12661,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "-1",
+    "MaxValue": "-7.5",
+    "CustomMaxValue": "-10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_SkillDuration",
@@ -12563,15 +12673,24 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_Stamina",
     "ProfileId": "/Game/World_Base/Items/Gems/Ranged/Intellect/RelicFragment_Stamina.RelicFragment_Stamina_C",
     "Type": "fragment",
     "World": "World_Base",
+    "Name": "Stamina Bonus",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedCritChance",
@@ -12580,7 +12699,11 @@
     "World": "World_Base",
     "Name": "Ranged Critical Chance",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "6",
+    "CustomMaxValue": "7.5",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedCritDamage",
@@ -12590,7 +12713,11 @@
     "Name": "Ranged Critical Damage",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ElementalDamage",
@@ -12599,7 +12726,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ModDamage",
@@ -12607,7 +12738,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedDamage",
@@ -12615,7 +12750,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedFireRate",
@@ -12623,7 +12762,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedWeakspotDamage",
@@ -12633,7 +12776,11 @@
     "Name": "Weakspot Damage",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_SkillDamage",
@@ -12641,7 +12788,11 @@
     "Type": "fragment",
     "World": "World_Base",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_StaggerDamage",
@@ -12650,7 +12801,11 @@
     "World": "World_Base",
     "Note": "Random drop",
     "Undetectable": true,
-    "Disabled": true
+    "Disabled": true,
+    "MinValue": "1.02",
+    "MaxValue": "1.15",
+    "CustomMaxValue": "1.2",
+    "Unit": "x"
   },
   {
     "Id": "RelicFragment_ArmorFlat",
@@ -12659,43 +12814,58 @@
     "World": "World_Base",
     "Name": "Base Armor",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15"
   },
   {
     "Id": "RelicFragment_CriticalDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_CriticalDamage.RelicFragment_CriticalDamage_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Critical Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_EvadeDistance",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_EvadeDistance.RelicFragment_EvadeDistance_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Evade Distance",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_EvadeSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_EvadeSpeed.RelicFragment_EvadeSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Evade Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ExplosiveDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ExplosiveDamage.RelicFragment_ExplosiveDamage_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Explosive Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_HealthFlat",
@@ -12704,7 +12874,10 @@
     "World": "World_Base",
     "Name": "Base Health",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "8",
+    "CustomMaxValue": "10"
   },
   {
     "Id": "RelicFragment_HealthRegen",
@@ -12713,7 +12886,11 @@
     "World": "World_Base",
     "Name": "Health Regeneration",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "0.1",
+    "MaxValue": "0.9",
+    "CustomMaxValue": "1",
+    "Unit": "/s"
   },
   {
     "Id": "RelicFragment_HeatGenReduction",
@@ -12722,7 +12899,11 @@
     "World": "World_Base",
     "Name": "Heat Generation",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "-1",
+    "MaxValue": "-10",
+    "CustomMaxValue": "-15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_IdealRange",
@@ -12731,7 +12912,11 @@
     "World": "World_Base",
     "Name": "Weapon Ideal Range",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "10",
+    "MaxValue": "150",
+    "CustomMaxValue": "200",
+    "Unit": "cm"
   },
   {
     "Id": "RelicFragment_ModCritChance",
@@ -12740,34 +12925,47 @@
     "World": "World_Base",
     "Name": "Mod Critical Chance",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "6",
+    "CustomMaxValue": "7.5",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ModGeneration",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ModGeneration.RelicFragment_ModGeneration_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Mod Generation",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_MovementSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_MovementSpeed.RelicFragment_MovementSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Movement Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ProjectileSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ProjectileSpeed.RelicFragment_ProjectileSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Projectile Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_RangedChargeSpeed",
@@ -12776,25 +12974,35 @@
     "World": "World_Base",
     "Name": "Firearm Charge Time",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "-1",
+    "MaxValue": "-7.5",
+    "CustomMaxValue": "-10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ReloadSpeed",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ReloadSpeed.RelicFragment_ReloadSpeed_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Reload Speed",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_ShieldDuration",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_ShieldDuration.RelicFragment_ShieldDuration_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Shield Duration",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "7.5",
+    "CustomMaxValue": "10",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_SkillCritChance",
@@ -12803,7 +13011,11 @@
     "World": "World_Base",
     "Name": "Skill Critical Chance",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "6",
+    "CustomMaxValue": "7.5",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_StaminaFlat",
@@ -12812,25 +13024,34 @@
     "World": "World_Base",
     "Name": "Base Stamina",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15"
   },
   {
     "Id": "RelicFragment_StatusDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_StatusDamage.RelicFragment_StatusDamage_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Status Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "RelicFragment_WeakspotDamage",
     "ProfileId": "/Game/World_Base/Items/Gems/_Core/Shared/RelicFragment_WeakspotDamage.RelicFragment_WeakspotDamage_C",
     "Type": "fragment",
     "World": "World_Base",
-    "Name": "Weakspot Damage",
     "Note": "Random drop",
-    "Undetectable": true
+    "Undetectable": true,
+    "MinValue": "1",
+    "MaxValue": "10",
+    "CustomMaxValue": "15",
+    "Unit": "%"
   },
   {
     "Id": "Skill_AlchemistVial_ElixirOfLife",
@@ -13382,7 +13603,8 @@
     "DropType": "Progression",
     "Prerequisite": "1856B8B3-49AA2901-48AE90B8-B3C89533",
     "Note": "Can be bought from Reggie in Ward 13 once acquired for the first time. To acquire it, die from a boss on apocalypse difficulty 10 times",
-    "Challenge": "1856B8B3-49AA2901-48AE90B8-B3C89533"
+    "Challenge": "1856B8B3-49AA2901-48AE90B8-B3C89533",
+    "Undetectable": true
   },
   {
     "Id": "Consumable_EtherealOrb",
@@ -13414,6 +13636,7 @@
     "Type": "consumable",
     "World": "World_Base",
     "DropType": "Event",
+    "DropReference": "OverworldPOI_KoaraKuri",
     "Note": "Found near the Koara Kuri Nest on Yaesha"
   },
   {
@@ -13806,8 +14029,7 @@
     "Id": "Item_AlloyExtractor",
     "ProfileId": "/Game/World_DLC3/Items/Special/AlloyExtractor/Item_AlloyExtractor.Item_AlloyExtractor_C",
     "Type": "special",
-    "World": "World_DLC3",
-    "Name": "Alloy Extractor"
+    "World": "World_DLC3"
   },
   {
     "Id": "PrismOfGreed",
@@ -13837,7 +14059,8 @@
     "World": "World_Base",
     "Name": "Prism of Jealousy",
     "DropType": "Progression",
-    "Note": "Get from Wallace in exchange for yellow, blue and red Prismatic Stones. Dig them out by using the shovel bought from Brabus. The yellow stone is in the back left corner of the firing range in Ward 13. The red stone is on Root Earth not far from the second checkpoint in the Ashen Wasteland. Once you reach the checkpoint, turn back where you came from and go to the left back corner and dig. The blue stone is in the Labyrinth in the general vicinity of the glitching portal where you get the cipher rod for Enigma, not far from the spot where you drop from the cycling portal into the area"
+    "Note": "Get from Wallace in exchange for yellow, blue and red Prismatic Stones. Dig them out by using the shovel bought from Brabus. The yellow stone is in the back left corner of the firing range in Ward 13. The red stone is on Root Earth not far from the second checkpoint in the Ashen Wasteland. Once you reach the checkpoint, turn back where you came from and go to the left back corner and dig. The blue stone is in the Labyrinth in the general vicinity of the glitching portal where you get the cipher rod for Enigma, not far from the spot where you drop from the cycling portal into the area",
+    "Undetectable": true
   },
   {
     "Id": "PrismOfLethargy",
@@ -13901,5 +14124,985 @@
     "Type": "material",
     "World": "World_DLC3",
     "Name": "Prismatic Stone (red)"
+  },
+  {
+    "Id": "PrismSegment_CriticalDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_CriticalDamage",
+    "Color": "Red",
+    "Order": "1",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_WeakspotDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_WeakspotDamage",
+    "Color": "Red",
+    "Order": "2",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_RangedDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_RangedDamage",
+    "Color": "Red",
+    "Order": "3",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_MeleeDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_MeleeDamage",
+    "Color": "Red",
+    "Order": "4",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ModDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ModDamage",
+    "Color": "Red",
+    "Order": "5",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_SkillDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_SkillDamage",
+    "Color": "Red",
+    "Order": "6",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ExplosiveDamage",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ExplosiveDamage",
+    "Color": "Red",
+    "Order": "7",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_StatusDamage",
+    "Type": "prismslot",
+    "Name": "Status Effect Damage",
+    "Fragment": "RelicFragment_StatusDamage",
+    "Color": "Red",
+    "Order": "8",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_RangedCriticalChance",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_RangedCritChance",
+    "Color": "Red",
+    "Order": "9",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_MeleeCriticalChance",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_MeleeCritChance",
+    "Color": "Red",
+    "Order": "10",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ModCriticalChance",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ModCritChance",
+    "Color": "Red",
+    "Order": "11",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_SkillCriticalChance",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_SkillCritChance",
+    "Color": "Red",
+    "Order": "12",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_RangedFireRate",
+    "Type": "prismslot",
+    "Name": "Fire Rate",
+    "Fragment": "RelicFragment_RangedFireRate",
+    "Color": "Red",
+    "Order": "13",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_FirearmChargeSpeed",
+    "Type": "prismslot",
+    "Name": "Firearm Charge Time",
+    "Fragment": "RelicFragment_RangedChargeSpeed",
+    "Color": "Red",
+    "Order": "14",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_MeleeAttackSpeed",
+    "Type": "prismslot",
+    "Name": "Total Melee Speed",
+    "Fragment": "RelicFragment_MeleeAttackSpeed",
+    "Color": "Red",
+    "Order": "15",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_HealthPercent",
+    "Type": "prismslot",
+    "Name": "Health Bonus",
+    "Fragment": "RelicFragment_Health",
+    "Color": "Blue",
+    "Order": "16",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_HealthFlat",
+    "Type": "prismslot",
+    "Name": "Health",
+    "Fragment": "RelicFragment_HealthFlat",
+    "Color": "Blue",
+    "Order": "17",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_HealthRegen",
+    "Type": "prismslot",
+    "Name": "Health Regeneration",
+    "Fragment": "RelicFragment_HealthRegen",
+    "Color": "Blue",
+    "Order": "18",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_HealingEfficacy",
+    "Type": "prismslot",
+    "Name": "Healing Effectiveness",
+    "Fragment": "RelicFragment_HealingEffectiveness",
+    "Color": "Blue",
+    "Order": "19",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_GreyHealthRate",
+    "Type": "prismslot",
+    "Name": "Grey Health Conversion",
+    "Fragment": "RelicFragment_GreyHealthRate",
+    "Color": "Blue",
+    "Order": "20",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_StaminaPercent",
+    "Type": "prismslot",
+    "Name": "Stamina Bonus",
+    "Fragment": "RelicFragment_Stamina",
+    "Color": "Blue",
+    "Order": "21",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_StaminaFlat",
+    "Type": "prismslot",
+    "Name": "Stamina",
+    "Fragment": "RelicFragment_StaminaFlat",
+    "Color": "Blue",
+    "Order": "22",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_DamageReduction",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_DamageReduction",
+    "Color": "Blue",
+    "Order": "23",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ArmorPercent",
+    "Type": "prismslot",
+    "Name": "Armor Bonus",
+    "Fragment": "RelicFragment_ArmorEffectiveness",
+    "Color": "Blue",
+    "Order": "24",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ArmorFlat",
+    "Type": "prismslot",
+    "Name": "Armor",
+    "Fragment": "RelicFragment_ArmorFlat",
+    "Color": "Blue",
+    "Order": "25",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ShieldPercent",
+    "Type": "prismslot",
+    "Name": "Shield Amount",
+    "Fragment": "RelicFragment_ShieldEffectiveness",
+    "Color": "Blue",
+    "Order": "26",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ShieldDuration",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ShieldDuration",
+    "Color": "Blue",
+    "Order": "27",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_EvadeSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_EvadeSpeed",
+    "Color": "Blue",
+    "Order": "28",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_EvadeDistance",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_EvadeDistance",
+    "Color": "Blue",
+    "Order": "29",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ReviveSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ReviveSpeed",
+    "Color": "Blue",
+    "Order": "30",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_MovementSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_MovementSpeed",
+    "Color": "Yellow",
+    "Order": "31",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_WeaponSpread",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_WeaponSpread",
+    "Color": "Yellow",
+    "Order": "32",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_IdealRange",
+    "Type": "prismslot",
+    "Name": "Weapon Ideal Range",
+    "Fragment": "RelicFragment_IdealRange",
+    "Color": "Yellow",
+    "Order": "33",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ReloadSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ReloadSpeed",
+    "Color": "Yellow",
+    "Order": "34",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_SwapSpeed",
+    "Type": "prismslot",
+    "Name": "Firearm Swap Speed",
+    "Fragment": "RelicFragment_WeaponSwapSpeed",
+    "Color": "Yellow",
+    "Order": "35",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_AmmoReserves",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_AmmoReserves",
+    "Color": "Yellow",
+    "Order": "36",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ProjectileSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ProjectileSpeed",
+    "Color": "Yellow",
+    "Order": "37",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_HeatReduction",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_HeatGenReduction",
+    "Color": "Yellow",
+    "Order": "38",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_CastSpeed",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_CastSpeed",
+    "Color": "Yellow",
+    "Order": "39",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ModGeneration",
+    "Type": "prismslot",
+    "Name": "Mod Power Generation",
+    "Fragment": "RelicFragment_ModGeneration",
+    "Color": "Yellow",
+    "Order": "40",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_ModDuration",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ModDuration",
+    "Color": "Yellow",
+    "Order": "41",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_SkillCooldown",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_SkillCooldown",
+    "Color": "Yellow",
+    "Order": "42",
+    "Rarity": "2"
+  },
+  {
+    "Id": "PrismSegment_SkillDuration",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_SkillDuration",
+    "Color": "Yellow",
+    "Order": "43",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ConsumableSpeed",
+    "Type": "prismslot",
+    "Name": "Use Speed",
+    "Fragment": "RelicFragment_ConsumableSpeed",
+    "Color": "Yellow",
+    "Order": "44",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismSegment_ConsumableDuration",
+    "Type": "prismslot",
+    "Fragment": "RelicFragment_ConsumableDuration",
+    "Color": "Yellow",
+    "Order": "45",
+    "Rarity": "1"
+  },
+  {
+    "Id": "PrismFusion_WeakspotDamageCriticalDamage",
+    "Type": "fusion",
+    "Name": "Meta",
+    "Fragment1": "RelicFragment_WeakspotDamage",
+    "Fragment2": "RelicFragment_CriticalDamage",
+    "Color1": "Red",
+    "Color2": "Red",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Meta.PrismSegment_Meta_C",
+    "Order": "46",
+    "Base1": "1.5",
+    "Inc1": "1.5",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_ModCriticalSkillCritical",
+    "Type": "fusion",
+    "Name": "Wizard",
+    "Fragment1": "RelicFragment_ModCritChance",
+    "Fragment2": "RelicFragment_SkillCritChance",
+    "Color1": "Red",
+    "Color2": "Red",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Wizard.PrismSegment_Wizard_C",
+    "Order": "47",
+    "Base1": "0.75",
+    "Inc1": "0.75",
+    "Base2": "0.75",
+    "Inc2": "0.75"
+  },
+  {
+    "Id": "PrismFusion_MeleeDamageMeleeSpeed",
+    "Type": "fusion",
+    "Name": "Warrior",
+    "Fragment1": "RelicFragment_MeleeDamage",
+    "Fragment2": "RelicFragment_MeleeAttackSpeed",
+    "Color1": "Red",
+    "Color2": "Red",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Warrior.PrismSegment_Warrior_C",
+    "Order": "48",
+    "Base1": "1.5",
+    "Inc1": "1.5",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_MeleeCriticalEvadeSpeed",
+    "Type": "fusion",
+    "Name": "Rogue",
+    "Fragment1": "RelicFragment_MeleeCritChance",
+    "Fragment2": "RelicFragment_EvadeSpeed",
+    "Color1": "Red",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Rogue.PrismSegment_Rogue_C",
+    "Order": "49",
+    "Base1": "0.75",
+    "Inc1": "0.75",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_MeleeSpeedStaminaFlat",
+    "Type": "fusion",
+    "Name": "Pugilist",
+    "Fragment1": "RelicFragment_StaminaFlat",
+    "Fragment2": "RelicFragment_MeleeAttackSpeed",
+    "Color1": "Blue",
+    "Color2": "Red",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Pugilist.PrismSegment_Pugilist_C",
+    "Order": "50",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_FireRateReloadSpeed",
+    "Type": "fusion",
+    "Name": "Gunfighter",
+    "Fragment1": "RelicFragment_RangedFireRate",
+    "Fragment2": "RelicFragment_ReloadSpeed",
+    "Color1": "Red",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Gunfighter.PrismSegment_Gunfighter_C",
+    "Order": "51",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_RangedDamageIdealRange",
+    "Type": "fusion",
+    "Name": "Sniper",
+    "Fragment1": "RelicFragment_RangedDamage",
+    "Fragment2": "RelicFragment_IdealRange",
+    "Color1": "Red",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Sniper.PrismSegment_Sniper_C",
+    "Order": "52",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "20",
+    "Inc2": "20"
+  },
+  {
+    "Id": "PrismFusion_RangedCriticalAmmoReserves",
+    "Type": "fusion",
+    "Name": "Munitions",
+    "Fragment1": "RelicFragment_RangedCritChance",
+    "Fragment2": "RelicFragment_AmmoReserves",
+    "Color1": "Red",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Munitions.PrismSegment_Munitions_C",
+    "Order": "53",
+    "Base1": "0.75",
+    "Inc1": "0.75",
+    "Base2": "3",
+    "Inc2": "3"
+  },
+  {
+    "Id": "PrismFusion_ModDamageModGeneration",
+    "Type": "fusion",
+    "Name": "Mage",
+    "Fragment1": "RelicFragment_ModDamage",
+    "Fragment2": "RelicFragment_ModGeneration",
+    "Color1": "Red",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Mage.PrismSegment_Mage_C",
+    "Order": "54",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_HealthPercentStaminaPercent",
+    "Type": "fusion",
+    "Name": "Hulk",
+    "Fragment1": "RelicFragment_Health",
+    "Fragment2": "RelicFragment_Stamina",
+    "Color1": "Blue",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Hulk.PrismSegment_Hulk_C",
+    "Order": "55",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_DamageReductionArmorPercent",
+    "Type": "fusion",
+    "Name": "Tank",
+    "Fragment1": "RelicFragment_DamageReduction",
+    "Fragment2": "RelicFragment_ArmorEffectiveness",
+    "Color1": "Blue",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Tank.PrismSegment_Tank_C",
+    "Order": "56",
+    "Base1": "0.5",
+    "Inc1": "0.5",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_ShieldEfficacyArmorFlat",
+    "Type": "fusion",
+    "Name": "Protected",
+    "Fragment1": "RelicFragment_ShieldEffectiveness",
+    "Fragment2": "RelicFragment_ArmorFlat",
+    "Color1": "Blue",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Protected.PrismSegment_Protected_C",
+    "Order": "57",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_HealthPercentGreyHealthRate",
+    "Type": "fusion",
+    "Name": "Threshold",
+    "Fragment1": "RelicFragment_Health",
+    "Fragment2": "RelicFragment_GreyHealthRate",
+    "Color1": "Blue",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Threshold.PrismSegment_Threshold_C",
+    "Order": "58",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_HealthRegenSkillCooldown",
+    "Type": "fusion",
+    "Name": "Revitalize",
+    "Fragment1": "RelicFragment_HealthRegen",
+    "Fragment2": "RelicFragment_SkillCooldown",
+    "Color1": "Blue",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Revitalize.PrismSegment_Revitalize_C",
+    "Order": "59",
+    "Base1": "0.1",
+    "Inc1": "0.1",
+    "Base2": "-1",
+    "Inc2": "-1"
+  },
+  {
+    "Id": "PrismFusion_MovementSpeedEvadeSpeed",
+    "Type": "fusion",
+    "Name": "Athletic",
+    "Fragment1": "RelicFragment_MovementSpeed",
+    "Fragment2": "RelicFragment_EvadeSpeed",
+    "Color1": "Yellow",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Athletic.PrismSegment_Athletic_C",
+    "Order": "60",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_HealingEfficacyUseSpeed",
+    "Type": "fusion",
+    "Name": "Cleric",
+    "Fragment1": "RelicFragment_HealingEffectiveness",
+    "Fragment2": "RelicFragment_ConsumableSpeed",
+    "Color1": "Blue",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Cleric.PrismSegment_Cleric_C",
+    "Order": "61",
+    "Base1": "1.5",
+    "Inc1": "1.5",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_ModDurationSkillDuration",
+    "Type": "fusion",
+    "Name": "Longevity",
+    "Fragment1": "RelicFragment_ModDuration",
+    "Fragment2": "RelicFragment_SkillDuration",
+    "Color1": "Yellow",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Longevity.PrismSegment_Longevity_C",
+    "Order": "62",
+    "Base1": "1.5",
+    "Inc1": "1.5",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_WeaponSpreadSwapSpeed",
+    "Type": "fusion",
+    "Name": "Grip",
+    "Fragment1": "RelicFragment_WeaponSpread",
+    "Fragment2": "RelicFragment_WeaponSwapSpeed",
+    "Color1": "Yellow",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Grip.PrismSegment_Grip_C",
+    "Order": "63",
+    "Base1": "1.5",
+    "Inc1": "1.5",
+    "Base2": "2",
+    "Inc2": "2"
+  },
+  {
+    "Id": "PrismFusion_CastSpeedUseSpeed",
+    "Type": "fusion",
+    "Name": "Flash",
+    "Fragment1": "RelicFragment_CastSpeed",
+    "Fragment2": "RelicFragment_ConsumableSpeed",
+    "Color1": "Yellow",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Flash.PrismSegment_Flash_C",
+    "Order": "64",
+    "Base1": "2",
+    "Inc1": "2",
+    "Base2": "1.5",
+    "Inc2": "1.5"
+  },
+  {
+    "Id": "PrismFusion_RangedDamageMeleeDamage",
+    "Type": "fusion",
+    "Name": "Pirate",
+    "Fragment1": "RelicFragment_RangedDamage",
+    "Fragment2": "RelicFragment_MeleeDamage",
+    "Color1": "Red",
+    "Color2": "Red",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Pirate.PrismSegment_Pirate_C",
+    "Order": "65",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "1",
+    "Inc2": "1"
+  },
+  {
+    "Id": "PrismFusion_ExplosiveDamageDamageReduction",
+    "Type": "fusion",
+    "Name": "Sapper",
+    "Fragment1": "RelicFragment_ExplosiveDamage",
+    "Fragment2": "RelicFragment_DamageReduction",
+    "Color1": "Red",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Sapper.PrismSegment_Sapper_C",
+    "Order": "66",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "0.5",
+    "Inc2": "0.5"
+  },
+  {
+    "Id": "PrismFusion_FirearmChargeSpeedHeatReduction",
+    "Type": "fusion",
+    "Name": "Capacitor",
+    "Fragment1": "RelicFragment_RangedChargeSpeed",
+    "Fragment2": "RelicFragment_HeatGenReduction",
+    "Color1": "Red",
+    "Color2": "Yellow",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Capacitor.PrismSegment_Capacitor_C",
+    "Order": "67",
+    "Base1": "-1",
+    "Inc1": "-1",
+    "Base2": "-1",
+    "Inc2": "-1"
+  },
+  {
+    "Id": "PrismFusion_ReviveSpeedHealingEfficacy",
+    "Type": "fusion",
+    "Name": "Selfless",
+    "Fragment1": "RelicFragment_ReviveSpeed",
+    "Fragment2": "RelicFragment_HealingEffectiveness",
+    "Color1": "Blue",
+    "Color2": "Blue",
+    "ProfileId": "/Game/Events/Paragon/PrismStone/PrismComboSegments/PrismSegment_Selfless.PrismSegment_Selfless_C",
+    "Order": "68",
+    "Base1": "1",
+    "Inc1": "1",
+    "Base2": "0.5",
+    "Inc2": "0.5"
+  },
+  {
+    "Id": "PrismBonus_MasterKiller",
+    "Type": "legendary",
+    "Order": "1",
+    "Description": "Multiplies Weakspot Damage by 1.35x."
+  },
+  {
+    "Id": "PrismBonus_Immovable",
+    "Type": "legendary",
+    "Order": "2",
+    "Description": "Cannot be Staggered while BULWARK is active."
+  },
+  {
+    "Id": "PrismBonus_FullHearted",
+    "Type": "legendary",
+    "Order": "3",
+    "Description": "Increases Relic Charges by 100%."
+  },
+  {
+    "Id": "PrismBonus_Allegiance",
+    "Type": "legendary",
+    "Order": "4",
+    "Description": "Cannot Kill or Be Killed by Friendly Fire Damage."
+  },
+  {
+    "Id": "PrismBonus_Outlaw",
+    "Type": "legendary",
+    "Order": "5",
+    "Description": "Reloading Reloads both Weapons."
+  },
+  {
+    "Id": "PrismBonus_Soulmate",
+    "Type": "legendary",
+    "Order": "6",
+    "Description": "Increases Summon Limit by 1."
+  },
+  {
+    "Id": "PrismBonus_HeavyDrinker",
+    "Type": "legendary",
+    "Order": "7",
+    "Description": "Increases Concoction Limit by 5."
+  },
+  {
+    "Id": "PrismBonus_BoundlessEnergy",
+    "Type": "legendary",
+    "Order": "8",
+    "Description": "Grants Infinite N'Erudian Energy."
+  },
+  {
+    "Id": "PrismBonus_PowerTrip",
+    "Type": "legendary",
+    "Order": "9",
+    "Description": "Doubles Mod Charges."
+  },
+  {
+    "Id": "PrismBonus_FleetFooted",
+    "Type": "legendary",
+    "Order": "10",
+    "Description": "Increases Dodge Weight Threshold by 100."
+  },
+  {
+    "Id": "PrismBonus_LuckOfTheDevil",
+    "Type": "legendary",
+    "Name": "Luck of the Devil",
+    "Order": "11",
+    "Description": "Grants EXTREME Luck."
+  },
+  {
+    "Id": "PrismBonus_Sadistic",
+    "Type": "legendary",
+    "Order": "12",
+    "Description": "Status Effect Damage has a 50% chance to deal 2x more damage per tick."
+  },
+  {
+    "Id": "PrismBonus_Unbridled",
+    "Type": "legendary",
+    "Order": "13",
+    "Description": "Reduces all Skill Cooldowns by Half."
+  },
+  {
+    "Id": "PrismBonus_DefensiveMeasures",
+    "Type": "legendary",
+    "Name": "Defense Measures",
+    "Order": "14",
+    "Description": "Increases SHIELD Maximum by 100%."
+  },
+  {
+    "Id": "PrismBonus_GodTear",
+    "Type": "legendary",
+    "Order": "15",
+    "Description": "Reduces Cheat Death Cooldowns by 50%."
+  },
+  {
+    "Id": "PrismBonus_SpeedDemon",
+    "Type": "legendary",
+    "Order": "16",
+    "Description": "Grants Maximum Movement Speed Bonuses."
+  },
+  {
+    "Id": "PrismBonus_Reverberation",
+    "Type": "legendary",
+    "Order": "17",
+    "Description": "Increases Stamina Recovery by 200 per second."
+  },
+  {
+    "Id": "PrismBonus_Hyperactive",
+    "Type": "legendary",
+    "Order": "18",
+    "Description": "Increases HASTE Effectiveness by 100%."
+  },
+  {
+    "Id": "PrismBonus_PrimeTime",
+    "Type": "legendary",
+    "Order": "19",
+    "Description": "Enables Prime Perk for Secondary Archetype."
+  },
+  {
+    "Id": "PrismBonus_Exhausted",
+    "Type": "legendary",
+    "Order": "20",
+    "Description": "Increases Heat Decay Rate by 250%."
+  },
+  {
+    "Id": "PrismBonus_Overpowered",
+    "Type": "legendary",
+    "Order": "21",
+    "Description": "Increases Mod Generation by 50%."
+  },
+  {
+    "Id": "PrismBonus_Gigantic",
+    "Type": "legendary",
+    "Order": "22",
+    "Description": "Grants 50 Health and Stamina."
+  },
+  {
+    "Id": "PrismBonus_Traitor",
+    "Type": "legendary",
+    "Order": "23",
+    "Description": "Maxes out Core Traits."
+  },
+  {
+    "Id": "PrismBonus_DarkOmen",
+    "Type": "legendary",
+    "Order": "24",
+    "Description": "Dodges become Mist Step, costing Health instead of Stamina."
+  },
+  {
+    "Id": "PrismBonus_Altruistic",
+    "Type": "legendary",
+    "Order": "25",
+    "Description": "Lifesteal applies 50% of Stolen Health to Allies."
+  },
+  {
+    "Id": "PrismBonus_Unbreakable",
+    "Type": "legendary",
+    "Order": "26",
+    "Description": "Grey Health cannot be removed."
+  },
+  {
+    "Id": "PrismBonus_InsultToInjury",
+    "Type": "legendary",
+    "Name": "Insult to Injury",
+    "Order": "27",
+    "Description": "Applying any Negative Status Effect applies EXPOSED."
+  },
+  {
+    "Id": "PrismBonus_Brutality",
+    "Type": "legendary",
+    "Order": "28",
+    "Description": "All Damage Dealt and Received is increased by 100%."
+  },
+  {
+    "Id": "PrismBonus_WreckingBall",
+    "Type": "legendary",
+    "Order": "29",
+    "Description": "Increases Explosive Critical Chance by 100%."
+  },
+  {
+    "Id": "PrismBonus_SteelPlating",
+    "Type": "legendary",
+    "Order": "30",
+    "Description": "Increases Armor by 150."
+  },
+  {
+    "Id": "PrismBonus_CriticalSituation",
+    "Type": "legendary",
+    "Order": "31",
+    "Description": "Grants 35% All Critical Chance within the LIGHT Weight Class."
+  },
+  {
+    "Id": "PrismBonus_SharpShooter",
+    "Type": "legendary",
+    "Name": "Sharpshooter",
+    "Order": "32",
+    "Description": "Increases Ranged Damage by 60%."
+  },
+  {
+    "Id": "PrismBonus_JackOfAllTrades",
+    "Type": "legendary",
+    "Name": "Jack of all Trades",
+    "Order": "33",
+    "Description": "Increases All Damage by 40%."
+  },
+  {
+    "Id": "PrismBonus_Vaccinated",
+    "Type": "legendary",
+    "Order": "34",
+    "Description": "Immune to Negative Status Effects."
+  },
+  {
+    "Id": "PrismBonus_PeakConditioning",
+    "Type": "legendary",
+    "Order": "35",
+    "Description": "Grants Infinite Stamina."
+  },
+  {
+    "Id": "PrismBonus_Physician",
+    "Type": "legendary",
+    "Order": "36",
+    "Description": "Increases Healing Effectiveness by 100%."
+  },
+  {
+    "Id": "PrismBonus_Impervious",
+    "Type": "legendary",
+    "Order": "37",
+    "Description": "Reduces All Incoming Damage by 30%."
+  },
+  {
+    "Id": "PrismBonus_Spectrum",
+    "Type": "legendary",
+    "Order": "38",
+    "Description": "Gain Bonuses Based on Color of Fragments within the Prism."
+  },
+  {
+    "Id": "PrismBonus_ArtfulDodger",
+    "Type": "legendary",
+    "Order": "39",
+    "Description": "All Dodges trigger Perfect Dodge Mechanics. Cooldown of 3 seconds."
+  },
+  {
+    "Id": "PrismBonus_PowerFantasy",
+    "Type": "legendary",
+    "Order": "40",
+    "Description": "Increases Explosive Critical Chance and Critical Damage by 30%."
+  },
+  {
+    "Id": "PrismBonus_SizeMatters",
+    "Type": "legendary",
+    "Order": "41",
+    "Description": "Doubles Magazine Size for non Single Shot Weapons."
+  },
+  {
+    "Id": "PrismBonus_Bodyguard",
+    "Type": "legendary",
+    "Order": "42",
+    "Description": "Cannot be One-Shot while at Max Health Capacity."
   }
 ]

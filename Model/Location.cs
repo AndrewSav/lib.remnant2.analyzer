@@ -128,7 +128,7 @@ public class Location
         return new(
             name: "Ward 13",
             category: "Ward 13",
-            worldStoneIdMap: [( "2_Waypoint_Town", "Ward 13" )],
+            worldStoneIdMap: [("2_Waypoint_Town", "Ward 13")],
             connectionsIdMap: [],
             checkpoints: [])
         {

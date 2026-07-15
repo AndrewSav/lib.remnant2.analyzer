@@ -7,7 +7,6 @@ namespace lib.remnant2.analyzer;
 
 public partial class Utils
 {
-    // ReSharper disable UnusedMember.Global
     public static string Capitalize(string word)
     {
         return string.Join(' ', word.Split('_').Select(x => x[..1].ToUpper() + x[1..].ToLower()));
@@ -16,7 +15,6 @@ public partial class Utils
     {
         return string.Join(' ', RegexSplitAtCapitals().Split(word).Select(x => x.Trim('_')));
     }
-    // ReSharper restore UnusedMember.Global
 
     public static string GetNameFromProfileId(string profileId)
     {
@@ -53,7 +51,7 @@ public partial class Utils
             "^Relic_Charge_Pickup$",
             "^Armor_.*_Default$"
         ];
-        Regex r = new(string.Join('|',patterns));
+        Regex r = new(string.Join('|', patterns));
         return r.IsMatch(item);
     }
 
@@ -74,8 +72,8 @@ public partial class Utils
     // This is used for formatting long guns, handguns, melee weapons and relics and their attachments
     public static string FormatEquipmentSlot(
         string slotType, // Long Gun, Handgun, Melee Weapon or Relic
-        string itemType, // weapon, mod, specialmod (e.g. built-in), mutator or fragment
-        int itemLevel, 
+        string itemType, // weapon, mod, specialmod (e.g. built-in), mutator, fragment or prism
+        int itemLevel,
         string itemName
         )
     {
@@ -83,7 +81,7 @@ public partial class Utils
         StringBuilder sb = new();
         sb.Append(slotType);
         if (!string.IsNullOrEmpty(slotType)) sb.Append(' ');
-        if (itemType == "specialmod" || itemType == "mod" || itemType == "mutator" || itemType == "fragment")
+        if (itemType == "specialmod" || itemType == "mod" || itemType == "mutator" || itemType == "fragment" || itemType == "prism")
         {
             // If this is an attachment, add the attachment type to the slot type
             string formatted = itemType == "specialmod" ? "Special Mod" : Capitalize(itemType);
@@ -106,11 +104,11 @@ public partial class Utils
 
     public static bool ItemAcquiredFilter(string profileId)
     {
-            LootItem? l = ItemDb.GetItemByProfileId(profileId);
-            if (l == null) return false;
-            if (l.Type == "trait") return true;
-            if (!Analyzer.InventoryTypes.Contains(l.Type)) return false;
-            return true;
+        LootItem? l = ItemDb.GetItemByProfileId(profileId);
+        if (l == null) return false;
+        if (l.Type == "trait") return true;
+        if (!Analyzer.InventoryTypes.Contains(l.Type)) return false;
+        return true;
     }
 
     [GeneratedRegex("(?<!^)(?=[A-Z])")]

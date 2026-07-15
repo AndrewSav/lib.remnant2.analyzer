@@ -26,12 +26,12 @@ public sealed record WgsContainersIndex(
             tmp = reader.ReadInt32(); // unk1
             if (tmp != 0) throw new InvalidDataException($"Expected unk1 in container entry #{i} to be 0");
 
-            string cloudFilename = reader.ReadUtf16String();
+            reader.ReadUtf16String();
             string localFilename = reader.ReadUtf16String();
             string rev = reader.ReadUtf16String();
             byte id = reader.ReadByte();
             tmp = reader.ReadInt32(); // unk2
-            if (tmp != 1 && tmp != 2) throw new InvalidDataException($"Expected unk2 in container entry #{i} to be 1");
+            if (tmp != 1 && tmp != 2) throw new InvalidDataException($"Expected unk2 in container entry #{i} to be 1 or 2");
 
             Guid wgsFolder = reader.ReadGuid();
             ulong cts = reader.ReadUInt64(); // unk3

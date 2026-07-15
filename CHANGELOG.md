@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0 (15 July 2026)
+- Added prism support: fragment, fusion and roll data plus prism roll evaluation and prism solving engine
+- Fixed Band of the Fanatic looted detection - now correctly marked as is looted if obtained. Used to be marked as looted only after aggroing the preacher
+- Fixed detection of the White Glass Bead ring and Koara Pellet by correcting drop sources in the item data
+- Linked Anguish to its crafting material (Occult Vessel)
+- Added looted detection for Crescent Moon and Anguish
+- Added looted detection for Familiar
+- Improved several item notes
+- Performance improvements
+- Updated lib.remnant2.saves to 1.0.1
+
 ## v1.0.0 (2 May 2026)
 - Fixed over a hundred typos in db.json notes
 - Fixed event loot state propagation for completed event drops

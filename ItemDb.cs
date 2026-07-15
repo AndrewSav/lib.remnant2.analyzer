@@ -6,7 +6,7 @@ namespace lib.remnant2.analyzer;
 
 public static class ItemDb
 {
-    private static readonly Lazy<List<Dictionary<string, string>>> Instance = new(()=> [
+    private static readonly Lazy<List<Dictionary<string, string>>> Instance = new(() => [
         ..JArray.Parse(ReadResourceFile("lib.remnant2.analyzer.db.json"))
             .Select(ConvertItem)
             .Where(x => !x.ContainsKey("Disabled") || !x["Disabled"]
@@ -22,8 +22,12 @@ public static class ItemDb
     private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> LookupByEventId = new(() =>
         Db.Where(x => x.ContainsKey("EventId")).ToDictionary(x => x["EventId"]));
 
+    private static readonly Lazy<Dictionary<string, Dictionary<string, string>>> LookupPrismSegmentByFragment = new(() =>
+        Db.Where(x => x.GetValueOrDefault("Type") == "prismslot" && x.ContainsKey("Fragment"))
+            .ToDictionary(x => x["Fragment"]));
 
-    public static List<Dictionary<string,string>> Db => Instance.Value;
+
+    public static List<Dictionary<string, string>> Db => Instance.Value;
 
     private static string ReadResourceFile(string filename)
     {
@@ -98,6 +102,29 @@ public static class ItemDb
     {
         return LookupById.Value.ContainsKey(id) || LookupByEventId.Value.ContainsKey(id);
     }
+
+    public static LootItem? GetPrismItemByRowName(string rowName) =>
+        GetItemByIdOrDefault($"PrismSegment_{rowName}")
+        ?? GetItemByIdOrDefault($"PrismFusion_{rowName}")
+        ?? GetItemByIdOrDefault($"PrismBonus_{rowName}");
+
+    public static LootItem? GetPrismSegmentByFragmentId(string fragmentId)
+    {
+        if (LookupPrismSegmentByFragment.Value.TryGetValue(fragmentId, out Dictionary<string, string>? result))
+        {
+            return new() { Properties = result };
+        }
+        return null;
+    }
+
+    // The relic fragment a prism segment is fed from — the reverse of GetPrismSegmentByFragmentId. Resolves
+    // through the segment row's `Fragment` link, because the fragment's name can differ from the segment's
+    // (so this follows the link rather than swapping the Id prefix). Null when `rowName` has no such link
+    // (a fusion or legendary — never a fed single).
+    public static LootItem? GetFragmentByRowName(string rowName) =>
+        GetPrismItemByRowName(rowName) is { } segment && segment.Properties.TryGetValue("Fragment", out string? fragmentId)
+            ? GetItemByIdOrDefault(fragmentId)
+            : null;
 
     public static List<LootItem> GetItemsByProperty(string propertyName, string propertyValue)
     {

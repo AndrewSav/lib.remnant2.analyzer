@@ -7,7 +7,7 @@ public class Zone(RolledWorld parent, DropReference? story)
 {
     public required List<Location> Locations;
     public RolledWorld Parent { get; } = parent;
-    
+
     public string Name
     {
         get { return Locations.GroupBy(x => x.World).OrderByDescending(x => x.Count()).First().Key; }

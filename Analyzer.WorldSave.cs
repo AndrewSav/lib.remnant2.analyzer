@@ -13,7 +13,7 @@ public partial class Analyzer
 {
     private record RolledData
     {
-        public required string Selector {get; init;}
+        public required string Selector { get; init; }
         public required string[] Worlds { get; init; }
     }
 
@@ -23,21 +23,21 @@ public partial class Analyzer
         { "adventure", new() { Selector = "Quest_AdventureMode", Worlds = ["Quest"] } }
     };
 
-    private static RolledWorld GetRolledWorld(Navigator navigator, string mode)
+    private static RolledWorld GetRolledWorld(SaveQuery saveQuery, string mode)
     {
         RolledData data = Rolled[mode];
-        
-        UObject main = navigator.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
+
+        UObject main = saveQuery.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
 
         UObject meta = main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value).Last(x => x.ToString()!.StartsWith(data.Selector)).Archive.Objects[0];
 
         int rollId = meta.Properties!["ID"].Get<int>();
-        UObject rollObject = navigator.GetObjects($"pc:/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel").Single();
+        UObject rollObject = saveQuery.GetObjects($"pc:/Game/Quest_{rollId}_Container.Quest_Container:PersistentLevel").Single();
 
         int[] worldIds;
         try
         {
-            worldIds = data.Worlds.Select(x => navigator.GetComponent(x, meta)!.Properties!["QuestID"].Get<int>()).ToArray();
+            worldIds = data.Worlds.Select(x => saveQuery.GetComponent(x, meta)!.Properties!["QuestID"].Get<int>()).ToArray();
         }
         catch (InvalidOperationException ex)
         {
@@ -47,12 +47,12 @@ public partial class Analyzer
         int t = data.Worlds.ToList().FindIndex(x => x == "Labyrinth");
         int labyrinthId = t == -1 ? 0 : worldIds[t];
 
-        PropertyBag inventory = navigator.GetComponent("RemnantPlayerInventory", meta)!.Properties!;
+        PropertyBag inventory = saveQuery.GetComponent("RemnantPlayerInventory", meta)!.Properties!;
         List<InventoryItem> questInventory = GetQuestInventory(inventory);
-        List<Actor> zoneActors = navigator.GetActors("ZoneActor", rollObject);
+        List<Actor> zoneActors = saveQuery.GetActors("ZoneActor", rollObject);
 
         List<Actor> events = rollObject.Properties!["Blob"].Get<PersistenceContainer>().Actors
-            .Select( x=> x.Value)
+            .Select(x => x.Value)
             .Where(
                 x =>
                 {
@@ -60,20 +60,20 @@ public partial class Analyzer
                     return obj.Name != "ZoneActor" && obj.Properties!.Contains("ID");
                 })
             .ToList();
-        
-        int difficulty = navigator.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
-        TimeSpan? tp = navigator.GetProperty("PlayTime", meta)?.Get<TimeSpan>();
+
+        int difficulty = saveQuery.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
+        TimeSpan? tp = saveQuery.GetProperty("PlayTime", meta)?.Get<TimeSpan>();
 
         RolledWorld rolledWorld = new()
         {
             QuestInventory = questInventory,
             Difficulty = Difficulties[difficulty],
             Playtime = tp,
-            BloodMoon = BloodMoon.Read(navigator, rollObject)
+            BloodMoon = BloodMoon.Read(saveQuery, rollObject)
         };
-        rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, navigator)).ToList();
+        rolledWorld.Zones = worldIds.Select(x => GetZone(zoneActors, x, labyrinthId, events, rolledWorld, saveQuery)).ToList();
 
-        string? respawnLinkNameId = navigator.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
+        string? respawnLinkNameId = saveQuery.GetProperty("RespawnLinkNameID", meta)?.Get<FName>().Name;
         if (respawnLinkNameId != null)
         {
             RespawnPoint? respawnPoint = FindRespawnPoint(respawnLinkNameId, rolledWorld.AllZones);
@@ -93,7 +93,7 @@ public partial class Analyzer
         string? checkpointName = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.ContainsCheckpointId(respawnLinkNameId))?.Name;
         if (checkpointName is not null) return new(checkpointName, RespawnPointType.Checkpoint);
-        
+
         Location? targetLocation = zones.SelectMany(x => x.Locations)
                 .FirstOrDefault(x => x.GetLinkDestinationById(respawnLinkNameId) != null);
         if (targetLocation is not null) return new($"{targetLocation.Name}/{targetLocation.GetLinkDestinationById(respawnLinkNameId)}", RespawnPointType.ZoneTransition);
@@ -130,7 +130,7 @@ public partial class Analyzer
         return result;
     }
 
-    private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent, Navigator navigator)
+    private static Zone GetZone(List<Actor> zoneActors, int world, int labyrinth, List<Actor> events, RolledWorld zoneParent, SaveQuery saveQuery)
     {
 
         DropReference? story = null;
@@ -253,7 +253,7 @@ public partial class Analyzer
                 events.Remove(e);
                 string ev = e.ToString()!;
                 l.LootedMarkers.AddRange(GetLootedMarkers(e));
-                Property? qs = navigator.GetProperty("QuestState", e);
+                Property? qs = saveQuery.GetProperty("QuestState", e);
 
                 if (ev.EndsWith("_C"))
                 {
@@ -307,8 +307,8 @@ public partial class Analyzer
                 }
 
                 // this works for Ring, Amulet, Trait, Simulacrum
-                Component? cmp = navigator.GetComponent("Loot", e);
-                Property? destroyed = cmp == null ? null : navigator.GetProperty("Destroyed", cmp);
+                Component? cmp = saveQuery.GetComponent("Loot", e);
+                Property? destroyed = cmp == null ? null : saveQuery.GetProperty("Destroyed", cmp);
 
                 if (ev.StartsWith("Quest_Event_Trait"))
                 {

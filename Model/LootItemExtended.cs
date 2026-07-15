@@ -3,7 +3,7 @@
 namespace lib.remnant2.analyzer.Model;
 
 // This class represent LootItem class enriched with metadata pertained to processing the item
-// as par of a LootGroup
+// as part of a LootGroup
 public class LootItemExtended : LootItem
 {
     // This item cannot be obtained in the current roll because player does not have something it requires and cannot get it

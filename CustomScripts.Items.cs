@@ -58,7 +58,7 @@ internal static partial class CustomScripts
 
         if (!result && !others.Contains(lic.Location.Name))
         {
-            Logger.Warning($"Unknown location {lic.Location.Name} for GoldenRibbon");
+            Logger.Warning($"Unknown location {lic.Location.Name} for SilverRibbon");
         }
 
         return result;
@@ -99,7 +99,7 @@ internal static partial class CustomScripts
         foreach (string q in done)
         {
             if (required.Remove(q))
-            {                
+            {
                 counter++;
             }
         }
@@ -110,13 +110,13 @@ internal static partial class CustomScripts
         foreach (DropReference dropReference in refs)
         {
             if (required.Remove(dropReference.Name))
-            {                
+            {
                 counter++;
             }
         }
 
         // And either of the two as above
-        if (!doneImposter && (refs.Exists( x => x.Name == "Quest_Boss_Faelin") || refs.Exists(x => x.Name == "Quest_Boss_Faerlin")))
+        if (!doneImposter && (refs.Exists(x => x.Name == "Quest_Boss_Faelin") || refs.Exists(x => x.Name == "Quest_Boss_Faerlin")))
         {
             counter++;
         }
@@ -129,8 +129,8 @@ internal static partial class CustomScripts
         // Have The Widow's Court location (for Thaen seed)
         // Or have already planted the seed
 
-        Property? thaen = lic.World.ParentCharacter.WorldNavigator!.GetProperty("GrowthStage");
-        return thaen != null || lic.World.Zones.SelectMany( x=> x.Locations).Any(x => x.Name == "The Widow's Court");
+        Property? thaen = lic.World.ParentCharacter.WorldQuery!.GetProperty("GrowthStage");
+        return thaen != null || lic.World.Zones.SelectMany(x => x.Locations).Any(x => x.Name == "The Widow's Court");
     }
 
     private static bool ProfaneHeart(LootItemContext lic)
@@ -153,10 +153,12 @@ internal static partial class CustomScripts
 
     private static bool Anguish(LootItemContext lic)
     {
+        // Anguish is crafted from the Occult Vessel found in the final dream of the quest
+        DreamMaterialLooted(lic, "Quest_Global_TheFinalDream_C");
 
         string counterItemProfileId = "/Game/World_DLC1/Quests/Quest_Event_Dranception/Items/Quest_Item_DLC_DreamLevel.Quest_Item_DLC_DreamLevel_C";
         InventoryItem? counterItem = lic.World.ParentCharacter.Profile.Inventory.SingleOrDefault(x => x.ProfileId == counterItemProfileId);
-        LootItemExtended dransDream =  new(ItemDb.GetItemById("Consumable_DransDream"));
+        LootItemExtended dransDream = new(ItemDb.GetItemById("Consumable_DransDream"));
 
         if (counterItem == null)
         {
@@ -286,7 +288,7 @@ internal static partial class CustomScripts
         // If Faelin / Faerlin is killed, you cannot get the weapon from the other either
         if (lic.LootItem.IsLooted)
         {
-            lic.Zone!.Locations.SelectMany( x=> x.LootGroups).SelectMany( x=> x.Items).Single( x => x.Id == "Weapon_Deceit").IsLooted = true;
+            lic.Zone!.Locations.SelectMany(x => x.LootGroups).SelectMany(x => x.Items).Single(x => x.Id == "Weapon_Deceit").IsLooted = true;
         }
     }
 
@@ -305,19 +307,19 @@ internal static partial class CustomScripts
 
     private static void NecklaceOfFlowingLife(LootItemContext lic)
     {
-        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        SaveQuery saveQuery = lic.World.ParentCharacter.WorldQuery!;
         Actor crypt = lic.GetActor("Quest_Injectable_CryptHidden_C");
-        string key = ((PropertyBag)navigator.GetProperty("Key", crypt)!.Get<StructProperty>().Value!)["ContainerKey"].Get<FName>().Name;
+        string key = ((PropertyBag)saveQuery.GetProperty("Key", crypt)!.Get<StructProperty>().Value!)["ContainerKey"].Get<FName>().Name;
 
 
         // Player has not been there yet
         if (key == "None") return;
 
-        UObject? zone = navigator.GetObjects($"pc:{key}").SingleOrDefault();
-        
+        UObject? zone = saveQuery.GetObjects($"pc:{key}").SingleOrDefault();
+
         // Player has not been there yet
         if (zone == null) return;
-        
+
         List<KeyValuePair<ulong, Actor>> actors = ((PersistenceContainer)zone.Properties!.Properties[1].Value.Get<StructProperty>().Value!).Actors;
 
         const int chestId = 86; // Let's pray to god it never changes
@@ -335,16 +337,81 @@ internal static partial class CustomScripts
             lic.LootItem.IsLooted = true;
         }
     }
-    
+
     private static void FaerlinsSigil(LootItemContext lic, string propertyName)
     {
         Actor crypt = lic.GetActor("Quest_Boss_Faerlin_C");
         Component? component = crypt.GetFirstObjectComponents()?.FirstOrDefault(x => x.ComponentKey == "Variables");
         if (component == null) return;
-        var value = component.Variables?.Items.FirstOrDefault(x => x.Key == propertyName).Value?.Value?.ToString();
+        string? value = component.Variables?.Items.FirstOrDefault(x => x.Key == propertyName).Value?.Value?.ToString();
         if (value == "1")
         {
-                lic.LootItem.IsLooted = true;
+            lic.LootItem.IsLooted = true;
+        }
+    }
+
+    private static void BandOfTheFanaticLooted(LootItemContext lic)
+    {
+        // The ring is the reward for hearing out the Preacher's sermon peacefully. Aggroing him
+        // (which yields the Top Hat instead) forecloses that dialogue for good, so either the
+        // reward having been handed over or the aggro flag means the ring is gone from this save.
+        Actor actor = lic.GetActor("Quest_Story_OneTrueKing_C");
+        Component? component = actor.GetFirstObjectComponents()?.FirstOrDefault(x => x.ComponentKey == "Variables");
+        if (component == null) return;
+        string? value = component.Variables?.Items.FirstOrDefault(x => x.Key == "ReceivedReward").Value?.Value?.ToString();
+        if (value == "1")
+        {
+            lic.LootItem.IsLooted = true;
+            return;
+        }
+        UObject o = lic.GetMeta();
+        KeyValuePair<string, Variable> vv = o.Components!.Single(x => x.ComponentKey == "Variables").Variables!.Items.SingleOrDefault(x => x.Key == "OTKDockAggro");
+        if (vv.Key == "OTKDockAggro" && vv.Value.Value!.ToString() != "0")
+        {
+            lic.LootItem.IsLooted = true;
+        }
+    }
+
+    private static void DreamMaterialLooted(LootItemContext lic, string questActorName)
+    {
+        // The item is crafted from a material that is awarded inside a dream; the material spawns
+        // as a Reward entry on the dream quest actor rather than as an ordinary world spawn, and
+        // picking it up sets the entry's Destroyed flag. Campaign and adventure each hold their
+        // own copy of the quest, so only the copy of the world being analyzed is consulted.
+        string materialProfileId = ItemDb.GetItemById(lic.LootItem.Properties["Material"]).Properties["ProfileId"];
+        Actor? actor = lic.GetActorOrNull(questActorName);
+        if (actor == null) return;
+        foreach (Component c in actor.Archive.Objects[0].Components ?? [])
+        {
+            if (c.Properties == null || !c.Properties.Contains("Spawns")) continue;
+            ArrayStructProperty asp = c.Properties["Spawns"].Get<ArrayStructProperty>();
+            foreach (object? i in asp.Items)
+            {
+                PropertyBag pb = (PropertyBag)i!;
+                if (!pb.Contains("Destroyed") || pb["Destroyed"].Get<byte>() != 1) continue;
+                PropertyBag spawnEntry = (PropertyBag)pb["SpawnEntry"].Get<StructProperty>().Value!;
+                if (spawnEntry["ActorBP"].Value == null) continue;
+                if (spawnEntry["ActorBP"].Get<string>() == materialProfileId)
+                {
+                    lic.LootItem.IsLooted = true;
+                    return;
+                }
+            }
+        }
+    }
+
+    private static void DreamHuntressKilled(LootItemContext lic)
+    {
+        // The Sacred Hunt Feather (which crafts Familiar) is dropped by the Huntress when she is
+        // defeated inside her dream; the kill sets Killed_DreamHuntress on the world's dream
+        // quest. Unlike the Crescent Moon / Anguish materials the feather has no reward spawn
+        // entry of its own, so the kill flag is the signal.
+        Actor? actor = lic.GetActorOrNull("Quest_Global_TheHunterDream_C");
+        if (actor == null) return;
+        PropertyBag props = actor.GetFirstObjectProperties()!;
+        if (props.Contains("Killed_DreamHuntress") && props["Killed_DreamHuntress"].Get<byte>() != 0)
+        {
+            lic.LootItem.IsLooted = true;
         }
     }
 
@@ -357,15 +424,14 @@ internal static partial class CustomScripts
 
     private static void LittleGorge(LootItemContext lic)
     {
-        Navigator navigator = lic.World.ParentCharacter.WorldNavigator!;
+        SaveQuery saveQuery = lic.World.ParentCharacter.WorldQuery!;
         UObject? o = lic.GetRollObject();
         if (o == null) return;
-        Property? p =navigator.GetProperty("isRitualPigAberrationDead", o);
+        Property? p = saveQuery.GetProperty("isRitualPigAberrationDead", o);
         if (p == null) return;
         if (p.Get<byte>() != 0)
         {
             lic.LootItem.IsLooted = true;
         }
-        return;
     }
 }

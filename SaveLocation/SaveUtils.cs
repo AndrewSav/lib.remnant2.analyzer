@@ -149,10 +149,10 @@ public static class SaveUtils
             return null;
         }
         string wgsFolderName = c.ContainerFolder.ToString("N").ToUpper();
-        var containerPath = Path.Combine(wgsFolder, wgsFolderName, $"container.{c.ContainerId}");
-        using var stream = File.Open(containerPath, FileMode.Open, FileAccess.Read, FileShare.Read);
-        var container = WgsContainer.Read(stream);
-        
+        string containerPath = Path.Combine(wgsFolder, wgsFolderName, $"container.{c.ContainerId}");
+        using FileStream stream = File.Open(containerPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        WgsContainer container = WgsContainer.Read(stream);
+
         WgsBlob? b = container.Blobs.FirstOrDefault(x => x.Name == "Data");
         if (b == null)
         {
@@ -160,7 +160,7 @@ public static class SaveUtils
             return null;
         }
 
-        var wgsFilename = b.WgsFilename.ToString("N").ToUpper();
+        string wgsFilename = b.WgsFilename.ToString("N").ToUpper();
         string result = Path.Combine(wgsFolder, wgsFolderName, wgsFilename);
 
         if (!File.Exists(result))

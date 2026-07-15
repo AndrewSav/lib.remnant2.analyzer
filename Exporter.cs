@@ -30,8 +30,6 @@ public class Exporter
                     Property p = (Property)x;
                     return p.Name.Name != "FowVisitedCoordinates";
                 };
-                return property;
-
             }
             return property;
         }
@@ -95,7 +93,7 @@ public class Exporter
             string filename = $"save_{profile.Lookup(ch).Path[^1].Index}";
             string? path = SaveUtils.GetSavePath(folder, $"save_{profile.Lookup(ch).Path[^1].Index}");
 
-            if (path !=null && File.Exists(path))
+            if (path != null && File.Exists(path))
             {
                 ExportFile(targetFolder, path, filename, exportCopy, exportDecoded, exportJson);
             }

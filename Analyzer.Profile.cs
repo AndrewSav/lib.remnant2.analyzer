@@ -67,12 +67,12 @@ public partial class Analyzer
                 List<Component>? components = ((SaveData)((StructProperty)characterData.Value!).Value!)
                     .Objects[0]
                     .Components;
-                
+
                 object? itemsProperty =
                     components?.SingleOrDefault(x => x.ComponentKey == "Inventory")?
                     .Properties?.Lookup.SingleOrDefault(x => x.Key == "Items").Value.Value;
 
-                IEnumerable<string?>? itemIds = (itemsProperty as ArrayStructProperty)?.Items.Select(x => GetInventoryItemMinimal((PropertyBag)x!)).Where( x => x.Quantity is not 0).Select(x => x.ProfileId);
+                IEnumerable<string?>? itemIds = (itemsProperty as ArrayStructProperty)?.Items.Select(x => GetInventoryItemMinimal((PropertyBag)x!)).Where(x => x.Quantity is not 0).Select(x => x.ProfileId);
 
                 object? traitsProperty =
                     components?.SingleOrDefault(x => x.ComponentKey == "Traits")?
@@ -82,7 +82,7 @@ public partial class Analyzer
 
                 IEnumerable<string?>? all = itemIds?.Union(traitIds ?? []);
 
-                objectCount = all?.Count(x => x!=null && Utils.ItemAcquiredFilter(x)) ?? 0;
+                objectCount = all?.Count(x => x != null && Utils.ItemAcquiredFilter(x)) ?? 0;
             }
 
             if (string.IsNullOrEmpty(archetype))
@@ -119,7 +119,7 @@ public partial class Analyzer
         Operation qpOperation = performance.OperationAt(LogEventLevel.Debug).Begin($"Check build number {folderPath}");
 
         string folder = folderPath ?? SaveUtils.GetSaveFolder();
-        string profilePath = SaveUtils.GetSavePath(folder,"profile")!;
+        string profilePath = SaveUtils.GetSavePath(folder, "profile")!;
         List<string> result = [];
 
         Operation operation = performance.OperationAt(LogEventLevel.Debug).Begin("Load Save file");
@@ -133,7 +133,7 @@ public partial class Analyzer
 
         ArrayProperty ap = (ArrayProperty)profileSf.SaveData.Objects[0].Properties!.Lookup
             .Single(x => x.Key == "Characters").Value.Value!;
-        
+
         for (int index = 0; index < ap.Items.Count; index++)
         {
             object? item = ap.Items[index];
