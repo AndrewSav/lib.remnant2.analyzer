@@ -37,6 +37,11 @@ internal static class LegendaryChain
         }
     }
 
+    // The +51 triple shown at the gate seed itself — no target, no re-rolls. Lets a plan surface the offer a
+    // completed build would be given even when no legendary was chosen.
+    internal static IReadOnlyList<string> FirstOffer(uint gateSeed) =>
+        [.. PrismRollEvaluator.Evaluate(MaxedGate, NoFeed, gateSeed).Offers.Select(o => o.RowName)];
+
     // The appearance lattice over `window` single-advance steps: appears[a] = the target's +51 triple offers it at
     // Mutate^a(gateSeed). Callers query it at stride 3 (a re-roll advances the seed by 3) — appears[N + 3x] is the
     // x-th re-roll from arrival N.

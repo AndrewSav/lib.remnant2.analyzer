@@ -151,6 +151,9 @@ public static class PrismPlanMapper
                                       string? legendaryTarget,
                                       TimeSpan elapsed)
     {
+        // The +50 gate: all five segments at +10. Only there is a +51 legendary offered.
+        const int gateDisplayLevel = 50;
+
         IReadOnlyList<string>? legendaryOffer = null;
         int legendaryRerolls = 0;
         if (legendaryTarget is not null)
@@ -167,6 +170,12 @@ public static class PrismPlanMapper
                                             displayAtGate, displayAtGate + 1, 50_000, maxedSegments));
                 totalExperience += 50_000;
             }
+        }
+        else if (segments.Values.Sum() == gateDisplayLevel)
+        {
+            // Build completed to the gate with no chosen legendary: surface the deterministic first +51 triple
+            // informationally (no tail steps, no re-rolls) so the plan can show what a cleanse would offer.
+            legendaryOffer = LegendaryChain.FirstOffer(seed);
         }
 
         return new PrismPlan(outcome, steps, totalExperience, feedCount,

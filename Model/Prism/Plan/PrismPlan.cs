@@ -10,10 +10,11 @@ namespace lib.remnant2.analyzer.Model.Prism.Plan;
 // The same shape is also what the progress callback streams during a search — each fires an Incomplete plan
 // carrying the current best-so-far; the value Plan finally returns is the last one, with a settled Outcome.
 //
-// Legendary (+51) fields are populated only when the goal named a target legendary. LegendaryTarget echoes it;
-// LegendaryOffer is the triple shown at the first +51 (the +50-gate seed); LegendaryRerolls is how many 50k
-// re-rolls reach the target from there (0 = already in the first triple) — the arrival of the plan as produced,
-// which both solvers steer toward a low re-roll count.
+// LegendaryTarget / LegendaryRerolls are populated only when the goal named a target legendary; LegendaryOffer
+// is the +51 triple shown at the +50-gate seed and is set whenever the build reaches that gate — for a
+// chosen-legendary plan and, informationally, for a no-legendary build that completes to +50. LegendaryTarget
+// echoes the chosen legendary; LegendaryRerolls is how many 50k re-rolls reach it from the gate (0 = already in
+// the first triple) — the arrival of the plan as produced, which both solvers steer toward a low re-roll count.
 //
 // Elapsed is the wall-clock time the calculation had taken when this plan was produced, measured from Plan
 // entry on the same clock the budget uses — elapsed-so-far on a streamed snapshot, the whole run on the
