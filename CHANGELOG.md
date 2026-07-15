@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.0 (15 July 2026)
+- Migrated to .NET 10
+- Updated lib.remnant2.saves to 2.0.0
+
 ## v1.1.0 (15 July 2026)
 - Added prism support: fragment, fusion and roll data plus prism roll evaluation and prism solving engine
 - Fixed Band of the Fanatic looted detection - now correctly marked as is looted if obtained. Used to be marked as looted only after aggroing the preacher
