@@ -1,7 +1,8 @@
 # Changelog
 
 ## Unreleased
-- Restored `PrismPlan.LegendaryOffer` for completed builds with no chosen legendary — a plan that reaches the +50 gate now reports the deterministic first +51 legendary offer even when no target legendary was named
+- Added boss rush as a third world mode alongside campaign and adventure
+- Added `PrismPlan.LegendaryOffer` for completed builds with no chosen legendary
 
 ## v2.0.0 (15 July 2026)
 - Migrated to .NET 10

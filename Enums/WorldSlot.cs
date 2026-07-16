@@ -3,5 +3,6 @@
 public enum WorldSlot
 {
     Campaign,
-    Adventure
+    Adventure,
+    BossRush
 }

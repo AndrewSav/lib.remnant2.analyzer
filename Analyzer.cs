@@ -281,6 +281,10 @@ public partial class Analyzer
                     {
                         oldNewCharacter.Save.Adventure.ParentCharacter = oldNewCharacter;
                     }
+                    if (oldNewCharacter.Save.BossRush != null)
+                    {
+                        oldNewCharacter.Save.BossRush.ParentCharacter = oldNewCharacter;
+                    }
                     continue;
                 }
 
@@ -330,19 +334,31 @@ public partial class Analyzer
                 }
                 operation.Complete();
 
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load boss rush");
+                Property? bossRushSlot = saveQuery.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 2);
+                BossRush? bossRush = bossRushSlot != null ? GetBossRush(saveQuery) : null;
+                operation.Complete();
+
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) get thaen fruit data");
                 ThaenFruit? thaenFruit = ThaenFruit.Read(saveQuery);
                 operation.Complete();
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) campaign loot groups");
                 int slot = (int)saveQuery.GetProperty("LastActiveRootSlot")!.Value!;
-                WorldSlot mode = slot == 0 ? WorldSlot.Campaign : WorldSlot.Adventure;
-
+                WorldSlot mode = slot switch
+                {
+                    0 => WorldSlot.Campaign,
+                    1 => WorldSlot.Adventure,
+                    2 => WorldSlot.BossRush,
+                    _ => throw new InvalidOperationException($"Unexpected LastActiveRootSlot value: {slot}")
+                };
+                    
                 Character c = new()
                 {
                     Save = new()
                     {
                         Campaign = campaign,
                         Adventure = adventure,
+                        BossRush = bossRush,
                         QuestCompletedLog = questCompletedLog,
                         Playtime = tp,
                         CassShop = cassLoot,
@@ -358,6 +374,7 @@ public partial class Analyzer
                 };
                 result.Characters.Add(c);
                 campaign.ParentCharacter = c;
+                if (bossRush != null) bossRush.ParentCharacter = c;
 
                 FillLootGroups(campaign);
                 operation.Complete();

@@ -7,6 +7,7 @@ public class SaveSlot
 {
     public required RolledWorld Campaign;
     public RolledWorld? Adventure;
+    public BossRush? BossRush;
     public required List<string> QuestCompletedLog;
     public required List<LootItem> CassShop;
     public TimeSpan? Playtime;

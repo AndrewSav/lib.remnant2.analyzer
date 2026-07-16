@@ -83,6 +83,26 @@ public partial class Analyzer
         return rolledWorld;
     }
 
+    private static BossRush? GetBossRush(SaveQuery saveQuery)
+    {
+        UObject main = saveQuery.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
+        foreach (var actor in main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value))
+        {
+            string cls = actor.ToString()!;
+            if (!cls.StartsWith("Quest_BossRush_")) continue;
+
+            Dictionary<string, string>? record = ItemDb.Db.FirstOrDefault(x =>
+                x.TryGetValue("Type", out string? t) && t == "bossrush" &&
+                x.TryGetValue("Id", out string? id) && cls == id + "_C");
+            if (record == null) continue;
+
+            UObject meta = actor.Archive.Objects[0];
+            int difficulty = saveQuery.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
+            return new BossRush { Mode = ItemDb.GetItemById(record["Id"]), Difficulty = Difficulties[difficulty] };
+        }
+        return null;
+    }
+
     private static RespawnPoint? FindRespawnPoint(string respawnLinkNameId, List<Zone> zones)
     {
         string? worldStoneName = zones.SelectMany(x => x.Locations)

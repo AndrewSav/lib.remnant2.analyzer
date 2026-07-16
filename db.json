@@ -15104,5 +15104,23 @@
     "Type": "legendary",
     "Order": "42",
     "Description": "Cannot be One-Shot while at Max Health Capacity."
+  },
+  {
+    "Id": "Quest_BossRush_ThreePack",
+    "Type": "bossrush",
+    "Name": "Triple Threat",
+    "Description": "An intense challenge of three back-to-back boss fights. Not for the faint of heart."
+  },
+  {
+    "Id": "Quest_BossRush_LuckySeven",
+    "Type": "bossrush",
+    "Name": "Trial By Fire",
+    "Description": "A brutal crucible of six consecutive bosses and Annihilation. Prove your grit or die trying."
+  },
+  {
+    "Id": "Quest_BossRush_TheBigShow",
+    "Type": "bossrush",
+    "Name": "The Gauntlet",
+    "Description": "An excruciating onslaught of bosses ending in a showdown with Annihilation. Only the strongest will survive."
   }
 ]

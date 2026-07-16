@@ -3,7 +3,7 @@
 namespace lib.remnant2.analyzer.Model;
 
 // Represents part of the data from a single save_N.sav: either adventure data or campaign data
-public class RolledWorld
+public class RolledWorld : WorldMode
 {
     public RolledWorld()
     {
@@ -14,14 +14,6 @@ public class RolledWorld
     public Zone Ward13;
     public List<Zone> AllZones => [Ward13, .. Zones];
 
-    private Character? _character;
-    public Character ParentCharacter
-    {
-        get => _character ?? throw new InvalidOperationException("Character is not set for RolledWorld, this is unexpected");
-        set => _character = value;
-    }
-
-    public required string Difficulty;
     public TimeSpan? Playtime;
     public RespawnPoint? RespawnPoint;
 
