@@ -83,7 +83,7 @@ public partial class Analyzer
         return rolledWorld;
     }
 
-    private static BossRush? GetBossRush(SaveQuery saveQuery)
+    private static BossRush? GetBossRush(SaveQuery saveQuery, Profile profile)
     {
         UObject main = saveQuery.GetObjects("pc:/Game/Maps/Main.Main:PersistentLevel").Single();
         foreach (var actor in main.Properties!["Blob"].Get<PersistenceContainer>().Actors.Select(x => x.Value))
@@ -98,7 +98,12 @@ public partial class Analyzer
 
             UObject meta = actor.Archive.Objects[0];
             int difficulty = saveQuery.GetProperty("Difficulty", meta)?.Get<int>() ?? 1;
-            return new BossRush { Mode = ItemDb.GetItemById(record["Id"]), Difficulty = Difficulties[difficulty] };
+            return new BossRush
+            {
+                Mode = ItemDb.GetItemById(record["Id"]),
+                Difficulty = Difficulties[difficulty],
+                ExperienceBonuses = BossRush.ExperienceBonusSources.FromProfile(profile)
+            };
         }
         return null;
     }

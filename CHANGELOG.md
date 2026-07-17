@@ -1,7 +1,8 @@
 # Changelog
 
 ## Unreleased
-- Added boss rush as a third world mode alongside campaign and adventure
+- Added boss rush as a third world mode alongside campaign and adventure, with experience calculation
+- Added `Profile.PersistentBuffs` - the buffs the game restores when a character loads, such as an active concoction
 - Added `PrismPlan.LegendaryOffer` for completed builds with no chosen legendary
 
 ## v2.0.0 (15 July 2026)

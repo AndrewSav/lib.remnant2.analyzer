@@ -16,13 +16,14 @@ public class Character
     // In case client wants to access raw data
     // Nullable, so that client could GC it if desired
     public SaveFile? WorldSaveFile;
-    private Navigator? _worldNavigator;
+
     [Obsolete("Not used by the analyzer; built on demand from WorldSaveFile. May be removed in a future major version.")]
     public Navigator? WorldNavigator
     {
-        get => _worldNavigator ??= WorldSaveFile is null ? null : new Navigator(WorldSaveFile);
-        set => _worldNavigator = value;
+        get => field ??= WorldSaveFile is null ? null : new Navigator(WorldSaveFile);
+        set;
     }
+
     // Per-character save query used by the analyzer (loot groups, custom scripts, LootItemContext).
     internal SaveQuery? WorldQuery;
     public required Dataset ParentDataset;

@@ -143,6 +143,18 @@ public partial class Analyzer
                 List<InventoryItem> inventory = items.Union(traits).ToList();
                 operation.Complete();
 
+                operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) persistent buffs");
+                // Absent entirely on a character with no restorable buffs.
+                List<PersistentBuff> persistentBuffs = profileSaveQuery.GetProperty("PersistentBuffs", character)
+                    ?.Get<ArrayStructProperty>().Items
+                    .Select(x => (PropertyBag)x!)
+                    .Select(pb => new PersistentBuff
+                    {
+                        ActionClass = pb["ActionClass"].Get<string>(),
+                        RemainingTime = pb["RemainingTime"].Get<float>()
+                    }).ToList() ?? [];
+                operation.Complete();
+
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) missing items");
                 IEnumerable<string> inventoryTypes = InventoryTypes.Union(["trait"]);
 
@@ -246,7 +258,8 @@ public partial class Analyzer
                         : "Male",
                     Loadouts = loadouts,
                     QuickSlots = quickSlots,
-                    Prisms = prisms
+                    Prisms = prisms,
+                    PersistentBuffs = persistentBuffs
                 };
                 operation.Complete();
 
@@ -336,7 +349,7 @@ public partial class Analyzer
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) load boss rush");
                 Property? bossRushSlot = saveQuery.GetProperties("SlotID").SingleOrDefault(x => (int)x.Value! == 2);
-                BossRush? bossRush = bossRushSlot != null ? GetBossRush(saveQuery) : null;
+                BossRush? bossRush = bossRushSlot != null ? GetBossRush(saveQuery, profile) : null;
                 operation.Complete();
 
                 operation = performance.BeginOperation($"Character {result.Characters.Count + 1} (save_{charSlotInternal}) get thaen fruit data");

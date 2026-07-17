@@ -6,10 +6,9 @@ public abstract class WorldMode
 {
     public required string Difficulty;
 
-    private Character? _character;
     public Character ParentCharacter
     {
-        get => _character ?? throw new InvalidOperationException("Character is not set for this world mode, this is unexpected");
-        set => _character = value;
+        get => field ?? throw new InvalidOperationException("Character is not set for this world mode, this is unexpected");
+        set;
     }
 }

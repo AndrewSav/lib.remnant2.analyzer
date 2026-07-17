@@ -5,6 +5,10 @@ namespace lib.remnant2.analyzer.Model;
 // Represents data in profile.sav that correspond to a single character
 public class Profile
 {
+    internal Profile()
+    {
+    }
+
     public required List<InventoryItem> Inventory;
     public required List<Dictionary<string, string>> MissingItems;
     // List of missing items that can be crafted now because we have the material
@@ -14,18 +18,20 @@ public class Profile
     public required List<ObjectiveProgress> Objectives;
     public required List<InventoryItem> QuickSlots;
     public required List<PrismData> Prisms;
+    public required List<PersistentBuff> PersistentBuffs;
 
     public required int TraitRank;
-    private string? _gender;
     public required bool IsHardcore;
     public required int PowerLevel;
     public required int ItemLevel;
     public required int LastSavedTraitPoints;
+
     public string Gender
     {
-        get => _gender ?? "Male";
-        set => _gender = value;
+        get => field ?? "Male";
+        set;
     }
+
     public List<List<LoadoutRecord>>? Loadouts;
 
     // Pass a missing item, if it can be obtained right away, return the material name

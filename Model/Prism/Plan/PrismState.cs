@@ -16,8 +16,7 @@ public sealed class PrismState
 
     // The next enhancement offer for CurrentSeed. Derived on demand via PrismRollEvaluator and memoized —
     // the state is immutable (init-only), so the memo is always valid.
-    private PrismRollResult? _nextRollResult;
-    private PrismRollResult NextRollResult => _nextRollResult ??= PrismRollEvaluator.Evaluate(
+    private PrismRollResult NextRollResult => field ??= PrismRollEvaluator.Evaluate(
         BuildLevelMap(Slots, s => s.RowName, s => s.Level),
         BuildLevelMap(Feed, f => f.RowName, f => f.FedLevel),
         unchecked((uint)CurrentSeed));
