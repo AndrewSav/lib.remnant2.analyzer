@@ -80,7 +80,11 @@ public static class CaptureCodec
         (List<int> picks, List<PlanDecisionFeed> feeds) = ExtractDecisions(capture);
         PlanOutcome outcome = Enum.Parse<PlanOutcome>(capture.Result.Outcome);
         TimeSpan elapsed = TimeSpan.FromMilliseconds(capture.Result.ElapsedMs);
-        return PrismPlanMapper.Replay(state, picks, feeds, capture.Goal.Legendary, outcome, elapsed);
+        // The replay's tail driver is the RESULT's target, not the goal's: for a solver-recorded capture the
+        // two coincide (and ExtractDecisions already keys the tail strip off Result.LegendaryTarget), while a
+        // goal-attained capture — recorded with zero steps when the target legendary was already installed —
+        // carries a null target precisely so no re-acquisition tail is regenerated here.
+        return PrismPlanMapper.Replay(state, picks, feeds, capture.Result.LegendaryTarget, outcome, elapsed);
     }
 
     // Extract the build-phase decision script (legendary tail stripped) — the compressed form's payload.
