@@ -1,8 +1,9 @@
 # Changelog
 
 ## Unreleased
-- Restored `PrismPlan.LegendaryOffer` for completed builds with no chosen legendary — a plan that reaches the +50 gate now reports the deterministic first +51 legendary offer even when no target legendary was named
-- `CaptureCodec.ToPlan` now drives the replayed legendary tail off `Result.LegendaryTarget` instead of `Goal.Legendary` - identical for solver-recorded captures; a zero-step capture with a null target (a goal already attained when recorded) materializes without regenerating a re-acquisition tail
+- Added `Analyzer.AnalyzeProfile` - faster parsing when world save data are not needed
+- Added final legendary offer to plans that do not contain legendary goals
+- `CaptureCodec.ToPlan` now does produce extra tail on already sloved prisms
 
 ## v2.0.0 (15 July 2026)
 - Migrated to .NET 10

@@ -5,6 +5,8 @@ using Serilog;
 using Serilog.Events;
 using SerilogTimings.Extensions;
 using SerilogTimings;
+using lib.remnant2.analyzer.Model;
+using lib.remnant2.analyzer.Model.Prism;
 using lib.remnant2.analyzer.SaveLocation;
 
 namespace lib.remnant2.analyzer;
@@ -99,6 +101,99 @@ public partial class Analyzer
         qpOperation.Complete();
 
         return [.. result];
+    }
+
+    // Profile-only limited dataset when the extra data are not required, several times faster than the full Analyze
+    public static Dataset AnalyzeProfile(string? folderPath = null)
+    {
+        ILogger performance = Log.Logger
+            .ForContext(Log.Category, Log.Performance)
+            .ForContext("SourceContext", "Analyzer:Profile");
+
+        Operation operationAnalyze = performance.BeginOperation("AnalyzeProfile");
+
+        string folder = folderPath ?? SaveUtils.GetSaveFolder();
+        string profilePath = SaveUtils.GetSavePath(folder, "profile")!;
+
+        Operation operation = performance.OperationAt(LogEventLevel.Debug).Begin("Load profile");
+        SaveFile profileSf = ReadWithRetry(profilePath);
+        operation.Complete();
+
+        SaveQuery profileSaveQuery = new(profileSf);
+
+        Dataset result = new()
+        {
+            Characters = [],
+            AccountAwards = [],
+            ActiveCharacterIndex = profileSaveQuery.RootProperty("ActiveCharacterIndex")!.Get<int>()
+        };
+
+        ArrayProperty ap = profileSaveQuery.RootProperty("Characters")!.Get<ArrayProperty>();
+
+        for (int charSlotInternal = 0; charSlotInternal < ap.Items.Count; charSlotInternal++)
+        {
+            ObjectProperty ch = (ObjectProperty)ap.Items[charSlotInternal]!;
+            if (ch.ClassName == null) continue;
+
+            UObject character = ch.Object!;
+            Component? inventoryComponent = profileSaveQuery.GetComponent("Inventory", character);
+            if (inventoryComponent == null)
+            {
+                // This can happen after initial character creation usually it is overwritten
+                // with a proper save immediately after
+                continue;
+            }
+
+            operation = performance.OperationAt(LogEventLevel.Debug).Begin($"Character save_{charSlotInternal} profile data");
+
+            Regex regexArchetype = RegexArchetype();
+            string archetype = regexArchetype
+                .Match(profileSaveQuery.GetProperty("Archetype", character)?.Get<string>() ?? "")
+                .Groups["archetype"].Value;
+            string secondaryArchetype = regexArchetype
+                .Match(profileSaveQuery.GetProperty("SecondaryArchetype", character)?.Get<string>() ?? "")
+                .Groups["archetype"].Value;
+
+            List<PropertyBag> itemObjects = profileSaveQuery.GetProperty("Items", inventoryComponent)!
+                .Get<ArrayStructProperty>().Items
+                .Select(x => (PropertyBag)x!).ToList();
+
+            List<PrismData> prisms = [];
+            List<InventoryItem> inventory = itemObjects.Select(pb => GetInventoryItem(pb, prisms)).Where(x => x != null).ToList()!;
+
+            Property? itemLevel = profileSaveQuery.GetProperty("ItemLevel", character);
+
+            Profile profile = new()
+            {
+                Inventory = inventory,
+                MissingItems = [],
+                HasMatsItems = [],
+                Archetype = archetype,
+                SecondaryArchetype = secondaryArchetype,
+                CharacterDataCount = 0,
+                Objectives = [],
+                IsHardcore = false,
+                ItemLevel = itemLevel?.Get<int>() ?? -1,
+                LastSavedTraitPoints = -1,
+                PowerLevel = -1,
+                TraitRank = -1,
+                QuickSlots = [],
+                Prisms = prisms
+            };
+
+            result.Characters.Add(new()
+            {
+                Save = null!,
+                Profile = profile,
+                Index = charSlotInternal,
+                SaveDateTime = DateTime.MinValue,
+                ParentDataset = result
+            });
+            operation.Complete();
+        }
+
+        operationAnalyze.Complete();
+        return result;
     }
 
     public static void CheckBuildNumber(string? folderPath = null)
