@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.0.1 (25 July 2026)
 - Added `Analyzer.AnalyzeProfile` - faster parsing when world save data are not needed
 - Added final legendary offer to plans that do not contain legendary goals
 - `CaptureCodec.ToPlan` now does produce extra tail on already sloved prisms
