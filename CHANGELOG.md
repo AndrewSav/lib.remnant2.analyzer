@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.2 (25 July 2026)
+- Updated lib.remnant2.saves to 2.0.1
+
 ## v2.0.1 (25 July 2026)
 - Added `Analyzer.AnalyzeProfile` - faster parsing when world save data are not needed
 - Added final legendary offer to plans that do not contain legendary goals
