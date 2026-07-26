@@ -43,16 +43,15 @@ public static class SolverInputValidator
         if (segments.Count > MaxSegments)
             return new PrismGoalFault(PrismGoalFaultReason.TooManySegments);
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         HashSet<string> seen = [];
         int fusions = 0;
         foreach (string seg in segments)
         {
-            if (!byName.ContainsKey(seg))
+            if (!PrismRollTable.ByName.ContainsKey(seg))
                 return new PrismGoalFault(PrismGoalFaultReason.UnknownSegment, seg);
             if (!seen.Add(seg))
                 return new PrismGoalFault(PrismGoalFaultReason.DuplicateSegment, seg);
-            if (byName[seg].IsFusion) fusions++;
+            if (PrismRollTable.ByName[seg].IsFusion) fusions++;
         }
         if (fusions > MaxFusions)
             return new PrismGoalFault(PrismGoalFaultReason.TooManyFusions);
@@ -61,7 +60,7 @@ public static class SolverInputValidator
         Dictionary<string, string> partOwner = [];   // fusion part -> the first goal fusion that claimed it
         foreach (string seg in segments)
         {
-            PrismRollRow row = byName[seg];
+            PrismRollRow row = PrismRollTable.ByName[seg];
             if (!row.IsFusion) continue;
             foreach (string part in new[] { row.FusionPart1!, row.FusionPart2! })
             {
@@ -108,18 +107,16 @@ public static class SolverInputValidator
 
     private static int FusionCount(PrismGoal goal, HashSet<string> legendaryNames)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         return goal.Segments.Count(s =>
-            !legendaryNames.Contains(s) && byName.TryGetValue(s, out PrismRollRow? row) && row.IsFusion);
+            !legendaryNames.Contains(s) && PrismRollTable.ByName.TryGetValue(s, out PrismRollRow? row) && row.IsFusion);
     }
 
     // The one fusion part two colliding goal fusions share — SegmentA's part that is also one of SegmentB's.
     // Distinct fusions share at most one part, so this is unambiguous and equals the part the loop collided on.
     private static string SharedPart(PrismGoalFault fault)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
-        PrismRollRow a = byName[fault.SegmentA!];
-        PrismRollRow b = byName[fault.SegmentB!];
+        PrismRollRow a = PrismRollTable.ByName[fault.SegmentA!];
+        PrismRollRow b = PrismRollTable.ByName[fault.SegmentB!];
         return new[] { a.FusionPart1!, a.FusionPart2! }.First(p => p == b.FusionPart1 || p == b.FusionPart2);
     }
 
@@ -146,14 +143,12 @@ public static class SolverInputValidator
     public static PrismDeadVerdict? DeadReason(PrismState start, PrismGoal goal)
     {
         (IReadOnlyList<string> segments, _) = SplitLegendary(goal);
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
-
         List<string> goalFusions = [];
         List<string> caredSingles = [];
         HashSet<string> goalFusionParts = [];
         foreach (string seg in segments)
         {
-            if (!byName.TryGetValue(seg, out PrismRollRow? row)) continue;
+            if (!PrismRollTable.ByName.TryGetValue(seg, out PrismRollRow? row)) continue;
             if (row.IsFusion)
             {
                 goalFusions.Add(seg);
@@ -191,8 +186,7 @@ public static class SolverInputValidator
     // [1..MaxSegmentLevel] and each fed entry a known single fragment (no duplicates) at a valid FedLevel.
     internal static void Validate(PrismState start)
     {
-        Dictionary<string, PrismRollRow> byName =
-            ValidateSegmentSet([.. start.Slots.Select(s => s.RowName)], "start state", nameof(start));
+        ValidateSegmentSet([.. start.Slots.Select(s => s.RowName)], "start state", nameof(start));
 
         foreach (PrismSlot slot in start.Slots)
             if (slot.Level is < 1 or > MaxSegmentLevel)
@@ -205,7 +199,7 @@ public static class SolverInputValidator
         HashSet<string> present = [.. start.Slots.Select(s => s.RowName)];
         foreach (PrismSlot slot in start.Slots)
         {
-            PrismRollRow row = byName[slot.RowName];
+            PrismRollRow row = PrismRollTable.ByName[slot.RowName];
             if (!row.IsFusion) continue;
             string? orphan = present.Contains(row.FusionPart1!) ? row.FusionPart1
                            : present.Contains(row.FusionPart2!) ? row.FusionPart2 : null;
@@ -217,7 +211,7 @@ public static class SolverInputValidator
         HashSet<string> fedSeen = [];
         foreach (PrismFeed feed in start.Feed)
         {
-            if (!byName.TryGetValue(feed.RowName, out PrismRollRow? row))
+            if (!PrismRollTable.ByName.TryGetValue(feed.RowName, out PrismRollRow? row))
                 throw new ArgumentException($"Start feed references unknown fragment '{feed.RowName}'.", nameof(start));
             if (row.IsFusion)
                 throw new ArgumentException(
@@ -236,10 +230,9 @@ public static class SolverInputValidator
     // owned copy): each key a known single fragment, each value in [1..MaxFragmentLevel].
     internal static void Validate(IReadOnlyDictionary<string, int> feedAvailability)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         foreach ((string rowName, int level) in feedAvailability)
         {
-            if (!byName.TryGetValue(rowName, out PrismRollRow? row))
+            if (!PrismRollTable.ByName.TryGetValue(rowName, out PrismRollRow? row))
                 throw new ArgumentException($"Feed availability references unknown fragment '{rowName}'.", nameof(feedAvailability));
             if (row.IsFusion)
                 throw new ArgumentException(
@@ -251,9 +244,8 @@ public static class SolverInputValidator
     }
 
     // Shared structural check (goal segments / start-state slots): segment count, known rows, fusion cap, no
-    // duplicates. Returns the RowName->row lookup so a caller can run further per-row checks without
-    // rebuilding it.
-    private static Dictionary<string, PrismRollRow> ValidateSegmentSet(
+    // duplicates.
+    private static void ValidateSegmentSet(
         IReadOnlyList<string> segments,
         string context,
         string paramName)
@@ -262,12 +254,11 @@ public static class SolverInputValidator
             throw new ArgumentException(
                 $"The {context} has {segments.Count} segments, but a prism has only {MaxSegments} slots.", paramName);
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         HashSet<string> seen = [];
         int fusions = 0;
         foreach (string seg in segments)
         {
-            if (!byName.TryGetValue(seg, out PrismRollRow? row))
+            if (!PrismRollTable.ByName.TryGetValue(seg, out PrismRollRow? row))
                 throw new ArgumentException($"The {context} references unknown segment '{seg}'.", paramName);
             if (!seen.Add(seg))
                 throw new ArgumentException($"The {context} lists segment '{seg}' more than once.", paramName);
@@ -276,6 +267,5 @@ public static class SolverInputValidator
         if (fusions > MaxFusions)
             throw new ArgumentException(
                 $"The {context} has {fusions} fusions, but at most {MaxFusions} can be assembled (a 5th would need 6 slots).", paramName);
-        return byName;
     }
 }

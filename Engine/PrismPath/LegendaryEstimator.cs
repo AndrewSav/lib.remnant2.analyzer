@@ -39,9 +39,8 @@ public static class LegendaryEstimator
         (IReadOnlyList<string> segments, string? legendary) = SolverInputValidator.SplitLegendary(goal);
         if (legendary is null) return null;
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
-        string[] goalFusions = [.. segments.Where(s => byName[s].IsFusion)];
-        string[] caredSingles = [.. segments.Where(s => !byName[s].IsFusion)];
+        string[] goalFusions = [.. segments.Where(s => PrismRollTable.ByName[s].IsFusion)];
+        string[] caredSingles = [.. segments.Where(s => !PrismRollTable.ByName[s].IsFusion)];
         Dictionary<string, int> feedLevels =
             feedAvailability.ToDictionary(kv => kv.Key, kv => PrismFeedLevel.FromFragmentLevel(kv.Value));
 
@@ -53,9 +52,9 @@ public static class LegendaryEstimator
         // different path, so one cheap reversed-order retry rescues most of them.
         string[] reversedFusions = [.. goalFusions.Reverse()];
         Sim? Run(bool maxOvershoot) =>
-            Simulate(maxOvershoot, startSegments, startFeed, feedLevels, startSeed, goalFusions, caredSingles, byName)
+            Simulate(maxOvershoot, startSegments, startFeed, feedLevels, startSeed, goalFusions, caredSingles)
             ?? (goalFusions.Length > 1
-                ? Simulate(maxOvershoot, startSegments, startFeed, feedLevels, startSeed, reversedFusions, caredSingles, byName)
+                ? Simulate(maxOvershoot, startSegments, startFeed, feedLevels, startSeed, reversedFusions, caredSingles)
                 : null);
         Sim? lo = Run(false);
         // an F = 0 goal has no fusion to overshoot — the two extremes are the same playthrough
@@ -98,12 +97,11 @@ public static class LegendaryEstimator
         IReadOnlyDictionary<string, int> feedLevels,
         uint startSeed,
         string[] goalFusions,
-        string[] caredSingles,
-        Dictionary<string, PrismRollRow> byName)
+        string[] caredSingles)
     {
         Dictionary<string, int> seg = new(startSegments);
         Dictionary<string, int> feed = new(startFeed);
-        (string P1, string P2) Parts(string f) => (byName[f].FusionPart1!, byName[f].FusionPart2!);
+        (string P1, string P2) Parts(string f) => (PrismRollTable.ByName[f].FusionPart1!, PrismRollTable.ByName[f].FusionPart2!);
         HashSet<string> partSet = [.. goalFusions.SelectMany(f => new[] { Parts(f).P1, Parts(f).P2 })];
         Dictionary<string, string> partToFusion = [];
         foreach (string f in goalFusions) { partToFusion[Parts(f).P1] = f; partToFusion[Parts(f).P2] = f; }
@@ -157,7 +155,7 @@ public static class LegendaryEstimator
             // then a partner-safe wildcard within the wildcard budget
             if (seg.Count < 5)
             {
-                string? place = MissingParts(goalFusions, fused, seg, byName).FirstOrDefault(offered.Contains);
+                string? place = MissingParts(goalFusions, fused, seg).FirstOrDefault(offered.Contains);
                 if (place is null && (fused.Count == goalFusions.Length
                                       || caredSingles.Count(seg.ContainsKey) + 1 <= 4 - goalFusions.Length))
                     place = caredSingles.FirstOrDefault(s => !seg.ContainsKey(s) && offered.Contains(s));
@@ -254,12 +252,12 @@ public static class LegendaryEstimator
 
     // fusion parts of unfused goal fusions, not yet placed
     private static IEnumerable<string> MissingParts(string[] goalFusions, HashSet<string> fused,
-        IReadOnlyDictionary<string, int> seg, Dictionary<string, PrismRollRow> byName)
+        IReadOnlyDictionary<string, int> seg)
     {
         foreach (string f in goalFusions)
         {
             if (fused.Contains(f)) continue;
-            string p1 = byName[f].FusionPart1!, p2 = byName[f].FusionPart2!;
+            string p1 = PrismRollTable.ByName[f].FusionPart1!, p2 = PrismRollTable.ByName[f].FusionPart2!;
             if (!seg.ContainsKey(p1)) yield return p1;
             if (!seg.ContainsKey(p2)) yield return p2;
         }

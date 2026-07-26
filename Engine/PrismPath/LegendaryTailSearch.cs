@@ -24,7 +24,6 @@ internal static class LegendaryTailSearch
         LexSearch engine,
         IReadOnlyList<SolveStep> script,
         PrismState start,
-        Dictionary<string, PrismRollRow> byName,
         IReadOnlyList<string> caredSingles,
         Dictionary<string, int> startFeed,
         IReadOnlyDictionary<string, int> feedLevels,
@@ -34,10 +33,10 @@ internal static class LegendaryTailSearch
         CancellationToken cancel,
         Action<Steered>? onImprove = null)
     {
-        Steered? best = SteerLastFuse(script, start, byName, caredSingles, feedLevels, legendary, budgetMs, startTimestamp, cancel);
+        Steered? best = SteerLastFuse(script, start, caredSingles, feedLevels, legendary, budgetMs, startTimestamp, cancel);
         if (best is not null) onImprove?.Invoke(best);          // the last-fuse best is the first streamed improvement
         if (best is { Rerolls: > 0 })
-            best = TryEarlierFusions(engine, script, start, byName, caredSingles, startFeed, feedLevels, legendary, budgetMs, startTimestamp, cancel, best, onImprove);
+            best = TryEarlierFusions(engine, script, start, caredSingles, startFeed, feedLevels, legendary, budgetMs, startTimestamp, cancel, best, onImprove);
         return best;
     }
 
@@ -49,7 +48,6 @@ internal static class LegendaryTailSearch
     private static Steered? SteerLastFuse(
         IReadOnlyList<SolveStep> script,
         PrismState start,
-        Dictionary<string, PrismRollRow> byName,
         IReadOnlyList<string> caredSingles,
         IReadOnlyDictionary<string, int> feedLevels,
         string legendary,
@@ -70,7 +68,7 @@ internal static class LegendaryTailSearch
             if (st.Action == "fuse")
             {
                 (segmentsHandoff, feedHandoff, atFuse) = (new(segments), new(feed), i);   // keep overwriting — the last fuse wins
-                PrismRollRow row = byName[st.Item];
+                PrismRollRow row = PrismRollTable.ByName[st.Item];
                 segments.Remove(row.FusionPart1!); segments.Remove(row.FusionPart2!); segments[st.Item] = 1;
                 continue;
             }
@@ -83,8 +81,8 @@ internal static class LegendaryTailSearch
 
         // a fuse split overshoots that fusion; a level split is nudge-only.
         string? lastFusion = script[split].Action == "fuse" ? script[split].Item : null;
-        string? p1 = lastFusion is not null ? byName[lastFusion].FusionPart1 : null;
-        string? p2 = lastFusion is not null ? byName[lastFusion].FusionPart2 : null;
+        string? p1 = lastFusion is not null ? PrismRollTable.ByName[lastFusion].FusionPart1 : null;
+        string? p2 = lastFusion is not null ? PrismRollTable.ByName[lastFusion].FusionPart2 : null;
 
         // Steer the tail from the handoff (lastFusion null => F=0 or a start already past its last fuse — nudge
         // only). Sweeps the overshoot amounts o and keeps the steered tail with the fewest re-rolls, then the least
@@ -120,7 +118,6 @@ internal static class LegendaryTailSearch
         LexSearch engine,
         IReadOnlyList<SolveStep> script,
         PrismState start,
-        Dictionary<string, PrismRollRow> byName,
         IReadOnlyList<string> caredSingles,
         Dictionary<string, int> startFeed,
         IReadOnlyDictionary<string, int> feedLevels,
@@ -149,13 +146,13 @@ internal static class LegendaryTailSearch
                 if (st.Action == "feed") { feed[st.Item] = st.SegmentLevel; fed.Add(st.Item); continue; }
                 if (st.Action == "fuse")
                 {
-                    PrismRollRow row = byName[st.Item];
+                    PrismRollRow row = PrismRollTable.ByName[st.Item];
                     seg.Remove(row.FusionPart1!); seg.Remove(row.FusionPart2!); seg[st.Item] = 1;
                 }
                 else seg[st.Item] = st.SegmentLevel;
             }
             uint seedJ = script[j].Seed;
-            PrismRollRow fusion = byName[script[j].Item];
+            PrismRollRow fusion = PrismRollTable.ByName[script[j].Item];
             string p1 = fusion.FusionPart1!, p2 = fusion.FusionPart2!;
             int maxO = 10 - seg.GetValueOrDefault(p1, 10) + (10 - seg.GetValueOrDefault(p2, 10));
             Dictionary<string, int> availReduced = feedLevels.Where(kv => !fed.Contains(kv.Key)).ToDictionary(kv => kv.Key, kv => kv.Value);
@@ -180,7 +177,7 @@ internal static class LegendaryTailSearch
                     Slots = [.. ov.Value.Segments.Select(kv => new PrismSlot { RowName = kv.Key, Level = kv.Value })],
                     Feed = [.. feed.Select(kv => new PrismFeed { RowName = kv.Key, FedLevel = kv.Value })],
                 };
-                Steered? steered = SteerLastFuse(r2.Script, postState, byName, caredSingles, availReduced, legendary, budgetMs, startTimestamp, cancel);
+                Steered? steered = SteerLastFuse(r2.Script, postState, caredSingles, availReduced, legendary, budgetMs, startTimestamp, cancel);
                 if (steered is not null && steered.Rerolls < best.Rerolls)
                 {
                     best = steered with { Steps = [.. script.Take(j), .. ov.Value.Steps, .. steered.Steps] };
@@ -338,7 +335,7 @@ internal static class LegendaryTailSearch
                 .Select(y => y.RowName).FirstOrDefault();
 
     // Total grind XP of a step sequence replayed from `start` (each level-up costs 5000 + 300 * display-before).
-    internal static long ScriptXp(IReadOnlyList<SolveStep> steps, PrismState start, Dictionary<string, PrismRollRow> byName)
+    internal static long ScriptXp(IReadOnlyList<SolveStep> steps, PrismState start)
     {
         Dictionary<string, int> seg = start.Slots.ToDictionary(s => s.RowName, s => s.Level);
         long xp = 0;
@@ -348,7 +345,7 @@ internal static class LegendaryTailSearch
             xp += 5000 + 300L * seg.Values.Sum();
             if (st.Action == "fuse")
             {
-                PrismRollRow row = byName[st.Item];
+                PrismRollRow row = PrismRollTable.ByName[st.Item];
                 seg.Remove(row.FusionPart1!); seg.Remove(row.FusionPart2!); seg[st.Item] = 1;
             }
             else seg[st.Item] = st.SegmentLevel;

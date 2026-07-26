@@ -40,9 +40,8 @@ public sealed class LexSolver
             return PrismPlanMapper.ToPlan(r.Status == SolveOutcome.TimedOut, r.Script, r.TotalXp, start, legendary,
                                           Stopwatch.GetElapsedTime(startTimestamp));
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(x => x.RowName);
         (IReadOnlyList<string> goalSegments, _) = SolverInputValidator.SplitLegendary(goal);
-        List<string> caredSingles = [.. goalSegments.Where(g => !byName[g].IsFusion)];
+        List<string> caredSingles = [.. goalSegments.Where(g => !PrismRollTable.ByName[g].IsFusion)];
 
         // Stream monotone-improving best-so-fars: the natural build first (the first arrival at +50, mirroring the
         // staged first-complete-build fire), then each strictly-better steered tail. The guard drops a steered
@@ -59,10 +58,10 @@ public sealed class LexSolver
         }
         Fire(script, r.TotalXp);   // the natural build — the first usable plan at the +50 gate
         Action<LegendaryTailSearch.Steered>? onImprove = progress is null ? null
-            : s => Fire(s.Steps, LegendaryTailSearch.ScriptXp(s.Steps, start, byName));
+            : s => Fire(s.Steps, LegendaryTailSearch.ScriptXp(s.Steps, start));
 
         LegendaryTailSearch.Steered? best = LegendaryTailSearch.Steer(
-            engine, script, start, byName, caredSingles, feed, feedLevels, legendary, budget, startTimestamp, cancellationToken, onImprove);
+            engine, script, start, caredSingles, feed, feedLevels, legendary, budget, startTimestamp, cancellationToken, onImprove);
 
         // steering sweeps a bounded overshoot / earlier-fusion space; if the deadline cut it short, the tail is a
         // best-so-far (Incomplete), else it exhausted that space and the k is final (Complete).
@@ -70,7 +69,7 @@ public sealed class LexSolver
         if (best is null)   // steering couldn't build a better tail — keep the natural lex plan
             return PrismPlanMapper.ToPlan(incomplete, script, r.TotalXp, start, legendary,
                                           Stopwatch.GetElapsedTime(startTimestamp));
-        return PrismPlanMapper.ToPlan(incomplete, best.Steps, LegendaryTailSearch.ScriptXp(best.Steps, start, byName), start, legendary,
+        return PrismPlanMapper.ToPlan(incomplete, best.Steps, LegendaryTailSearch.ScriptXp(best.Steps, start), start, legendary,
                                       Stopwatch.GetElapsedTime(startTimestamp));
     }
 }

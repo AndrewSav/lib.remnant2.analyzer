@@ -9,12 +9,8 @@ namespace lib.remnant2.analyzer.Engine.PrismPath;
 internal static class PrismDeadTest
 {
     // The failure-phase string if `segments` is provably dead for the goal, else null.
-    // wildcardsCanFuse - false for the solver, true for the prism planner goal builder.
-    // This is so that the goal builder does not outright reject goal configurations
-    // that may become solvable by adding more segments/fusions to the goal.
-    // TODO: see if we can make the solver solve those as well. This only matters for a
-    // mid-build change of plan direction; it does not matter for a pristine prism build,
-    // and it does not matter for re-planning the same goal with feed level tweaks.
+    // wildcardsCanFuse - false for the staged solver, true for lex and the prism planner goal builder.
+    // TODO: bring staged solver inline with lex and retire the wildcardsCanFuse parameter
     internal static string? Evaluate(
         IReadOnlyDictionary<string, int> segments,
         string[] goalFusions,
@@ -48,18 +44,19 @@ internal static class PrismDeadTest
         return null;
     }
 
+    // Every part pair that has a fusion, keyed order-independently — a projection of the immutable roll table.
+    private static readonly HashSet<string> FusablePairs = [.. PrismRollTable.Rolls
+        .Where(r => r.IsFusion && r.FusionPart1 is not null && r.FusionPart2 is not null)
+        .Select(r => PairKey(r.FusionPart1!, r.FusionPart2!))];
+
     // The fewest slots `wildcards` can be reduced to: every pair of wildcard SINGLES that are the two parts of
     // a fusion can collapse to one slot, so the answer is the count less a maximum matching over those pairs.
     // Already-placed wildcard fusions cannot collapse further and just count themselves.
     private static int MinWildcardSlots(List<string> wildcards)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
-        HashSet<string> fusable = [.. PrismRollTable.Rolls
-            .Where(r => r.IsFusion && r.FusionPart1 is not null && r.FusionPart2 is not null)
-            .Select(r => PairKey(r.FusionPart1!, r.FusionPart2!))];
-
-        string[] singles = [.. wildcards.Where(w => byName.TryGetValue(w, out PrismRollRow? row) && !row.IsFusion)];
-        return wildcards.Count - MaxFusablePairs(singles, new bool[singles.Length], fusable);
+        string[] singles = [.. wildcards.Where(w =>
+            PrismRollTable.ByName.TryGetValue(w, out PrismRollRow? row) && !row.IsFusion)];
+        return wildcards.Count - MaxFusablePairs(singles, new bool[singles.Length], FusablePairs);
     }
 
     // Maximum matching over a handful of nodes (at most 5 slots exist), so exhaustive recursion is the whole
@@ -101,17 +98,16 @@ internal static class PrismDeadTest
         string[] goalFusions,
         string[] caredSingles)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         Dictionary<string, string> absorbedBy = [];   // fusion part -> the placed fusion that absorbed it
         foreach (string placed in segments.Keys)
-            if (byName.TryGetValue(placed, out PrismRollRow? prow) && prow.IsFusion)
+            if (PrismRollTable.ByName.TryGetValue(placed, out PrismRollRow? prow) && prow.IsFusion)
             { absorbedBy.TryAdd(prow.FusionPart1!, placed); absorbedBy.TryAdd(prow.FusionPart2!, placed); }
         if (absorbedBy.Count == 0) return null;
 
         foreach (string single in caredSingles)
             if (absorbedBy.TryGetValue(single, out string? absorber)) return (single, single, absorber);
         foreach (string fusion in goalFusions)
-            if (!segments.ContainsKey(fusion) && byName.TryGetValue(fusion, out PrismRollRow? grow))
+            if (!segments.ContainsKey(fusion) && PrismRollTable.ByName.TryGetValue(fusion, out PrismRollRow? grow))
             {
                 if (absorbedBy.TryGetValue(grow.FusionPart1!, out string? a1)) return (fusion, grow.FusionPart1!, a1);
                 if (absorbedBy.TryGetValue(grow.FusionPart2!, out string? a2)) return (fusion, grow.FusionPart2!, a2);

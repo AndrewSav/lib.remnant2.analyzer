@@ -83,8 +83,7 @@ internal sealed class ClimbSearch
         _legendary = legendary;
         _goalFusions = goalFusions;
         _caredSingles = [.. caredSingles];
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
-        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (byName[f].FusionPart1!, byName[f].FusionPart2!));
+        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (PrismRollTable.ByName[f].FusionPart1!, PrismRollTable.ByName[f].FusionPart2!));
         _goalFusionParts = [.. goalFusions.SelectMany(f => new[] { _fusionsSegments[f].FusionPart1, _fusionsSegments[f].FusionPart2 }).Distinct()];
     }
 

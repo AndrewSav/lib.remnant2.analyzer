@@ -83,11 +83,10 @@ internal sealed class LexSearch
     private LexSearch(IReadOnlyList<string> goal, string? legendary = null)
     {
         Legendary = legendary;
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         _caredRows = [.. goal];
-        _goalFusions = [.. goal.Where(g => byName[g].IsFusion)];
-        _caredSingles = [.. goal.Where(g => !byName[g].IsFusion)];
-        _fusionsSegments = _goalFusions.ToDictionary(f => f, f => (byName[f].FusionPart1!, byName[f].FusionPart2!));
+        _goalFusions = [.. goal.Where(g => PrismRollTable.ByName[g].IsFusion)];
+        _caredSingles = [.. goal.Where(g => !PrismRollTable.ByName[g].IsFusion)];
+        _fusionsSegments = _goalFusions.ToDictionary(f => f, f => (PrismRollTable.ByName[f].FusionPart1!, PrismRollTable.ByName[f].FusionPart2!));
         _fusionPartInfo = [];
         for (int fi = 0; fi < _goalFusions.Length; fi++)
         {
@@ -174,8 +173,7 @@ internal sealed class LexSearch
         };
         foreach (KeyValuePair<string, int> kv in feed) st.Feed[kv.Key] = kv.Value;
         foreach (KeyValuePair<string, int> kv in segments) st.Segments[kv.Key] = kv.Value;
-        // Cold-state dead-test, shared with ClimbSearch / the routing gate (off-plan + slot-lock).
-        string? deadPhase = PrismDeadTest.Evaluate(st.Segments, _goalFusions, _fusionPartInfo.Keys, _caredSingles);
+        string? deadPhase = PrismDeadTest.Evaluate(st.Segments, _goalFusions, _fusionPartInfo.Keys, _caredSingles, wildcardsCanFuse: true);
         if (deadPhase != null)
             return new Result(SolveOutcome.Unsolvable, null, 0, null,
                               new Diagnostics(Stopwatch.GetElapsedTime(_startTimestamp).TotalMilliseconds, 0, 0, 0, 0, null, [.. _instrumentation.ShellTrace], deadPhase));
@@ -356,8 +354,19 @@ internal sealed class LexSearch
         foreach ((int _, int _, string row) in levelUps.OrderBy(u => u.ClassRank).ThenBy(u => u.Level))
             moves.Add(new Move(Kind.Level, row));
 
+        bool IsPlacedWildcardSegment(BuildState state, string row) => state.Segments.ContainsKey(row) && !IsCared(row);
+
+        // 6. fuse two segments the goal doesn't want, to produce a wildcard fuse.
+        // That can be useful to free up a slot a wanted fusion need to be formed
+        foreach (PrismOffer o in r.Offers)
+            if (o.Kind == PrismOfferKind.Fusion && !_goalFusions.Contains(o.RowName)
+                && PrismRollTable.ByName.TryGetValue(o.RowName, out PrismRollRow? row)
+                && IsPlacedWildcardSegment(st, row.FusionPart1!) && IsPlacedWildcardSegment(st, row.FusionPart2!))
+                moves.Add(new Move(Kind.Fuse, o.RowName));
+
         return moves;
     }
+
 
     // --- state mutation ---------------------------------------------------------------------------
 
@@ -379,13 +388,16 @@ internal sealed class LexSearch
         switch (c.Kind)
         {
             case Kind.Fuse:
+                // One in-game action whether or not the goal asked for it, so one case: parts come from the
+                // roll table, which carries every fusion. Only a GOAL fusion is recorded in Fused/FuseOrder,
+                // which count progress toward the goal and drive the completion check — fusing a pair the goal
+                // never wanted just hands back a slot.
                 st.Script.Add(SolveStep.Of(st.Seed, "fuse", c.Row, 1, prismLevel, phase, rollOffers));
-                (string fusionPart1, string fusionPart2) = _fusionsSegments[c.Row];
-                st.Segments.Remove(fusionPart1);
-                st.Segments.Remove(fusionPart2);
+                PrismRollRow fused = PrismRollTable.ByName[c.Row];
+                st.Segments.Remove(fused.FusionPart1!);
+                st.Segments.Remove(fused.FusionPart2!);
                 st.Segments[c.Row] = 1;
-                st.Fused.Add(c.Row);
-                st.FuseOrder.Add(c.Row);
+                if (_goalFusions.Contains(c.Row)) { st.Fused.Add(c.Row); st.FuseOrder.Add(c.Row); }
                 break;
             case Kind.Place:
                 st.Script.Add(SolveStep.Of(st.Seed, "place", c.Row, 1, prismLevel, phase, rollOffers));

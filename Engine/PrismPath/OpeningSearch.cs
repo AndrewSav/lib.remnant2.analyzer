@@ -28,9 +28,8 @@ internal sealed class OpeningSearch
 
     internal OpeningSearch(IReadOnlyList<string> goalFusions, IReadOnlyList<string> caredSingles)
     {
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         HashSet<string> fusionParts = [];
-        foreach (string f in goalFusions) { fusionParts.Add(byName[f].FusionPart1!); fusionParts.Add(byName[f].FusionPart2!); }
+        foreach (string f in goalFusions) { fusionParts.Add(PrismRollTable.ByName[f].FusionPart1!); fusionParts.Add(PrismRollTable.ByName[f].FusionPart2!); }
         _goalFusionParts = [.. fusionParts];
         _caredSingles = [.. caredSingles];
         _goalFusionSet = [.. goalFusions];
@@ -41,7 +40,7 @@ internal sealed class OpeningSearch
         _caredTarget = Math.Min(_caredSingles.Length, _singlesSlots);
         _wildTarget = _singlesSlots - _caredTarget;
         _wildcardBudget = 5 - _goalFusionSet.Count - _caredSingles.Length;
-        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (byName[f].FusionPart1!, byName[f].FusionPart2!));
+        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (PrismRollTable.ByName[f].FusionPart1!, PrismRollTable.ByName[f].FusionPart2!));
     }
 
     // The opening's outcome: the climb's initial state (Segments/Feed/Seed/FeedLevels/Xp) + the handoff

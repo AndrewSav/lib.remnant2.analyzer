@@ -30,7 +30,6 @@ public static class PrismPlanMapper
         if (script is null)
             return new PrismPlan(outcome, [], 0, 0, legendaryTarget, Elapsed: elapsed);
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         Dictionary<string, int> segments = start.Slots.ToDictionary(s => s.RowName, s => s.Level);
         Dictionary<string, int> feed = start.Feed.ToDictionary(f => f.RowName, f => f.FedLevel);
         uint seed = unchecked((uint)start.CurrentSeed);
@@ -49,7 +48,7 @@ public static class PrismPlanMapper
             }
 
             // the script already names the pick; the offer list it shows is re-derived by the replay
-            steps.Add(AppendLevelUp(byName, segments, feed, ref seed, pendingFeeds,
+            steps.Add(AppendLevelUp(segments, feed, ref seed, pendingFeeds,
                                     _ => (s.Item, s.SegmentLevel, s.Action == "fuse"), out _));
             pendingFeeds = [];
         }
@@ -70,7 +69,6 @@ public static class PrismPlanMapper
         if (outcome == PlanOutcome.Unsolved)
             return ToPlan(incomplete: false, null, 0, start, legendaryTarget, elapsed);
 
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         Dictionary<string, int> segments = start.Slots.ToDictionary(s => s.RowName, s => s.Level);
         Dictionary<string, int> feed = start.Feed.ToDictionary(f => f.RowName, f => f.FedLevel);
         uint seed = unchecked((uint)start.CurrentSeed);
@@ -91,11 +89,11 @@ public static class PrismPlanMapper
             }
 
             int pick = picks[i];
-            steps.Add(AppendLevelUp(byName, segments, feed, ref seed, pendingFeeds,
+            steps.Add(AppendLevelUp(segments, feed, ref seed, pendingFeeds,
                 roll =>
                 {
                     PrismOffer offer = roll.Offers[pick];
-                    PrismRollRow row = byName[offer.RowName];
+                    PrismRollRow row = PrismRollTable.ByName[offer.RowName];
                     return (offer.RowName, offer.NextLevel, row.IsFusion && !segments.ContainsKey(offer.RowName));
                 }, out long experienceCost));
             totalExperience += experienceCost;
@@ -107,8 +105,7 @@ public static class PrismPlanMapper
     // One level-up: evaluate the offer shown at `seed`, let the caller name its pick (from the script, or from a
     // capture's offer index into the freshly evaluated offers), apply it to the replayed state (a fusion absorbs
     // its two parts), and emit the step. Advances `seed` to the next roll and reports the step's XP cost.
-    private static PrismPlanStep AppendLevelUp(Dictionary<string, PrismRollRow> byName,
-                                               Dictionary<string, int> segments,
+    private static PrismPlanStep AppendLevelUp(Dictionary<string, int> segments,
                                                Dictionary<string, int> feed,
                                                ref uint seed,
                                                IReadOnlyList<PrismFeed> pendingFeeds,
@@ -122,7 +119,7 @@ public static class PrismPlanMapper
         (string item, int nextLevel, bool fuse) = choosePick(roll);
         if (fuse)
         {
-            PrismRollRow fusion = byName[item];
+            PrismRollRow fusion = PrismRollTable.ByName[item];
             segments.Remove(fusion.FusionPart1!);
             segments.Remove(fusion.FusionPart2!);
             segments[item] = 1;
