@@ -10,7 +10,6 @@ internal static class PrismDeadTest
 {
     // The failure-phase string if `segments` is provably dead for the goal, else null.
     // wildcardsCanFuse - false for the staged solver, true for lex and the prism planner goal builder.
-    // TODO: bring staged solver inline with lex and retire the wildcardsCanFuse parameter
     internal static string? Evaluate(
         IReadOnlyDictionary<string, int> segments,
         string[] goalFusions,
