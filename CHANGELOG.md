@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- `SolverInputValidator.DeadReason` no longer reports a goal as impossible when the prism holds segments outside the goal that could be fused with each other to free a slot
+
 ## v2.0.2 (25 July 2026)
 - Updated lib.remnant2.saves to 2.0.1
 
