@@ -2,6 +2,7 @@
 
 ## Unreleased
 - `SolverInputValidator.DeadReason` no longer reports a goal as impossible when the prism holds segments outside the goal that could be fused with each other to free a slot
+- The lex solver can now also produce wildcard fusions. This matters when a free slot is required to form a wanted fusion
 
 ## v2.0.2 (25 July 2026)
 - Updated lib.remnant2.saves to 2.0.1

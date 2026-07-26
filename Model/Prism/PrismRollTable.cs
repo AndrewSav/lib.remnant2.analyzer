@@ -13,6 +13,8 @@ public static class PrismRollTable
     // legendary pool, in db.json Order; Rarity 4
     public static IReadOnlyList<PrismRollRow> Legendary => LegendaryLazy.Value;
 
+    public static IReadOnlyDictionary<string, PrismRollRow> ByName => ByNameLazy.Value;
+
     private static readonly Lazy<IReadOnlyList<PrismRollRow>> RollsLazy = new(() =>
         ItemDb.Db.Where(x => x.GetValueOrDefault("Type") is "prismslot" or "fusion")
             .Select(BuildRollRow)
@@ -25,6 +27,9 @@ public static class PrismRollTable
                                           int.Parse(x["Order"], CultureInfo.InvariantCulture)))
             .OrderBy(r => r.Order)
             .ToList());
+
+    private static readonly Lazy<IReadOnlyDictionary<string, PrismRollRow>> ByNameLazy =
+        new(() => RollsLazy.Value.ToDictionary(r => r.RowName));
 
     private static PrismRollRow BuildRollRow(Dictionary<string, string> x)
     {

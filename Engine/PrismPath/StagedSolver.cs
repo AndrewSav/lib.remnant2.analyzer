@@ -61,12 +61,11 @@ internal sealed class StagedSolver
     {
         SolverInputValidator.Validate(goal);
         (IReadOnlyList<string> segments, string? legendary) = SolverInputValidator.SplitLegendary(goal);
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         List<string> fusions = [];
         List<string> caredSingles = [];
         foreach (string seg in segments)   // non-legendary; validated above: <= 4 fusions, <= 5 known segments
         {
-            if (byName[seg].IsFusion) fusions.Add(seg);
+            if (PrismRollTable.ByName[seg].IsFusion) fusions.Add(seg);
             else caredSingles.Add(seg);
         }
         return new StagedSolver([.. fusions], [.. caredSingles], legendary);
@@ -75,12 +74,11 @@ internal sealed class StagedSolver
     private StagedSolver(string[] goalFusions, string[] caredSingles, string? legendary = null)
     {
         Legendary = legendary;
-        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
         _goalFusions = goalFusions;
-        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (byName[f].FusionPart1!, byName[f].FusionPart2!));
+        _fusionsSegments = goalFusions.ToDictionary(f => f, f => (PrismRollTable.ByName[f].FusionPart1!, PrismRollTable.ByName[f].FusionPart2!));
         _caredSingles = caredSingles;
         _goalFusionParts = [.. _fusionsSegments.Values.SelectMany(v => new[] { v.FusionPart1, v.FusionPart2 }).Distinct()];
-        _allFusions = [.. byName.Values.Where(r => r.IsFusion).Select(r => r.RowName)];
+        _allFusions = [.. PrismRollTable.Rolls.Where(r => r.IsFusion).Select(r => r.RowName)];
         _opening = new OpeningSearch(goalFusions, caredSingles);
         _climb = new ClimbSearch(goalFusions, caredSingles, legendary);
     }
