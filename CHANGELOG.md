@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v2.0.3 (27 July 2026)
 - `SolverInputValidator.DeadReason` no longer reports a goal as impossible when the prism holds segments outside the goal that could be fused with each other to free a slot
 - The lex solver can now also produce wildcard fusions. This matters when a free slot is required to form a wanted fusion
 
