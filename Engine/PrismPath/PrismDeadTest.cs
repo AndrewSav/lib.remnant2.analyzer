@@ -2,18 +2,25 @@
 
 namespace lib.remnant2.analyzer.Engine.PrismPath;
 
-// The provable dead-test (off-plan + slot-locked) for a loaded prism state, shared by the routing gate
+// The dead-test (off-plan + slot-locked) for a loaded prism state, shared by the routing gate
 // (StagedSolver.CompatibleWithOpening) and both cold-start engines (ClimbSearch, LexSearch) so they agree on
 // which loaded prisms are impossible. It is one shared static check because neither search detects the
 // slot-locked class without exhausting itself, and the opening has no reject at all.
 internal static class PrismDeadTest
 {
     // The failure-phase string if `segments` is provably dead for the goal, else null.
+    // wildcardsCanFuse - false for the solver, true for the prism planner goal builder.
+    // This is so that the goal builder does not outright reject goal configurations
+    // that may become solvable by adding more segments/fusions to the goal.
+    // TODO: see if we can make the solver solve those as well. This only matters for a
+    // mid-build change of plan direction; it does not matter for a pristine prism build,
+    // and it does not matter for re-planning the same goal with feed level tweaks.
     internal static string? Evaluate(
         IReadOnlyDictionary<string, int> segments,
         string[] goalFusions,
         IReadOnlyCollection<string> goalFusionParts,
-        string[] caredSingles)
+        string[] caredSingles,
+        bool wildcardsCanFuse = false)
     {
         // A placed fusion permanently absorbs its two single parts, and the roll engine never re-offers an
         // absorbed part (PrismRollEvaluator excludes it from the candidate pool) — so a goal single that IS such
@@ -22,20 +29,64 @@ internal static class PrismDeadTest
             return "off-plan:absorbed-part";
 
         int wildcardBudget = 5 - goalFusions.Length - caredSingles.Length;
-        int fused = 0, caredPlaced = 0, wildcards = 0;
+        int fused = 0, caredPlaced = 0;
+        List<string> wildcardList = [];
         foreach (string s in segments.Keys)
         {
             if (goalFusions.Contains(s)) fused++;
             else if (caredSingles.Contains(s)) caredPlaced++;
-            else if (!goalFusionParts.Contains(s)) wildcards++;   // a non-goal single OR a non-goal fusion
+            else if (!goalFusionParts.Contains(s)) wildcardList.Add(s);   // a non-goal single OR a non-goal fusion
             // else: a goal fusion part (in progress)
         }
+
+        int wildcards = wildcardsCanFuse ? MinWildcardSlots(wildcardList) : wildcardList.Count;
+
         if (wildcards > wildcardBudget) return "off-plan:excess-wildcards";
         int unfused = goalFusions.Length - fused;
         int partsCeiling = 5 - fused - caredPlaced - wildcards;
         if (unfused >= 1 && partsCeiling < unfused + 1) return "slot-locked";
         return null;
     }
+
+    // The fewest slots `wildcards` can be reduced to: every pair of wildcard SINGLES that are the two parts of
+    // a fusion can collapse to one slot, so the answer is the count less a maximum matching over those pairs.
+    // Already-placed wildcard fusions cannot collapse further and just count themselves.
+    private static int MinWildcardSlots(List<string> wildcards)
+    {
+        Dictionary<string, PrismRollRow> byName = PrismRollTable.Rolls.ToDictionary(r => r.RowName);
+        HashSet<string> fusable = [.. PrismRollTable.Rolls
+            .Where(r => r.IsFusion && r.FusionPart1 is not null && r.FusionPart2 is not null)
+            .Select(r => PairKey(r.FusionPart1!, r.FusionPart2!))];
+
+        string[] singles = [.. wildcards.Where(w => byName.TryGetValue(w, out PrismRollRow? row) && !row.IsFusion)];
+        return wildcards.Count - MaxFusablePairs(singles, new bool[singles.Length], fusable);
+    }
+
+    // Maximum matching over a handful of nodes (at most 5 slots exist), so exhaustive recursion is the whole
+    // algorithm: take the first unmatched node, try leaving it unmatched and try each fusable partner.
+    private static int MaxFusablePairs(string[] nodes, bool[] used, HashSet<string> fusable)
+    {
+        int first = -1;
+        for (int i = 0; i < nodes.Length; i++)
+            if (!used[i]) { first = i; break; }
+        if (first < 0) return 0;
+
+        used[first] = true;
+        int best = MaxFusablePairs(nodes, used, fusable);   // leave `first` unpaired
+        for (int j = first + 1; j < nodes.Length; j++)
+        {
+            if (used[j] || !fusable.Contains(PairKey(nodes[first], nodes[j]))) continue;
+            used[j] = true;
+            best = Math.Max(best, 1 + MaxFusablePairs(nodes, used, fusable));
+            used[j] = false;
+        }
+        used[first] = false;
+        return best;
+    }
+
+    // Order-independent key for an unordered part pair.
+    private static string PairKey(string a, string b) =>
+        string.CompareOrdinal(a, b) <= 0 ? $"{a} {b}" : $"{b} {a}";
 
     // The goal segment that can never be built because a needed single is already absorbed — together with the
     // culprits: BlockedSegment (the goal segment), Part (the absorbed single), and AbsorbingSegment (the placed

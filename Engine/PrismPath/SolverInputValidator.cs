@@ -167,7 +167,7 @@ public static class SolverInputValidator
         string[] fusions = [.. goalFusions];
         string[] singles = [.. caredSingles];
 
-        return PrismDeadTest.Evaluate(state, fusions, goalFusionParts, singles) switch
+        return PrismDeadTest.Evaluate(state, fusions, goalFusionParts, singles, wildcardsCanFuse: true) switch
         {
             "off-plan:absorbed-part" => AbsorbedPartVerdict(state, fusions, singles),
             "off-plan:excess-wildcards" => new PrismDeadVerdict(PrismDeadReason.ExcessWildcards, null),
