@@ -9,8 +9,9 @@ namespace lib.remnant2.analyzer.Engine.PrismPath;
 internal static class PrismDeadTest
 {
     // The failure-phase string if `segments` is provably dead for the goal, else null.
-    // wildcardsCanFuse - false for the staged solver, true for lex and the prism planner goal builder.
-    // TODO: bring staged solver inline with lex and retire the wildcardsCanFuse parameter
+    // wildcardsCanFuse - true for both engines and the prism planner goal builder. False is left for the staged
+    // routing gate alone, which is not asking whether the state is dead: the opening cannot fuse, so a state
+    // only a fuse can rescue has to route to the climb.
     internal static string? Evaluate(
         IReadOnlyDictionary<string, int> segments,
         string[] goalFusions,
@@ -42,6 +43,26 @@ internal static class PrismDeadTest
         int partsCeiling = 5 - fused - caredPlaced - wildcards;
         if (unfused >= 1 && partsCeiling < unfused + 1) return "slot-locked";
         return null;
+    }
+
+    // The fusions whose two parts are both placed and wanted by nothing: forming one collapses two occupied
+    // slots into one, which is the only in-game way to make room on a full prism. In roll-table order, so a
+    // caller branching over them is deterministic. This is the same pairing MinWildcardSlots counts, named
+    // rather than reduced to a number — the staged climb fuses one of these to free a slot.
+    internal static IEnumerable<string> FusableWildcardFusions(
+        IReadOnlyDictionary<string, int> segments,
+        string[] goalFusions,
+        IReadOnlyCollection<string> goalFusionParts,
+        string[] caredSingles)
+    {
+        bool IsPlacedWildcard(string row) =>
+            segments.ContainsKey(row) && !goalFusionParts.Contains(row) && !caredSingles.Contains(row);
+
+        foreach (PrismRollRow row in PrismRollTable.Rolls)
+            if (row.IsFusion && row.FusionPart1 is not null && row.FusionPart2 is not null
+                && !goalFusions.Contains(row.RowName)
+                && IsPlacedWildcard(row.FusionPart1) && IsPlacedWildcard(row.FusionPart2))
+                yield return row.RowName;
     }
 
     // Every part pair that has a fusion, keyed order-independently — a projection of the immutable roll table.

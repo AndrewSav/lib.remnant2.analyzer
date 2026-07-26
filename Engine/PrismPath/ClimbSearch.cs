@@ -226,7 +226,8 @@ internal sealed class ClimbSearch
 
         if (opening == null)   // cold, untrusted state — reject a provably-dead prism, then classify the rest
         {
-            string? deadPhase = PrismDeadTest.Evaluate(st.Segments, _goalFusions, _goalFusionParts, _caredSingles);
+            string? deadPhase = PrismDeadTest.Evaluate(st.Segments, _goalFusions, _goalFusionParts, _caredSingles,
+                                                      wildcardsCanFuse: true);
             if (deadPhase != null) { _instrumentation.RecordFailure(st.Script.Count, deadPhase); return Package(null); }
             // a present goal fusion is fused; everything else is handled by the search as-is
             foreach (string s in st.Segments.Keys)
@@ -364,11 +365,45 @@ internal sealed class ClimbSearch
         if (st.Fused.Count == _goalFusions.Length && _caredSingles.All(st.Segments.ContainsKey) && st.Segments.Count == 5)
             return _legendary is null ? LevelTo50Greedy(st) ? st : null : CompleteForLegendary(st);
 
-        throw new UnreachableException(
-            $"ClimbSearch reached 'stuck' (slots full, nothing fuseable, build incomplete): " +
-            $"fused {st.Fused.Count}/{_goalFusions.Length}, segments [{string.Join(",", st.Segments.Keys)}] — " +
-            "unreachable for any valid routed input; a caller passed an out-of-contract or dead state.");
+        // Slots full, no goal fusion completable, build incomplete. The one in-game action that makes room is
+        // fusing two placed segments the goal doesn't want, collapsing two occupied slots into one — and the dead
+        // test calls such a state live only BECAUSE a fusable pair exists, so the branch below always has a
+        // candidate here. A dead verdict is a dead end of this search path rather than a caller error: the entry
+        // reject only judges the state the caller passed, and a refill can walk into this one on its own.
+        if (PrismDeadTest.Evaluate(st.Segments, _goalFusions, _goalFusionParts, _caredSingles,
+                                   wildcardsCanFuse: true) is { } deadHere)
+        {
+            _instrumentation.RecordFailure(st.Script.Count, deadHere);
+            return null;
+        }
+
+        string[] wildcardFusions =
+            [.. PrismDeadTest.FusableWildcardFusions(st.Segments, _goalFusions, _goalFusionParts, _caredSingles)];
+        if (wildcardFusions.Length == 0)
+            throw new UnreachableException(
+                $"ClimbSearch reached 'stuck' (slots full, nothing fuseable, build incomplete, no wildcard pair): " +
+                $"fused {st.Fused.Count}/{_goalFusions.Length}, segments [{string.Join(",", st.Segments.Keys)}] — " +
+                "the dead test called this state live, which it can only do when such a pair exists.");
+
+        // Each candidate is a branch point, like a refill target. No padding: a fusion the goal never wanted
+        // earns no decline/delay shopping, so take it on the roll that offers it.
+        foreach (string wildcardFusion in wildcardFusions)
+        {
+            if (TimedOut()) return null;
+            BuildState branch = st.Clone();
+            (bool ok, _, _) = PairLevelAndFuse(branch, wildcardFusion, fusionDecline: 0, eligibilityDelay: 0);
+            if (ok && Solve(branch) is { } solved) return solved;
+        }
+        _instrumentation.RecordFailure(st.Script.Count, "wildcard-fuse:exhausted");
+        return null;
     }
+
+    // A fusion's two parts: the goal's own from _fusionsSegments, any other from the roll table — the climb can
+    // now fuse a pair the goal never asked for.
+    private (string FusionPart1, string FusionPart2) PartsOf(string fusion) =>
+        _fusionsSegments.TryGetValue(fusion, out (string FusionPart1, string FusionPart2) parts)
+            ? parts
+            : (PrismRollTable.ByName[fusion].FusionPart1!, PrismRollTable.ByName[fusion].FusionPart2!);
 
     // Fuse phase: level the pair to +5/+5, then fuse when offered. `eligibilityDelay` = declines of the
     // +5/+5-completing pick (keeps the fusion out of the pool); `fusionDecline` = declines of the offered fusion.
@@ -379,7 +414,7 @@ internal sealed class ClimbSearch
         int fusionDecline,
         int eligibilityDelay)
     {
-        (string FusionPart1, string FusionPart2) pair = _fusionsSegments[fusion];
+        (string FusionPart1, string FusionPart2) pair = PartsOf(fusion);
         string phase = $"fuse:{fusion}";
         int declinesUsed = 0, delaysUsed = 0;
 
@@ -626,11 +661,12 @@ internal sealed class ClimbSearch
     private void TakeFusion(BuildState st, PrismRollResult r, string fusion, string phase)
     {
         TakeRoll(st, r, "fuse", fusion, 1, phase);
-        (string fusionPart1, string fusionPart2) = _fusionsSegments[fusion];
+        (string fusionPart1, string fusionPart2) = PartsOf(fusion);
         st.Segments.Remove(fusionPart1);
         st.Segments.Remove(fusionPart2);
         st.Segments[fusion] = 1;
-        st.Fused.Add(fusion);
-        st.FuseOrder.Add(fusion);
+        // Fused/FuseOrder count progress toward the goal and drive the completion check, so a fusion the goal
+        // never wanted is not recorded there — it only hands back a slot.
+        if (_goalFusions.Contains(fusion)) { st.Fused.Add(fusion); st.FuseOrder.Add(fusion); }
     }
 }

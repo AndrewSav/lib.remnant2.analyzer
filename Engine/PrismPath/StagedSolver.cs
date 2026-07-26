@@ -134,7 +134,10 @@ internal sealed class StagedSolver
             (string fusionPart1, string fusionPart2) = _fusionsSegments[f];
             if (segments.GetValueOrDefault(fusionPart1) >= 5 && segments.GetValueOrDefault(fusionPart2) >= 5) return false;   // pair-ready ⇒ climb
         }
-        return PrismDeadTest.Evaluate(segments, _goalFusions, _goalFusionParts, _caredSingles) == null;   // dead ⇒ climb (fast reject)
+        // The STRICT verdict on purpose: the opening cannot fuse two placed segments to make room and there is
+        // no opening -> climb fallback, so a state only that move can rescue has to route to the climb, which
+        // can now take it. (Relaxed here would send it to the opening, which would fail.)
+        return PrismDeadTest.Evaluate(segments, _goalFusions, _goalFusionParts, _caredSingles) == null;   // dead ⇒ climb
     }
 
     // Run the opening from a partial / already-fed start (accumulating onto any existing feed), then climb.
