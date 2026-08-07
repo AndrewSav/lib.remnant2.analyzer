@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Fixed the missing Lifeless Heart prerequisite - it now requires the Ravager's Mark amulet, so it is no longer reported as obtainable when the character does not own the amulet and can no longer get it in the current roll (the Ravager did not roll, or was already defeated and the other reward taken)
+
 ## v2.0.3 (27 July 2026)
 - `SolverInputValidator.DeadReason` no longer reports a goal as impossible when the prism holds segments outside the goal that could be fused with each other to free a slot
 - The lex solver can now also produce wildcard fusions. This matters when a free slot is required to form a wanted fusion
