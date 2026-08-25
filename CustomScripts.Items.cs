@@ -355,7 +355,8 @@ internal static partial class CustomScripts
         // The ring is the reward for hearing out the Preacher's sermon peacefully. Aggroing him
         // (which yields the Top Hat instead) forecloses that dialogue for good, so either the
         // reward having been handed over or the aggro flag means the ring is gone from this save.
-        Actor actor = lic.GetActor("Quest_Story_OneTrueKing_C");
+        Actor actor = lic.GetActorOrNull("Quest_Story_OneTrueKing_C")
+                      ?? lic.GetActor("Quest_Story_OneTrueKing_OneShot_C");
         Component? component = actor.GetFirstObjectComponents()?.FirstOrDefault(x => x.ComponentKey == "Variables");
         if (component == null) return;
         string? value = component.Variables?.Items.FirstOrDefault(x => x.Key == "ReceivedReward").Value?.Value?.ToString();
