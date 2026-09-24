@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Fixed the missing the Dreamcatcher as Supercharger prerequisite
+
 ## v2.0.4 (26 Aug 2026)
 - Fixed the missing Lifeless Heart prerequisite - it now requires the Ravager's Mark amulet, so it is no longer reported as obtainable when the character does not own the amulet and can no longer get it in the current roll (the Ravager did not roll, or was already defeated and the other reward taken)
 - Fixed a crash in Band of Fanatics detection on OTK one shot saves

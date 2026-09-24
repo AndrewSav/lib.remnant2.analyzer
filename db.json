@@ -2925,6 +2925,7 @@
     "Subtype": "Ranged",
     "DropType": "Event",
     "DropReference": "Quest_RootEarth_Zone2",
+    "Prerequisite": "Weapon_Dreamcatcher",
     "Note": "Drops from Bane Aberration found in the Corrupted Harbor location on Root Earth. Use the Dreamcatcher melee weapon on the glowing blue fixture in the area, where you found Escalation Protocol. It is just off the main path from the boiler room arena between the first and the second checkpoint. Use the \"Walker's Dream\" item that will drop, and you will get teleported to Bane",
     "Consumable": "Consumable_RootWalkerDream"
   },
